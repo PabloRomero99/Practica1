@@ -37,4 +37,10 @@ public class Persona {
     public void setListaTareas(List<Tarea> listaTareas) {
         this.listaTareas = listaTareas;
     }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+
+        }
+    }
 }
