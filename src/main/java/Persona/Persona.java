@@ -6,7 +6,7 @@ import java.util.List;
 public class Persona {
     private String nombre;           //nombre de la persona
     private String correo;           //correo de la persona
-    private List<Tarea> listaTareas; //falta la lista de tareas
+    private List<Tarea> listaTareas; //lista de tareas de las cual es responsable esta Persona
 
     public Persona(String nombre, String correo, List<Tarea> listaTareas){
         this.nombre = nombre;
@@ -38,9 +38,4 @@ public class Persona {
         this.listaTareas = listaTareas;
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 5; i++) {
-
-        }
-    }
 }
