@@ -13,6 +13,7 @@ public class Tarea {
     private int prioridad;      //entre 1 (muy baja) y 5 (muy alta)
     private LocalDate fecha_creacion;
     private LocalDate fecha_finalización; //Puede estar en blanco si no ha finalizado
+    private boolean finalizada;  //True = finalizado False = no finalizado
     private Resultado resultado; //el resultado esperado de la tarea
     private List<String> lista_etiquetas; //Un listado de etiquetas para asignar tópcios comunes
 
@@ -113,4 +114,11 @@ public class Tarea {
     public void setLista_etiquetas(List<String> lista_etiquetas) {
         this.lista_etiquetas = lista_etiquetas;
     }
+
+
+    public void marcarFinalizada(){
+        finalizada = true;
+    }
+
+
 }

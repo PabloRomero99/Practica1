@@ -6,12 +6,12 @@ import java.util.List;
 public class Persona {
     private String nombre;           //nombre de la persona
     private String correo;           //correo de la persona
-    private List<Tarea> listaTareas; //lista de tareas de las cual es responsable esta Persona
+    private List<Tarea> listaTareasResponsable; //lista de tareas de las cual es responsable esta Persona
 
     public Persona(String nombre, String correo, List<Tarea> listaTareas){
         this.nombre = nombre;
         this.correo = correo;
-        this.listaTareas = listaTareas; //falta la lista de tareas
+        this.listaTareasResponsable = listaTareas; //falta la lista de tareas
     }
 
     public String getNombre() {
@@ -22,8 +22,8 @@ public class Persona {
         return correo;
     }
 
-    public List<Tarea> getListaTareas() {
-        return listaTareas;
+    public List<Tarea> getListaTareasResponsable() {
+        return listaTareasResponsable;
     }
 
     public void setNombre(String nombre) {
@@ -34,8 +34,8 @@ public class Persona {
         this.correo = correo;
     }
 
-    public void setListaTareas(List<Tarea> listaTareas) {
-        this.listaTareas = listaTareas;
+    public void setListaTareasResponsable(List<Tarea> listaTareasResponsable) {
+        this.listaTareasResponsable = listaTareasResponsable;
     }
 
 }

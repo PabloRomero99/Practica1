@@ -1,5 +1,7 @@
 package Herramienta;
 
+import java.util.Scanner;
+
 public class Gestor {
 
     public static void main(String[] args) {
@@ -7,7 +9,4 @@ public class Gestor {
             System.out.println("Hola");
         }
     }
-
-
-
 }
