@@ -38,4 +38,12 @@ public class Persona {
         this.listaTareasResponsable = listaTareasResponsable;
     }
 
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", listaTareasResponsable=" + listaTareasResponsable +
+                '}';
+    }
 }

@@ -1,5 +1,9 @@
 package Herramienta;
 
+import Persona.Persona;
+import Proyectos.Proyecto;
+import Tarea.Tarea;
+
 import java.util.Scanner;
 
 public class Gestor {

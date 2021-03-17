@@ -19,8 +19,8 @@ public class Tarea {
 
     //Constructor cuando hay fecha  de finalización
     public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas) {
-        Titulo = titulo;
-        Descripcion = descripcion;
+        this.Titulo = titulo;
+        this.Descripcion = descripcion;
         this.colaboradores = colaboradores;
         this.responsable = responsable;
         this.prioridad = prioridad;
@@ -29,19 +29,6 @@ public class Tarea {
         this.resultado = resultado;
         this.lista_etiquetas = lista_etiquetas;
     }
-
-    //Constructor cuando NO hay fecha  de finalización
-    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, Resultado resultado, List<String> lista_etiquetas) {
-        Titulo = titulo;
-        Descripcion = descripcion;
-        this.colaboradores = colaboradores;
-        this.responsable = responsable;
-        this.prioridad = prioridad;
-        this.fecha_creacion = fecha_creacion;
-        this.resultado = resultado;
-        this.lista_etiquetas = lista_etiquetas;
-    }
-
 
     public String getTitulo() {
         return Titulo;
@@ -120,5 +107,33 @@ public class Tarea {
         finalizada = true;
     }
 
+    @Override
+    public String toString() {
+        return "Tarea{" +
+                "Titulo='" + Titulo + '\n' +
+                "\tDescripcion='" + Descripcion + '\n' +
+                "\tcolaboradores=" + colaboradores + '\n' +
+                "\tresponsable=" + responsable + '\n' +
+                "\tprioridad=" + prioridad + '\n' +
+                "\tfecha_creacion=" + fecha_creacion + '\n' +
+                "\tfecha_finalización=" + fecha_finalización + '\n' +
+                "\tfinalizada=" + finalizada + '\n' +
+                "\tresultado=" + resultado + '\n' +
+                "\tlista_etiquetas=" + lista_etiquetas + '\n' +
+                '}';
+    }
 
+    public void añadirPersona(Persona persona){
+        if (!colaboradores.contains(persona))
+            colaboradores.add(persona);
+        else
+            System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
+    }
+
+    public void eliminarPersona(Persona persona){
+        if (colaboradores.contains(persona))
+            colaboradores.remove(persona);
+        else
+            System.out.println(persona.getNombre() + " no es colaborador en esta tarea");
+    }
 }

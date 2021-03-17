@@ -15,45 +15,47 @@ public class Proyecto {
         super();
     }
 
-    public void iniciarProyecto(String nombre){
-        Proyecto nuevoproyecto = new Proyecto();
-        nuevoproyecto.nombre = nombre;
-        nuevoproyecto.participantes = null;
-        nuevoproyecto.tareas = null;
-        nuevoproyecto.responsables = null;
-        System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente");
+    public Proyecto(String nombre){
+        this.nombre = nombre;
+        this.participantes = new ArrayList<>();
+        this.tareas = new ArrayList<>();
+        this.responsables = new ArrayList<>();
     }
 
-    public boolean añadirParticipante(String nombre, String correo, List<Tarea> lista){
-        Persona nueva = new Persona(nombre, correo, lista);
-        if (participantes.contains(nueva))
-            return false;
-        else {
-            participantes.add(nueva);
+    public List<Persona> getParticipantes() {       //Este serviria como Listar personas asignadas a un proyecto
+        return participantes;
+    }
+
+    public List<Tarea> getTareas(){
+        return tareas;
+    }
+
+    public boolean añadirParticipante(Persona persona){
+        if (participantes.size() == 0 || !participantes.contains(persona)) {
+            participantes.add(persona);
+            return true;
+        }else {
             return true;
         }
     }
 
+    public boolean añadirTarea(Tarea tarea){
+        if (tareas.contains(tarea))
+            return false;
+        else {
+            tareas.add(tarea);
+            return true;
+        }
+
+    }
+
     public boolean añadirTarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas){
         Tarea nueva = new Tarea(titulo, descripcion, colaboradores, responsable, prioridad, fecha_creacion, fecha_finalización, resultado, lista_etiquetas);
-        if (participantes.contains(nueva))
+        if (tareas.contains(nueva))
             return false;
         else {
             tareas.add(nueva);
             return true;
         }
-    }
-
-    public boolean añadirResponsables(Persona persona){
-        if (responsables.contains(persona))
-            return false;
-        else {
-            responsables.add(persona);
-            return true;
-        }
-    }
-
-    public List<Persona> consultarParticipantes(){
-        return participantes;
     }
 }
