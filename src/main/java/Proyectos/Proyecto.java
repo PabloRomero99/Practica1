@@ -40,10 +40,11 @@ public class Proyecto {
     }
 
     public boolean añadirTarea(Tarea tarea){
-        if (tareas.contains(tarea))
+        Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
+        if (tareas.contains(nueva))
             return false;
         else {
-            tareas.add(tarea);
+            tareas.add(nueva);
             return true;
         }
 

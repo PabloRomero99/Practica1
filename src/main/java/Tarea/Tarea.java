@@ -123,6 +123,10 @@ public class Tarea {
                 '}';
     }
 
+    public void marcarFinalizada(){
+        this.finalizada = true;
+    }
+
     public void añadirPersona(Persona persona){
         if (!colaboradores.contains(persona))
             colaboradores.add(persona);
