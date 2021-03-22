@@ -103,9 +103,9 @@ public class Tarea {
     }
 
 
-    public void marcarFinalizada(){
+    /*public void marcarFinalizada(){
         finalizada = true;
-    }
+    }*/
 
     @Override
     public String toString() {
