@@ -49,6 +49,15 @@ public class Proyecto {
         }
         return false;
     }
+    public Tarea devuelveTarea(String nombreTarea){
+        if (encuentraTarea(nombreTarea)){
+            for(Tarea t:this.tareas){
+                if(nombreTarea.equals(t.getTitulo()))
+                    return t;
+            }
+        }
+       return null;
+    }
 
     public boolean encuentraPersona(String nombrePersona){
         for(Persona p:this.participantes){

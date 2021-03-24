@@ -1,5 +1,4 @@
 package Herramienta;
-//PORQUE NO FUNCIONA ESTO?
 
 import Persona.Persona;
 import Proyectos.Proyecto;
@@ -8,10 +7,9 @@ import Tarea.Tarea;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Gestor {//Este es el Gestor, que utilizamos como clase principal
+public class Gestor {
 
-//Tenemos que seleccionar
-    public enum Opciones{ //Esta clase es para realizar un menu interactivo
+    public enum Opciones{
         INICIAR_PROYECTO("Iniciar nuevo proyecto y dar nombre "),
         ALTA_PERSONA("Dar de alta una persona que trabajará en el proyecto "),
         ALTA_TAREAS("Dar de alta una tarea en el proyecto "),
@@ -61,7 +59,7 @@ public class Gestor {//Este es el Gestor, que utilizamos como clase principal
     public static Persona personaadded(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nombre persona: ");
-        String nom = scanner.next();
+        String nom = scanner.nextLine();
         System.out.print("Correo electrónico: ");
         String correo = scanner.next();
         return new Persona(nom,correo,null);
@@ -152,15 +150,14 @@ public class Gestor {//Este es el Gestor, que utilizamos como clase principal
                         System.out.print("Nombre de la tarea donde añadir etiquetas: ");
                         String ntarea = scr.next();
                         if(p.encuentraTarea(ntarea)){
-                            System.out.print("Escribe las etiquetas, o intro para terminar: ");
+                            System.out.print("Escribe las etiquetas, o 'STOP' para terminar: ");
                             String etiqueta = scr.next();
-                            while(etiqueta !="") {
-                                //p.añadirEtiqueta(etiqueta,ntarea);
-                                System.out.print("Nombre de la tarea donde añadir etiquetas: ");
+                            while(!etiqueta.equals("STOP")) {
+                                p.addEtiquetas(etiqueta,p.devuelveTarea(ntarea));
+                                System.out.print("Escribe las etiquetas, o 'STOP' para terminar: ");
                                 etiqueta = scr.next();
                             }
                         }
-
                     }
                     break;
 

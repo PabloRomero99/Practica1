@@ -118,8 +118,8 @@ public class Tarea {
 
     @Override
     public String toString() {
-        return  "\t- Titulo='" + Titulo + '\n' +
-                "\t- Descripcion='" + Descripcion + '\n' +
+        return  "\t- Titulo=" + Titulo + '\n' +
+                "\t- Descripcion=" + Descripcion + '\n' +
                 "\t- Rolaboradores=" + colaboradores + '\n' +
                 "\t- Responsable=" + responsable + '\n' +
                 "\t- Prioridad=" + prioridad + '\n' +
