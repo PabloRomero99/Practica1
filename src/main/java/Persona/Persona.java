@@ -40,10 +40,10 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "nombre='" + nombre + '\'' +
-                ", correo='" + correo + '\'' +
-                ", listaTareasResponsable=" + listaTareasResponsable +
-                '}';
+        return //"Persona{" +
+                "\t- Nombre=" + nombre + '\n' +
+                "\t- Correo=" + correo + '\n' +
+                "\t- Responsable en las tareas=" + listaTareasResponsable + "\n";
+                //'}';
     }
 }

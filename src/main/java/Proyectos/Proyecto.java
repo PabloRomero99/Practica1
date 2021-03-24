@@ -78,4 +78,40 @@ public class Proyecto {
             return true;
         }
     }
+
+    public void addEtiquetas(String etiqueta, Tarea tarea){
+            if (!tarea.getLista_etiquetas().contains(etiqueta))
+                tarea.getLista_etiquetas().add(etiqueta);
+            else
+                System.out.println("La etiqueta " + etiqueta + "ya esta en la lista de etiquetas de la tarea ");
+
+    }
+    public void eliminarEtiqueta(String etiqueta,Tarea tarea) {
+        if (tarea.getLista_etiquetas().contains(etiqueta))
+            tarea.getLista_etiquetas().remove(etiqueta);
+        else
+            System.out.println("La etiqueta " + etiqueta + "no se encuentra en la lista de etiquetas");
+    }
+
+    public void addPersona(Persona persona, Tarea tarea){
+        for (Persona p : tarea.getColaboradores()) {
+            if(p.equals(persona)) {
+                System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
+                break;
+            }
+        }
+        tarea.getColaboradores().add(persona);
+        System.out.println("La persona se ha añadido correctamente");
+    }
+
+    public void eliminarPersona(String persona, Tarea tarea){
+        for (Persona p : tarea.getColaboradores()) {
+            if(p.getNombre().equals(persona)) {
+                tarea.getColaboradores().remove(p);
+                System.out.println("La persona se ha borrado correctamente");
+                break;
+            }
+        }
+        System.out.println(persona + "no es colaborador/a en esta tarea");
+    }
 }
