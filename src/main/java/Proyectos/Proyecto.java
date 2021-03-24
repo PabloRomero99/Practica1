@@ -33,7 +33,7 @@ public class Proyecto {
         return tareas;
     }
 
-    public boolean añadirParticipante(Persona persona){
+    public boolean addParticipante(Persona persona){
         if (participantes.size() == 0 || !participantes.contains(persona)) {
             participantes.add(persona);
             return true;
@@ -58,7 +58,7 @@ public class Proyecto {
         return false;
     }
 
-    public boolean añadirTarea(Tarea tarea){
+    public boolean addTarea(Tarea tarea){
         Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
         if (tareas.contains(nueva))
             return false;
