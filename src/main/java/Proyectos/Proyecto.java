@@ -1,8 +1,11 @@
 package Proyectos;
 
 import Persona.Persona;
+import Resultado.Resultado;
 import Tarea.Tarea;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Proyecto {
