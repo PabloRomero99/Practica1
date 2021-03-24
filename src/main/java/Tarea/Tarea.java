@@ -3,6 +3,7 @@ import Persona.Persona;
 import Resultado.Resultado;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tarea {
@@ -17,7 +18,7 @@ public class Tarea {
     private Resultado resultado; //el resultado esperado de la tarea
     private List<String> lista_etiquetas; //Un listado de etiquetas para asignar tópcios comunes
 
-    //Constructor cuando hay fecha  de finalización
+    //Constructor entero
     public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
@@ -28,6 +29,19 @@ public class Tarea {
         this.fecha_finalización = fecha_finalización;
         this.resultado = resultado;
         this.lista_etiquetas = lista_etiquetas;
+    }
+
+    //Constructor cuando queremos iniciar en proyecto
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion) {
+        this.Titulo = titulo;
+        this.Descripcion = descripcion;
+        this.colaboradores = new ArrayList<Persona>();
+        this.responsable = null;
+        this.prioridad = prioridad;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_finalización = null;
+        this.resultado = null;
+        this.lista_etiquetas = new ArrayList<String>();
     }
 
     public String getTitulo() {
@@ -102,25 +116,18 @@ public class Tarea {
         this.lista_etiquetas = lista_etiquetas;
     }
 
-
-    public void marcarFinalizada(){
-        finalizada = true;
-    }
-
     @Override
     public String toString() {
-        return "Tarea{" +
-                "Titulo='" + Titulo + '\n' +
-                "\tDescripcion='" + Descripcion + '\n' +
-                "\tcolaboradores=" + colaboradores + '\n' +
-                "\tresponsable=" + responsable + '\n' +
-                "\tprioridad=" + prioridad + '\n' +
-                "\tfecha_creacion=" + fecha_creacion + '\n' +
-                "\tfecha_finalización=" + fecha_finalización + '\n' +
-                "\tfinalizada=" + finalizada + '\n' +
-                "\tresultado=" + resultado + '\n' +
-                "\tlista_etiquetas=" + lista_etiquetas + '\n' +
-                '}';
+        return  "\t- Titulo='" + Titulo + '\n' +
+                "\t- Descripcion='" + Descripcion + '\n' +
+                "\t- Rolaboradores=" + colaboradores + '\n' +
+                "\t- Responsable=" + responsable + '\n' +
+                "\t- Prioridad=" + prioridad + '\n' +
+                "\t- Fecha_creacion=" + fecha_creacion + '\n' +
+                "\t- Fecha_finalización=" + fecha_finalización + '\n' +
+                "\t- Finalizada=" + finalizada + '\n' +
+                "\t- Resultado=" + resultado + '\n' +
+                "\t- Lista de etiquetas=" + lista_etiquetas + '\n';
     }
 
     public void marcarFinalizada(){
@@ -140,4 +147,5 @@ public class Tarea {
         else
             System.out.println(persona.getNombre() + " no es colaborador en esta tarea");
     }
+
 }

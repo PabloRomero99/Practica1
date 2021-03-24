@@ -39,6 +39,22 @@ public class Proyecto {
         }
     }
 
+    public boolean encuentraTarea(String nombreTarea){
+        for(Tarea t:this.tareas){
+            if(nombreTarea.equals(t.getTitulo()))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean encuentraPersona(String nombrePersona){
+        for(Persona p:this.participantes){
+            if(nombrePersona.equals(p.getNombre()))
+                return true;
+        }
+        return false;
+    }
+
     public boolean añadirTarea(Tarea tarea){
         Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
         if (tareas.contains(nueva))
