@@ -112,7 +112,7 @@ public class Proyecto {
             System.out.println("La etiqueta " + etiqueta + "no se encuentra en la lista de etiquetas");
     }
 
-    public boolean addPersona(Persona persona, Tarea tarea){//cambiar
+    public boolean addPersona(Persona persona, Tarea tarea){
         for (Persona p : tarea.getColaboradores()) {
             if(p.equals(persona)) {
                 //System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
