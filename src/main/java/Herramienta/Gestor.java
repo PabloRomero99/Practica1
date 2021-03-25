@@ -92,7 +92,8 @@ public class Gestor {
                     break;
 
                 case 3: //INSERTAR_RESPONSABLE
-
+                    if (p != null)
+                        p.addResponsable(leerpersona(), leertarea(), p);
                     break;
 
                 case 4: //TAREA_FINALIZADA

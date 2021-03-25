@@ -60,7 +60,7 @@ public class Proyecto {
     }
 
     public boolean encuentraPersona(String nombrePersona){
-        for(Persona p:this.participantes){
+        for(Persona p : this.participantes){
             if(nombrePersona.equals(p.getNombre()))
                 return true;
         }
@@ -112,25 +112,43 @@ public class Proyecto {
             System.out.println("La etiqueta " + etiqueta + "no se encuentra en la lista de etiquetas");
     }
 
-    public void addPersona(Persona persona, Tarea tarea){
+    public boolean addPersona(Persona persona, Tarea tarea){//cambiar
         for (Persona p : tarea.getColaboradores()) {
             if(p.equals(persona)) {
-                System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
-                break;
+                //System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
+                return false;
             }
         }
         tarea.getColaboradores().add(persona);
-        System.out.println("La persona se ha añadido correctamente");
+        //System.out.println("La persona se ha añadido correctamente");
+        return true;
     }
 
-    public void eliminarPersona(String persona, Tarea tarea){
+    public boolean eliminarPersona(String persona, Tarea tarea){
         for (Persona p : tarea.getColaboradores()) {
             if(p.getNombre().equals(persona)) {
                 tarea.getColaboradores().remove(p);
-                System.out.println("La persona se ha borrado correctamente");
-                break;
+                //System.out.println("La persona se ha borrado correctamente");
+                return true;
             }
         }
-        System.out.println(persona + "no es colaborador/a en esta tarea");
+        //System.out.println(persona + "no es colaborador/a en esta tarea");
+        return false;
+    }
+
+    public void addResponsable(Persona persona, Tarea tarea, Proyecto p){
+        if (p.encuentraTarea(tarea.getTitulo())){
+            if (tarea.getResponsable() == null){
+                if (!p.encuentraPersona(persona.getNombre())){
+                    tarea.addPersona(persona);
+                }
+                tarea.setResponsable(persona);
+            }
+            else
+                System.out.println("El responsable de la tarea es"+  tarea.getResponsable().getNombre()
+                       + " y solo puede hbaer un responsable por tarea");
+        }
+        else
+            System.out.println("No existe ninguna tarea con ese nombre");
     }
 }

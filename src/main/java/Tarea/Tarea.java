@@ -134,7 +134,7 @@ public class Tarea {
         this.finalizada = true;
     }
 
-    public void añadirPersona(Persona persona){
+    public void addPersona(Persona persona){
         if (!colaboradores.contains(persona))
             colaboradores.add(persona);
         else
@@ -147,5 +147,4 @@ public class Tarea {
         else
             System.out.println(persona.getNombre() + " no es colaborador en esta tarea");
     }
-
 }
