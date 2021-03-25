@@ -11,7 +11,7 @@ public class Persona {
     public Persona(String nombre, String correo, List<Tarea> listaTareas){
         this.nombre = nombre;
         this.correo = correo;
-        this.listaTareasResponsable = listaTareas; //falta la lista de tareas
+        this.listaTareasResponsable = listaTareas;
     }
 
     public String getNombre() {
@@ -37,13 +37,20 @@ public class Persona {
     public void setListaTareasResponsable(List<Tarea> listaTareasResponsable) {
         this.listaTareasResponsable = listaTareasResponsable;
     }
+    public void eliminarTareaListaTareasResponsable(Tarea t){
+
+    }
+
+    public void addTareaListaTareasResponsable(Tarea t){
+        if (!listaTareasResponsable.contains(t)){
+            System.out.println("La tarea " + t + "no existe");
+        }else{
+            listaTareasResponsable.add(t);
+        }
+    }
 
     @Override
     public String toString() {
-        return //"Persona{" +
-                "\t- Nombre=" + nombre + '\n' +
-                "\t- Correo=" + correo + '\n' +
-                "\t- Responsable en las tareas=" + listaTareasResponsable + "\n";
-                //'}';
+        return "Nombre= " + nombre + " Correo= " + correo + " Responsable en las tareas= " + listaTareasResponsable;
     }
 }

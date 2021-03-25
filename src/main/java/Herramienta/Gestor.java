@@ -5,10 +5,10 @@ import Proyectos.Proyecto;
 import Tarea.Tarea;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
-import static Herramienta.Leer.leerpersona;
-import static Herramienta.Leer.leertarea;
+import static Herramienta.Leer.*;
 
 
 public class Gestor {
@@ -112,40 +112,13 @@ public class Gestor {
 
                 case 5: //MODIFICAR_PERSONAS_TAREA
                     if(p != null) {
-                        System.out.println("¿De que tarea quieres modificar los participantes?");
-                        String nomTarea = sc.next();
-                        if (p.encuentraTarea(nomTarea)) {
-                            System.out.println("¿Quieres añadir o eliminar a alguien de la tarea?");
-                            String decision = sc.next();
-                            decision = decision.toLowerCase(Locale.ROOT);
-                            if (decision.equals("añadir")) {
-                                System.out.println("¿Cual es el nombre de la persona que quieres añadir?");
-                                String nomPersona = sc.next();
-                                p.addPersona(nomPersona, p.devuelveTarea(nomTarea));
-                            } else if (decision.equals("eliminar")) {
-                                System.out.println("¿Cual es el nombre de la persona que quieres eliminar?");
-                                String nomPersona = sc.next();
-                                p.eliminarPersona(nomPersona, p.devuelveTarea(nomTarea));
-                            }
-                        }else{
-                            System.out.println("La tarea no existe");
-                        }
+                        modificarParticipantes(p);
                     }
                     break;
 
                 case 6:  //MODIFICAR_ETIQUETAS
                     if(p!=null){
-                        System.out.print("Nombre de la tarea donde añadir etiquetas: ");
-                        String ntarea = sc.next();
-                        if(p.encuentraTarea(ntarea)){
-                            System.out.print("Escribe las etiquetas, o 'STOP' para terminar: ");
-                            String etiqueta = sc.next();
-                            while(!etiqueta.equals("STOP")) {
-                                p.addEtiquetas(etiqueta,p.devuelveTarea(ntarea));
-                                System.out.print("Escribe las etiquetas, o 'STOP' para terminar: ");
-                                etiqueta = sc.next();
-                            }
-                        }
+                        leerEtiquetas(p);
                     }
                     break;
 

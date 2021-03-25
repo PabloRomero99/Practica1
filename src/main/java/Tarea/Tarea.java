@@ -120,7 +120,7 @@ public class Tarea {
     public String toString() {
         return  "\t- Titulo=" + Titulo + '\n' +
                 "\t- Descripcion=" + Descripcion + '\n' +
-                "\t- Rolaboradores=" + colaboradores + '\n' +
+                "\t- Colaboradores=" + colaboradores + '\n' +
                 "\t- Responsable=" + responsable + '\n' +
                 "\t- Prioridad=" + prioridad + '\n' +
                 "\t- Fecha_creacion=" + fecha_creacion + '\n' +
