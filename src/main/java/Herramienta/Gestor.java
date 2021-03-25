@@ -7,12 +7,17 @@ import Tarea.Tarea;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import static Herramienta.Leer.leerpersona;
+import static Herramienta.Leer.leertarea;
+
+
 public class Gestor {
 
     public enum Opciones{
         INICIAR_PROYECTO("Iniciar nuevo proyecto y dar nombre "),
         ALTA_PERSONA("Dar de alta una persona que trabajará en el proyecto "),
         ALTA_TAREAS("Dar de alta una tarea en el proyecto "),
+        INSERTAR_RESPONSABLE("Insertar una persona como responsable de una tarea"),
         TAREA_FINALIZADA("Marcar tarea como finalizada "),
         MODIFICAR_PERSONAS_TAREA("Introducir o eliminar una persona de una tarea "),
         MODIFICAR_ETIQUETAS("Añadir o eliminar etiquetas en la tarea"),
@@ -45,7 +50,6 @@ public class Gestor {
             return sb.toString();
         }
     }
-
     public static int elegirOpcion(){
         System.out.println(Opciones.getMenu());
         Scanner scanner = new Scanner(System.in);
@@ -56,112 +60,96 @@ public class Gestor {
         return opcion;
     }
 
-    public static Persona personaadded(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Nombre persona: ");
-        String nom = scanner.nextLine();
-        System.out.print("Correo electrónico: ");
-        String correo = scanner.next();
-        return new Persona(nom,correo,null);
-    }
-
-    public static Tarea tareaadded(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Titulo tarea: ");
-        String titulo = scanner.nextLine();
-        System.out.print("Descripcion: ");
-        String descripcion = scanner.nextLine();
-        System.out.print("Prioridad: ");
-        int prioridad = scanner.nextInt();
-        return new Tarea(titulo,descripcion,prioridad, LocalDate.now());
-    }
-
 
     public static void main(String[] args) {
         Proyecto p=null;
-
+        Scanner sc = new Scanner(System.in);
         int opcion = elegirOpcion();
 
-        while (opcion != 8){
+        while (opcion != 9){
             switch (opcion){
-                case 0:     //Iniciar proyecto
-                    Scanner sc = new Scanner(System.in);
+                case 0: //INICIAR_PROYECTO
                     System.out.print("Nombre del proyecto: ");
                     String nombre = sc.next();
                     p = new Proyecto(nombre);
                     System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
                   break;
 
-                case 1:
+                case 1: //ALTA_PERSONA
                     if (p != null){
-                        p.addParticipante(personaadded());
+                        p.addParticipante(leerpersona());
                         System.out.println("\n");
                     }
                     else
                         System.out.println("Debes tener un proyecto creado para añadir Personas\n");
                     break;
 
-                case 2:
+                case 2: //ALTA_TAREA
                     if (p != null)
-                        p.addTarea(tareaadded());
+                        p.addTarea(leertarea());
                     else
                         System.out.println("Debes tener un proyecto creado para añadir Tareas\n ");
                     break;
 
-                case 3:
+                case 3: //INSERTAR_RESPONSABLE
+
+                    break;
+
+                case 4: //TAREA_FINALIZADA
                     if (p != null){
-                        Scanner scanner = new Scanner(System.in);
                         System.out.print("Nombre de la tarea para marcar: ");
-                        String ntarea = scanner.next();
-                        for (Tarea t: p.getTareas()){
-                            if (ntarea.equals(t.getTitulo()))
-                                t.marcarFinalizada();
+                        String ntarea = sc.next();
+                        if (p.encuentraTarea(ntarea)) {
+                            Tarea t = p.devuelveTarea(ntarea);
+                            t.marcarFinalizada();
                         }
+                        else
+                            System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
                     }
                     else
                         System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
                     break;
 
-                case 4:
-                    if(p != null){
-                        Scanner scanner = new Scanner(System.in);
+                case 5: //MODIFICAR_PERSONAS_TAREA
+                    if(p != null) {
                         System.out.println("¿De que tarea quieres modificar los participantes?");
-                        String nomTarea = scanner.next();
-
-                        System.out.println("¿Quieres añdir o eliminar a alguien de la tarea?");
-                        String decision = scanner.next();
-                        if (decision.equals("añadir") || decision.equals("Añadir")){
-                            for (Tarea t: p.getTareas()) {
-                                if (nomTarea.equals(t.getTitulo())) {
-                                    t.getColaboradores().add(personaadded());
-
-                                }
-                                break;
+                        String nomTarea = sc.next();
+                        if (p.encuentraTarea(nomTarea)) {
+                            System.out.println("¿Quieres añadir o eliminar a alguien de la tarea?");
+                            String decision = sc.next();
+                            decision = decision.toLowerCase(Locale.ROOT);
+                            if (decision.equals("añadir")) {
+                                System.out.println("¿Cual es el nombre de la persona que quieres añadir?");
+                                String nomPersona = sc.next();
+                                p.addPersona(nomPersona, p.devuelveTarea(nomTarea));
+                            } else if (decision.equals("eliminar")) {
+                                System.out.println("¿Cual es el nombre de la persona que quieres eliminar?");
+                                String nomPersona = sc.next();
+                                p.eliminarPersona(nomPersona, p.devuelveTarea(nomTarea));
                             }
+                        }else{
+                            System.out.println("La tarea no existe");
                         }
-
                     }
-
                     break;
 
-                case 5:
+                case 6:  //MODIFICAR_ETIQUETAS
                     if(p!=null){
-                        Scanner scr = new Scanner(System.in);
                         System.out.print("Nombre de la tarea donde añadir etiquetas: ");
-                        String ntarea = scr.next();
+                        String ntarea = sc.next();
                         if(p.encuentraTarea(ntarea)){
                             System.out.print("Escribe las etiquetas, o 'STOP' para terminar: ");
-                            String etiqueta = scr.next();
+                            String etiqueta = sc.next();
                             while(!etiqueta.equals("STOP")) {
                                 p.addEtiquetas(etiqueta,p.devuelveTarea(ntarea));
                                 System.out.print("Escribe las etiquetas, o 'STOP' para terminar: ");
-                                etiqueta = scr.next();
+                                etiqueta = sc.next();
                             }
                         }
                     }
                     break;
 
-                case 6:
+                case 7: //LISTA_PERSONAS
                     if (p != null){
                         for (Persona persona:p.getParticipantes()){
                             System.out.println(persona.toString());
@@ -172,7 +160,7 @@ public class Gestor {
                     System.out.println("\n\n");
                     break;
 
-                case 7:
+                case 8: //LISTA_TAREAS
                     if (p != null){
                         for (Tarea tarea:p.getTareas()){
                             System.out.println(tarea.toString()+"\n");

@@ -67,6 +67,16 @@ public class Proyecto {
         return false;
     }
 
+    public Persona devuelvePersona(String nombrePersona){
+        if (encuentraPersona(nombrePersona)){
+            for(Persona p:this.participantes){
+                if(nombrePersona.equals(p.getNombre()))
+                    return p;
+            }
+        }
+        return null;
+    }
+
     public boolean addTarea(Tarea tarea){
         Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
         if (tareas.contains(nueva))
