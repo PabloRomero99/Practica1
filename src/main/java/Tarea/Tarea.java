@@ -116,7 +116,7 @@ public class Tarea {
         this.lista_etiquetas = lista_etiquetas;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return  "\t- Titulo= " + Titulo + '\n' +
                 "\t- Descripcion= " + Descripcion + '\n' +
@@ -128,6 +128,27 @@ public class Tarea {
                 "\t- Finalizada= " + finalizada + '\n' +
                 "\t- Resultado= " + resultado + '\n' +
                 "\t- Lista de etiquetas= " + lista_etiquetas + '\n';
+    }*/
+
+    public String toString() {
+        String parte1 = "\t- Titulo= " + Titulo + '\n' +
+                "\t- Descripcion= " + Descripcion + '\n';
+
+        List<String> nombres = new ArrayList<>();
+        for (Persona p : colaboradores){
+            nombres.add(p.getNombre());
+        }
+        String parte2=
+                "\t- Colaboradores= " + nombres + '\n' +
+                "\t- Responsable= " + responsable.getNombre() + '\n' +
+                "\t- Prioridad= " + prioridad + '\n' +
+                "\t- Fecha_creacion= " + fecha_creacion + '\n' +
+                "\t- Fecha_finalización= " + fecha_finalización + '\n' +
+                "\t- Finalizada= " + finalizada + '\n' +
+                "\t- Resultado= " + resultado + '\n' +
+                "\t- Lista de etiquetas= " + lista_etiquetas + '\n';
+
+        return parte1 + parte2;
     }
 
     public void marcarFinalizada(){
@@ -147,4 +168,6 @@ public class Tarea {
         else
             System.out.println(persona.getNombre() + " no es colaborador en esta tarea");
     }
+
+
 }

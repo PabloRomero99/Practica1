@@ -145,9 +145,10 @@ public class Proyecto {
                 if (!p.encuentraPersona(persona.getNombre()))
                     System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
                             "este registrada en el proyecto");
-                //else if (!tarea.getColaboradores().contains(persona))
-                //    tarea.getColaboradores().add(persona);
+                else if (!tarea.getColaboradores().contains(persona))
+                    tarea.getColaboradores().add(persona);
                 tarea.setResponsable(persona);
+                persona.getListaTareasResponsable().add(tarea);
             }
             else
                 System.out.println("El responsable de la tarea es"+  tarea.getResponsable()

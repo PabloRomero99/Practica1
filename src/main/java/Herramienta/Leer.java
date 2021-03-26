@@ -70,6 +70,7 @@ public class Leer {
                     etiqueta = sc.next();
                 }
             }
+            System.out.println('\n');
 
         }
     }
@@ -91,6 +92,7 @@ public class Leer {
                     System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
                     nomPersona = sc.next();
                 }
+
             }else{
                 System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");
                 String nomPersona = sc.next();
@@ -103,7 +105,7 @@ public class Leer {
                     nomPersona = sc.next();
                 }
             }
-
+            System.out.println('\n');
         }
     }
 /*
