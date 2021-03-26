@@ -25,8 +25,8 @@ public class Leer {
         System.out.print("Descripcion: ");
         String descripcion = scanner.nextLine();
         System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
-        System.out.println();
         int prioridad = scanner.nextInt();
+        System.out.println();
         return new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now());
     }
 
@@ -34,6 +34,7 @@ public class Leer {
         while(prioridad < 1 || prioridad > 5){
             System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
             prioridad = sc.nextInt();
+            System.out.println();
         }
         return prioridad;
     }
@@ -56,9 +57,10 @@ public class Leer {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿De que tarea quieres modificar las etiquetas?");
         String ntarea = sc.next();
+        int decision = decision();
         if (p.encuentraTarea(ntarea)) {
 
-            if (decision() == 1) { //Decision=añadir
+            if (decision == 1) { //Decision=añadir
                 System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
                 String etiqueta = sc.next();
                 while (!etiqueta.equals("STOP")) {
@@ -66,7 +68,7 @@ public class Leer {
                     System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
                     etiqueta = sc.next();
                 }
-            }else if (decision() == 0){
+            }else if (decision == 0){
                 System.out.print("Escribe el nombre de las etiquetas para eliminar, o 'STOP' para terminar: ");
                 String etiqueta = sc.next();
                 while (!etiqueta.equals("STOP")) {
@@ -82,6 +84,19 @@ public class Leer {
 
         }
     }
+
+    public static void marcandoTareaFinalizada(Proyecto p){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre de la tarea para marcar: ");
+        String ntarea = sc.next();
+        if (p.encuentraTarea(ntarea)) {
+            Tarea t = p.devuelveTarea(ntarea);
+            t.marcarFinalizada();
+        } else
+            System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
+    }
+
+
 
     public static void modificarParticipantes(Proyecto p) {
     Scanner sc = new Scanner(System.in);

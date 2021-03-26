@@ -45,12 +45,21 @@ public class Persona {
     public void addTareaResponsable(Tarea t){
         if (listaTareasResponsable == null)
             listaTareasResponsable = new ArrayList<Tarea>();
-        else
-            listaTareasResponsable.add(t);
+        listaTareasResponsable.add(t);
+    }
+
+    public List<String> devuelveNombreTarea(){
+        if (listaTareasResponsable == null)
+            listaTareasResponsable = new ArrayList<>();
+        List<String> nombres = new ArrayList<>();
+        for (Tarea t : listaTareasResponsable){
+            nombres.add(t.getTitulo());
+        }
+        return nombres;
     }
 
     @Override
     public String toString() {
-        return "- Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + listaTareasResponsable;
+        return "- Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + devuelveNombreTarea();
     }
 }

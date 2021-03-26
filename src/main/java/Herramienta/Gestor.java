@@ -113,27 +113,21 @@ public class Gestor {
                         System.out.print("Nombre de la persona: ");
                         String npersona = sc.next();
                         p.addResponsable(npersona, ntarea, p);
+                        System.out.println("\n");
                     }
 
                     break;
 
                 case 4: //TAREA_FINALIZADA
-                    if (p != null) {
-                        System.out.print("Nombre de la tarea para marcar: ");
-                        String ntarea = sc.next();
-                        if (p.encuentraTarea(ntarea)) {
-                            Tarea t = p.devuelveTarea(ntarea);
-                            t.marcarFinalizada();
-                        } else
-                            System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
-                    } else
+                    if (p != null)
+                        marcandoTareaFinalizada(p);
+                    else
                         System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
                     break;
 
                 case 5: //MODIFICAR_PERSONAS_TAREA
-                    if (p != null) {
+                    if (p != null)
                         modificarParticipantes(p);
-                    }
                     break;
 
                 case 6:  //MODIFICAR_ETIQUETAS
