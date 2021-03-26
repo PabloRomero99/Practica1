@@ -145,13 +145,17 @@ public class Proyecto {
                 if (!p.encuentraPersona(persona.getNombre()))
                     System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
                             "este registrada en el proyecto");
-                else if (!tarea.getColaboradores().contains(persona))
+                else if (!tarea.getColaboradores().contains(persona)) { //Persona no colabora Tarea
                     tarea.getColaboradores().add(persona);
-                tarea.setResponsable(persona);
-                persona.getListaTareasResponsable().add(tarea);
+                    tarea.setResponsable(persona);
+                    persona.addTareaResponsable(tarea);
+                }else{
+                    tarea.setResponsable(persona);
+                    persona.addTareaResponsable(tarea);
+                }
             }
             else
-                System.out.println("El responsable de la tarea es"+  tarea.getResponsable()
+                System.out.println("El responsable de la tarea es "+  tarea.getResponsable()
                        + " y solo puede hbaer un responsable por tarea");
         }
         else

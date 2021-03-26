@@ -41,12 +41,11 @@ public class Persona {
 
     }
 
-    public void addTareaListaTareasResponsable(Tarea t){
-        if (!listaTareasResponsable.contains(t)){
-            System.out.println("La tarea " + t + "no existe");
-        }else{
+    public void addTareaResponsable(Tarea t){
+        if (listaTareasResponsable == null)
+            listaTareasResponsable = new ArrayList<Tarea>();
+        else
             listaTareasResponsable.add(t);
-        }
     }
 
     @Override

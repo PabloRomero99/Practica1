@@ -42,7 +42,12 @@ public class Leer {
         System.out.println("¿Quieres añadir o eliminar a alguien de la tarea?");
         String decision = sc.next();
         decision = decision.toLowerCase(Locale.ROOT);
-        return decision.equals("añadir");
+        if(decision.equals("añadir"))
+            return 1;
+        else if(decision.equals("eliminar"))
+            return 0;
+        else
+            return -1;
     }
 
 
@@ -53,7 +58,7 @@ public class Leer {
         String ntarea = sc.next();
         if (p.encuentraTarea(ntarea)) {
 
-            if (decision()) { //Decision=añadir
+            if (decision() == 1) { //Decision=añadir
                 System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
                 String etiqueta = sc.next();
                 while (!etiqueta.equals("STOP")) {
@@ -70,6 +75,9 @@ public class Leer {
                     etiqueta = sc.next();
                 }
             }
+            else
+                System.out.println("Operación no valida, solo se puede añadir o eliminar ");
+
             System.out.println('\n');
 
         }

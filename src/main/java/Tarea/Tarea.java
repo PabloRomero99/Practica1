@@ -131,16 +131,10 @@ public class Tarea {
     }*/
 
     public String toString() {
-        String parte1 = "\t- Titulo= " + Titulo + '\n' +
-                "\t- Descripcion= " + Descripcion + '\n';
-
-        List<String> nombres = new ArrayList<>();
-        for (Persona p : colaboradores){
-            nombres.add(p.getNombre());
-        }
-        String parte2=
-                "\t- Colaboradores= " + nombres + '\n' +
-                "\t- Responsable= " + responsable.getNombre() + '\n' +
+        return "\t- Titulo= " + Titulo + '\n' +
+                "\t- Descripcion= " + Descripcion + '\n' +
+                "\t- Colaboradores= " + listaNombres() + '\n' +
+                "\t- Responsable= " + devuelveResponsable() + '\n' +
                 "\t- Prioridad= " + prioridad + '\n' +
                 "\t- Fecha_creacion= " + fecha_creacion + '\n' +
                 "\t- Fecha_finalización= " + fecha_finalización + '\n' +
@@ -155,19 +149,18 @@ public class Tarea {
         this.finalizada = true;
     }
 
-    public void addPersona(Persona persona){
-        if (!colaboradores.contains(persona))
-            colaboradores.add(persona);
-        else
-            System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
+    public List<String> listaNombres(){
+        List<String> nombres = new ArrayList<>();
+        for (Persona p : colaboradores){
+            nombres.add(p.getNombre());
+        }
+        return nombres;
     }
 
-    public void eliminarPersona(Persona persona){
-        if (colaboradores.contains(persona))
-            colaboradores.remove(persona);
+    public String devuelveResponsable(){
+        if (responsable == null)
+            return "Ninguno";
         else
-            System.out.println(persona.getNombre() + " no es colaborador en esta tarea");
+            return responsable.getNombre();
     }
-
-
 }
