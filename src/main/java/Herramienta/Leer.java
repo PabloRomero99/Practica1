@@ -78,7 +78,7 @@ public class Leer {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre de la tarea donde añadir etiquetas: ");
         System.out.println("¿De que tarea quieres modificar los participantes?");
-        String ntarea = sc.next();
+        String ntarea = sc.nextLine();
         if (p.encuentraTarea(ntarea)) {
 
             if (decision()) { //Decision=añadir
@@ -88,7 +88,7 @@ public class Leer {
                     if(p.addPersona(p.devuelvePersona(nomPersona), p.devuelveTarea(ntarea)))
                         System.out.println(nomPersona + " ya es colaborador en esta tarea");
                     else
-                        System.out.println("La persona se ha añadido correctamente");
+                        System.out.println(nomPersona + " ya es colaborador en la tarea");
                     System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
                     nomPersona = sc.next();
                 }

@@ -136,16 +136,21 @@ public class Proyecto {
         return false;
     }
 
-    public void addResponsable(Persona persona, Tarea tarea, Proyecto p){
+    public void addResponsable(String nomPersona, String nomTarea, Proyecto p){
+        Tarea tarea = p.devuelveTarea(nomTarea);
+        Persona persona = p.devuelvePersona(nomPersona);
+
         if (p.encuentraTarea(tarea.getTitulo())){
-            if (tarea.getResponsable() == null){
-                if (!p.encuentraPersona(persona.getNombre())){
-                    tarea.addPersona(persona);
-                }
+            if (p.devuelveTarea(nomTarea).getResponsable() == null) {
+                if (!p.encuentraPersona(persona.getNombre()))
+                    System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
+                            "este registrada en el proyecto");
+                //else if (!tarea.getColaboradores().contains(persona))
+                //    tarea.getColaboradores().add(persona);
                 tarea.setResponsable(persona);
             }
             else
-                System.out.println("El responsable de la tarea es"+  tarea.getResponsable().getNombre()
+                System.out.println("El responsable de la tarea es"+  tarea.getResponsable()
                        + " y solo puede hbaer un responsable por tarea");
         }
         else

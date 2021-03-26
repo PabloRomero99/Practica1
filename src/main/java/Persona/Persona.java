@@ -51,6 +51,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + listaTareasResponsable;
+        return "- Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + listaTareasResponsable;
     }
 }

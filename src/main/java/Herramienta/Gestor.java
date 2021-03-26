@@ -92,8 +92,14 @@ public class Gestor {
                     break;
 
                 case 3: //INSERTAR_RESPONSABLE
-                    if (p != null)
-                        p.addResponsable(leerpersona(), leertarea(), p);
+                    if (p != null){
+                        System.out.print("Nombre de la tarea: ");
+                        String ntarea = sc.next();
+                        System.out.print("Nombre de la persona: ");
+                        String npersona = sc.next();
+                        p.addResponsable(npersona, ntarea , p);
+                    }
+
                     break;
 
                 case 4: //TAREA_FINALIZADA
