@@ -75,7 +75,7 @@ public class Gestor {
             }
         return 8;
 
-    }*/
+    }*///clar o mos diran canvieuvo pa la proxima
 
 
     public static void main(String[] args) {

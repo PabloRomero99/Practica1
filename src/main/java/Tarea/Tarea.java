@@ -141,8 +141,6 @@ public class Tarea {
                 "\t- Finalizada= " + finalizada + '\n' +
                 "\t- Resultado= " + resultado + '\n' +
                 "\t- Lista de etiquetas= " + lista_etiquetas + '\n';
-
-        return parte1 + parte2;
     }
 
     public void marcarFinalizada(){

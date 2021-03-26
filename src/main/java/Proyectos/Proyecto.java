@@ -140,9 +140,9 @@ public class Proyecto {
         Tarea tarea = p.devuelveTarea(nomTarea);
         Persona persona = p.devuelvePersona(nomPersona);
 
-        if (p.encuentraTarea(tarea.getTitulo())){
-            if (p.devuelveTarea(nomTarea).getResponsable() == null) {
-                if (!p.encuentraPersona(persona.getNombre()))
+        if (p.encuentraTarea(tarea.getTitulo())){ //Tarea existe en proyecto
+            if (tarea.getResponsable() == null) { //Tarea no tiene responsable
+                if (!p.encuentraPersona(persona.getNombre()))//Persona no esta en el proyecto
                     System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
                             "este registrada en el proyecto");
                 else if (!tarea.getColaboradores().contains(persona)) { //Persona no colabora Tarea
