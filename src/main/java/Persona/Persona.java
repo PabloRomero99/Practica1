@@ -38,8 +38,11 @@ public class Persona {
     public void setListaTareasResponsable(List<Tarea> listaTareasResponsable) {
         this.listaTareasResponsable = listaTareasResponsable;
     }
-    public void eliminarTareaListaTareasResponsable(Tarea t){
-
+    public boolean eliminarTareaResponsable(Tarea t){
+        if (listaTareasResponsable == null || !listaTareasResponsable.contains(t))
+            return false;
+        listaTareasResponsable.remove(t);
+        return true;
     }
 
     public void addTareaResponsable(Tarea t){

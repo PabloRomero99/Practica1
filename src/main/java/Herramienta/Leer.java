@@ -92,6 +92,7 @@ public class Leer {
         if (p.encuentraTarea(ntarea)) {
             Tarea t = p.devuelveTarea(ntarea);
             t.marcarFinalizada();
+            t.setFecha_finalización(LocalDate.now());
         } else
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
     }
@@ -102,9 +103,10 @@ public class Leer {
     Scanner sc = new Scanner(System.in);
     System.out.println("¿De que tarea quieres modificar los participantes?");
     String ntarea = sc.nextLine();
+    int decision = decision();
     if (p.encuentraTarea(ntarea)) {
 
-        if (decision() == 1) { //Decision=añadir
+        if (decision == 1) { //Decision=añadir
             System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
             String nomPersona = sc.next();
             while (!nomPersona.equals("STOP")) {
@@ -116,12 +118,18 @@ public class Leer {
                 nomPersona = sc.next();
             }
 
-        }else if(decision() == 0){
+        }else if(decision == 0){
             System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");
             String nomPersona = sc.next();
             while (!nomPersona.equals("STOP")) {
-                if(p.eliminarPersona(nomPersona, p.devuelveTarea(ntarea)))
+                if(p.eliminarPersona(nomPersona, p.devuelveTarea(ntarea))){
+                    if (p.devuelvePersona(nomPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
+                        p.devuelvePersona(nomPersona).eliminarTareaResponsable(p.devuelveTarea(ntarea));
+                        p.devuelveTarea(ntarea).setResponsable(null);
+                    }
                     System.out.println("La persona se ha borrado correctamente");
+                }
+
                 else
                     System.out.println(nomPersona + " no es colaborador/a en esta tarea");
                 System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");

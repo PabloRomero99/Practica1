@@ -60,24 +60,6 @@ public class Gestor {
         return opcion;
     }
 
-   /* public static int elegirOpcion(){
-        System.out.println(Opciones.getMenu());
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Elija una opción: ");
-         try {
-                int opcion = scanner.nextInt() - 1;
-                Opciones opcionMenu = Opciones.getOpcion(opcion);
-                System.out.println("Ha elegido: " + opcionMenu);
-                return opcion;
-            }catch (Exception e){
-                System.out.println("la opcion ha de ser un numero entre 1 y 10\n");
-                elegirOpcion();
-            }
-        return 8;
-
-    }*///clar o mos diran canvieuvo pa la proxima
-
-
     public static void main(String[] args) {
         Proyecto p=null;
         Scanner sc = new Scanner(System.in);
@@ -119,8 +101,10 @@ public class Gestor {
                     break;
 
                 case 4: //TAREA_FINALIZADA
-                    if (p != null)
+                    if (p != null){
                         marcandoTareaFinalizada(p);
+                    }
+
                     else
                         System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
                     break;
