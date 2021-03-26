@@ -70,7 +70,7 @@ public class Gestor {
             switch (opcion){
                 case 0: //INICIAR_PROYECTO
                     System.out.print("Nombre del proyecto: ");
-                    String nombre = sc.next();
+                    String nombre = sc.nextLine();
                     p = new Proyecto(nombre);
                     System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
                   break;

@@ -102,20 +102,20 @@ public class Proyecto {
             if (!tarea.getLista_etiquetas().contains(etiqueta))
                 tarea.getLista_etiquetas().add(etiqueta);
             else
-                System.out.println("La etiqueta " + etiqueta + "ya esta en la lista de etiquetas de la tarea ");
+                System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
 
     }
     public void eliminarEtiqueta(String etiqueta,Tarea tarea) {
         if (tarea.getLista_etiquetas().contains(etiqueta))
             tarea.getLista_etiquetas().remove(etiqueta);
         else
-            System.out.println("La etiqueta " + etiqueta + "no se encuentra en la lista de etiquetas");
+            System.out.println("La etiqueta " + etiqueta + " no se encuentra en la lista de etiquetas");
     }
 
     public boolean addPersona(Persona persona, Tarea tarea){
         for (Persona p : tarea.getColaboradores()) {
             if(p.equals(persona)) {
-                //System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
+                //System.out.println(persona.getNombre() + " ya esta añadido");
                 return false;
             }
         }

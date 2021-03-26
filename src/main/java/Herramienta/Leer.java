@@ -24,14 +24,14 @@ public class Leer {
         String titulo = scanner.nextLine();
         System.out.print("Descripcion: ");
         String descripcion = scanner.nextLine();
-        System.out.println("Prioridad(1-5)\n 1 = Baja Prioridad\n 5 = Alta prioridad ");
+        System.out.println("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad}");
         int prioridad = scanner.nextInt();
         return new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now());
     }
 
     public static int prioridadCorrecta(int prioridad, Scanner sc){
         while(prioridad<0 || prioridad>5){
-            System.out.println("Prioridad(1-5)\n 1 = Baja Prioridad\n 5 = Alta prioridad ");
+            System.out.println("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} ");
             prioridad = sc.nextInt();
         }
         return prioridad;
@@ -76,7 +76,6 @@ public class Leer {
     //Mira esto Jose, es modificarParticipantes pero utilitzant decision()
         public static void modificarParticipantes(Proyecto p) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre de la tarea donde añadir etiquetas: ");
         System.out.println("¿De que tarea quieres modificar los participantes?");
         String ntarea = sc.nextLine();
         if (p.encuentraTarea(ntarea)) {
@@ -86,7 +85,7 @@ public class Leer {
                 String nomPersona = sc.next();
                 while (!nomPersona.equals("STOP")) {
                     if(p.addPersona(p.devuelvePersona(nomPersona), p.devuelveTarea(ntarea)))
-                        System.out.println(nomPersona + " ya es colaborador en esta tarea");
+                        System.out.println(nomPersona + " es nuevo colaborador en la tarea");
                     else
                         System.out.println(nomPersona + " ya es colaborador en la tarea");
                     System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
@@ -99,7 +98,7 @@ public class Leer {
                     if(p.eliminarPersona(nomPersona, p.devuelveTarea(ntarea)))
                         System.out.println("La persona se ha borrado correctamente");
                     else
-                        System.out.println(nomPersona + "no es colaborador/a en esta tarea");
+                        System.out.println(nomPersona + " no es colaborador/a en esta tarea");
                     System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");
                     nomPersona = sc.next();
                 }
