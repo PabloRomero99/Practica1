@@ -1,20 +1,16 @@
 package Resultado;
 
-public class ResultadoPrograma {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class ResultadoPrograma extends Resultado {
     private String lenguaje; //Lenguaje de programación
     private int numlineas;  //Cantidad del lineas de código
     private int nummodulos; //Cantidad de módulos
 
-    public ResultadoPrograma(){
-        this.lenguaje = "";
-        this.numlineas = 0;
-        this.nummodulos = 0;
-    }
-
-    public ResultadoPrograma(String lenguaje, int numlineas, int nummodulos){
-        this.lenguaje = lenguaje;
-        this.numlineas = numlineas;
-        this.nummodulos = nummodulos;
+    public ResultadoPrograma(String identificador, double horas_invertidas, boolean tipo_resultado) {
+        super(identificador,horas_invertidas,tipo_resultado);
     }
 
     public String getLenguaje() {

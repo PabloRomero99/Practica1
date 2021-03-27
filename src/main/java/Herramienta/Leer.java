@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static Resultado.Resultado.devolverResultado;
+
 public class Leer {
     public static Persona leerpersona() {
         Scanner scanner = new Scanner(System.in);
@@ -30,6 +32,32 @@ public class Leer {
         return new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now());
     }
 
+
+
+    public static Resultado valortipo(int opcion, int horas, boolean tiporesultadofinal){
+        if (opcion == 1) { //Tipo_Resultado = Documentacion
+            ResultadoDocumentacion resultadoDoc = new ResultadoDocumentacion("Documentacion", horas, tiporesultadofinal);
+            resultadoDoc.resultado();
+            return resultadoDoc;
+        }
+        else if (opcion == 2) { //Tipo_Resultado = Pagina WEB
+            ResultadoPaginaWeb resultadoWeb = new ResultadoPaginaWeb("Pagina WEB", horas, tiporesultadofinal);
+            resultadoWeb.resultado();
+            return resultadoWeb;
+
+        }
+        else if(opcion == 3) { //Tipo_Resultado = Programa
+            ResultadoPrograma resultadoPro = new ResultadoPrograma("Pagina WEB", horas, tiporesultadofinal);
+            resultadoPro.resultado();
+            return resultadoPro;
+        }
+
+        return null;
+    }
+
+
+
+
     public static int prioridadCorrecta(int prioridad, Scanner sc){
         while(prioridad < 1 || prioridad > 5){
             System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
@@ -42,8 +70,7 @@ public class Leer {
     public static int decision() {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Quieres añadir o eliminar a alguien de la tarea?");
-        String decision = sc.next();
-        decision = decision.toLowerCase(Locale.ROOT);
+        String decision = sc.next().toLowerCase(Locale.ROOT);
         if(decision.equals("añadir"))
             return 1;
         else if(decision.equals("eliminar"))

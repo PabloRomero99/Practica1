@@ -1,14 +1,14 @@
 package Resultado;
 
-public class ResultadoPaginaWeb {
+import java.util.Scanner;
+
+public class ResultadoPaginaWeb extends Resultado {
     private boolean estatica_dinamica; //True = estatica || False = dinamica
     private String lenguaje;
-    private String backend;
+    private String backend; //Es la parte o rama del desarrollo web encargada de que toda la lógica de una página funcione.
 
-    public ResultadoPaginaWeb(boolean estatica_dinamica, String lenguaje, String backend) {
-        this.estatica_dinamica = estatica_dinamica;
-        this.lenguaje = lenguaje;
-        this.backend = backend;
+    public ResultadoPaginaWeb(String identificador, double horas_invertidas, boolean tipo_resultado) {
+        super(identificador,horas_invertidas,tipo_resultado);
     }
 
     public boolean isEstatica_dinamica() {
@@ -33,5 +33,17 @@ public class ResultadoPaginaWeb {
 
     public void setBackend(String backend) {
         this.backend = backend;
+    }
+
+    public void resultado(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Elige {1 - Estatica | 2 - Dinamica}: ");
+        estatica_dinamica = devolverResultado(scanner.nextInt());
+
+        System.out.print("Elige el lenguaje a utilizar: ");
+        lenguaje = scanner.next();
+
+        System.out.print("Escribe el backend(parte o rama del desarrollo web encargada de que toda la lógica de una página funcione): ");
+        backend = scanner.nextLine();
     }
 }

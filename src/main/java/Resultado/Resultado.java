@@ -2,7 +2,7 @@ package Resultado;
 
 import javax.xml.transform.Result;
 
-public class Resultado {
+public abstract class Resultado {
     private String identificador;      //cadena única que identifica el resultado
     private double horas_invertidas;  //horas invertido en su producción
     private boolean tipo_resultado;  //true --> resultado interno | false --> destinado a ser comercializado
@@ -36,4 +36,20 @@ public class Resultado {
     public void setTipo_resultado(boolean tipo_resultado) {
         this.tipo_resultado = tipo_resultado;
     }
+
+    public static boolean devolverResultado(int eleccion){
+        return eleccion == 1;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Resultado{" +
+                "identificador='" + identificador + '\'' +
+                ", horas_invertidas=" + horas_invertidas +
+                ", tipo_resultado=" + tipo_resultado +
+                '}';
+    }
+
+
 }

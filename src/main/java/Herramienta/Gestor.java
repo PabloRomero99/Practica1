@@ -39,6 +39,7 @@ public class Gestor {
         public static Opciones getOpcion(int posicion) {
             return values()[posicion];
         }
+
         public static String getMenu() {
             StringBuilder sb = new StringBuilder();
             for (Opciones opcion : Opciones.values()) {
@@ -54,10 +55,14 @@ public class Gestor {
         System.out.println(Opciones.getMenu());
         Scanner scanner = new Scanner(System.in);
         System.out.print("Elija una opción: ");
-        int opcion = scanner.nextInt() - 1;
-        Opciones opcionMenu = Opciones.getOpcion(opcion);
-        System.out.println("Ha elegido: " + opcionMenu);
-        return opcion;
+        String opcion = scanner.next();
+        if(isNumeric(opcion)){
+            int opcionelegida = Integer.parseInt(opcion)-1;
+            Opciones opcionMenu = Opciones.getOpcion(opcionelegida);
+            System.out.println("Ha elegido: " + opcionMenu);
+            return opcionelegida;
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
