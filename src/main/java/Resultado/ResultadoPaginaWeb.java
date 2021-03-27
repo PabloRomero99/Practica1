@@ -59,11 +59,18 @@ public class ResultadoPaginaWeb extends Resultado {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Elige {1 - Estatica | 2 - Dinamica}: ");
         estatica_dinamica = devolverResultado(scanner.nextInt());
-
-        System.out.print("Elige el lenguaje a utilizar: ");
-        lenguaje = scanner.next();
-
+        scanner.skip("\n");
         System.out.print("Escribe el backend(parte o rama del desarrollo web encargada de que toda la lógica de una página funcione): ");
         backend = scanner.nextLine();
+        System.out.print("Tipos de lenguaje disponible:\n\t * JAVASCRIP\n\t * PYTHON\n\t * PHP\n\t * HTML \n\t * RUBY\n");
+        System.out.print("Elige el lenguaje a utilizar: ");
+        lenguaje = scanner.next().toUpperCase(Locale.ROOT);
+        while (!lenguajesValido.contains(lenguaje)){
+            System.out.print("El formato no es valido, introduce uno que lo sea: ");
+            lenguaje = scanner.next().toUpperCase(Locale.ROOT);
+        }
+        System.out.println();
+
+
     }
 }

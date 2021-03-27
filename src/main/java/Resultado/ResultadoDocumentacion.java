@@ -63,8 +63,8 @@ public class ResultadoDocumentacion extends Resultado{
         System.out.print("Elige un formato: ");
         formato = scanner.next().toUpperCase(Locale.ROOT);
         while (!formatovalido.contains(formato)){
-            System.out.println("El formato no es valido, introduce uno que lo sea.");
-            formato = scanner.next();
+            System.out.print("El formato no es valido, introduce uno que lo sea:");
+            formato = scanner.next().toUpperCase(Locale.ROOT);;
         }
 
         System.out.print("Espacio que ocupa en disco: ");
@@ -72,5 +72,6 @@ public class ResultadoDocumentacion extends Resultado{
 
         System.out.print("Número de paginas: ");
         numpaginas = scanner.nextInt();
+        System.out.println();
     }
 }

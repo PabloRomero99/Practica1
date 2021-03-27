@@ -84,15 +84,9 @@ public class Proyecto {
         return null;
     }
 
-    public boolean addTarea(Tarea tarea){
-        Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
-        if (tareas.contains(nueva))
-            return false;
-        else {
-            tareas.add(nueva);
-            return true;
-        }
-
+    public void addTarea(Tarea tarea){
+        //Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
+        tareas.add(tarea);
     }
 
 

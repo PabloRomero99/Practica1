@@ -116,20 +116,6 @@ public class Tarea {
         this.lista_etiquetas = lista_etiquetas;
     }
 
-    /*@Override
-    public String toString() {
-        return  "\t- Titulo= " + Titulo + '\n' +
-                "\t- Descripcion= " + Descripcion + '\n' +
-                "\t- Colaboradores= " + colaboradores + '\n' +
-                "\t- Responsable= " + responsable.getNombre() + '\n' +
-                "\t- Prioridad= " + prioridad + '\n' +
-                "\t- Fecha_creacion= " + fecha_creacion + '\n' +
-                "\t- Fecha_finalización= " + fecha_finalización + '\n' +
-                "\t- Finalizada= " + finalizada + '\n' +
-                "\t- Resultado= " + resultado + '\n' +
-                "\t- Lista de etiquetas= " + lista_etiquetas + '\n';
-    }*/
-
     public String toString() {
         return "\t- Titulo= " + Titulo + '\n' +
                 "\t- Descripcion= " + Descripcion + '\n' +

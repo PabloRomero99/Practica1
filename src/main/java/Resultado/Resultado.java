@@ -27,8 +27,11 @@ public abstract class Resultado {
     }
 
 
-    public boolean isTipo_resultado() {
-        return tipo_resultado;
+    public String getTipo_resultado() {
+        if(tipo_resultado)
+            return "Resultado interno";
+        else
+            return "Destinado a ser comercializado";
     }
 
     public void setIdentificador(String identificador) {
@@ -53,7 +56,7 @@ public abstract class Resultado {
         return "Resultado{" +
                 "identificador='" + identificador + '\'' +
                 ", horas_invertidas=" + horas_invertidas +
-                ", tipo_resultado=" + tipo_resultado +
+                ", tipo_resultado=" + getTipo_resultado() +
                 '}';
     }
 
