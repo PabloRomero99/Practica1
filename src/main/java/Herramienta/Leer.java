@@ -2,6 +2,10 @@ package Herramienta;
 
 import Persona.Persona;
 import Proyectos.Proyecto;
+import Resultado.Resultado;
+import Resultado.ResultadoDocumentacion;
+import Resultado.ResultadoPrograma;
+import Resultado.ResultadoPaginaWeb;
 import Tarea.Tarea;
 
 import java.time.LocalDate;
@@ -24,12 +28,27 @@ public class Leer {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Titulo tarea: ");
         String titulo = scanner.nextLine();
+
         System.out.print("Descripcion: ");
         String descripcion = scanner.nextLine();
+
+        System.out.println("De que tipo quieres que sea {1 - Documentacion | 2 - Página WEB | 3 - Programa } --> ");
+        int tipoSeleccionado = scanner.nextInt();
+
+
+        System.out.print("Horas invertidas: ");
+        int horas = scanner.nextInt();
+
+        System.out.print("Tipo de resultado {1 - Resultado interno | 2 - Destinado a ser comercializado} -->   ");
+        boolean tiporesultadofinal = devolverResultado(scanner.nextInt());
+
+
+
         System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
         int prioridad = scanner.nextInt();
         System.out.println();
-        return new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now());
+
+        return new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(),valortipo(tipoSeleccionado,horas,tiporesultadofinal));
     }
 
 
@@ -123,8 +142,6 @@ public class Leer {
         } else
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
     }
-
-
 
     public static void modificarParticipantes(Proyecto p) {
     Scanner sc = new Scanner(System.in);

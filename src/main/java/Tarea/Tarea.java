@@ -32,7 +32,7 @@ public class Tarea {
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
@@ -40,7 +40,7 @@ public class Tarea {
         this.prioridad = prioridad;
         this.fecha_creacion = fecha_creacion;
         this.fecha_finalización = null;
-        this.resultado = null;
+        this.resultado = resultado;
         this.lista_etiquetas = new ArrayList<String>();
     }
 

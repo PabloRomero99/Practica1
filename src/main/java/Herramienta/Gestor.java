@@ -36,7 +36,7 @@ public class Gestor {
             return descripcion;
         }
 
-        public static Opciones getOpcion(int posicion) {
+        public static Opciones getOpcion(Integer posicion) {
             return values()[posicion];
         }
 
@@ -51,6 +51,7 @@ public class Gestor {
             return sb.toString();
         }
     }
+
     public static int elegirOpcion(){
         System.out.println(Opciones.getMenu());
         Scanner scanner = new Scanner(System.in);
@@ -63,6 +64,15 @@ public class Gestor {
             return opcionelegida;
         }
         return -1;
+    }
+
+   private static boolean isNumeric(String cadena){
+	    try {
+		    Integer.parseInt(cadena);
+		    return true;
+	    } catch (NumberFormatException nfe){
+		    return false;
+	    }
     }
 
     public static void main(String[] args) {
@@ -144,6 +154,9 @@ public class Gestor {
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
                     System.out.println("\n\n");
                     break;
+
+                default:
+                    System.out.println("La opcion no es valida, elige una entre 1 y 10\n");
             }
             opcion = elegirOpcion();
         }

@@ -1,6 +1,7 @@
 package Resultado;
 
 import javax.xml.transform.Result;
+import java.util.Scanner;
 
 public abstract class Resultado {
     private String identificador;      //cadena única que identifica el resultado
