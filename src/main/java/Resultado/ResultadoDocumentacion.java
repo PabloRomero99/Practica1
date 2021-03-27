@@ -2,6 +2,7 @@ package Resultado;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ResultadoDocumentacion extends Resultado{
@@ -46,12 +47,21 @@ public class ResultadoDocumentacion extends Resultado{
         return formatovalido;
     }
 
+    @Override
+    public String toString() {
+        return "Identificador= "+ getIdentificador() +"{Horas invertidas= "+ getHoras_invertidas() + ", Tipo= "+ getTipo_resultado() +
+                ", Número de páginas=" + numpaginas +
+                ", Formato='" + formato + '\'' +
+                ", Espacio de disco=" + espacio_disco +
+                '}';
+    }
+
     public void resultado(){
         Scanner scanner = new Scanner(System.in);
         //WORD(DOC,DOCX), PDF, TXT(texto plano), XSIG(ficheros firmados), ZIP, XML(plantillas preseentación), TELECON(documentos contables))
         System.out.println("Tipos de formato disponible:\n\t * WORD\n\t * PDF\n\t * TXT\n\t * XSIG\n\t * ZIP\n\t * TELECON\n\t * XML ");
         System.out.print("Elige un formato: ");
-        formato = scanner.next();
+        formato = scanner.next().toUpperCase(Locale.ROOT);
         while (!formatovalido.contains(formato)){
             System.out.println("El formato no es valido, introduce uno que lo sea.");
             formato = scanner.next();

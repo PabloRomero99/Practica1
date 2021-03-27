@@ -9,6 +9,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import static Herramienta.Leer.*;
+import static Herramienta.Modificadores.marcandoTareaFinalizada;
+import static Herramienta.Modificadores.modificarParticipantes;
 
 
 public class Gestor {
@@ -98,7 +100,8 @@ public class Gestor {
 
                 case 2: //ALTA_TAREA
                     if (p != null)
-                        p.addTarea(leertarea());
+                        //p.addTarea(leertarea(p));
+                        leertarea(p);
                     else
                         System.out.println("Debes tener un proyecto creado para añadir Tareas\n ");
                     break;
@@ -142,7 +145,7 @@ public class Gestor {
                         }
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las personas\n ");
-                    System.out.println("\n\n");
+                    System.out.println("\n");
                     break;
 
                 case 8: //LISTA_TAREAS
@@ -152,7 +155,6 @@ public class Gestor {
                         }
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                    System.out.println("\n\n");
                     break;
 
                 default:

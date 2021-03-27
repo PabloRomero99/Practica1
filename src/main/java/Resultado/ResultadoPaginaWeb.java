@@ -1,18 +1,30 @@
 package Resultado;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ResultadoPaginaWeb extends Resultado {
     private boolean estatica_dinamica; //True = estatica || False = dinamica
     private String lenguaje;
     private String backend; //Es la parte o rama del desarrollo web encargada de que toda la lógica de una página funcione.
+    private final List<String> lenguajesValido = new ArrayList<>(List.of("JAVASCRIP", "PYTHON","HTML", "PHP", "RUBY"));
 
     public ResultadoPaginaWeb(String identificador, double horas_invertidas, boolean tipo_resultado) {
         super(identificador,horas_invertidas,tipo_resultado);
     }
 
-    public boolean isEstatica_dinamica() {
+    public boolean isEstatica_dinamica(){
         return estatica_dinamica;
+    }
+
+
+    public String getestatica_dinamica() {
+        if(estatica_dinamica)
+            return "Estática";
+        else
+            return "Dinámica";
     }
 
     public void setEstatica_dinamica(boolean estatica_dinamica) {
@@ -33,6 +45,14 @@ public class ResultadoPaginaWeb extends Resultado {
 
     public void setBackend(String backend) {
         this.backend = backend;
+    }
+
+    public String toString() {
+        return "Identificador = " + getIdentificador() +"{ Horas invertidas = " + getHoras_invertidas() + ", Tipo de resultado = " + getTipo_resultado() +
+                ", Tipo de WEB ='" + getestatica_dinamica() + '\'' +
+                ", Lenguaje=" + lenguaje +
+                ", Backend=" + backend +
+                '}';
     }
 
     public void resultado(){

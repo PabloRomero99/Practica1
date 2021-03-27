@@ -2,6 +2,7 @@ package Resultado;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ResultadoPrograma extends Resultado {
@@ -38,14 +39,16 @@ public class ResultadoPrograma extends Resultado {
         this.nummodulos = nummodulos;
     }
 
+
     @Override
     public String toString() {
-        return "ResultadoPrograma{" +
-                "lenguaje='" + lenguaje + '\'' +
-                ", numlineas=" + numlineas +
-                ", nummodulos=" + nummodulos +
+        return "Identificador = " + getIdentificador() +"{ Horas invertidas = " + getHoras_invertidas() + ", Tipo de resultado = " + getTipo_resultado() +
+                ", Tenguaje='" + lenguaje + '\'' +
+                ", Número de líneas=" + numlineas +
+                ", Número de modulos=" + nummodulos +
                 '}';
     }
+
 
     public void resultado(){
         Scanner scanner = new Scanner(System.in);

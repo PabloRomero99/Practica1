@@ -22,6 +22,11 @@ public abstract class Resultado {
         return horas_invertidas;
     }
 
+    public boolean isTipo_resultado(){
+        return tipo_resultado;
+    }
+
+
     public boolean isTipo_resultado() {
         return tipo_resultado;
     }
@@ -43,7 +48,7 @@ public abstract class Resultado {
     }
 
 
-    @Override
+
     public String toString() {
         return "Resultado{" +
                 "identificador='" + identificador + '\'' +

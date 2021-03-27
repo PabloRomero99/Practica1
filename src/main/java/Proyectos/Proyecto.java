@@ -34,12 +34,19 @@ public class Proyecto {
     }
 
     public boolean addParticipante(Persona persona){
-        if (participantes.size() == 0 || !participantes.contains(persona)) {
+        if (participantes.size() == 0){
             participantes.add(persona);
             return true;
-        }else {
-            return true;
         }
+
+        for (Persona personita : participantes){
+            if (personita.getCorreo().equals(persona.getCorreo()) && personita.getNombre().equals(persona.getNombre())){
+                System.out.println("La persona ya esta registrada en el proyecto");
+                return false;
+            }
+        }
+        participantes.add(persona);
+        return true;
     }
 
     public boolean encuentraTarea(String nombreTarea){
@@ -88,15 +95,7 @@ public class Proyecto {
 
     }
 
-    public boolean addTarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas) {
-        Tarea nueva = new Tarea(titulo, descripcion, colaboradores, responsable, prioridad, fecha_creacion, fecha_finalización, resultado, lista_etiquetas);
-        if (tareas.contains(nueva))
-            return false;
-        else {
-            tareas.add(nueva);
-            return true;
-        }
-    }
+
 
     public void addEtiquetas(String etiqueta, Tarea tarea){
             if (!tarea.getLista_etiquetas().contains(etiqueta))
