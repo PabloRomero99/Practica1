@@ -56,7 +56,9 @@ public class Proyecto {
 
 
     public boolean encuentraTarea(String nombreTarea){
-        for(Tarea t:this.tareas){
+        if (tareas.size() == 0 )
+            return false;
+        for(Tarea t : this.tareas){
             if(nombreTarea.equals(t.getTitulo()))
                 return true;
         }
@@ -147,30 +149,35 @@ public class Proyecto {
 
 
 
-    public void addResponsable(String nomPersona, String nomTarea, Proyecto p){
-        Tarea tarea = p.devuelveTarea(nomTarea);
+    public boolean addResponsable(String nomPersona, String nomTarea, Proyecto p){
         Persona persona = p.devuelvePersona(nomPersona);
 
         if (p.encuentraTarea(nomTarea)) { //Tarea existe en proyecto
             Tarea tarea = p.devuelveTarea(nomTarea);
             if (tarea.getResponsable() == null) { //Tarea no tiene responsable
-                if (!p.encuentraPersona(persona.getNombre()))//Persona no esta en el proyecto
+                if (!p.encuentraPersona(nomPersona)) {//Persona no esta en el proyecto
                     System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
                             "este registrada en el proyecto");
-                else if (!tarea.getColaboradores().contains(persona)) { //Persona no colabora Tarea
+                    return false;
+                } else if (!tarea.getColaboradores().contains(persona)) { //Persona no colabora Tarea
                     tarea.getColaboradores().add(persona);
                     tarea.setResponsable(persona);
                     persona.addTareaResponsable(tarea);
-                }else{
+                    return true;
+                } else {
                     tarea.setResponsable(persona);
                     persona.addTareaResponsable(tarea);
+                    return true;
                 }
+            }else{
+                System.out.println("El responsable de la tarea es " + tarea.getResponsable()
+                        + " y solo puede haber un responsable por tarea");
+                return false;
             }
-            else
-                System.out.println("El responsable de la tarea es "+  tarea.getResponsable()
-                       + " y solo puede hbaer un responsable por tarea");
         }
-        else
+        else {
             System.out.println("No existe ninguna tarea con ese nombre");
+            return false;
+        }
     }
 }
