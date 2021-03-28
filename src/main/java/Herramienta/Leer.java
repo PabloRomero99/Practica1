@@ -40,9 +40,10 @@ public class Leer {
         System.out.print("De que tipo quieres que sea {1 - Documentacion | 2 - Página WEB | 3 - Programa } --> ");
         int tipoSeleccionado = scanner.nextInt();
 
-
+        /*
         System.out.print("Horas invertidas: ");
         int horas = scanner.nextInt();
+        */
 
         System.out.print("Tipo de resultado {1 - Resultado interno | 2 - Destinado a ser comercializado} -->   ");
         boolean tiporesultadofinal = devolverResultado(scanner.nextInt());
@@ -51,8 +52,18 @@ public class Leer {
 
         System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
         int prioridad = scanner.nextInt();
+        System.out.println();
 
-        p.addTarea(new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), leerValorTipo(tipoSeleccionado,horas,tiporesultadofinal)));
+        p.addTarea(new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal)));
+    }
+
+    public static String opcion(int opcion){
+        if (opcion == 1)
+            return "Documentacion";
+        else if (opcion == 2)
+            return "Pagina WEB";
+        else
+            return "Programa";
     }
 
     public static void leerEtiquetas(Proyecto p) {
@@ -99,26 +110,7 @@ public class Leer {
             return -1;
     }
 
-    public static Resultado leerValorTipo(int opcion, int horas, boolean tiporesultadofinal){
-        if (opcion == 1) { //Tipo_Resultado = Documentacion
-            ResultadoDocumentacion resultadoDoc = new ResultadoDocumentacion("Documentacion", horas, tiporesultadofinal);
-            resultadoDoc.resultado();
-            return resultadoDoc;
-        }
-        else if (opcion == 2) { //Tipo_Resultado = Pagina WEB
-            ResultadoPaginaWeb resultadoWeb = new ResultadoPaginaWeb("Pagina WEB", horas, tiporesultadofinal);
-            resultadoWeb.resultado();
-            return resultadoWeb;
 
-        }
-        else if(opcion == 3) { //Tipo_Resultado = Programa
-            ResultadoPrograma resultadoPro = new ResultadoPrograma("Programa", horas, tiporesultadofinal);
-            resultadoPro.resultado();
-            return resultadoPro;
-        }
-
-        return null;
-    }
 
     public static int prioridadCorrecta(int prioridad, Scanner sc){
         while(prioridad < 1 || prioridad > 5){

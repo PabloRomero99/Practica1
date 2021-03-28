@@ -1,7 +1,13 @@
 package Herramienta;
 
 import Proyectos.Proyecto;
+import Resultado.Resultado;
 import Tarea.Tarea;
+
+import Resultado.Resultado;
+import Resultado.ResultadoDocumentacion;
+import Resultado.ResultadoPrograma;
+import Resultado.ResultadoPaginaWeb;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -16,10 +22,36 @@ public class Modificadores {
         String ntarea = sc.next();
         if (p.encuentraTarea(ntarea)) {
             Tarea t = p.devuelveTarea(ntarea);
+
+            System.out.print("Cuantas horas se han invertido: ");
+            int horas = sc.nextInt();
+            t.getResultado().setHoras_invertidas(horas);
+            t.setResultado(leerValorTipo(t.getResultado(), horas));
             t.marcarFinalizada();
             t.setFecha_finalización(LocalDate.now());
         } else
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
+    }
+
+    public static Resultado leerValorTipo(Resultado resultado, int horas){
+        if ("Documentacion".equals(resultado.getIdentificador())) { //Tipo_Resultado = Documentacion
+            ResultadoDocumentacion resultadoDoc = new ResultadoDocumentacion("Documentacion", horas, resultado.isTipo_resultado());
+            resultadoDoc.resultado();
+            return resultadoDoc;
+        }
+        else if ("Pagina WEB".equals(resultado.getIdentificador())) { //Tipo_Resultado = Pagina WEB
+            ResultadoPaginaWeb resultadoWeb = new ResultadoPaginaWeb("Pagina WEB", horas, resultado.isTipo_resultado());
+            resultadoWeb.resultado();
+            return resultadoWeb;
+
+        }
+        else if("Programa".equals(resultado.getIdentificador())) { //Tipo_Resultado = Programa
+            ResultadoPrograma resultadoPro = new ResultadoPrograma("Programa", horas, resultado.isTipo_resultado());
+            resultadoPro.resultado();
+            return resultadoPro;
+        }
+
+        return null;
     }
 
     public static void modificarParticipantes(Proyecto p) {
