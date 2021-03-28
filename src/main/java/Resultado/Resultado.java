@@ -3,7 +3,7 @@ package Resultado;
 import javax.xml.transform.Result;
 import java.util.Scanner;
 
-public abstract class Resultado {
+public class Resultado {
     private String identificador;      //cadena única que identifica el resultado
     private double horas_invertidas;  //horas invertido en su producción
     private boolean tipo_resultado;  //true --> resultado interno | false --> destinado a ser comercializado

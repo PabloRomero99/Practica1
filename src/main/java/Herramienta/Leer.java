@@ -89,7 +89,7 @@ public class Leer {
 
     public static int leerDecision() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("¿Quieres añadir o eliminar a alguien de la tarea?");
+        System.out.println("¿Quieres añadir o eliminar?");
         String decision = sc.next().toLowerCase(Locale.ROOT);
         if(decision.equals("añadir"))
             return 1;

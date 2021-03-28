@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import static Herramienta.Leer.leerDecision;
 
+
 public class Modificadores {
     public static void marcandoTareaFinalizada(Proyecto p){
         Scanner sc = new Scanner(System.in);
@@ -32,7 +33,7 @@ public class Modificadores {
                 System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
                 String nomPersona = sc.next();
                 while (!nomPersona.equals("STOP")) {
-                    if(p.addPersona(p.devuelvePersona(nomPersona), p.devuelveTarea(ntarea)))
+                    if(p.addPersonaTarea(p.devuelvePersona(nomPersona), p.devuelveTarea(ntarea)))
                         System.out.println(nomPersona + " es nuevo colaborador en la tarea");
                     else
                         System.out.println(nomPersona + " ya es colaborador en la tarea");
@@ -44,7 +45,7 @@ public class Modificadores {
                 System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");
                 String nomPersona = sc.next();
                 while (!nomPersona.equals("STOP")) {
-                    if(p.eliminarPersona(nomPersona, p.devuelveTarea(ntarea))){
+                    if(p.eliminarPersonaTarea(nomPersona, p.devuelveTarea(ntarea))){
                         if (p.devuelvePersona(nomPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
                             p.devuelvePersona(nomPersona).eliminarTareaResponsable(p.devuelveTarea(ntarea));
                             p.devuelveTarea(ntarea).setResponsable(null);

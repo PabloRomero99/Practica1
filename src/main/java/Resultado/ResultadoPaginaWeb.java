@@ -70,7 +70,5 @@ public class ResultadoPaginaWeb extends Resultado {
             lenguaje = scanner.next().toUpperCase(Locale.ROOT);
         }
         System.out.println();
-
-
     }
 }

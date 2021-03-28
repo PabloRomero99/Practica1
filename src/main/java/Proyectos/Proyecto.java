@@ -33,6 +33,8 @@ public class Proyecto {
         return tareas;
     }
 
+
+
     public boolean addParticipante(Persona persona){
         if (participantes.size() == 0){
             participantes.add(persona);
@@ -45,9 +47,13 @@ public class Proyecto {
                 return false;
             }
         }
+
         participantes.add(persona);
         return true;
     }
+
+
+
 
     public boolean encuentraTarea(String nombreTarea){
         for(Tarea t:this.tareas){
@@ -56,6 +62,9 @@ public class Proyecto {
         }
         return false;
     }
+
+
+
     public Tarea devuelveTarea(String nombreTarea){
         if (encuentraTarea(nombreTarea)){
             for(Tarea t:this.tareas){
@@ -66,6 +75,7 @@ public class Proyecto {
        return null;
     }
 
+
     public boolean encuentraPersona(String nombrePersona){
         for(Persona p : this.participantes){
             if(nombrePersona.equals(p.getNombre()))
@@ -73,6 +83,8 @@ public class Proyecto {
         }
         return false;
     }
+
+
 
     public Persona devuelvePersona(String nombrePersona){
         if (encuentraPersona(nombrePersona)){
@@ -84,56 +96,63 @@ public class Proyecto {
         return null;
     }
 
-    public void addTarea(Tarea tarea){
-        //Tarea nueva = new Tarea(tarea.getTitulo(),tarea.getDescripcion(),tarea.getColaboradores(),tarea.getResponsable(),tarea.getPrioridad(),tarea.getFecha_creacion(),tarea.getFecha_finalización(),tarea.getResultado(),tarea.getLista_etiquetas());
-        tareas.add(tarea);
+
+
+    public boolean addTarea(Tarea tarea){
+        return tareas.add(tarea);
     }
 
 
 
-    public void addEtiquetas(String etiqueta, Tarea tarea){
+    public boolean addEtiquetas(String etiqueta, Tarea tarea){
             if (!tarea.getLista_etiquetas().contains(etiqueta))
-                tarea.getLista_etiquetas().add(etiqueta);
-            else
-                System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
+                return tarea.getLista_etiquetas().add(etiqueta);
 
+            System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
+            return false;
     }
-    public void eliminarEtiqueta(String etiqueta,Tarea tarea) {
+
+
+
+    public boolean eliminarEtiqueta(String etiqueta,Tarea tarea) {
         if (tarea.getLista_etiquetas().contains(etiqueta))
-            tarea.getLista_etiquetas().remove(etiqueta);
-        else
-            System.out.println("La etiqueta " + etiqueta + " no se encuentra en la lista de etiquetas");
+            return tarea.getLista_etiquetas().remove(etiqueta);
+
+        System.out.println("La etiqueta " + etiqueta + " no se encuentra en la lista de etiquetas");
+        return false;
     }
 
-    public boolean addPersona(Persona persona, Tarea tarea){
+
+
+    public  boolean addPersonaTarea(Persona persona, Tarea tarea){
         for (Persona p : tarea.getColaboradores()) {
             if(p.equals(persona)) {
-                //System.out.println(persona.getNombre() + " ya esta añadido");
                 return false;
             }
         }
         tarea.getColaboradores().add(persona);
-        //System.out.println("La persona se ha añadido correctamente");
         return true;
     }
 
-    public boolean eliminarPersona(String persona, Tarea tarea){
+
+    public boolean eliminarPersonaTarea(String persona, Tarea tarea){
         for (Persona p : tarea.getColaboradores()) {
             if(p.getNombre().equals(persona)) {
                 tarea.getColaboradores().remove(p);
-                //System.out.println("La persona se ha borrado correctamente");
                 return true;
             }
         }
-        //System.out.println(persona + "no es colaborador/a en esta tarea");
         return false;
     }
+
+
 
     public void addResponsable(String nomPersona, String nomTarea, Proyecto p){
         Tarea tarea = p.devuelveTarea(nomTarea);
         Persona persona = p.devuelvePersona(nomPersona);
 
-        if (p.encuentraTarea(tarea.getTitulo())){ //Tarea existe en proyecto
+        if (p.encuentraTarea(nomTarea)) { //Tarea existe en proyecto
+            Tarea tarea = p.devuelveTarea(nomTarea);
             if (tarea.getResponsable() == null) { //Tarea no tiene responsable
                 if (!p.encuentraPersona(persona.getNombre()))//Persona no esta en el proyecto
                     System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +

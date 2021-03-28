@@ -147,4 +147,5 @@ public class Tarea {
         else
             return responsable.getNombre();
     }
+
 }
