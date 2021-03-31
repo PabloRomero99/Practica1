@@ -1,6 +1,7 @@
 package Resultado;
 
 import javax.xml.transform.Result;
+import java.util.Scanner;
 
 public class Resultado {
     private String identificador;      //cadena única que identifica el resultado
@@ -21,8 +22,16 @@ public class Resultado {
         return horas_invertidas;
     }
 
-    public boolean isTipo_resultado() {
+    public boolean isTipo_resultado(){
         return tipo_resultado;
+    }
+
+
+    public String getTipo_resultado() {
+        if(tipo_resultado)
+            return "Resultado interno";
+        else
+            return "Destinado a ser comercializado";
     }
 
     public void setIdentificador(String identificador) {
@@ -36,4 +45,20 @@ public class Resultado {
     public void setTipo_resultado(boolean tipo_resultado) {
         this.tipo_resultado = tipo_resultado;
     }
+
+    public static boolean devolverResultado(int eleccion){
+        return eleccion == 1;
+    }
+
+
+
+    public String toString() {
+        return "Resultado{" +
+                "identificador='" + identificador + '\'' +
+                ", horas_invertidas=" + horas_invertidas +
+                ", tipo_resultado=" + getTipo_resultado() +
+                '}';
+    }
+
+
 }

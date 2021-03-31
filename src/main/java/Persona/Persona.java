@@ -1,6 +1,7 @@
 package Persona;
 import Tarea.Tarea;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Persona {
@@ -37,20 +38,31 @@ public class Persona {
     public void setListaTareasResponsable(List<Tarea> listaTareasResponsable) {
         this.listaTareasResponsable = listaTareasResponsable;
     }
-    public void eliminarTareaListaTareasResponsable(Tarea t){
-
+    public boolean eliminarTareaResponsable(Tarea t){
+        if (listaTareasResponsable == null || !listaTareasResponsable.contains(t))
+            return false;
+        listaTareasResponsable.remove(t);
+        return true;
     }
 
-    public void addTareaListaTareasResponsable(Tarea t){
-        if (!listaTareasResponsable.contains(t)){
-            System.out.println("La tarea " + t + "no existe");
-        }else{
-            listaTareasResponsable.add(t);
+    public void addTareaResponsable(Tarea t){
+        if (listaTareasResponsable == null)
+            listaTareasResponsable = new ArrayList<Tarea>();
+        listaTareasResponsable.add(t);
+    }
+
+    public List<String> devuelveNombreTarea(){
+        if (listaTareasResponsable == null)
+            listaTareasResponsable = new ArrayList<>();
+        List<String> nombres = new ArrayList<>();
+        for (Tarea t : listaTareasResponsable){
+            nombres.add(t.getTitulo());
         }
+        return nombres;
     }
 
     @Override
     public String toString() {
-        return "Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + listaTareasResponsable;
+        return "- Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + devuelveNombreTarea();
     }
 }

@@ -32,7 +32,7 @@ public class Tarea {
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
@@ -40,7 +40,7 @@ public class Tarea {
         this.prioridad = prioridad;
         this.fecha_creacion = fecha_creacion;
         this.fecha_finalización = null;
-        this.resultado = null;
+        this.resultado = resultado;
         this.lista_etiquetas = new ArrayList<String>();
     }
 
@@ -116,36 +116,36 @@ public class Tarea {
         this.lista_etiquetas = lista_etiquetas;
     }
 
-    @Override
     public String toString() {
-        return  "\t- Titulo=" + Titulo + '\n' +
-                "\t- Descripcion=" + Descripcion + '\n' +
-                "\t- Colaboradores=" + colaboradores + '\n' +
-                "\t- Responsable=" + responsable + '\n' +
-                "\t- Prioridad=" + prioridad + '\n' +
-                "\t- Fecha_creacion=" + fecha_creacion + '\n' +
-                "\t- Fecha_finalización=" + fecha_finalización + '\n' +
-                "\t- Finalizada=" + finalizada + '\n' +
-                "\t- Resultado=" + resultado + '\n' +
-                "\t- Lista de etiquetas=" + lista_etiquetas + '\n';
+        return "\t- Titulo= " + Titulo + '\n' +
+                "\t- Descripcion= " + Descripcion + '\n' +
+                "\t- Colaboradores= " + listaNombres() + '\n' +
+                "\t- Responsable= " + devuelveResponsable() + '\n' +
+                "\t- Prioridad= " + prioridad + '\n' +
+                "\t- Fecha_creacion= " + fecha_creacion + '\n' +
+                "\t- Fecha_finalización= " + fecha_finalización + '\n' +
+                "\t- Finalizada= " + finalizada + '\n' +
+                "\t- Resultado= " + resultado + '\n' +
+                "\t- Lista de etiquetas= " + lista_etiquetas + '\n';
     }
 
     public void marcarFinalizada(){
         this.finalizada = true;
     }
 
-    public void añadirPersona(Persona persona){
-        if (!colaboradores.contains(persona))
-            colaboradores.add(persona);
-        else
-            System.out.println(persona.getNombre() + " ya es colaborador en esta tarea");
+    public List<String> listaNombres(){
+        List<String> nombres = new ArrayList<>();
+        for (Persona p : colaboradores){
+            nombres.add(p.getNombre());
+        }
+        return nombres;
     }
 
-    public void eliminarPersona(Persona persona){
-        if (colaboradores.contains(persona))
-            colaboradores.remove(persona);
+    public String devuelveResponsable(){
+        if (responsable == null)
+            return "Ninguno";
         else
-            System.out.println(persona.getNombre() + " no es colaborador en esta tarea");
+            return responsable.getNombre();
     }
 
 }

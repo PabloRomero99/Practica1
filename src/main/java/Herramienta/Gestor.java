@@ -9,6 +9,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import static Herramienta.Leer.*;
+import static Herramienta.Modificadores.marcandoTareaFinalizada;
+import static Herramienta.Modificadores.modificarParticipantes;
 
 
 public class Gestor {
@@ -36,9 +38,10 @@ public class Gestor {
             return descripcion;
         }
 
-        public static Opciones getOpcion(int posicion) {
+        public static Opciones getOpcion(Integer posicion) {
             return values()[posicion];
         }
+
         public static String getMenu() {
             StringBuilder sb = new StringBuilder();
             for (Opciones opcion : Opciones.values()) {
@@ -50,99 +53,112 @@ public class Gestor {
             return sb.toString();
         }
     }
+
     public static int elegirOpcion(){
         System.out.println(Opciones.getMenu());
         Scanner scanner = new Scanner(System.in);
         System.out.print("Elija una opción: ");
-        int opcion = scanner.nextInt() - 1;
-        Opciones opcionMenu = Opciones.getOpcion(opcion);
-        System.out.println("Ha elegido: " + opcionMenu);
-        return opcion;
+        String opcion = scanner.next();
+        if(isNumeric(opcion)){
+            int opcionelegida = Integer.parseInt(opcion)-1;
+            Opciones opcionMenu = Opciones.getOpcion(opcionelegida);
+            System.out.println("Ha elegido: " + opcionMenu);
+            return opcionelegida;
+        }
+        return -1;
     }
 
+   private static boolean isNumeric(String cadena){
+	    try {
+		    Integer.parseInt(cadena);
+		    return true;
+	    } catch (NumberFormatException nfe){
+		    return false;
+	    }
+    }
 
     public static void main(String[] args) {
         Proyecto p=null;
         Scanner sc = new Scanner(System.in);
         int opcion = elegirOpcion();
-
-        while (opcion != 9){
-            switch (opcion){
+        while (opcion != 9) {
+            switch (opcion) {
                 case 0: //INICIAR_PROYECTO
                     System.out.print("Nombre del proyecto: ");
-                    String nombre = sc.next();
+                    String nombre = sc.nextLine();
                     p = new Proyecto(nombre);
                     System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-                  break;
+                    break;
 
                 case 1: //ALTA_PERSONA
-                    if (p != null){
+                    if (p != null) {
                         p.addParticipante(leerpersona());
                         System.out.println("\n");
-                    }
-                    else
+                    } else
                         System.out.println("Debes tener un proyecto creado para añadir Personas\n");
                     break;
 
                 case 2: //ALTA_TAREA
                     if (p != null)
-                        p.addTarea(leertarea());
+                        //p.addTarea(leertarea(p));
+                        leertarea(p);
                     else
                         System.out.println("Debes tener un proyecto creado para añadir Tareas\n ");
                     break;
 
                 case 3: //INSERTAR_RESPONSABLE
+                    if (p != null) {
+                        System.out.print("Nombre de la tarea: ");
+                        String ntarea = sc.next();
+                        System.out.print("Nombre de la persona: ");
+                        String npersona = sc.next();
+                        p.addResponsable(npersona, ntarea, p);
+                        System.out.println("\n");
+                    }
 
                     break;
 
                 case 4: //TAREA_FINALIZADA
                     if (p != null){
-                        System.out.print("Nombre de la tarea para marcar: ");
-                        String ntarea = sc.next();
-                        if (p.encuentraTarea(ntarea)) {
-                            Tarea t = p.devuelveTarea(ntarea);
-                            t.marcarFinalizada();
-                        }
-                        else
-                            System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
+                        marcandoTareaFinalizada(p);
                     }
+
                     else
                         System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
                     break;
 
                 case 5: //MODIFICAR_PERSONAS_TAREA
-                    if(p != null) {
+                    if (p != null)
                         modificarParticipantes(p);
-                    }
                     break;
 
                 case 6:  //MODIFICAR_ETIQUETAS
-                    if(p!=null){
+                    if (p != null) {
                         leerEtiquetas(p);
                     }
                     break;
 
                 case 7: //LISTA_PERSONAS
-                    if (p != null){
-                        for (Persona persona:p.getParticipantes()){
+                    if (p != null) {
+                        for (Persona persona : p.getParticipantes()) {
                             System.out.println(persona.toString());
                         }
-                    }
-                    else
+                    } else
                         System.out.println("Debes tener un proyecto creado para listar las personas\n ");
-                    System.out.println("\n\n");
+                    System.out.println("\n");
                     break;
 
                 case 8: //LISTA_TAREAS
-                    if (p != null){
-                        for (Tarea tarea:p.getTareas()){
-                            System.out.println(tarea.toString()+"\n");
+                    if (p != null) {
+                        for (Tarea tarea : p.getTareas()) {
+                            System.out.println(tarea.toString() + '\n');
                         }
-                    }
-                    else
+                    } else
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                    System.out.println("\n\n");
                     break;
+
+                default:
+                    System.out.println("La opcion no es valida, elige una entre 1 y 10\n");
             }
             opcion = elegirOpcion();
         }
