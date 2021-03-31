@@ -117,11 +117,11 @@ class ProyectoTest {
             p.addParticipante(persona);
         }
 
-        for (String nombre : nombres)
-            assertTrue(p.encuentraPersona(nombre));
+        for (String dni : dnis)
+            assertTrue(p.encuentraPersona(dni));
 
-        for (String nombre : etiquetas)
-            assertFalse(p.encuentraPersona(nombre));
+        for (String dni : dnis2)
+            assertFalse(p.encuentraPersona(dni));
 
     }
 
@@ -132,8 +132,8 @@ class ProyectoTest {
             Persona persona = new Persona(nombres[i], correos[i], null);
             p.addParticipante(persona);
         }
-        for (int c = 0; c < nombres.length; c++){
-            assertEquals(p.devuelvePersona(nombres[c]), p.getParticipantes().get(c));
+        for (int c = 0; c < dnis.length; c++){
+            assertEquals(p.devuelvePersona(dnis[c]), p.getParticipantes().get(c));
         }
 
         List<Persona> personasNo = new ArrayList<>();
@@ -141,8 +141,8 @@ class ProyectoTest {
             personasNo.add(new Persona(nombres2[c], correos[c], null));
         }
 
-        for (int t = 0; t < nombres2.length; t++)
-            assertNotEquals(p.devuelvePersona(nombres2[t]), personasNo.get(t));
+        for (int t = 0; t < dnis.length; t++)
+            assertNotEquals(p.devuelvePersona(dnis[t]), personasNo.get(t));
     }
 
     @Test
@@ -158,6 +158,9 @@ class ProyectoTest {
 
         for (Persona persona : listaPersonas)
             assertFalse(p.addPersonaTarea(persona, tarea));
+
+        System.out.println(tarea.getColaboradores());
+
     }
 
     @Test
@@ -223,9 +226,9 @@ class ProyectoTest {
         }
         String nomPersona = nombres[0];
         String nomTarea = titulos[0];
-        String nombrePersonaFalso = "Vicente";
+        String dniPersonaFalso = "142414";
         String nombreTareaFalso = "Cocinar";
-        //ia estoi arto
+
 
         assertTrue(p1.addResponsable(nomPersona, nomTarea, p1));
         assertFalse(p1.addResponsable(nomPersona, nomTarea, p1));

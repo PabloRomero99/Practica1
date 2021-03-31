@@ -10,9 +10,11 @@ import Resultado.ResultadoPrograma;
 import Resultado.ResultadoPaginaWeb;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 import static Herramienta.Leer.leerDecision;
+import static Herramienta.Leer.leerValorTipo;
 
 
 public class Modificadores {
@@ -33,26 +35,6 @@ public class Modificadores {
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
     }
 
-    public static Resultado leerValorTipo(Resultado resultado, int horas){
-        if ("Documentacion".equals(resultado.getIdentificador())) { //Tipo_Resultado = Documentacion
-            ResultadoDocumentacion resultadoDoc = new ResultadoDocumentacion("Documentacion", horas, resultado.isTipo_resultado());
-            resultadoDoc.resultado();
-            return resultadoDoc;
-        }
-        else if ("Pagina WEB".equals(resultado.getIdentificador())) { //Tipo_Resultado = Pagina WEB
-            ResultadoPaginaWeb resultadoWeb = new ResultadoPaginaWeb("Pagina WEB", horas, resultado.isTipo_resultado());
-            resultadoWeb.resultado();
-            return resultadoWeb;
-
-        }
-        else if("Programa".equals(resultado.getIdentificador())) { //Tipo_Resultado = Programa
-            ResultadoPrograma resultadoPro = new ResultadoPrograma("Programa", horas, resultado.isTipo_resultado());
-            resultadoPro.resultado();
-            return resultadoPro;
-        }
-
-        return null;
-    }
 
     public static void modificarParticipantes(Proyecto p) {
         Scanner sc = new Scanner(System.in);
@@ -68,27 +50,27 @@ public class Modificadores {
                     if(p.addPersonaTarea(p.devuelvePersona(nomPersona), p.devuelveTarea(ntarea)))
                         System.out.println(nomPersona + " es nuevo colaborador en la tarea");
                     else
-                        System.out.println(nomPersona + " ya es colaborador en la tarea");
-                    System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
-                    nomPersona = sc.next();
+                        System.out.println(dniPersona + " ya es colaborador en la tarea");
+                    System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
+                    dniPersona = sc.next().toUpperCase(Locale.ROOT);
                 }
 
             }else if(decision == 0){
-                System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");
-                String nomPersona = sc.next();
-                while (!nomPersona.equals("STOP")) {
-                    if(p.eliminarPersonaTarea(nomPersona, p.devuelveTarea(ntarea))){
-                        if (p.devuelvePersona(nomPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
-                            p.devuelvePersona(nomPersona).eliminarTareaResponsable(p.devuelveTarea(ntarea));
+                System.out.print("Escribe el DNI de las personas para eliminar, o 'STOP' para terminar: ");
+                String dniPersona = sc.next().toUpperCase(Locale.ROOT);
+                while (!dniPersona.equals("STOP")) {
+                    if(p.eliminarPersonaTarea(dniPersona, p.devuelveTarea(ntarea))){
+                        if (p.devuelvePersona(dniPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
+                            p.devuelvePersona(dniPersona).eliminarTareaResponsable(p.devuelveTarea(ntarea));
                             p.devuelveTarea(ntarea).setResponsable(null);
                         }
                         System.out.println("La persona se ha borrado correctamente");
                     }
 
                     else
-                        System.out.println(nomPersona + " no es colaborador/a en esta tarea");
-                    System.out.print("Escribe el nombre de las personas para eliminar, o 'STOP' para terminar: ");
-                    nomPersona = sc.next();
+                        System.out.println(dniPersona + " no es colaborador/a en esta tarea");
+                    System.out.print("Escribe el DNI de las personas para eliminar, o 'STOP' para terminar: ");
+                    dniPersona = sc.next().toUpperCase(Locale.ROOT);
                 }
             }else
                 System.out.println("Operación no valida, solo se puede añadir o eliminar ");

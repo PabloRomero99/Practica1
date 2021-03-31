@@ -110,9 +110,9 @@ public class Gestor {
                     if (p != null) {
                         System.out.print("Nombre de la tarea: ");
                         String ntarea = sc.next();
-                        System.out.print("Nombre de la persona: ");
-                        String npersona = sc.next();
-                        p.addResponsable(npersona, ntarea, p);
+                        System.out.print("Nombre de la DNI: ");
+                        String dniPersona = sc.next();
+                        p.addResponsable(dniPersona, ntarea, p);
                         System.out.println("\n");
                     }
 

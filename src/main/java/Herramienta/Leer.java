@@ -110,14 +110,33 @@ public class Leer {
             return -1;
     }
 
-
-
     public static int prioridadCorrecta(int prioridad, Scanner sc){
         while(prioridad < 1 || prioridad > 5){
             System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
             prioridad = sc.nextInt();
         }
         return prioridad;
+    }
+
+    public static Resultado leerValorTipo(Resultado resultado, int horas){
+        if ("Documentacion".equals(resultado.getIdentificador())) { //Tipo_Resultado = Documentacion
+            ResultadoDocumentacion resultadoDoc = new ResultadoDocumentacion("Documentacion", horas, resultado.isTipo_resultado());
+            resultadoDoc.resultado();
+            return resultadoDoc;
+        }
+        else if ("Pagina WEB".equals(resultado.getIdentificador())) { //Tipo_Resultado = Pagina WEB
+            ResultadoPaginaWeb resultadoWeb = new ResultadoPaginaWeb("Pagina WEB", horas, resultado.isTipo_resultado());
+            resultadoWeb.resultado();
+            return resultadoWeb;
+
+        }
+        else if("Programa".equals(resultado.getIdentificador())) { //Tipo_Resultado = Programa
+            ResultadoPrograma resultadoPro = new ResultadoPrograma("Programa", horas, resultado.isTipo_resultado());
+            resultadoPro.resultado();
+            return resultadoPro;
+        }
+
+        return null;
     }
 
 }

@@ -6,12 +6,14 @@ import java.util.List;
 
 public class Persona {
     private String nombre;           //nombre de la persona
+    private String DNI;              //identificador principal de una persona
     private String correo;           //correo de la persona
     private List<Tarea> listaTareasResponsable; //lista de tareas de las cual es responsable esta Persona
 
-    public Persona(String nombre, String correo, List<Tarea> listaTareas){
+    public Persona(String nombre, String correo,String DNI, List<Tarea> listaTareas){
         this.nombre = nombre;
         this.correo = correo;
+        this.DNI = DNI;
         this.listaTareasResponsable = listaTareas;
     }
 
@@ -38,6 +40,15 @@ public class Persona {
     public void setListaTareasResponsable(List<Tarea> listaTareasResponsable) {
         this.listaTareasResponsable = listaTareasResponsable;
     }
+
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
     public boolean eliminarTareaResponsable(Tarea t){
         if (listaTareasResponsable == null || !listaTareasResponsable.contains(t))
             return false;
@@ -63,6 +74,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "- Nombre = " + nombre + ", Correo = " + correo + ", Responsable en las tareas = " + devuelveNombreTarea();
+        return "- Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();
     }
 }
