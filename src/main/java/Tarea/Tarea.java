@@ -1,4 +1,5 @@
 package Tarea;
+import Interfaces.tieneLista;
 import Persona.Persona;
 import Resultado.Resultado;
 
@@ -6,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea {
+public class Tarea implements tieneLista {
     private String Titulo;
     private String Descripcion;
     private List<Persona> colaboradores;

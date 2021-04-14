@@ -1,10 +1,11 @@
 package Persona;
+import Interfaces.tieneLista;
 import Tarea.Tarea;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona {
+public class Persona implements tieneLista {
     private String nombre;           //nombre de la persona
     private String DNI;              //identificador principal de una persona
     private String correo;           //correo de la persona

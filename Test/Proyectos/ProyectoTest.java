@@ -5,11 +5,13 @@ import Resultado.Resultado;
 import Tarea.Tarea;
 import org.junit.jupiter.api.Test;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class ProyectoTest {
 
@@ -159,21 +161,20 @@ class ProyectoTest {
         for (Persona persona : listaPersonas)
             assertFalse(p.addPersonaTarea(persona, tarea));
 
-        System.out.println(tarea.getColaboradores());
-
     }
 
     @Test
     void eliminarPersonaTarea() {
         System.out.println("\nTest eliminarPersonaTarea");
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
-        Tarea tarea = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
+        Tarea tar = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
         for(int i=0;i<6;i++) {
             p.addPersonaTarea(new Persona(nombres[i], correos[i], null), tarea);
         }
 
-        for (String nomPersona : nombres)
-            assertTrue(p.eliminarPersonaTarea(nomPersona, tarea));
+        for (String dniPersona : dnis){
+            assertTrue(p.eliminarPersonaTarea(dniPersona,tar));
+        }
 
         for (String nomPersona : nombres)
             assertFalse(p.eliminarPersonaTarea(nomPersona, tarea));

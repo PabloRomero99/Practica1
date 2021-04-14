@@ -44,13 +44,17 @@ public class Modificadores {
         if (p.encuentraTarea(ntarea)) {
 
             if (decision == 1) { //Decision=añadir
-                System.out.print("Escribe el nombre de las personas para añadir, o 'STOP' para terminar: ");
-                String nomPersona = sc.next();
-                while (!nomPersona.equals("STOP")) {
-                    if(p.addPersonaTarea(p.devuelvePersona(nomPersona), p.devuelveTarea(ntarea)))
-                        System.out.println(nomPersona + " es nuevo colaborador en la tarea");
-                    else
-                        System.out.println(dniPersona + " ya es colaborador en la tarea");
+                System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
+                String dniPersona = sc.next().toUpperCase(Locale.ROOT);
+                while (!dniPersona.equals("STOP")) {
+                    if(p.addPersonaTarea(p.devuelvePersona(dniPersona), p.devuelveTarea(ntarea)))
+                        System.out.println(dniPersona  + " es nuevo colaborador en la tarea");
+                    else {
+                        if (!p.encuentraPersona(dniPersona)) //La persona no esta en el proyecto
+                            System.out.println(dniPersona + " esta persona no está en el proyecto");
+                        else //La persona esta en el proyecto y en la tarea
+                            System.out.println(dniPersona + " ya es colaborador en la tarea");
+                    }
                     System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                     dniPersona = sc.next().toUpperCase(Locale.ROOT);
                 }
