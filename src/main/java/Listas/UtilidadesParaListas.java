@@ -2,6 +2,7 @@ package Listas;
 
 import Interfaces.tieneClave;
 import Interfaces.tieneLista;
+import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
 
@@ -19,22 +20,23 @@ public class UtilidadesParaListas<E>  {
         return vacios;
     }
 
-    /*public static <E extends tieneClave> boolean encuentraElementos(E elem, List<E> list){
+    /*
+    public static <E extends tieneClave> boolean encuentraElementos(E elem, List<E> list){
         for (E e: list){
             if(e.getClave().equals(elem.getClave()))
                 return false;
         }
         return true;
-    }*/
-
-    /*public static <E extends tieneClave> boolean encuentraElementos(E elem, Proyecto p){
-        for (E e: )
-
+    }
      */
 
+    public static <E extends tieneClave> boolean encuentraElementos(E elem, Persona persona){
+        for (E man: p) {
 
+        }
+        return true;
     }
+}
 
 
 
-    }

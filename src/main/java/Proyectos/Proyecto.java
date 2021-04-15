@@ -33,8 +33,6 @@ public class Proyecto {
         return tareas;
     }
 
-
-
     public boolean addParticipante(Persona persona){
         if (participantes.size() == 0){
             participantes.add(persona);
@@ -89,7 +87,7 @@ public class Proyecto {
     }
 
     public Persona devuelvePersona2(Persona persona){
-        if (elementos(persona,participantes)){
+        if (encuentraElementos(persona.getDNI(),persona)){
             for(Persona p : this.participantes){
                 if(persona.getClave().equals(p.getDNI()))
                     return p;
@@ -99,35 +97,6 @@ public class Proyecto {
     }
 
 
-
-
-    public <E> boolean encueElemento(E clave){
-        for(E elem : this.participantes){
-            if(clave.equals(elem.getClave()))
-                return true;
-        }
-        return false;
-    }
-
-    public <E> E devuelveElemento(E clave){
-        if (encuentraPersona(dniPersona)){
-            for(Persona p : this.participantes){
-                if(dniPersona.equals(p.getDNI()))
-                    return p;
-            }
-        }
-        return null;
-    }
-
-    public Persona devuelvePersona2(Persona persona){
-        if (encuentraElementos(persona,participantes)){
-            for(Persona p : this.participantes){
-                if(persona.getClave().equals(p.getDNI()))
-                    return p;
-            }
-        }
-        return null;
-    }
 
     public boolean addTarea(Tarea tarea){
         return tareas.add(tarea);
