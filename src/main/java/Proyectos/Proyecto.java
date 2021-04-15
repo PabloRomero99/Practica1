@@ -1,15 +1,12 @@
 package Proyectos;
 
-import Interfaces.tieneClave;
 import Persona.Persona;
-import Resultado.Resultado;
 import Tarea.Tarea;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Listas.UtilidadesParaListas.elementos;
+import static Listas.UtilidadesParaListas.encuentraElementos;
 
 public class Proyecto {
     private String nombre; //Nombre del proyecto
@@ -116,6 +113,16 @@ public class Proyecto {
         if (encuentraPersona(dniPersona)){
             for(Persona p : this.participantes){
                 if(dniPersona.equals(p.getDNI()))
+                    return p;
+            }
+        }
+        return null;
+    }
+
+    public Persona devuelvePersona2(Persona persona){
+        if (encuentraElementos(persona,participantes)){
+            for(Persona p : this.participantes){
+                if(persona.getClave().equals(p.getDNI()))
                     return p;
             }
         }
