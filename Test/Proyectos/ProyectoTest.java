@@ -25,6 +25,8 @@ class ProyectoTest {
     private final String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
     private final String[] nombres2 = {"peri", "juana", "andresito", "pakorro", "manoli", "pepita"};
     private final String[] correos = {"perico@mail", "juan@mail", "andres@mail", "pako@mail", "manolo@mail" ,"pepe@gmail.com"};
+    private final String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+    private final String[] dnis2 = {"12345675M", "32564397W", "45827525M", "46898894Ñ", "15588962N", "32015487O"};
 
     //Tarea
     private final String[] titulos = {"la noche", "el dia", "la tarde", "la hora", "la casa", "el gato"};
@@ -51,7 +53,7 @@ class ProyectoTest {
         System.out.println("Test addParticipante");
 
         for (int c = 0; c < nombres.length; c++) {
-            listaPersonas.add(new Persona(nombres[c], correos[c], null));
+            listaPersonas.add(new Persona(nombres[c], correos[c],dnis[c], null));
         }
         for (Persona persona : listaPersonas)
             assertTrue(p.addParticipante(persona));
@@ -60,18 +62,18 @@ class ProyectoTest {
             assertFalse(p.addParticipante(persona));
     }
 
-   @Test
-   void addTarea() {
-       System.out.println("\nTest addTarea");
-       for(int i = 0; i < 6 ; i++){
-           Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-           Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion,resultado);
-           assertTrue(p.addTarea(tarea));
-       }
+    @Test
+    void addTarea() {
+        System.out.println("\nTest addTarea");
+        for(int i = 0; i < 6 ; i++){
+            Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion,resultado);
+            assertTrue(p.addTarea(tarea));
+        }
 
-       for (Tarea tarea : listaTareas)
-           assertFalse(p.addTarea(tarea));
-   }
+        for (Tarea tarea : listaTareas)
+            assertFalse(p.addTarea(tarea));
+    }
 
     @Test
     void encuentraTarea() {
@@ -117,7 +119,7 @@ class ProyectoTest {
     void encuentraPersona() {
         System.out.println("\nTest encuentraPersona");
         for(int i = 0; i < 6 ; i++){
-            Persona persona = new Persona(nombres[i], correos[i], null);
+            Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
             p.addParticipante(persona);
         }
 
@@ -133,7 +135,7 @@ class ProyectoTest {
     void devuelvePersona() {
         System.out.println("\nTest devuelvePersona");
         for(int i = 0; i < 6 ; i++){
-            Persona persona = new Persona(nombres[i], correos[i], null);
+            Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
             p.addParticipante(persona);
         }
         for (int c = 0; c < dnis.length; c++){
@@ -141,8 +143,8 @@ class ProyectoTest {
         }
 
         List<Persona> personasNo = new ArrayList<>();
-        for (int c = 0; c < nombres.length; c++) {
-            personasNo.add(new Persona(nombres2[c], correos[c], null));
+        for (int c = 0; c < dnis.length; c++) {
+            personasNo.add(new Persona(nombres2[c], correos[c], dnis[c], null));
         }
 
         for (int t = 0; t < dnis.length; t++)
@@ -154,8 +156,10 @@ class ProyectoTest {
         System.out.println("\nTest addPersonaTarea");
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
         Tarea tarea = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
-        for(int i=0;i<6;i++)
-            listaPersonas.add(new Persona(nombres[i], correos[i], null));
+        for(int i=0;i<6;i++) {
+            Persona personita = new Persona(nombres[i], correos[i], dnis[i],null);
+            p.addParticipante(personita);
+        }
 
         for (Persona persona : listaPersonas)
             assertTrue(p.addPersonaTarea(persona, tarea));
@@ -171,15 +175,17 @@ class ProyectoTest {
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
         Tarea tar = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
         for(int i=0;i<6;i++) {
-            p.addPersonaTarea(new Persona(nombres[i], correos[i], null), tarea);
+            Persona personita = new Persona(nombres[i], correos[i], dnis[i],null);
+            p.addParticipante(personita);
+            p.addPersonaTarea(personita,tar);
         }
 
         for (String dniPersona : dnis){
             assertTrue(p.eliminarPersonaTarea(dniPersona,tar));
         }
 
-        for (String nomPersona : nombres)
-            assertFalse(p.eliminarPersonaTarea(nomPersona, tarea));
+        for (String dniPersona : dnis)
+            assertFalse(p.eliminarPersonaTarea(dniPersona, tar));
 
     }
 
@@ -222,21 +228,21 @@ class ProyectoTest {
         for(int i=0;i<6;i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
             Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion,resultado);
-            Persona persona = new Persona(nombres[i], correos[i], null);
+            Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
             p1.addParticipante(persona);
             p1.addTarea(tarea);
 
         }
-        String nomPersona = nombres[0];
+        String dniPersona = dnis[0];
         String nomTarea = titulos[0];
         String dniPersonaFalso = "142414";
         String nombreTareaFalso = "Cocinar";
 
 
-        assertTrue(p1.addResponsable(nomPersona, nomTarea, p1));
-        assertFalse(p1.addResponsable(nomPersona, nomTarea, p1));
-        assertFalse(p1.addResponsable(nombrePersonaFalso, nomTarea, p1));
-        assertFalse(p1.addResponsable(nomPersona, nombreTareaFalso, p1));
+        assertTrue(p1.addResponsable(dniPersona, nomTarea, p1));
+        assertFalse(p1.addResponsable(dniPersona, nomTarea, p1));
+        assertFalse(p1.addResponsable(dniPersonaFalso, nomTarea, p1));
+        assertFalse(p1.addResponsable(dniPersona, nombreTareaFalso, p1));
 
 
     }

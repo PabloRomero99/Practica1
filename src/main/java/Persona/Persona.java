@@ -1,11 +1,12 @@
 package Persona;
 import Interfaces.tieneLista;
+import Interfaces.tieneClave;
 import Tarea.Tarea;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista {
+public class Persona implements tieneLista, tieneClave {
     private String nombre;           //nombre de la persona
     private String DNI;              //identificador principal de una persona
     private String correo;           //correo de la persona
@@ -76,5 +77,15 @@ public class Persona implements tieneLista {
     @Override
     public String toString() {
         return "- Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();
+    }
+
+    @Override
+    public List getLista() {
+        return listaTareasResponsable;
+    }
+
+    @Override
+    public Object getClave() {
+        return DNI;
     }
 }

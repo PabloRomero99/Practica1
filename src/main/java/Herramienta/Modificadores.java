@@ -40,9 +40,9 @@ public class Modificadores {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿De que tarea quieres modificar los participantes?");
         String ntarea = sc.nextLine();
-        int decision = leerDecision();
-        if (p.encuentraTarea(ntarea)) {
 
+        if (p.encuentraTarea(ntarea)) {
+            int decision = leerDecision();
             if (decision == 1) { //Decision=añadir
                 System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                 String dniPersona = sc.next().toUpperCase(Locale.ROOT);
@@ -64,7 +64,7 @@ public class Modificadores {
                 String dniPersona = sc.next().toUpperCase(Locale.ROOT);
                 while (!dniPersona.equals("STOP")) {
                     if(p.eliminarPersonaTarea(dniPersona, p.devuelveTarea(ntarea))){
-                        if (p.devuelvePersona(dniPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
+                        if (p.devuelvePersona(dniPersona).getListaTareasResponsable() != null && p.devuelvePersona(dniPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
                             p.devuelvePersona(dniPersona).eliminarTareaResponsable(p.devuelveTarea(ntarea));
                             p.devuelveTarea(ntarea).setResponsable(null);
                         }

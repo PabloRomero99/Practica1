@@ -4,13 +4,13 @@ import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
 
-import java.time.LocalDate;
-import java.util.Locale;
+import java.util.List;
 import java.util.Scanner;
 
 import static Herramienta.Leer.*;
 import static Herramienta.Modificadores.marcandoTareaFinalizada;
 import static Herramienta.Modificadores.modificarParticipantes;
+import static Listas.UtilidadesParaListas.elementosConListaVacia;
 
 
 public class Gestor {
@@ -24,9 +24,11 @@ public class Gestor {
         MODIFICAR_PERSONAS_TAREA("Introducir o eliminar una persona de una tarea "),
         MODIFICAR_ETIQUETAS("Añadir o eliminar etiquetas en la tarea"),
         LISTA_PERSONAS("Lista las personas que trabajan en el proyecto "),
+        LISTA_PERSONAS_NO_RESPONSABLES("Lista las personas que no son responsables en ninguna tarea del proyecto "),
         LISTA_TAREAS("Lista de tareas del proyecto:\n\t  * Título\n\t " +
                 " * Personas asignadas (destacando los responsables)\n\t  * Tarea finalizada o no\n\t " +
-                " * Resultado de la tarea"),
+                " * Resultado de la tarea "),
+        LISTA_TAREAS_SIN_COLABORADORES("Lista las tareas en las cuales no trabaja nadie "),
         SALIR_PROYECTO("Salir del proyecto");
 
         private final String descripcion;
@@ -81,7 +83,7 @@ public class Gestor {
         Proyecto p=null;
         Scanner sc = new Scanner(System.in);
         int opcion = elegirOpcion();
-        while (opcion != 9) {
+        while (opcion != 11) {
             switch (opcion) {
                 case 0: //INICIAR_PROYECTO
                     System.out.print("Nombre del proyecto: ");
@@ -148,7 +150,18 @@ public class Gestor {
                     System.out.println("\n");
                     break;
 
-                case 8: //LISTA_TAREAS
+                case 8: //LISTA_PERSONAS_NO_RESPONSABLES
+                    if (p != null) {
+                        List<Persona> listaNoResp = elementosConListaVacia(p.getParticipantes());
+                        for (Persona pers : listaNoResp)
+                            System.out.println(pers);
+
+                    } else
+                        System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
+                    System.out.println("\n");
+                    break;
+
+                case 9: //LISTA_TAREAS
                     if (p != null) {
                         for (Tarea tarea : p.getTareas()) {
                             System.out.println(tarea.toString() + '\n');
@@ -157,8 +170,19 @@ public class Gestor {
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
                     break;
 
+                case 10://LISTA_TAREAS_SIN_COLABORADORES
+                    if (p != null) {
+                        List<Tarea> listaNoCol = elementosConListaVacia(p.getTareas());
+                        for (Tarea t: listaNoCol)
+                            System.out.println(t);
+
+                    } else
+                        System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
+                    System.out.println("\n");
+                    break;
+
                 default:
-                    System.out.println("La opcion no es valida, elige una entre 1 y 10\n");
+                    System.out.println("La opcion no es valida, elige una entre 1 y 11\n");
             }
             opcion = elegirOpcion();
         }
