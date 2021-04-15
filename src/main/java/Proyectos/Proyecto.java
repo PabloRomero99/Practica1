@@ -87,8 +87,8 @@ public class Proyecto {
     }
 
     public Persona devuelvePersona2(Persona persona){
-        if (encuentraElementos(persona.getDNI(),persona)){
-            for(Persona p : this.participantes){
+        if (encuentraElementos(persona,participantes)){
+            for(Persona p : participantes){
                 if(persona.getClave().equals(p.getDNI()))
                     return p;
             }

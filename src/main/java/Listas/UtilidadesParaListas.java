@@ -20,21 +20,12 @@ public class UtilidadesParaListas<E>  {
         return vacios;
     }
 
-    /*
     public static <E extends tieneClave> boolean encuentraElementos(E elem, List<E> list){
-        for (E e: list){
-            if(e.getClave().equals(elem.getClave()))
-                return false;
+        for (E aux: list) {
+            if (aux.getClave().equals(elem))
+                return true;
         }
-        return true;
-    }
-     */
-
-    public static <E extends tieneClave> boolean encuentraElementos(E elem, Persona persona){
-        for (E man: p) {
-
-        }
-        return true;
+        return false;
     }
 }
 
