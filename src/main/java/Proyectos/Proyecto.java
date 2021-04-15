@@ -1,5 +1,6 @@
 package Proyectos;
 
+import Interfaces.tieneClave;
 import Persona.Persona;
 import Resultado.Resultado;
 import Tarea.Tarea;

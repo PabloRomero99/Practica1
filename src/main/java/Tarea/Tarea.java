@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea implements tieneLista {
+public class Tarea implements tieneLista, tieneClave {
     private String Titulo;
     private String Descripcion;
     private List<Persona> colaboradores;
@@ -150,4 +150,13 @@ public class Tarea implements tieneLista {
             return responsable.getNombre();
     }
 
+    @Override
+    public List getLista() {
+        return colaboradores;
+    }
+
+    @Override
+    public Object getClave() {
+        return Titulo;
+    }
 }
