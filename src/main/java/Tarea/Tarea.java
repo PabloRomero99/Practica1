@@ -1,4 +1,5 @@
 package Tarea;
+import Interfaces.tieneClave;
 import Interfaces.tieneLista;
 import Persona.Persona;
 import Resultado.Resultado;

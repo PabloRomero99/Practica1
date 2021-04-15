@@ -4,13 +4,13 @@ import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
 
-import java.time.LocalDate;
-import java.util.Locale;
+import java.util.List;
 import java.util.Scanner;
 
 import static Herramienta.Leer.*;
 import static Herramienta.Modificadores.marcandoTareaFinalizada;
 import static Herramienta.Modificadores.modificarParticipantes;
+import static Listas.UtilidadesParaListas.elementosConListaVacia;
 
 
 public class Gestor {

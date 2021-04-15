@@ -21,7 +21,9 @@ public class Leer {
         String nom = scanner.nextLine();
         System.out.print("Correo electrónico: ");
         String correo = scanner.next();
-        return new Persona(nom, correo, null);
+        System.out.print("DNI de la persona: ");
+        String dni = scanner.next().toUpperCase(Locale.ROOT);
+        return new Persona(nom, correo, dni, null);
     }
 
     public static void leertarea(Proyecto p) {
@@ -40,15 +42,8 @@ public class Leer {
         System.out.print("De que tipo quieres que sea {1 - Documentacion | 2 - Página WEB | 3 - Programa } --> ");
         int tipoSeleccionado = scanner.nextInt();
 
-        /*
-        System.out.print("Horas invertidas: ");
-        int horas = scanner.nextInt();
-        */
-
         System.out.print("Tipo de resultado {1 - Resultado interno | 2 - Destinado a ser comercializado} -->   ");
         boolean tiporesultadofinal = devolverResultado(scanner.nextInt());
-
-
 
         System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
         int prioridad = scanner.nextInt();
