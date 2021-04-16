@@ -47,7 +47,7 @@ public class Modificadores {
                 System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                 String dniPersona = sc.next().toUpperCase(Locale.ROOT);
                 while (!dniPersona.equals("STOP")) {
-                    if(p.addPersonaTarea(p.devuelvePersona(dniPersona), p.devuelveTarea(ntarea)))
+                    if(p.addColaboradores(p.devuelvePersona(dniPersona), p.devuelveTarea(ntarea)))
                         System.out.println(dniPersona  + " es nuevo colaborador en la tarea");
                     else {
                         if (!p.encuentraPersona(dniPersona)) //La persona no esta en el proyecto
