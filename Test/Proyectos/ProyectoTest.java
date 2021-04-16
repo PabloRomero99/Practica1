@@ -24,7 +24,6 @@ class ProyectoTest {
     //Persona
     private String[] nombres2 = {"peri", "juana", "andresito", "pakorro", "manoli", "pepita"};
     private String[] correos = {"perico@mail", "juan@mail", "andres@mail", "pako@mail", "manolo@mail" ,"pepe@gmail.com"};
-    private String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
     private String[] dnis2 = {"12345675M", "32564397W", "45827525M", "46898894Ñ", "15588962N", "32015487O"};
 
     //Tarea
@@ -42,7 +41,6 @@ class ProyectoTest {
     private final boolean[] tipo_resultado = {true,false,true,false,true,true};
     LocalDate fecha_creacion = LocalDate.now();
 
-    private final List<Persona> listaPersonas = new ArrayList<>();
     private final List<Tarea> listaTareas = new ArrayList<>();
 
 
@@ -51,6 +49,9 @@ class ProyectoTest {
     void addParticipante(){
         System.out.println("Test addParticipante");
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+        String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+        List<Persona> listaPersonas = new ArrayList<>();
+
 
         for (int c = 0; c < nombres.length; c++) {
             listaPersonas.add(new Persona(nombres[c], correos[c],dnis[c], null));
@@ -119,6 +120,8 @@ class ProyectoTest {
     void encuentraPersona() {
         System.out.println("\nTest encuentraPersona");
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+        String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+
 
         for(int i = 0; i < 6 ; i++){
             Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
@@ -137,6 +140,8 @@ class ProyectoTest {
     void devuelvePersona() {
         System.out.println("\nTest devuelvePersona");
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+        String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+
         for(int i = 0; i < 6 ; i++){
             Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
             p.addParticipante(persona);
@@ -158,6 +163,9 @@ class ProyectoTest {
     void addPersonaTarea() {
         System.out.println("\nTest addPersonaTarea");
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+        String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+        List<Persona> listaPersonas = new ArrayList<>();
+
 
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
         Tarea tarea = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
@@ -178,6 +186,8 @@ class ProyectoTest {
     void eliminarPersonaTarea() {
         System.out.println("\nTest eliminarPersonaTarea");
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+        String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+
 
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
         Tarea tar = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
@@ -233,6 +243,8 @@ class ProyectoTest {
     void addResponsable() {
         System.out.println("\nTest addResponsable");
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+        String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+
 
         for(int i=0;i<6;i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);

@@ -74,6 +74,7 @@ public class Persona implements tieneLista, tieneClave {
         return nombres;
     }
 
+
     @Override
     public String toString() {
         return "- Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();

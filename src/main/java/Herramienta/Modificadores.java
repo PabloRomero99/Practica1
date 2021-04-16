@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import static Herramienta.Leer.leerDecision;
 import static Herramienta.Leer.leerValorTipo;
+import static Listas.UtilidadesParaListas.encuentraElementos;
 
 
 public class Modificadores {
@@ -28,8 +29,10 @@ public class Modificadores {
             t.setResultado(leerValorTipo(t.getResultado(), horas));
             t.marcarFinalizada();
             t.setFecha_finalización(LocalDate.now());
-        } else
+
+        } catch(NullPointerException e) {
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
+        }
     }
 
 

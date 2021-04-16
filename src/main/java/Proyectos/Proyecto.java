@@ -38,14 +38,12 @@ public class Proyecto {
             participantes.add(persona);
             return true;
         }
-
         for (Persona personita : participantes){
             if (personita.getDNI().equals(persona.getClave())){
                 System.out.println("La persona con DNI" + personita.getDNI() +" ya esta registrada en el proyecto");
                 return false;
             }
         }
-
         participantes.add(persona);
         return true;
     }

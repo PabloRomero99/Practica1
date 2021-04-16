@@ -4,6 +4,7 @@ import Proyectos.Proyecto;
 import Tarea.Tarea;
 
 import java.util.Scanner;
+import static Listas.UtilidadesParaListas.encuentraElementos;
 
 public class Insertores {
     public static void insertResponsable(Proyecto p){
