@@ -66,14 +66,26 @@ public class Proyecto {
     public Tarea devuelveTarea(String nombreTarea){
         if (encuentraElementos(tareaVacia(nombreTarea), tareas)){
             for(Tarea t:this.tareas){
-                if(nombreTarea.equals(t.getTitulo()))
+                if(nombreTarea.equals(t.getClave()))
                     return t;
             }
         }
         return null;
     }
+     public Persona devuelvePersona(String nombrePersona){
+            if (encuentraElementos(tareaVacia(nombrePersona), tareas)){
+                for(Persona p:this.participantes){
+                    if(nombrePersona.equals(p.getClave()))
+                        return p;
+                }
+            }
+            return null;
+        }
 
     public static Tarea tareaVacia(String nom){ //metodo para usar getelemento (temporal)
         return new Tarea(nom,null,0,null,null);
+    }
+    public static Persona personaVacia(String nom){ //metodo para usar getelemento (temporal)
+        return new Persona(nom,null,"",null);
     }
 }

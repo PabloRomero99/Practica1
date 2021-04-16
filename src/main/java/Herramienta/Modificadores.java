@@ -40,8 +40,8 @@ public class Modificadores {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿De que tarea quieres modificar los participantes?");
         String ntarea = sc.nextLine();
-
-        if (p.encuentraTarea(ntarea)) {
+        Tarea tarea = p.devuelveTarea(ntarea);
+        if (encuentraElementos(tarea, p.getTareas())) {
             int decision = leerDecision();
             if (decision == 1) { //Decision=añadir
                 System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
