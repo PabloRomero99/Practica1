@@ -1,4 +1,5 @@
 package Tarea;
+import Excepciones.ElementoNoExisteException;
 import Interfaces.tieneClave;
 import Interfaces.tieneLista;
 import Persona.Persona;
@@ -6,10 +7,12 @@ import Proyectos.Proyecto;
 import Resultado.Resultado;
 
 import static Listas.UtilidadesParaListas.encuentraElementos;
+import static Listas.UtilidadesParaListas.devuelveElementos;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Tarea implements tieneLista, tieneClave {
     private String Titulo;
@@ -169,7 +172,6 @@ public class Tarea implements tieneLista, tieneClave {
             return tarea.getLista_etiquetas().add(etiqueta);
 
         System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
-        return false;
     }
 
     public boolean eliminarEtiqueta(String etiqueta,Tarea tarea) {
@@ -181,33 +183,34 @@ public class Tarea implements tieneLista, tieneClave {
     }
 
 
-    public  boolean addColaboradores(Persona persona, Tarea tarea){
-        if (persona == null || encuentraElementos(persona, colaboradores))  //Persona no esta dentro del proyecto
-            return false;
-        else if (encuentraElementos(persona, colaboradores)) {
-            for (Persona p : tarea.getColaboradores()) {
-                if (p.getDNI().equals(persona.getDNI()))
-                    return false;
+    public void addColaboradores(Persona persona) {
+        if (persona != null) {
+            if (!encuentraElementos(persona, colaboradores)) {
+                colaboradores.add(persona);
+                System.out.println(persona.getClave() + " es nuevo colaborador en la tarea");
+            }else {
+                System.out.println(persona.getClave() + " ya era colaborador en la tarea");
             }
+        }else {
+            System.out.println("Esta persona no participa en el proyecto");
         }
-
-        tarea.getColaboradores().add(persona);
-        return true;
-
     }
 
-    public boolean eliminarPersonaTarea(String dniPersona, Tarea tarea){
-        for (Persona p : tarea.getColaboradores()) {
-            if (p.getDNI().equals(dniPersona)) {
-                tarea.getColaboradores().remove(p);
-                return true;
+    public void eliminarColaboradores(Persona persona){
+        if (persona != null) {
+            if (encuentraElementos(persona, colaboradores)) {
+                colaboradores.remove(persona);
+                System.out.println(persona.getClave() + " ya no es colaborador");
+            }else {
+                System.out.println(persona.getClave() + " no era colaborador en la tarea");
             }
+        }else {
+            System.out.println("Esta persona no participa en el proyecto");
         }
-
-        return false;
     }
 
-    public boolean addResponsable(String dniPersona, Proyecto p){
+    public void addResponsable(String dniPersona, Proyecto p){
+       //tratar tarea = null
         Persona persona = devuelveElementos(dniPersona, p.getParticipantes());
         if (responsable == null) { //Tarea no tiene responsable
             if(persona != null) { //Persona esta en el proyecto
@@ -215,23 +218,17 @@ public class Tarea implements tieneLista, tieneClave {
                     colaboradores.add(persona);
                     responsable = persona;
                     persona.addTareaResponsable(this);
-                    return true;
                 } else {
                     responsable = persona;
                     persona.addTareaResponsable(this);
-                    return true;
                 }
             }else {
                 System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
                         "este registrada en el proyecto, o el DNI no es correcto.");
-                return false;
             }
         }else{
             System.out.println("El responsable de la tarea es " + responsable
                     + " y solo puede haber un responsable por tarea");
-            return false;
         }
     }
-
-
 }

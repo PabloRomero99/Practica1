@@ -76,30 +76,36 @@ public class Leer {
         System.out.println("¿De que tarea quieres modificar las etiquetas?");
         String ntarea = sc.next();
         int decision = leerDecision();
-        if (encuentraElementos(ntarea, )) {
+        Tarea tarea = devuelveElementos(ntarea, p.getTareas());
+        try{
 
-            if (decision == 1) { //Decision=añadir
-                System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
-                String etiqueta = sc.next();
-                while (!etiqueta.equals("STOP")) {
-                    p.addEtiquetas(etiqueta, p.devuelveTarea(ntarea));
+            if (encuentraElementos(tarea, p.getTareas()) && tarea != null) {
+
+                if (decision == 1) { //Decision=añadir
                     System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
-                    etiqueta = sc.next();
-                }
-            }else if (decision == 0){
-                System.out.print("Escribe el nombre de las etiquetas para eliminar, o 'STOP' para terminar: ");
-                String etiqueta = sc.next();
-                while (!etiqueta.equals("STOP")) {
-                    p.eliminarEtiqueta(etiqueta, p.devuelveTarea(ntarea));
+                    String etiqueta = sc.next();
+                    while (!etiqueta.equals("STOP")) {
+                        tarea.addEtiquetas(etiqueta);
+                        System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
+                        etiqueta = sc.next();
+                    }
+                }else if (decision == 0){
                     System.out.print("Escribe el nombre de las etiquetas para eliminar, o 'STOP' para terminar: ");
-                    etiqueta = sc.next();
+                    String etiqueta = sc.next();
+                    while (!etiqueta.equals("STOP")) {
+                        tarea.eliminarEtiqueta(etiqueta);
+                        System.out.print("Escribe el nombre de las etiquetas para eliminar, o 'STOP' para terminar: ");
+                        etiqueta = sc.next();
+                    }
                 }
+                else
+                    System.out.println("Operación no valida, solo se puede añadir o eliminar ");
+
+                System.out.println('\n');
+
             }
-            else
-                System.out.println("Operación no valida, solo se puede añadir o eliminar ");
-
-            System.out.println('\n');
-
+        }catch (NullPointerException e){
+            System.out.println("La tarea no existe");
         }
     }
 

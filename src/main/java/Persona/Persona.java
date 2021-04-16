@@ -60,7 +60,7 @@ public class Persona implements tieneLista, tieneClave {
 
     public void addTareaResponsable(Tarea t){
         if (listaTareasResponsable == null)
-            listaTareasResponsable = new ArrayList<Tarea>();
+            listaTareasResponsable = new ArrayList<>();
         listaTareasResponsable.add(t);
     }
 

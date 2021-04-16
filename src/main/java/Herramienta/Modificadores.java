@@ -1,6 +1,8 @@
 package Herramienta;
 
 
+import Excepciones.ElementoNoExisteException;
+import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
 
@@ -15,7 +17,7 @@ import static Listas.UtilidadesParaListas.encuentraElementos;
 
 public class Modificadores {
     public static void marcandoTareaFinalizada(Proyecto p){
-
+        //tratar t = null
         try {
             Scanner sc = new Scanner(System.in);
             System.out.print("Nombre de la tarea para marcar: ");
@@ -25,10 +27,10 @@ public class Modificadores {
 
             System.out.print("Cuantas horas se han invertido: ");
             int horas = sc.nextInt();
-            t.getResultado().setHoras_invertidas(horas);
-            t.setResultado(leerValorTipo(t.getResultado(), horas));
-            t.marcarFinalizada();
-            t.setFecha_finalización(LocalDate.now());
+                t.getResultado().setHoras_invertidas(horas);
+                t.setResultado(leerValorTipo(t.getResultado(), horas));
+                t.marcarFinalizada();
+                t.setFecha_finalización(LocalDate.now());
 
         } catch(NullPointerException e) {
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
@@ -36,49 +38,38 @@ public class Modificadores {
     }
 
 
-    public static void modificarParticipantes(Proyecto p) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿De que tarea quieres modificar los participantes?");
-        String ntarea = sc.nextLine();
-        Tarea tarea = p.devuelveTarea(ntarea);
-        if (encuentraElementos(tarea, p.getTareas())) {
-            int decision = leerDecision();
-            if (decision == 1) { //Decision=añadir
+    public static void modificarParticipantes(Proyecto p){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("¿De que tarea quieres modificar los participantes?");
+            String ntarea = sc.nextLine();
+            Tarea tarea = devuelveElementos(ntarea, p.getTareas());
+
+            //Tratar tarea == null
+
+            if (tarea != null) {
+                int decision = leerDecision();
+
                 System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                 String dniPersona = sc.next().toUpperCase(Locale.ROOT);
-                while (!dniPersona.equals("STOP")) {
-                    if(p.addColaboradores(p.devuelvePersona(dniPersona), p.devuelveTarea(ntarea)))
-                        System.out.println(dniPersona  + " es nuevo colaborador en la tarea");
-                    else {
-                        if (!p.encuentraPersona(dniPersona)) //La persona no esta en el proyecto
-                            System.out.println(dniPersona + " esta persona no está en el proyecto");
-                        else //La persona esta en el proyecto y en la tarea
-                            System.out.println(dniPersona + " ya es colaborador en la tarea");
-                    }
-                    System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
-                    dniPersona = sc.next().toUpperCase(Locale.ROOT);
-                }
+                Persona persona = devuelveElementos(dniPersona, p.getParticipantes()); //Tenemos que comprobar que la persona esta dentro del proyecto
 
-            }else if(decision == 0){
-                System.out.print("Escribe el DNI de las personas para eliminar, o 'STOP' para terminar: ");
-                String dniPersona = sc.next().toUpperCase(Locale.ROOT);
-                while (!dniPersona.equals("STOP")) {
-                    if(p.eliminarPersonaTarea(dniPersona, p.devuelveTarea(ntarea))){
-                        if (p.devuelvePersona(dniPersona).getListaTareasResponsable() != null && p.devuelvePersona(dniPersona).getListaTareasResponsable().contains(p.devuelveTarea(ntarea))){
-                            p.devuelvePersona(dniPersona).eliminarTareaResponsable(p.devuelveTarea(ntarea));
-                            p.devuelveTarea(ntarea).setResponsable(null);
-                        }
-                        System.out.println("La persona se ha borrado correctamente");
+                if (decision == 1) { //Decision=añadir
+
+                    while (!dniPersona.equals("STOP")) {
+                        tarea.addColaboradores(persona);
+                        System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
+                        dniPersona = sc.next().toUpperCase(Locale.ROOT);
                     }
 
-                    else
-                        System.out.println(dniPersona + " no es colaborador/a en esta tarea");
-                    System.out.print("Escribe el DNI de las personas para eliminar, o 'STOP' para terminar: ");
-                    dniPersona = sc.next().toUpperCase(Locale.ROOT);
+                } else if (decision == 0) {
+                    while (!dniPersona.equals("STOP")){
+                        tarea.eliminarColaboradores(persona);
+                        System.out.print("Escribe el DNI de las personas para eliminar, o 'STOP' para terminar: ");
+                        dniPersona = sc.next().toUpperCase(Locale.ROOT);
+                    }
                 }
-            }else
+            } else
                 System.out.println("Operación no valida, solo se puede añadir o eliminar ");
             System.out.println('\n');
         }
-    }
 }

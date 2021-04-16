@@ -6,7 +6,7 @@ import Tarea.Tarea;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Listas.UtilidadesParaListas.encuentraElementos;
+
 
 public class Proyecto {
     private String nombre; //Nombre del proyecto
@@ -18,7 +18,7 @@ public class Proyecto {
         super();
     }
 
-    public Proyecto(String nombre){
+    public Proyecto(String nombre) {
         this.nombre = nombre;
         this.participantes = new ArrayList<>();
         this.tareas = new ArrayList<>();
@@ -29,18 +29,18 @@ public class Proyecto {
         return participantes;
     }
 
-    public List<Tarea> getTareas(){
+    public List<Tarea> getTareas() {
         return tareas;
     }
 
-    public boolean addParticipante(Persona persona){
-        if (participantes.size() == 0){
+    public boolean addParticipante(Persona persona) {
+        if (participantes.size() == 0) {
             participantes.add(persona);
             return true;
         }
-        for (Persona personita : participantes){
-            if (personita.getDNI().equals(persona.getClave())){
-                System.out.println("La persona con DNI" + personita.getDNI() +" ya esta registrada en el proyecto");
+        for (Persona personita : participantes) {
+            if (personita.getClave().equals(persona.getClave())) {
+                System.out.println("La persona con DNI" + personita.getClave() + " ya esta registrada en el proyecto");
                 return false;
             }
         }
@@ -48,44 +48,18 @@ public class Proyecto {
         return true;
     }
 
-    public boolean addTarea(Tarea tarea){
-        if (tareas.size() == 0){
+    public boolean addTarea(Tarea tarea) {
+        if (tareas.size() == 0) {
             tareas.add(tarea);
             return true;
         }
-        for (Persona personita : participantes){
-            if (personita.getDNI().equals(tarea.getClave())){
-                System.out.println("La persona con DNI" + personita.getDNI() +" ya esta registrada en el proyecto");
+        for (Tarea tareita : tareas) {
+            if (tareita.getClave().equals(tarea.getClave())) {
+                System.out.println("La persona con DNI" + tareita.getClave() + " ya esta registrada en el proyecto");
                 return false;
             }
         }
         tareas.add(tarea);
         return true;
-    }
-
-    public Tarea devuelveTarea(String nombreTarea){
-        if (encuentraElementos(tareaVacia(nombreTarea), tareas)){
-            for(Tarea t:this.tareas){
-                if(nombreTarea.equals(t.getClave()))
-                    return t;
-            }
-        }
-        return null;
-    }
-     public Persona devuelvePersona(String nombrePersona){
-            if (encuentraElementos(tareaVacia(nombrePersona), tareas)){
-                for(Persona p:this.participantes){
-                    if(nombrePersona.equals(p.getClave()))
-                        return p;
-                }
-            }
-            return null;
-        }
-
-    public static Tarea tareaVacia(String nom){ //metodo para usar getelemento (temporal)
-        return new Tarea(nom,null,0,null,null);
-    }
-    public static Persona personaVacia(String nom){ //metodo para usar getelemento (temporal)
-        return new Persona(nom,null,"",null);
     }
 }
