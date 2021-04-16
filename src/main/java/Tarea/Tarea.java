@@ -170,6 +170,7 @@ public class Tarea implements tieneLista, tieneClave {
     public void addEtiquetas(String etiqueta){
         if (!lista_etiquetas.contains(etiqueta)) { //El metodo generico encuentraElementos no tolera String
             lista_etiquetas.add(etiqueta);
+            System.out.println("La etiqueta '" + etiqueta + "' se ha añadido correctamente");
         }
         System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
     }

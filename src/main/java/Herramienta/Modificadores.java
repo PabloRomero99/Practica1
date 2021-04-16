@@ -56,6 +56,7 @@ public class Modificadores {
                 if (decision == 1) { //Decision=añadir
 
                     while (!dniPersona.equals("STOP")) {
+                        persona = devuelveElementos(dniPersona, p.getParticipantes());
                         tarea.addColaboradores(persona);
                         System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                         dniPersona = sc.next().toUpperCase(Locale.ROOT);
@@ -63,6 +64,7 @@ public class Modificadores {
 
                 } else if (decision == 0) {
                     while (!dniPersona.equals("STOP")){
+                        persona = devuelveElementos(dniPersona, p.getParticipantes());
                         tarea.eliminarColaboradores(persona);
                         System.out.print("Escribe el DNI de las personas para eliminar, o 'STOP' para terminar: ");
                         dniPersona = sc.next().toUpperCase(Locale.ROOT);

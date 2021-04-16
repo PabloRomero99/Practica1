@@ -1,4 +1,4 @@
-package Proyectos;
+/*package Proyectos;
 
 import Persona.Persona;
 import Resultado.Resultado;
@@ -267,4 +267,4 @@ class ProyectoTest {
 
 
     }
-}
+}*/

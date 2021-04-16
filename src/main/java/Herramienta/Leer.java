@@ -12,9 +12,6 @@ import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static Listas.UtilidadesParaListas.devuelveElementos;
-import static Listas.UtilidadesParaListas.encuentraElementos;
-
 import static Resultado.Resultado.devolverResultado;
 
 public class Leer {
@@ -53,7 +50,7 @@ public class Leer {
         String descripcion = scanner.nextLine();
 
         System.out.print("De que tipo quieres que sea {1 - Documentacion | 2 - Página WEB | 3 - Programa } --> ");
-        int tipoSeleccionado = scanner.nextInt();
+        String tipoSeleccionado = scanner.next();
 
         System.out.print("Tipo de resultado {1 - Resultado interno | 2 - Destinado a ser comercializado} -->   ");
         boolean tiporesultadofinal = devolverResultado(scanner.nextInt());
@@ -65,10 +62,10 @@ public class Leer {
         p.addTarea(new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal)));
     }
 
-    public static String opcion(int opcion){
-        if (opcion == 1)
+    public static String opcion(String opcion){
+        if (opcion.equals("1"))
             return "Documentacion";
-        else if (opcion == 2)
+        else if (opcion.equals("2"))
             return "Pagina WEB";
         else
             return "Programa";
