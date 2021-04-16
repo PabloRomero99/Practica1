@@ -25,20 +25,18 @@ public class UtilidadesParaListas<E>  {
         return false;
     }
 
-
-}
-
-/*
- public static <T, E extends tieneClave> E devuelveElementos(T cad, List<E> list){
-        if(encuentraElementos(cad,list)) {
-            for (E aux : list) {
-                if (aux.getClave().equals(cad))
-                    return aux;
-            }
+    public static <T, E extends tieneClave> E devuelveElementos(T cad, List<E> list){
+        for (E aux : list) {
+            if (aux.getClave().equals(cad))
+                return aux;
         }
         return null;
     }
- */
+}
+
+
+
+
 
 
 

@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static Herramienta.Leer.leerDecision;
-import static Herramienta.Leer.leerValorTipo;
+import static Herramienta.Leer.*;
+import static Listas.UtilidadesParaListas.devuelveElementos;
 import static Listas.UtilidadesParaListas.encuentraElementos;
 
 
@@ -23,7 +23,7 @@ public class Modificadores {
             System.out.print("Nombre de la tarea para marcar: ");
             String ntarea = sc.next();
 
-            //Tarea t = devuelveElementos(ntarea, p.getTareas());
+            Tarea t = devuelveElementos(ntarea, p.getTareas());
 
             System.out.print("Cuantas horas se han invertido: ");
             int horas = sc.nextInt();

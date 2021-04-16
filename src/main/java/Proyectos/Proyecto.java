@@ -12,7 +12,7 @@ public class Proyecto {
     private String nombre; //Nombre del proyecto
     private List<Persona> participantes;
     private List<Tarea> tareas;
-    private List<Persona> responsables; //Ordenado posicion 0 correspondra a posicion 0 de la lista tareas
+    //private List<Persona> responsables; //Ordenado posicion 0 correspondra a posicion 0 de la lista tareas
 
     public Proyecto() {
         super();
@@ -22,7 +22,7 @@ public class Proyecto {
         this.nombre = nombre;
         this.participantes = new ArrayList<>();
         this.tareas = new ArrayList<>();
-        this.responsables = new ArrayList<>();
+        //this.responsables = new ArrayList<>();
     }
 
     public List<Persona> getParticipantes() {       //Este serviria como Listar personas asignadas a un proyecto

@@ -12,6 +12,9 @@ import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static Listas.UtilidadesParaListas.devuelveElementos;
+import static Listas.UtilidadesParaListas.encuentraElementos;
+
 import static Resultado.Resultado.devolverResultado;
 
 public class Leer {

@@ -167,19 +167,18 @@ public class Tarea implements tieneLista, tieneClave {
     }
 
 
-    public boolean addEtiquetas(String etiqueta, Tarea tarea){
-        if (!tarea.getLista_etiquetas().contains(etiqueta))
-            return tarea.getLista_etiquetas().add(etiqueta);
-
+    public void addEtiquetas(String etiqueta){
+        if (!lista_etiquetas.contains(etiqueta)) { //El metodo generico encuentraElementos no tolera String
+            lista_etiquetas.add(etiqueta);
+        }
         System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
     }
 
-    public boolean eliminarEtiqueta(String etiqueta,Tarea tarea) {
-        if (tarea.getLista_etiquetas().contains(etiqueta))
-            return tarea.getLista_etiquetas().remove(etiqueta);
-
-        System.out.println("La etiqueta " + etiqueta + " no se encuentra en la lista de etiquetas");
-        return false;
+    public void eliminarEtiqueta(String etiqueta) {
+        if(!lista_etiquetas.remove(etiqueta))
+            System.out.println("La etiqueta " + etiqueta + " no esta en la lista de etiquetas de la tarea ");
+        else
+            System.out.println("La etiqueta " + etiqueta + " se ha borrado correctamente");
     }
 
 
