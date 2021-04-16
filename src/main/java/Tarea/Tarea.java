@@ -172,7 +172,8 @@ public class Tarea implements tieneLista, tieneClave {
             lista_etiquetas.add(etiqueta);
             System.out.println("La etiqueta '" + etiqueta + "' se ha añadido correctamente");
         }
-        System.out.println("La etiqueta " + etiqueta + " ya esta en la lista de etiquetas de la tarea ");
+        else
+            System.out.println("La etiqueta '" + etiqueta + "' ya esta en la lista de etiquetas de la tarea ");
     }
 
     public void eliminarEtiqueta(String etiqueta) {
@@ -210,7 +211,7 @@ public class Tarea implements tieneLista, tieneClave {
     }
 
     public void addResponsable(String dniPersona, Proyecto p){
-       //tratar tarea = null
+       //tratar tarea = null && tarea.getFecha_finalización() == null
         Persona persona = devuelveElementos(dniPersona, p.getParticipantes());
         if (responsable == null) { //Tarea no tiene responsable
             if(persona != null) { //Persona esta en el proyecto

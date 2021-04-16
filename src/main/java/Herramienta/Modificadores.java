@@ -17,7 +17,7 @@ import static Listas.UtilidadesParaListas.encuentraElementos;
 
 public class Modificadores {
     public static void marcandoTareaFinalizada(Proyecto p){
-        //tratar t = null
+        //tratar t = null && tarea.getFecha_finalización() == null
         try {
             Scanner sc = new Scanner(System.in);
             System.out.print("Nombre de la tarea para marcar: ");
@@ -44,9 +44,9 @@ public class Modificadores {
             String ntarea = sc.nextLine();
             Tarea tarea = devuelveElementos(ntarea, p.getTareas());
 
-            //Tratar tarea == null
+            //Tratar tarea == null && tarea.getFecha_finalización() == null
 
-            if (tarea != null) {
+            if (tarea != null && tarea.getFecha_finalización() == null) {
                 int decision = leerDecision();
 
                 System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
