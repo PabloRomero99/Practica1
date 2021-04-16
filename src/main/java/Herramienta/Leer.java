@@ -15,6 +15,16 @@ import java.util.Scanner;
 import static Resultado.Resultado.devolverResultado;
 
 public class Leer {
+
+    public static Proyecto leerproyecto(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre del proyecto: ");
+        String nombre = sc.nextLine();
+        System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
+        return new Proyecto(nombre);
+    }
+
+
     public static Persona leerpersona() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nombre persona: ");

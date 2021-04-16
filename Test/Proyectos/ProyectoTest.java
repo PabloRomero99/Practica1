@@ -22,17 +22,16 @@ class ProyectoTest {
     private final Proyecto p2 = new Proyecto("Proyecto2");
 
     //Persona
-    private final String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
-    private final String[] nombres2 = {"peri", "juana", "andresito", "pakorro", "manoli", "pepita"};
-    private final String[] correos = {"perico@mail", "juan@mail", "andres@mail", "pako@mail", "manolo@mail" ,"pepe@gmail.com"};
-    private final String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
-    private final String[] dnis2 = {"12345675M", "32564397W", "45827525M", "46898894Ñ", "15588962N", "32015487O"};
+    private String[] nombres2 = {"peri", "juana", "andresito", "pakorro", "manoli", "pepita"};
+    private String[] correos = {"perico@mail", "juan@mail", "andres@mail", "pako@mail", "manolo@mail" ,"pepe@gmail.com"};
+    private String[] dnis = {"12345678M", "32564897W", "45827425M", "46897894Ñ", "15788962N", "32005487O"};
+    private String[] dnis2 = {"12345675M", "32564397W", "45827525M", "46898894Ñ", "15588962N", "32015487O"};
 
     //Tarea
-    private final String[] titulos = {"la noche", "el dia", "la tarde", "la hora", "la casa", "el gato"};
-    private final String[] titulos2 = {"la nota", "el llano", "la pradera", "la tarta", "la mansion", "el perro"};
-    private final String[] descrip = {"oscura", "claro", "corta", "puntual", "fantasma", "maulla"};
-    private final int[] prioridad = {3, 2, 5, 1, 4, 2};
+    private String[] titulos = {"la noche", "el dia", "la tarde", "la hora", "la casa", "el gato"};
+    private String[] titulos2 = {"la nota", "el llano", "la pradera", "la tarta", "la mansion", "el perro"};
+    private String[] descrip = {"oscura", "claro", "corta", "puntual", "fantasma", "maulla"};
+    private int[] prioridad = {3, 2, 5, 1, 4, 2};
 
     //Etiquetas
     private final String[] etiquetas = {"saludo", "despedida", "entrada", "salida", "dentro", "fuera"};
@@ -51,6 +50,7 @@ class ProyectoTest {
     @Test
     void addParticipante(){
         System.out.println("Test addParticipante");
+        String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
 
         for (int c = 0; c < nombres.length; c++) {
             listaPersonas.add(new Persona(nombres[c], correos[c],dnis[c], null));
@@ -118,6 +118,8 @@ class ProyectoTest {
     @Test
     void encuentraPersona() {
         System.out.println("\nTest encuentraPersona");
+        String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+
         for(int i = 0; i < 6 ; i++){
             Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
             p.addParticipante(persona);
@@ -134,6 +136,7 @@ class ProyectoTest {
     @Test
     void devuelvePersona() {
         System.out.println("\nTest devuelvePersona");
+        String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
         for(int i = 0; i < 6 ; i++){
             Persona persona = new Persona(nombres[i], correos[i], dnis[i], null);
             p.addParticipante(persona);
@@ -154,6 +157,8 @@ class ProyectoTest {
     @Test
     void addPersonaTarea() {
         System.out.println("\nTest addPersonaTarea");
+        String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
         Tarea tarea = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
         for(int i=0;i<6;i++) {
@@ -172,6 +177,8 @@ class ProyectoTest {
     @Test
     void eliminarPersonaTarea() {
         System.out.println("\nTest eliminarPersonaTarea");
+        String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+
         Resultado resultado = new Resultado(identificadores[0], horas[0], tipo_resultado[0]);
         Tarea tar = new Tarea(titulos[0], descrip[0], prioridad[0], fecha_creacion,resultado);
         for(int i=0;i<6;i++) {
@@ -225,6 +232,8 @@ class ProyectoTest {
     @Test
     void addResponsable() {
         System.out.println("\nTest addResponsable");
+        String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
+
         for(int i=0;i<6;i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
             Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion,resultado);

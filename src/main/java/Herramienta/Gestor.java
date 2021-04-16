@@ -7,6 +7,7 @@ import Tarea.Tarea;
 import java.util.List;
 import java.util.Scanner;
 
+import static Herramienta.Insertores.insertResponsable;
 import static Herramienta.Leer.*;
 import static Herramienta.Modificadores.marcandoTareaFinalizada;
 import static Herramienta.Modificadores.modificarParticipantes;
@@ -86,10 +87,7 @@ public class Gestor {
         while (opcion != 11) {
             switch (opcion) {
                 case 0: //INICIAR_PROYECTO
-                    System.out.print("Nombre del proyecto: ");
-                    String nombre = sc.nextLine();
-                    p = new Proyecto(nombre);
-                    System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
+                    p = leerproyecto();
                     break;
 
                 case 1: //ALTA_PERSONA
@@ -110,21 +108,14 @@ public class Gestor {
 
                 case 3: //INSERTAR_RESPONSABLE
                     if (p != null) {
-                        System.out.print("Nombre de la tarea: ");
-                        String ntarea = sc.next();
-                        System.out.print("Nombre de la DNI: ");
-                        String dniPersona = sc.next();
-                        p.addResponsable(dniPersona, ntarea, p);
-                        System.out.println("\n");
+                        insertResponsable(p);
                     }
-
                     break;
 
                 case 4: //TAREA_FINALIZADA
                     if (p != null){
                         marcandoTareaFinalizada(p);
                     }
-
                     else
                         System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
                     break;
@@ -175,7 +166,6 @@ public class Gestor {
                         List<Tarea> listaNoCol = elementosConListaVacia(p.getTareas());
                         for (Tarea t: listaNoCol)
                             System.out.println(t);
-
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
                     System.out.println("\n");
