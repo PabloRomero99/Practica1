@@ -76,7 +76,7 @@ public class Leer {
         System.out.println("¿De que tarea quieres modificar las etiquetas?");
         String ntarea = sc.next();
         int decision = leerDecision();
-        if (p.encuentraTarea(ntarea)) {
+        if (encuentraElementos(ntarea, )) {
 
             if (decision == 1) { //Decision=añadir
                 System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");

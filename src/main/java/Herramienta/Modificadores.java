@@ -1,13 +1,8 @@
 package Herramienta;
 
-import Proyectos.Proyecto;
-import Resultado.Resultado;
-import Tarea.Tarea;
 
-import Resultado.Resultado;
-import Resultado.ResultadoDocumentacion;
-import Resultado.ResultadoPrograma;
-import Resultado.ResultadoPaginaWeb;
+import Proyectos.Proyecto;
+import Tarea.Tarea;
 
 import java.time.LocalDate;
 import java.util.Locale;
@@ -19,11 +14,13 @@ import static Herramienta.Leer.leerValorTipo;
 
 public class Modificadores {
     public static void marcandoTareaFinalizada(Proyecto p){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre de la tarea para marcar: ");
-        String ntarea = sc.next();
-        if (p.encuentraTarea(ntarea)) {
-            Tarea t = p.devuelveTarea(ntarea);
+
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Nombre de la tarea para marcar: ");
+            String ntarea = sc.next();
+
+            //Tarea t = devuelveElementos(ntarea, p.getTareas());
 
             System.out.print("Cuantas horas se han invertido: ");
             int horas = sc.nextInt();
