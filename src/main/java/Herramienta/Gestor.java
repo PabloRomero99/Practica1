@@ -1,5 +1,6 @@
 package Herramienta;
 
+import Excepciones.ProjectNullException;
 import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
@@ -18,7 +19,8 @@ import static Listas.UtilidadesParaListas.elementosConListaVacia;
 public class Gestor {
 
     public enum Opciones{
-        INICIAR_PROYECTO("Iniciar nuevo proyecto y dar nombre "),
+        //INICIAR_PROYECTO("Iniciar nuevo proyecto y dar nombre "),
+        CAMBIAR_NOMBRE_PROYECTO("Cambiar el nombre al proyecto "),
         ALTA_PERSONA("Dar de alta una persona que trabajará en el proyecto "),
         ALTA_TAREAS("Dar de alta una tarea en el proyecto "),
         INSERTAR_RESPONSABLE("Insertar una persona como responsable de una tarea"),
@@ -82,91 +84,122 @@ public class Gestor {
     }
 
     public static void main(String[] args) {
-        Proyecto p=null;
-        Scanner sc = new Scanner(System.in);
-        int opcion = elegirOpcion();
-        while (opcion != 11) {
-            switch (opcion) {
-                case 0: //INICIAR_PROYECTO
-                    p = leerproyecto();
-                    break;
+            Proyecto p = leerproyecto();
+            //Scanner sc = new Scanner(System.in);
+            int opcion = elegirOpcion();
+            while (opcion != 11) {
+                switch (opcion) {
+                    case 0: //CAMBIAR_NOMBRE_PROYECTO
+                        Scanner sc = new Scanner(System.in);
+                        System.out.println("¿Que nombre quieres que tenga el proyecto? ");
+                        p.setNombre(sc.next());
+                        break;
 
-                case 1: //ALTA_PERSONA
-                    if (p != null) {
+                    case 1: //ALTA_PERSONA
                         p.addParticipante(leerpersona());
                         System.out.println("\n");
-                    } else
-                        System.out.println("Debes tener un proyecto creado para añadir Personas\n");
-                    break;
+                        /*
+                        if (p != null) {
+                            p.addParticipante(leerpersona());
+                            System.out.println("\n");
+                        } else
+                            System.out.println("Debes tener un proyecto creado para añadir Personas\n");
+                         */
+                        break;
 
-                case 2: //ALTA_TAREA
-                    if (p != null)
-                        //p.addTarea(leertarea(p));
+                    case 2: //ALTA_TAREA
                         leertarea(p);
-                    else
-                        System.out.println("Debes tener un proyecto creado para añadir Tareas\n ");
-                    break;
+                        /*
+                        if (p != null)
+                            leertarea(p);
+                        else
+                            System.out.println("Debes tener un proyecto creado para añadir Tareas\n ");
+                         */
+                        break;
 
-                case 3: //INSERTAR_RESPONSABLE
-                    if (p != null) {
+                    case 3: //INSERTAR_RESPONSABLE
                         insertResponsable(p);
-                    }
-                    break;
+                        /*
+                        if (p != null) {
+                            insertResponsable(p);
+                        }
+                         */
+                        break;
 
-                case 4: //TAREA_FINALIZADA
-                    if (p != null){
+                    case 4: //TAREA_FINALIZADA
                         marcandoTareaFinalizada(p);
-                    }
-                    else
-                        System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
-                    break;
+                        /*
+                        if (p != null) {
+                            marcandoTareaFinalizada(p);
+                        } else
+                            System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
+                         */
+                        break;
 
-                case 5: //MODIFICAR_PERSONAS_TAREA
-                    if (p != null)
+                    case 5: //MODIFICAR_PERSONAS_TAREA
                         modificarParticipantes(p);
-                    break;
+                        /*
+                        if (p != null)
+                            modificarParticipantes(p);
+                        break;
+                         */
 
-                case 6:  //MODIFICAR_ETIQUETAS
-                    if (p != null) {
+                    case 6:  //MODIFICAR_ETIQUETAS
                         leerEtiquetas(p);
-                    }
-                    break;
+                        /*
+                        if (p != null) {
+                            leerEtiquetas(p);
+                        }
+                         */
+                        break;
 
-                case 7: //LISTA_PERSONAS
-                    if (p != null) {
+                    case 7: //LISTA_PERSONAS
                         mostrarListaPersona(p);
-                    } else
-                        System.out.println("Debes tener un proyecto creado para listar las personas\n ");
-                    System.out.println("\n");
-                    break;
+                       /*
+                        if (p != null) {
+                            mostrarListaPersona(p);
+                        } else
+                            System.out.println("Debes tener un proyecto creado para listar las personas\n ");
+                        System.out.println("\n");
+                        */
+                        break;
 
-                case 8: //LISTA_PERSONAS_NO_RESPONSABLES
-                    if (p != null) {
+                    case 8: //LISTA_PERSONAS_NO_RESPONSABLES
                         mostrarPersonaNoResponsable(p);
-                    } else
-                        System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                    System.out.println("\n");
-                    break;
+                        /*
+                        if (p != null) {
+                            mostrarPersonaNoResponsable(p);
+                        } else
+                            System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
+                        System.out.println("\n");
+                         */
+                        break;
 
-                case 9: //LISTA_TAREAS
-                    if (p != null) {
+                    case 9: //LISTA_TAREAS
                         mostrarListTarea(p);
-                    } else
-                        System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                    break;
+                        /*
+                        if (p != null) {
+                            mostrarListTarea(p);
+                        } else
+                            System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
+                         */
+                        break;
 
-                case 10://LISTA_TAREAS_SIN_COLABORADORES
-                    if (p != null) {
+                    case 10://LISTA_TAREAS_SIN_COLABORADORES
                         mostrarListaTareaSinColab(p);
-                    } else
-                        System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                    System.out.println("\n");
-                    break;
+                        /*
+                        if (p != null) {
+                            mostrarListaTareaSinColab(p);
+                        } else
+                            System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
+                        System.out.println("\n");
+                         */
+                        break;
 
-                default:
-                    System.out.println("La opcion no es valida, elige una entre 1 y 11\n");
+                    default:
+                        System.out.println("La opcion no es valida, elige una entre 1 y 11\n");
+                }
+                opcion = elegirOpcion();
             }
-            opcion = elegirOpcion();
-        }
     }
 }

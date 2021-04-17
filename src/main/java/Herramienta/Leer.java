@@ -1,6 +1,7 @@
 package Herramienta;
 
 import Excepciones.ElementoNullException;
+import Excepciones.ProjectNullException;
 import Persona.Persona;
 import Proyectos.Proyecto;
 import Resultado.Resultado;
@@ -19,7 +20,7 @@ import static Resultado.Resultado.devolverResultado;
 
 public class Leer {
 
-    public static Proyecto leerproyecto(){
+    public static Proyecto leerproyecto() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre del proyecto: ");
         String nombre = sc.nextLine();

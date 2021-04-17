@@ -33,6 +33,14 @@ public class Proyecto {
         return tareas;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public boolean addParticipante(Persona persona) {
         if (participantes.size() == 0) {
             participantes.add(persona);

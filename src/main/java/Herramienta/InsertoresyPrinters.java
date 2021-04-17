@@ -1,6 +1,5 @@
 package Herramienta;
 
-import Excepciones.ElementoNoExisteException;
 import Excepciones.ElementoNullException;
 import Persona.Persona;
 import Proyectos.Proyecto;
