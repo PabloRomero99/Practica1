@@ -1,7 +1,8 @@
 package Herramienta;
 
 
-import Excepciones.ElementoNoExisteException;
+import Excepciones.FechaFinNullException;
+import Excepciones.ElementoNullException;
 import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
@@ -12,51 +13,56 @@ import java.util.Scanner;
 
 import static Herramienta.Leer.*;
 import static Listas.UtilidadesParaListas.devuelveElementos;
-import static Listas.UtilidadesParaListas.encuentraElementos;
 
 
 public class Modificadores {
-    public static void marcandoTareaFinalizada(Proyecto p){
-        //tratar t = null && tarea.getFecha_finalización() == null
+    public static void marcandoTareaFinalizada(Proyecto p) {
+
         try {
+
             Scanner sc = new Scanner(System.in);
             System.out.print("Nombre de la tarea para marcar: ");
             String ntarea = sc.next();
 
             Tarea t = devuelveElementos(ntarea, p.getTareas());
 
-            System.out.print("Cuantas horas se han invertido: ");
-            int horas = sc.nextInt();
+            if (t.fechaFinCorrecta(t.getFecha_finalización())){
+                System.out.print("Cuantas horas se han invertido: ");
+                int horas = sc.nextInt();
                 t.getResultado().setHoras_invertidas(horas);
                 t.setResultado(leerValorTipo(t.getResultado(), horas));
                 t.marcarFinalizada();
                 t.setFecha_finalización(LocalDate.now());
+            }
 
-        } catch(NullPointerException e) {
+        } catch(ElementoNullException e) {
             System.out.println("No hemos encontrado la tarea dentro del proyecto\n");
+        }catch (FechaFinNullException f){
+            System.out.println("La tarea ya esta terminada ");
         }
     }
 
 
     public static void modificarParticipantes(Proyecto p){
+
+        try {
             Scanner sc = new Scanner(System.in);
             System.out.println("¿De que tarea quieres modificar los participantes?");
             String ntarea = sc.nextLine();
             Tarea tarea = devuelveElementos(ntarea, p.getTareas());
 
-            //Tratar tarea == null && tarea.getFecha_finalización() == null
 
-            if (tarea != null && tarea.getFecha_finalización() == null) {
+            if (tarea.fechaFinCorrecta(tarea.getFecha_finalización())) {
                 int decision = leerDecision();
 
                 System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                 String dniPersona = sc.next().toUpperCase(Locale.ROOT);
-                Persona persona = devuelveElementos(dniPersona, p.getParticipantes()); //Tenemos que comprobar que la persona esta dentro del proyecto
+                Persona persona ;
 
                 if (decision == 1) { //Decision=añadir
 
                     while (!dniPersona.equals("STOP")) {
-                        persona = devuelveElementos(dniPersona, p.getParticipantes());
+                        persona = devuelveElementos(dniPersona, p.getParticipantes()); //Tenemos que comprobar que la persona esta dentro del proyecto
                         tarea.addColaboradores(persona);
                         System.out.print("Escribe el DNI de las personas para añadir, o 'STOP' para terminar: ");
                         dniPersona = sc.next().toUpperCase(Locale.ROOT);
@@ -73,5 +79,11 @@ public class Modificadores {
             } else
                 System.out.println("Operación no valida, solo se puede añadir o eliminar ");
             System.out.println('\n');
+        }catch(ElementoNullException e) {
+            System.out.println("No esta dentro del proyecto\n");
+        }catch (FechaFinNullException f){
+            System.out.println("La tarea ya esta terminada ");
         }
+    }
 }
+

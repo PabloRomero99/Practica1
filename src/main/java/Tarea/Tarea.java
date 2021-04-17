@@ -1,5 +1,6 @@
 package Tarea;
-import Excepciones.ElementoNoExisteException;
+import Excepciones.ElementoNullException;
+import Excepciones.FechaFinNullException;
 import Interfaces.tieneClave;
 import Interfaces.tieneLista;
 import Persona.Persona;
@@ -12,7 +13,6 @@ import static Listas.UtilidadesParaListas.devuelveElementos;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Tarea implements tieneLista, tieneClave {
     private String Titulo;
@@ -210,26 +210,36 @@ public class Tarea implements tieneLista, tieneClave {
         }
     }
 
+    public boolean fechaFinCorrecta(LocalDate fecha_fin) throws FechaFinNullException {
+        if (fecha_fin == null){
+            return true;
+        }throw new FechaFinNullException();
+    }
+
     public void addResponsable(String dniPersona, Proyecto p){
-       //tratar tarea = null && tarea.getFecha_finalización() == null
-        Persona persona = devuelveElementos(dniPersona, p.getParticipantes());
-        if (responsable == null) { //Tarea no tiene responsable
-            if(persona != null) { //Persona esta en el proyecto
-                if (!encuentraElementos(persona, colaboradores)) { //Persona no colabora Tarea
-                    colaboradores.add(persona);
-                    responsable = persona;
-                    persona.addTareaResponsable(this);
-                } else {
-                    responsable = persona;
-                    persona.addTareaResponsable(this);
-                }
-            }else {
-                System.out.println("Esta persona no pertenece al proyecto, porfavor escoge una persona que " +
-                        "este registrada en el proyecto, o el DNI no es correcto.");
-            }
-        }else{
-            System.out.println("El responsable de la tarea es " + responsable
-                    + " y solo puede haber un responsable por tarea");
-        }
+       try{
+           if (this.fechaFinCorrecta(fecha_finalización)){
+           Persona persona = devuelveElementos(dniPersona, p.getParticipantes());
+           if (responsable == null) { //Tarea no tiene responsable
+               if (!encuentraElementos(persona, colaboradores)) { //Persona no colabora Tarea
+                   colaboradores.add(persona);
+                   responsable = persona;
+                   persona.addTareaResponsable(this);
+               } else {
+                   responsable = persona;
+                   persona.addTareaResponsable(this);
+               }
+           }else{
+               System.out.println("El responsable de la tarea es " + responsable
+                       + " y solo puede haber un responsable por tarea");
+           }
+           }
+       } catch (ElementoNullException e){
+           System.out.println("Esta persona no pertenece al proyecto, o el DNI no es correcto , porfavor escoge una persona que " +
+                   "este registrada en el proyecto o un DNI correcto(Elija opción 8 para consultar información).");
+       }catch (FechaFinNullException f){
+           System.out.println("La tarea ya esta terminada ");
+       }
+
     }
 }

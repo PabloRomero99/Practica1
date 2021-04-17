@@ -1,5 +1,6 @@
 package Listas;
 
+import Excepciones.ElementoNullException;
 import Interfaces.tieneClave;
 import Interfaces.tieneLista;
 
@@ -9,6 +10,7 @@ import java.util.List;
 public class UtilidadesParaListas<E>  {
 
     public static <E extends tieneLista> List<E> elementosConListaVacia(List<E> list){
+
         List<E> vacios = new ArrayList();
         for (E aux : list){
             if (aux.getLista().isEmpty())
@@ -25,12 +27,13 @@ public class UtilidadesParaListas<E>  {
         return false;
     }
 
-    public static <T, E extends tieneClave> E devuelveElementos(T cad, List<E> list){
+    public static <T, E extends tieneClave> E devuelveElementos(T cad, List<E> list) throws ElementoNullException {
+
         for (E aux : list) {
             if (aux.getClave().equals(cad))
                 return aux;
         }
-        return null;
+        throw new ElementoNullException();
     }
 }
 

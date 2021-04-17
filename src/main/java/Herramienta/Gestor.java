@@ -7,7 +7,8 @@ import Tarea.Tarea;
 import java.util.List;
 import java.util.Scanner;
 
-import static Herramienta.Insertores.insertResponsable;
+import static Herramienta.InsertoresyPrinters.*;
+import static Herramienta.InsertoresyPrinters.mostrarPersonaNoResponsable;
 import static Herramienta.Leer.*;
 import static Herramienta.Modificadores.marcandoTareaFinalizada;
 import static Herramienta.Modificadores.modificarParticipantes;
@@ -133,9 +134,7 @@ public class Gestor {
 
                 case 7: //LISTA_PERSONAS
                     if (p != null) {
-                        for (Persona persona : p.getParticipantes()) {
-                            System.out.println(persona.toString());
-                        }
+                        mostrarListaPersona(p);
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las personas\n ");
                     System.out.println("\n");
@@ -143,10 +142,7 @@ public class Gestor {
 
                 case 8: //LISTA_PERSONAS_NO_RESPONSABLES
                     if (p != null) {
-                        List<Persona> listaNoResp = elementosConListaVacia(p.getParticipantes());
-                        for (Persona pers : listaNoResp)
-                            System.out.println(pers);
-
+                        mostrarPersonaNoResponsable(p);
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
                     System.out.println("\n");
@@ -154,18 +150,14 @@ public class Gestor {
 
                 case 9: //LISTA_TAREAS
                     if (p != null) {
-                        for (Tarea tarea : p.getTareas()) {
-                            System.out.println(tarea.toString() + '\n');
-                        }
+                        mostrarListTarea(p);
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
                     break;
 
                 case 10://LISTA_TAREAS_SIN_COLABORADORES
                     if (p != null) {
-                        List<Tarea> listaNoCol = elementosConListaVacia(p.getTareas());
-                        for (Tarea t: listaNoCol)
-                            System.out.println(t);
+                        mostrarListaTareaSinColab(p);
                     } else
                         System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
                     System.out.println("\n");

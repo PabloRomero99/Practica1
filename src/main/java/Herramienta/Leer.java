@@ -1,5 +1,6 @@
 package Herramienta;
 
+import Excepciones.ElementoNullException;
 import Persona.Persona;
 import Proyectos.Proyecto;
 import Resultado.Resultado;
@@ -9,12 +10,11 @@ import Resultado.ResultadoPaginaWeb;
 import Tarea.Tarea;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static Listas.UtilidadesParaListas.devuelveElementos;
-import static Listas.UtilidadesParaListas.encuentraElementos;
-
+import static Listas.UtilidadesParaListas.*;
 import static Resultado.Resultado.devolverResultado;
 
 public class Leer {
@@ -43,46 +43,56 @@ public class Leer {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Titulo tarea: ");
         String titulo = scanner.nextLine();
+        /*
         for (Tarea t : p.getTareas()) {
             if (t.getTitulo().equals(titulo)) {
                 System.out.println("No pueden haber dos tareas con el mismo nombre, ya que coincide con: \n");
                 return;
             }
-        }
+        }*/
+
         System.out.print("Descripcion: ");
         String descripcion = scanner.nextLine();
 
         System.out.print("De que tipo quieres que sea {1 - Documentacion | 2 - Página WEB | 3 - Programa } --> ");
-        String tipoSeleccionado = scanner.next();
+        int tipoSeleccionado = tipoResultadoCorrecto(scanner.nextInt(),scanner);
 
         System.out.print("Tipo de resultado {1 - Resultado interno | 2 - Destinado a ser comercializado} -->   ");
-        boolean tiporesultadofinal = devolverResultado(scanner.nextInt());
+        int internoOcomercializado = tipoResultadoInterno_ComercializadoCorrecto(scanner.nextInt(),scanner);
+        boolean tiporesultadofinal = devolverResultado(internoOcomercializado);
 
         System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
         int prioridad = scanner.nextInt();
         System.out.println();
 
-        p.addTarea(new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal)));
+        Tarea tarea = new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal));
+        if (!encuentraElementos(tarea,p.getTareas()))
+            p.addTarea(tarea);
+        else
+            System.out.println("No se pueden repetir tareas ");
+
     }
 
-    public static String opcion(String opcion){
-        if (opcion.equals("1"))
+
+    public static String opcion(int opcion){
+        if (opcion == 1)
             return "Documentacion";
-        else if (opcion.equals("2"))
+        else if (opcion == 2 )
             return "Pagina WEB";
         else
             return "Programa";
     }
 
     public static void leerEtiquetas(Proyecto p) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿De que tarea quieres modificar las etiquetas?");
-        String ntarea = sc.next();
-        int decision = leerDecision();
-        Tarea tarea = devuelveElementos(ntarea, p.getTareas());
-        try{
 
-            if (encuentraElementos(tarea, p.getTareas()) && tarea != null) {
+        try{
+            Scanner sc = new Scanner(System.in);
+            System.out.println("¿De que tarea quieres modificar las etiquetas?");
+            String ntarea = sc.next();
+            int decision = leerDecision();
+            Tarea tarea = devuelveElementos(ntarea, p.getTareas());
+
+            if (encuentraElementos(tarea, p.getTareas())) {
 
                 if (decision == 1) { //Decision=añadir
                     System.out.print("Escribe el nombre de las etiquetas para añadir, o 'STOP' para terminar: ");
@@ -107,7 +117,7 @@ public class Leer {
                 System.out.println('\n');
 
             }
-        }catch (NullPointerException e){
+        }catch (ElementoNullException e){
             System.out.println("La tarea no existe");
         }
     }
@@ -132,6 +142,23 @@ public class Leer {
         return prioridad;
     }
 
+    public static int tipoResultadoCorrecto(int tipo, Scanner sc){
+        while(tipo < 1 || tipo > 3){
+            System.out.print("De que tipo quieres que sea {1 - Documentacion | 2 - Página WEB | 3 - Programa } --> ");
+            tipo = sc.nextInt();
+        }
+        return tipo;
+    }
+
+    public static int tipoResultadoInterno_ComercializadoCorrecto(int tipo, Scanner sc){
+        while(tipo < 1 || tipo > 2){
+            System.out.print("Tipo de resultado {1 - Resultado interno | 2 - Destinado a ser comercializado} -->   ");
+            tipo = sc.nextInt();
+        }
+        return tipo;
+    }
+
+
     public static Resultado leerValorTipo(Resultado resultado, int horas){
         if ("Documentacion".equals(resultado.getIdentificador())) { //Tipo_Resultado = Documentacion
             ResultadoDocumentacion resultadoDoc = new ResultadoDocumentacion("Documentacion", horas, resultado.isTipo_resultado());
@@ -151,5 +178,7 @@ public class Leer {
         }
         return null;
     }
+
+
 
 }
