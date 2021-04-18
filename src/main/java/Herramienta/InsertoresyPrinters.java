@@ -48,12 +48,14 @@ public class InsertoresyPrinters {
         List<Persona> listaNoResp = elementosConListaVacia(p.getParticipantes());
         for (Persona pers : listaNoResp)
             System.out.println(pers);
+        System.out.println();
     }
 
     public static void mostrarListaPersona(Proyecto p){
         for (Persona persona : p.getParticipantes()) {
             System.out.println(persona.toString());
         }
+        System.out.println();
     }
 
 }

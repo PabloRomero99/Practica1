@@ -28,6 +28,7 @@ public class Leer {
         System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
         return new Proyecto(nombre);
     }*/
+
     public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre del proyecto: ");

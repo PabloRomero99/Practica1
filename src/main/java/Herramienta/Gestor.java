@@ -86,9 +86,7 @@ public class Gestor {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-            //Proyecto p = leerproyecto(); //leer en el proyecto
-            //Scanner sc = new Scanner(System.in);
-            Proyecto p = leerproyecto();
+            Proyecto p = leerproyecto(); //leer en el proyecto
             int opcion = elegirOpcion();
             while (opcion != 11) {
                 switch (opcion) {
@@ -144,8 +142,8 @@ public class Gestor {
                         /*
                         if (p != null)
                             modificarParticipantes(p);
-                        break;
                          */
+                        break;
 
                     case 6:  //MODIFICAR_ETIQUETAS
                         leerEtiquetas(p);
