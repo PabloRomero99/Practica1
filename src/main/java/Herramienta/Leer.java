@@ -30,15 +30,23 @@ public class Leer {
     }*/
 
     public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre del proyecto: ");
-        String nombre = sc.nextLine();
-        FileInputStream fis = new FileInputStream(nombre + ".bin");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        Proyecto proyecto = (Proyecto) ois.readObject();
-        ois.close();
-        //System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-        return proyecto;
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Nombre del proyecto: ");
+            String nombre = sc.nextLine();
+            FileInputStream fis = new FileInputStream(nombre + ".bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Proyecto proyecto = (Proyecto) ois.readObject();
+            ois.close();
+            //System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
+            return proyecto;
+        }catch(IOException e){
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Nombre del proyecto: ");
+            String nombre = sc.nextLine();
+            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
+            return new Proyecto(nombre);
+        }
     }
 
     public static Persona leerpersona() {
