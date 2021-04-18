@@ -3,10 +3,11 @@ import Interfaces.tieneLista;
 import Interfaces.tieneClave;
 import Tarea.Tarea;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista, tieneClave {
+public class Persona implements tieneLista, tieneClave, Serializable {
     private String nombre;           //nombre de la persona
     private String DNI;              //identificador principal de una persona
     private String correo;           //correo de la persona

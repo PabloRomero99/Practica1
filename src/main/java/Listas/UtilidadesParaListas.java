@@ -10,7 +10,6 @@ import java.util.List;
 public class UtilidadesParaListas<E>  {
 
     public static <E extends tieneLista> List<E> elementosConListaVacia(List<E> list){
-
         List<E> vacios = new ArrayList();
         for (E aux : list){
             if (aux.getLista().isEmpty())
@@ -28,7 +27,6 @@ public class UtilidadesParaListas<E>  {
     }
 
     public static <T, E extends tieneClave> E devuelveElementos(T cad, List<E> list) throws ElementoNullException {
-
         for (E aux : list) {
             if (aux.getClave().equals(cad))
                 return aux;
@@ -36,13 +34,3 @@ public class UtilidadesParaListas<E>  {
         throw new ElementoNullException();
     }
 }
-
-
-
-
-
-
-
-
-
-

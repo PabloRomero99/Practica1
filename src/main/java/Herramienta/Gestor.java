@@ -5,6 +5,7 @@ import Persona.Persona;
 import Proyectos.Proyecto;
 import Tarea.Tarea;
 
+import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +18,7 @@ import static Listas.UtilidadesParaListas.elementosConListaVacia;
 
 
 public class Gestor {
+    Proyecto proyecto = new Proyecto();
 
     public enum Opciones{
         //INICIAR_PROYECTO("Iniciar nuevo proyecto y dar nombre "),
@@ -83,9 +85,10 @@ public class Gestor {
 	    }
     }
 
-    public static void main(String[] args) {
-            Proyecto p = leerproyecto();
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+            //Proyecto p = leerproyecto(); //leer en el proyecto
             //Scanner sc = new Scanner(System.in);
+            Proyecto p = leerproyecto();
             int opcion = elegirOpcion();
             while (opcion != 11) {
                 switch (opcion) {
@@ -201,5 +204,7 @@ public class Gestor {
                 }
                 opcion = elegirOpcion();
             }
+            //escribir en el archivo
+            p.escribirFichero();
     }
 }
