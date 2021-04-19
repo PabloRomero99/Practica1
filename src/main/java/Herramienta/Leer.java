@@ -10,6 +10,7 @@ import Resultado.ResultadoPrograma;
 import Resultado.ResultadoPaginaWeb;
 import Tarea.Tarea;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
@@ -20,14 +21,29 @@ import static Resultado.Resultado.devolverResultado;
 
 public class Leer {
 
-    public static Proyecto leerproyecto() {
+    /*public static Proyecto leerproyecto() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nombre del proyecto: ");
         String nombre = sc.nextLine();
         System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
         return new Proyecto(nombre);
-    }
+    }*/
 
+    public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre del proyecto: ");
+        String nombre = sc.nextLine();
+        try {
+            FileInputStream fis = new FileInputStream(nombre + ".bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Proyecto proyecto = (Proyecto) ois.readObject();
+            ois.close();
+            return proyecto;
+        }catch(IOException e){
+            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
+            return new Proyecto(nombre);
+        }
+    }
 
     public static Persona leerpersona() {
         Scanner scanner = new Scanner(System.in);
@@ -37,7 +53,7 @@ public class Leer {
         String correo = scanner.next();
         System.out.print("DNI de la persona: ");
         String dni = scanner.next().toUpperCase(Locale.ROOT);
-        return new Persona(nom, correo, dni, null);
+        return new Persona(nom, correo, dni);
     }
 
     public static void leertarea(Proyecto p) {
@@ -179,7 +195,4 @@ public class Leer {
         }
         return null;
     }
-
-
-
 }

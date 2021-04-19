@@ -10,11 +10,12 @@ import Resultado.Resultado;
 import static Listas.UtilidadesParaListas.encuentraElementos;
 import static Listas.UtilidadesParaListas.devuelveElementos;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea implements tieneLista, tieneClave {
+public class Tarea implements tieneLista, tieneClave, Serializable {
     private String Titulo;
     private String Descripcion;
     private List<Persona> colaboradores;

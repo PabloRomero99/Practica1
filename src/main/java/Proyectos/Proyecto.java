@@ -3,12 +3,11 @@ package Proyectos;
 import Persona.Persona;
 import Tarea.Tarea;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class Proyecto {
+public class Proyecto implements Serializable {
     private String nombre; //Nombre del proyecto
     private List<Persona> participantes;
     private List<Tarea> tareas;
@@ -69,5 +68,12 @@ public class Proyecto {
         }
         tareas.add(tarea);
         return true;
+    }
+
+    public void escribirFichero() throws IOException, ClassNotFoundException {
+        FileOutputStream fos = new FileOutputStream( nombre + ".bin");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(this);
+        oos.close();
     }
 }

@@ -3,20 +3,21 @@ import Interfaces.tieneLista;
 import Interfaces.tieneClave;
 import Tarea.Tarea;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements tieneLista, tieneClave {
+public class Persona implements tieneLista, tieneClave, Serializable {
     private String nombre;           //nombre de la persona
     private String DNI;              //identificador principal de una persona
     private String correo;           //correo de la persona
     private List<Tarea> listaTareasResponsable; //lista de tareas de las cual es responsable esta Persona
 
-    public Persona(String nombre, String correo,String DNI, List<Tarea> listaTareas){
+    public Persona(String nombre, String correo,String DNI){
         this.nombre = nombre;
         this.correo = correo;
         this.DNI = DNI;
-        this.listaTareasResponsable = listaTareas;
+        this.listaTareasResponsable = new ArrayList<Tarea>();
     }
 
     public String getNombre() {

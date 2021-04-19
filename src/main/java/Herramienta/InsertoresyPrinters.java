@@ -36,20 +36,26 @@ public class InsertoresyPrinters {
     }
 
     public static void mostrarListTarea(Proyecto p) {
-        for (Tarea tarea : p.getTareas()) {
-            System.out.println(tarea.toString() + '\n');
+        if (p.getTareas() != null) {
+            for (Tarea tarea : p.getTareas()) {
+                System.out.println(tarea.toString() + '\n');
+            }
+        }else{
+            System.out.println("En estos momentos no hay tareas registras.");
         }
     }
     public static void mostrarPersonaNoResponsable(Proyecto p) {
         List<Persona> listaNoResp = elementosConListaVacia(p.getParticipantes());
         for (Persona pers : listaNoResp)
             System.out.println(pers);
+        System.out.println();
     }
 
     public static void mostrarListaPersona(Proyecto p){
         for (Persona persona : p.getParticipantes()) {
             System.out.println(persona.toString());
         }
+        System.out.println();
     }
 
 }
