@@ -13,11 +13,11 @@ public class Persona implements tieneLista, tieneClave, Serializable {
     private String correo;           //correo de la persona
     private List<Tarea> listaTareasResponsable; //lista de tareas de las cual es responsable esta Persona
 
-    public Persona(String nombre, String correo,String DNI, List<Tarea> listaTareas){
+    public Persona(String nombre, String correo,String DNI){
         this.nombre = nombre;
         this.correo = correo;
         this.DNI = DNI;
-        this.listaTareasResponsable = listaTareas;
+        this.listaTareasResponsable = new ArrayList<Tarea>();
     }
 
     public String getNombre() {

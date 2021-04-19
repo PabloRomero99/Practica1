@@ -53,7 +53,7 @@ public class Leer {
         String correo = scanner.next();
         System.out.print("DNI de la persona: ");
         String dni = scanner.next().toUpperCase(Locale.ROOT);
-        return new Persona(nom, correo, dni, null);
+        return new Persona(nom, correo, dni);
     }
 
     public static void leertarea(Proyecto p) {
