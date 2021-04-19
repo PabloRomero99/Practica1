@@ -57,8 +57,7 @@ class TareaTest {
         double[] horas = {10,20,30,1,2,3};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
-        String[] etiquetas = {"perico", "juan", "andres", "pako", "manolo", "pepe", "manu"};
-
+        String[] etiquetas = {"sol", "playa", "dentro", "fuera", "espacioso", "estrecho", "corriente"};
 
         for(int i = 0; i < 6 ; i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
@@ -66,10 +65,10 @@ class TareaTest {
             p.addTarea(tarea);
         }
 
+        Tarea tarea = p.getTareas().get(0);
         for (int i = 0; i < 6 ; i++) {
-            Tarea tarea = p.getTareas().get(i);
             tarea.addEtiquetas(etiquetas[i]);
-            assertEquals(tarea.getLista_etiquetas().size(), 1);
+            assertEquals(tarea.getLista_etiquetas().get(i), etiquetas[i]);
         }
     }
 
@@ -84,7 +83,7 @@ class TareaTest {
         double[] horas = {10,20,30,1,2,3};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
-        String[] etiquetas = {"perico", "juan", "andres", "pako", "manolo", "pepe", "manu"};
+        String[] etiquetas = {"sol", "playa", "dentro", "fuera", "espacioso", "estrecho", "corriente"};
 
 
         for(int i = 0; i < 6 ; i++) {
@@ -93,18 +92,18 @@ class TareaTest {
             p.addTarea(tarea);
         }
 
+        Tarea tarea = p.getTareas().get(0);
         for (int i = 0; i < 6 ; i++) {
-            Tarea tarea = p.getTareas().get(i);
+
             tarea.addEtiquetas(etiquetas[i]);
         }
 
-        System.out.println();
-
         for (int i = 0; i < 6 ; i++) {
-            Tarea tarea = p.getTareas().get(i);
             tarea.eliminarEtiqueta(etiquetas[i]);
-            assertEquals(tarea.getLista_etiquetas().size(), 0);
+
         }
+        assertFalse(tarea.getLista_etiquetas().size()!=0);
+
     }
 
     @Test
@@ -164,14 +163,14 @@ class TareaTest {
             p.addParticipante(persona);
             p.addTarea(tarea);
         }
+        Tarea t = p.getTareas().get(0);
 
         for (int i = 0; i < 6 ; i++) {
-            Tarea t = p.getTareas().get(0);
+
             Persona per = p.getParticipantes().get(i);
             t.addColaboradores(per);
         }
 
-        Tarea t = p.getTareas().get(0);
         for (int i = 0; i < 6 ; i++) {
             Persona per = p.getParticipantes().get(i);
             t.eliminarColaboradores(per);
