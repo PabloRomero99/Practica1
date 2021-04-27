@@ -86,7 +86,7 @@ public class Leer {
         double coste = scanner.nextDouble();
 
         System.out.println("Tipo de facturación(1-3) {1 - Consumo interno | 2 - Con Descuento | 3 - Urgente} -->");
-        int tipoFact = scanner.nextInt();
+        int tipoFact = tipoFacturacionCorrecto(scanner.nextInt(), scanner);
         System.out.println();
 
         Tarea tarea = new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal),  calculaFacturacion(tipoFact, coste));
@@ -200,5 +200,13 @@ public class Leer {
             return resultadoPro;
         }
         return null;
+    }
+
+    public static int tipoFacturacionCorrecto(int tipo, Scanner sc){
+        while(tipo < 1 || tipo > 3){
+            System.out.print("Tipo de facturación(1-3) {1 - Consumo interno | 2 - Con Descuento | 3 - Urgente} -->   ");
+            tipo = sc.nextInt();
+        }
+        return tipo;
     }
 }
