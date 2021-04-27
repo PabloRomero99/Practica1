@@ -41,7 +41,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, Facturacion facturacion, double coste) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
