@@ -45,12 +45,13 @@ class ProyectoTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
 
         for (int n = 0; n < titulos.length; n++) {
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion, resultado);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion, resultado, precios[n]);
             assertEquals(p.addTarea(tarea), comp1.add(tarea));
         }
     }

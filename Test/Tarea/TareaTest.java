@@ -24,6 +24,7 @@ class TareaTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
@@ -32,7 +33,7 @@ class TareaTest {
 
         for(int i = 0; i < 6 ; i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado, precios[i]);
             Persona persona = new Persona(nombres[i], correos[i], dnis[i]);
             tarea.addResponsable(dnis[i], p);
             p.addParticipante(persona);
@@ -55,13 +56,14 @@ class TareaTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
         String[] etiquetas = {"sol", "playa", "dentro", "fuera", "espacioso", "estrecho", "corriente"};
 
         for(int i = 0; i < 6 ; i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado, precios[i]);
             p.addTarea(tarea);
         }
 
@@ -81,6 +83,7 @@ class TareaTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
         String[] etiquetas = {"sol", "playa", "dentro", "fuera", "espacioso", "estrecho", "corriente"};
@@ -88,7 +91,7 @@ class TareaTest {
 
         for(int i = 0; i < 6 ; i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado, precios[i]);
             p.addTarea(tarea);
         }
 
@@ -115,6 +118,7 @@ class TareaTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
@@ -123,7 +127,7 @@ class TareaTest {
 
         for(int i = 0; i < 6 ; i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado,precios[i]);
             Persona persona = new Persona(nombres[i], correos[i], dnis[i]);
             p.addParticipante(persona);
             p.addTarea(tarea);
@@ -150,6 +154,7 @@ class TareaTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
@@ -158,7 +163,7 @@ class TareaTest {
 
         for(int i = 0; i < 6 ; i++) {
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion, resultado, precios[i]);
             Persona persona = new Persona(nombres[i], correos[i], dnis[i]);
             p.addParticipante(persona);
             p.addTarea(tarea);
@@ -188,6 +193,7 @@ class TareaTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
         String[] nombres = {"perico", "juan", "andres", "pako", "manolo", "pepe"};
@@ -196,7 +202,7 @@ class TareaTest {
 
         for(int i = 0; i < 6 ; i++){
             Resultado resultado = new Resultado(identificadores[i], horas[i], tipo_resultado[i]);
-            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion,resultado);
+            Tarea tarea = new Tarea(titulos[i], descrip[i], prioridad[i], fecha_creacion,resultado, precios[i]);
             p.addParticipante(new Persona(nombres[i],correos[i],dnis[i]));
             p.addTarea(tarea);
             tarea.addResponsable(dnis[i],p);

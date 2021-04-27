@@ -34,6 +34,7 @@ class UtilidadesParaListasTest {
         String[] descrip = {"oscura", "claro", "corta", "puntual", "fantasma", "maulla"};
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         double[] horas = {10,20,30,1,2,3};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
@@ -49,7 +50,7 @@ class UtilidadesParaListasTest {
             comp2.add(pers);
 
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n]);
             p.addTarea(tarea);
             comp1.add(tarea);
         }
@@ -79,6 +80,7 @@ class UtilidadesParaListasTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
 
@@ -93,7 +95,7 @@ class UtilidadesParaListasTest {
             comp2.add(pers);
 
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n]);
             p.addTarea(tarea);
             comp1.add(tarea);
         }
@@ -119,6 +121,7 @@ class UtilidadesParaListasTest {
         int[] prioridad = {3, 2, 5, 1, 4, 2};
         String[] identificadores = {"Documentacion", "Documentacion", "Pagina Web", "Pagina Web", "Programa", "Programa"};
         double[] horas = {10,20,30,1,2,3};
+        double[] precios = {203.2,56.2,35.0,89.9,100.2,325.4};
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
 
@@ -133,7 +136,7 @@ class UtilidadesParaListasTest {
             comp2.add(pers);
 
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n]);
             p.addTarea(tarea);
             comp1.add(tarea);
         }

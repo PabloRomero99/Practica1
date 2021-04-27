@@ -1,6 +1,10 @@
 package Tarea;
 import Excepciones.ElementoNullException;
 import Excepciones.FechaFinNullException;
+import Facturación.ConsumoInterno;
+import Facturación.Descuento;
+import Facturación.Facturacion;
+import Facturación.Urgente;
 import Interfaces.tieneClave;
 import Interfaces.tieneLista;
 import Persona.Persona;
@@ -26,9 +30,10 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     private boolean finalizada;  //True = finalizado False = no finalizado
     private Resultado resultado; //el resultado esperado de la tarea
     private List<String> lista_etiquetas; //Un listado de etiquetas para asignar tópcios comunes
+    private Facturacion precioFinal;
 
     //Constructor entero
-    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas) {
+    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas, Facturacion precioFinal) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = colaboradores;
@@ -38,10 +43,11 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.fecha_finalización = fecha_finalización;
         this.resultado = resultado;
         this.lista_etiquetas = lista_etiquetas;
+        this.precioFinal = precioFinal;
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, Facturacion precioFinal) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
@@ -51,6 +57,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.fecha_finalización = null;
         this.resultado = resultado;
         this.lista_etiquetas = new ArrayList<String>();
+        this.precioFinal = precioFinal;
     }
     //Facturacion facturacion, double coste
 
@@ -242,6 +249,17 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
        }catch (FechaFinNullException f){
            System.out.println("La tarea ya esta terminada ");
        }
+    }
 
+    public static Facturacion calculaFacturacion(int tipo){
+        Facturacion facturacion;
+        if (tipo == 1)
+            facturacion = new ConsumoInterno();
+        else if (tipo == 2)
+            facturacion = new Descuento();
+        else
+            facturacion = new Urgente();
+
+        return facturacion;
     }
 }
