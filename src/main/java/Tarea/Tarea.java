@@ -41,7 +41,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, Facturacion facturacion, double coste) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
@@ -52,6 +52,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.resultado = resultado;
         this.lista_etiquetas = new ArrayList<String>();
     }
+    //Facturacion facturacion, double coste
 
     public String getTitulo() {
         return Titulo;

@@ -1,4 +1,6 @@
 package Facturación;
 
-public class Facturacion {
+public interface Facturacion {
+    String nombre();
+    double conseguirCoste(double coste);
 }
