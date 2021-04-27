@@ -49,6 +49,7 @@ class ProyectoTest {
         boolean[] tipo_resultado = {true,false,true,false,true,true};
         LocalDate fecha_creacion = LocalDate.now();
 
+
         for (int n = 0; n < titulos.length; n++) {
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
             Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion, resultado, precios[n]);

@@ -82,14 +82,14 @@ public class Leer {
         System.out.print("Prioridad(1-5) {1 = Baja Prioridad | 5 = Alta prioridad} --> ");
         int prioridad = scanner.nextInt();
 
-        System.out.println("Coste esperado en euros:");
+        System.out.print("Coste esperado en euros (usar ',' para los decimales) -->");
         double coste = scanner.nextDouble();
 
-        System.out.println("Tipo de facturación(1-3) {1 - Consumo interno | 2 - Con Descuento | 3 - Urgente}");
+        System.out.println("Tipo de facturación(1-3) {1 - Consumo interno | 2 - Con Descuento | 3 - Urgente} -->");
         int tipoFact = scanner.nextInt();
         System.out.println();
 
-        Tarea tarea = new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal),  calculaFacturacion(tipoFact-1));
+        Tarea tarea = new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal),  calculaFacturacion(tipoFact, coste));
         if (!encuentraElementos(tarea,p.getTareas()))
             p.addTarea(tarea);
         else

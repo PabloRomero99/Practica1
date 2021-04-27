@@ -1,5 +1,6 @@
 package Tarea;
 import Excepciones.ElementoNullException;
+import Excepciones.FacturacionNoCalculableException;
 import Excepciones.FechaFinNullException;
 import Facturación.ConsumoInterno;
 import Facturación.Descuento;
@@ -30,10 +31,10 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     private boolean finalizada;  //True = finalizado False = no finalizado
     private Resultado resultado; //el resultado esperado de la tarea
     private List<String> lista_etiquetas; //Un listado de etiquetas para asignar tópcios comunes
-    private Facturacion precioFinal;
+    private double precioFinal;
 
     //Constructor entero
-    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas, Facturacion precioFinal) {
+    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas, double precioFinal) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = colaboradores;
@@ -47,7 +48,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, Facturacion precioFinal) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, double precioFinal) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
@@ -143,7 +144,8 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
                 "\t- Fecha_finalización= " + fecha_finalización + '\n' +
                 "\t- Finalizada= " + finalizada + '\n' +
                 "\t- Resultado= " + resultado + '\n' +
-                "\t- Lista de etiquetas= " + lista_etiquetas + '\n';
+                "\t- Lista de etiquetas= " + lista_etiquetas + '\n'+
+                "\t- Coste Final= " + precioFinal + '\n';
     }
 
     public void marcarFinalizada(){
@@ -251,15 +253,19 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
        }
     }
 
-    public static Facturacion calculaFacturacion(int tipo){
-        Facturacion facturacion;
-        if (tipo == 1)
-            facturacion = new ConsumoInterno();
-        else if (tipo == 2)
-            facturacion = new Descuento();
-        else
-            facturacion = new Urgente();
+    public static double calculaFacturacion(int tipo, double coste){
+        if (tipo == 1) {
+            Facturacion facturacion = new ConsumoInterno();
+            return facturacion.conseguirCoste(coste);
+        }
 
-        return facturacion;
+        else if (tipo == 2){
+            Facturacion facturacion = new Descuento();
+            return facturacion.conseguirCoste(coste);
+        }
+        else {
+            Facturacion facturacion = new Urgente();
+            return facturacion.conseguirCoste(coste);
+        }
     }
 }
