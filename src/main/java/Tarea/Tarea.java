@@ -1,6 +1,5 @@
 package Tarea;
 import Excepciones.ElementoNullException;
-import Excepciones.FacturacionNoCalculableException;
 import Excepciones.FechaFinNullException;
 import Facturación.ConsumoInterno;
 import Facturación.Descuento;
