@@ -205,15 +205,12 @@ public class Leer {
     }
 
     public static Facturacion devolverFacturacion(int tipo, double porcentaje){
-        if (tipo == 1) {
+        if (tipo == 1)
             return new ConsumoInterno();
-        }
-
-        else if (tipo == 2){
+        else if (tipo == 2)
             return new Descuento(porcentaje);
-        }
-        else {
+        else
             return new Urgente(porcentaje);
-        }
+
     }
 }

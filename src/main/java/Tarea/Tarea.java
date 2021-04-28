@@ -163,7 +163,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
                 "\t- Finalizada= " + finalizada + '\n' +
                 "\t- Resultado= " + resultado + '\n' +
                 "\t- Lista de etiquetas= " + lista_etiquetas + '\n'+
-                "\t- Coste Final= " + calculaFacturacion() + '\n' +
+                "\t- Coste Final= " + calculaFacturacion() + "€\n" +
                 "\t- Facturacion= "+ tipoFacturacion.nombre() + '\n';
 
     }

@@ -12,8 +12,7 @@ import java.util.Scanner;
 import static Herramienta.InsertoresyPrinters.*;
 import static Herramienta.InsertoresyPrinters.mostrarPersonaNoResponsable;
 import static Herramienta.Leer.*;
-import static Herramienta.Modificadores.marcandoTareaFinalizada;
-import static Herramienta.Modificadores.modificarParticipantes;
+import static Herramienta.Modificadores.*;
 import static Listas.UtilidadesParaListas.elementosConListaVacia;
 
 
@@ -35,6 +34,8 @@ public class Gestor {
                 " * Personas asignadas (destacando los responsables)\n\t  * Tarea finalizada o no\n\t " +
                 " * Resultado de la tarea "),
         LISTA_TAREAS_SIN_COLABORADORES("Lista las tareas en las cuales no trabaja nadie "),
+        CALCULO_PRECIOS("Precio final de la tarea que se indique o precio total del proyecto"),
+        EDICION_COSTES_TAREA("Modificación del coste y tipo de facturación"),
         SALIR_PROYECTO("Salir del proyecto");
 
         private final String descripcion;
@@ -88,7 +89,7 @@ public class Gestor {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
             Proyecto p = leerproyecto(); //leer en el proyecto
             int opcion = elegirOpcion();
-            while (opcion != 11) {
+            while (opcion != 13) {
                 switch (opcion) {
                     case 0: //CAMBIAR_NOMBRE_PROYECTO
                         Scanner sc = new Scanner(System.in);
@@ -142,7 +143,12 @@ public class Gestor {
                     case 10://LISTA_TAREAS_SIN_COLABORADORES
                         mostrarListaTareaSinColab(p);
                         break;
-
+                    case 11://CALCULO_PRECIOS
+                        mostrarPrecios(p);
+                        break;
+                    case 12://EDICION_COSTES_TAREA
+                        editarCostesTarea(p);
+                        break;
                     default:
                         System.out.println("La opcion no es valida, elige una entre 1 y 11\n");
                 }

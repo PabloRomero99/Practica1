@@ -15,6 +15,7 @@ import static Herramienta.Leer.*;
 import static Listas.UtilidadesParaListas.devuelveElementos;
 
 
+
 public class Modificadores {
     public static void marcandoTareaFinalizada(Proyecto p) {
 
@@ -84,5 +85,46 @@ public class Modificadores {
         }catch (FechaFinNullException f){
             System.out.println("La tarea ya esta terminada ");
         }
+    }
+
+    public static void editarCostesTarea(Proyecto p){
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Nombre de la tarea: ");
+            String ntarea = sc.next();
+            Tarea tarea = devuelveElementos(ntarea, p.getTareas());
+            System.out.print("(1 - Editar coste | 2 - Cambiar tipo de facturación)--> ");
+            int opcion = opcionCorrecta(sc.nextInt(), sc);
+
+            if (opcion == 1){
+                System.out.print("Indica el nuevo coste de la tarea (usa ',' para los decimales): ");
+                tarea.setCoste(sc.nextDouble());
+                System.out.println("Ahora el coste de la tarea es "+ tarea.getCoste() +"€");
+            }
+            else{
+                System.out.print("¿A que tipo de facturación quieres cambiar?(1-3) {1 - Consumo interno | 2 - Con Descuento | 3 - Urgente} -->");
+                int tipoFact = tipoFacturacionCorrecto(sc.nextInt(), sc);
+                double porcentaje = 0;
+                if(tipoFact==3 || tipoFact==2) {
+                    System.out.print("Porcentaje que vamos a aplicar --> ");
+                    porcentaje=sc.nextDouble();
+                }
+                tarea.setTipoFacturacion(devolverFacturacion(tipoFact, porcentaje));
+            }
+
+
+            System.out.println("\n");
+
+        } catch (ElementoNullException e) {
+            System.out.println("La tarea no esta en el proyecto ");
+        }
+    }
+
+    public static int opcionCorrecta(int tipo, Scanner sc){
+        while(tipo < 1 || tipo > 2){
+            System.out.print("1 - Editar coste | 2 - Cambiar tipo de facturación");
+            tipo = sc.nextInt();
+        }
+        return tipo;
     }
 }
