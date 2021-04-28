@@ -31,6 +31,8 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     private Resultado resultado; //el resultado esperado de la tarea
     private List<String> lista_etiquetas; //Un listado de etiquetas para asignar tópcios comunes
     private double precioFinal;
+    //private double coste;
+    //String tipoFacturacion;
 
     //Constructor entero
     public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas, double precioFinal) {
