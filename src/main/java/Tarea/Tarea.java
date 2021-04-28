@@ -30,12 +30,11 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
     private boolean finalizada;  //True = finalizado False = no finalizado
     private Resultado resultado; //el resultado esperado de la tarea
     private List<String> lista_etiquetas; //Un listado de etiquetas para asignar tópcios comunes
-    private double precioFinal;
-    //private double coste;
-    //String tipoFacturacion;
+    private double coste;
+    private Facturacion tipoFacturacion;
 
     //Constructor entero
-    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas, double precioFinal) {
+    public Tarea(String titulo, String descripcion, List<Persona> colaboradores, Persona responsable, int prioridad, LocalDate fecha_creacion, LocalDate fecha_finalización, Resultado resultado, List<String> lista_etiquetas, double coste, Facturacion tipoFacturacion) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = colaboradores;
@@ -45,11 +44,12 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.fecha_finalización = fecha_finalización;
         this.resultado = resultado;
         this.lista_etiquetas = lista_etiquetas;
-        this.precioFinal = precioFinal;
+        this.coste = coste;
+        this.tipoFacturacion = tipoFacturacion;
     }
 
     //Constructor cuando queremos iniciar en proyecto
-    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, double precioFinal) {
+    public Tarea(String titulo, String descripcion,int prioridad, LocalDate fecha_creacion, Resultado resultado, double coste,Facturacion tipoFacturacion) {
         this.Titulo = titulo;
         this.Descripcion = descripcion;
         this.colaboradores = new ArrayList<Persona>();
@@ -59,9 +59,10 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.fecha_finalización = null;
         this.resultado = resultado;
         this.lista_etiquetas = new ArrayList<String>();
-        this.precioFinal = precioFinal;
+        this.coste = coste;
+        this.tipoFacturacion = tipoFacturacion;
     }
-    //Facturacion facturacion, double coste
+
 
     public String getTitulo() {
         return Titulo;
@@ -135,6 +136,22 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
         this.lista_etiquetas = lista_etiquetas;
     }
 
+    public double getCoste() {
+        return coste;
+    }
+
+    public void setCoste(double coste) {
+        this.coste = coste;
+    }
+
+    public Facturacion getTipoFacturacion() {
+        return tipoFacturacion;
+    }
+
+    public void setTipoFacturacion(Facturacion tipoFacturacion) {
+        this.tipoFacturacion = tipoFacturacion;
+    }
+
     public String toString() {
         return "\t- Titulo= " + Titulo + '\n' +
                 "\t- Descripcion= " + Descripcion + '\n' +
@@ -146,7 +163,9 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
                 "\t- Finalizada= " + finalizada + '\n' +
                 "\t- Resultado= " + resultado + '\n' +
                 "\t- Lista de etiquetas= " + lista_etiquetas + '\n'+
-                "\t- Coste Final= " + precioFinal + '\n';
+                "\t- Coste Final= " + calculaFacturacion() + '\n' +
+                "\t- Facturacion= "+ tipoFacturacion.nombre() + '\n';
+
     }
 
     public void marcarFinalizada(){
@@ -254,19 +273,7 @@ public class Tarea implements tieneLista, tieneClave, Serializable {
        }
     }
 
-    public static double calculaFacturacion(int tipo, double coste){
-        if (tipo == 1) {
-            Facturacion facturacion = new ConsumoInterno();
-            return facturacion.conseguirCoste(coste);
-        }
-
-        else if (tipo == 2){
-            Facturacion facturacion = new Descuento();
-            return facturacion.conseguirCoste(coste);
-        }
-        else {
-            Facturacion facturacion = new Urgente();
-            return facturacion.conseguirCoste(coste);
-        }
+    public double calculaFacturacion() {
+        return tipoFacturacion.conseguirCoste(this.coste);
     }
 }

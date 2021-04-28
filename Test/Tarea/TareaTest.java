@@ -1,3 +1,4 @@
+/*
 package Tarea;
 
 import Persona.Persona;
@@ -213,3 +214,4 @@ class TareaTest {
         }
     }
 }
+ */

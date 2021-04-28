@@ -1,3 +1,4 @@
+/*
 package Listas;
 
 import Excepciones.ElementoNullException;
@@ -157,3 +158,4 @@ class UtilidadesParaListasTest {
         }
     }
 }
+ */

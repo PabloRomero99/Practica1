@@ -1,12 +1,18 @@
 package Facturación;
 
 public class Urgente implements Facturacion{
-    private final double urg = 0.2;
+    private double urg;
 
-    public String nombre() { return "Urgente"; }
+    public Urgente(double urg){
+        this.urg = urg;
+    }
+
+    public String nombre(){
+        return "URGENTE";
+    }
 
     @Override
     public double conseguirCoste(double coste) {
-        return coste + (urg*coste); //Al ser urgente le sumamos un 20% de su precio
+        return coste + (urg*coste); //Al ser urgente le sumamos un % de su precio
     }
 }

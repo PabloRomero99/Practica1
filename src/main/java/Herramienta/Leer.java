@@ -2,6 +2,10 @@ package Herramienta;
 
 import Excepciones.ElementoNullException;
 import Excepciones.ProjectNullException;
+import Facturación.ConsumoInterno;
+import Facturación.Descuento;
+import Facturación.Facturacion;
+import Facturación.Urgente;
 import Persona.Persona;
 import Proyectos.Proyecto;
 import Resultado.Resultado;
@@ -18,17 +22,9 @@ import java.util.Scanner;
 
 import static Listas.UtilidadesParaListas.*;
 import static Resultado.Resultado.devolverResultado;
-import static Tarea.Tarea.calculaFacturacion;
 
 public class Leer {
 
-    /*public static Proyecto leerproyecto() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre del proyecto: ");
-        String nombre = sc.nextLine();
-        System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-        return new Proyecto(nombre);
-    }*/
 
     public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
@@ -61,13 +57,6 @@ public class Leer {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Titulo tarea: ");
         String titulo = scanner.nextLine();
-        /*
-        for (Tarea t : p.getTareas()) {
-            if (t.getTitulo().equals(titulo)) {
-                System.out.println("No pueden haber dos tareas con el mismo nombre, ya que coincide con: \n");
-                return;
-            }
-        }*/
 
         System.out.print("Descripcion: ");
         String descripcion = scanner.nextLine();
@@ -87,9 +76,14 @@ public class Leer {
 
         System.out.println("Tipo de facturación(1-3) {1 - Consumo interno | 2 - Con Descuento | 3 - Urgente} -->");
         int tipoFact = tipoFacturacionCorrecto(scanner.nextInt(), scanner);
-        System.out.println();
 
-        Tarea tarea = new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado), 0, tiporesultadofinal),  calculaFacturacion(tipoFact, coste));
+        double porcentaje = 0;
+        if(tipoFact==3 || tipoFact==2) {
+            System.out.println("¿Que porcentaje quieres aplicar?");
+            porcentaje=scanner.nextDouble();
+        }
+
+        Tarea tarea = new Tarea(titulo, descripcion, prioridadCorrecta(prioridad,scanner), LocalDate.now(), new Resultado(opcion(tipoSeleccionado),0,tiporesultadofinal), coste, devolverFacturacion(tipoFact,porcentaje));
         if (!encuentraElementos(tarea,p.getTareas()))
             p.addTarea(tarea);
         else
@@ -208,5 +202,18 @@ public class Leer {
             tipo = sc.nextInt();
         }
         return tipo;
+    }
+
+    public static Facturacion devolverFacturacion(int tipo, double porcentaje){
+        if (tipo == 1) {
+            return new ConsumoInterno();
+        }
+
+        else if (tipo == 2){
+            return new Descuento(porcentaje);
+        }
+        else {
+            return new Urgente(porcentaje);
+        }
     }
 }

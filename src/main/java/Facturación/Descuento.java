@@ -1,12 +1,19 @@
 package Facturación;
 
 public class Descuento implements Facturacion{
-    private final double dto = 0.1;
-    public String nombre() { return "Descuento"; }
+    private double dto;
+
+    public Descuento(double dto){
+        this.dto = dto;
+    }
+
+    public String nombre(){
+        return "DESCUENTO";
+    }
 
     @Override
     public double conseguirCoste(double coste) {
-        return coste - (dto*coste); //Al ser descuento le restamos un 10% de su precio
+        return coste - (dto*coste); //Al ser descuento le restamos un % de su precio
     }
 
 }

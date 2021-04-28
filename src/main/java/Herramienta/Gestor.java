@@ -99,42 +99,18 @@ public class Gestor {
                     case 1: //ALTA_PERSONA
                         p.addParticipante(leerpersona());
                         System.out.println("\n");
-                        /*
-                        if (p != null) {
-                            p.addParticipante(leerpersona());
-                            System.out.println("\n");
-                        } else
-                            System.out.println("Debes tener un proyecto creado para añadir Personas\n");
-                         */
                         break;
 
                     case 2: //ALTA_TAREA
                         leertarea(p);
-                        /*
-                        if (p != null)
-                            leertarea(p);
-                        else
-                            System.out.println("Debes tener un proyecto creado para añadir Tareas\n ");
-                         */
                         break;
 
                     case 3: //INSERTAR_RESPONSABLE
                         insertResponsable(p);
-                        /*
-                        if (p != null) {
-                            insertResponsable(p);
-                        }
-                         */
                         break;
 
                     case 4: //TAREA_FINALIZADA
                         marcandoTareaFinalizada(p);
-                        /*
-                        if (p != null) {
-                            marcandoTareaFinalizada(p);
-                        } else
-                            System.out.println("Debes tener un proyecto creado para marcar la Tarea como finalizada\n ");
-                         */
                         break;
 
                     case 5: //MODIFICAR_PERSONAS_TAREA
@@ -147,54 +123,24 @@ public class Gestor {
 
                     case 6:  //MODIFICAR_ETIQUETAS
                         leerEtiquetas(p);
-                        /*
-                        if (p != null) {
-                            leerEtiquetas(p);
-                        }
-                         */
                         break;
 
                     case 7: //LISTA_PERSONAS
                         mostrarListaPersona(p);
-                       /*
-                        if (p != null) {
-                            mostrarListaPersona(p);
-                        } else
-                            System.out.println("Debes tener un proyecto creado para listar las personas\n ");
-                        System.out.println("\n");
-                        */
+
                         break;
 
                     case 8: //LISTA_PERSONAS_NO_RESPONSABLES
                         mostrarPersonaNoResponsable(p);
-                        /*
-                        if (p != null) {
-                            mostrarPersonaNoResponsable(p);
-                        } else
-                            System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                        System.out.println("\n");
-                         */
+
                         break;
 
                     case 9: //LISTA_TAREAS
                         mostrarListTarea(p);
-                        /*
-                        if (p != null) {
-                            mostrarListTarea(p);
-                        } else
-                            System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                         */
                         break;
 
                     case 10://LISTA_TAREAS_SIN_COLABORADORES
                         mostrarListaTareaSinColab(p);
-                        /*
-                        if (p != null) {
-                            mostrarListaTareaSinColab(p);
-                        } else
-                            System.out.println("Debes tener un proyecto creado para listar las tareas\n ");
-                        System.out.println("\n");
-                         */
                         break;
 
                     default:

@@ -76,4 +76,13 @@ public class Proyecto implements Serializable {
         oos.writeObject(this);
         oos.close();
     }
+
+    public double conseguirPrecioTotal() {
+        double resultado = 0;
+        for (Tarea t: tareas){
+            resultado += t.calculaFacturacion();
+        }
+        return resultado;
+    }
+
 }
