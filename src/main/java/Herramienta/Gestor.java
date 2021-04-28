@@ -116,10 +116,6 @@ public class Gestor {
 
                     case 5: //MODIFICAR_PERSONAS_TAREA
                         modificarParticipantes(p);
-                        /*
-                        if (p != null)
-                            modificarParticipantes(p);
-                         */
                         break;
 
                     case 6:  //MODIFICAR_ETIQUETAS

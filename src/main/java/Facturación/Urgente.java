@@ -13,6 +13,6 @@ public class Urgente implements Facturacion{
 
     @Override
     public double conseguirCoste(double coste) {
-        return coste + (urg*coste); //Al ser urgente le sumamos un % de su precio
+        return coste + ((urg/100)*coste); //Al ser urgente le sumamos un % de su precio
     }
 }

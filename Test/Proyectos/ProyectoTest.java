@@ -1,6 +1,6 @@
-/*
 package Proyectos;
 
+import Facturación.ConsumoInterno;
 import Persona.Persona;
 import Resultado.Resultado;
 import Tarea.Tarea;
@@ -53,9 +53,8 @@ class ProyectoTest {
 
         for (int n = 0; n < titulos.length; n++) {
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion, resultado, precios[n]);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion, resultado, precios[n],new ConsumoInterno());
             assertEquals(p.addTarea(tarea), comp1.add(tarea));
         }
     }
 }
- */

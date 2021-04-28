@@ -58,4 +58,14 @@ public class InsertoresyPrinters {
         System.out.println();
     }
 
+    public static double mostrarPrecios(Proyecto p){
+        double resultado = 0;
+        for (Tarea t: p.getTareas()){
+            System.out.println("La tarea " + t.getTitulo() + " tiene un coste final de: " + t.calculaFacturacion());
+            resultado += t.calculaFacturacion();
+        }
+        System.out.println("El proyecto tiene un coste final de: " + resultado);
+        System.out.println("\n");
+        return resultado;
+    }
 }

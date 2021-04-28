@@ -1,7 +1,8 @@
-/*
 package Listas;
 
 import Excepciones.ElementoNullException;
+import Facturación.ConsumoInterno;
+import Facturación.Descuento;
 import Persona.Persona;
 import Proyectos.Proyecto;
 import Resultado.Resultado;
@@ -51,7 +52,7 @@ class UtilidadesParaListasTest {
             comp2.add(pers);
 
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n]);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n],new ConsumoInterno());
             p.addTarea(tarea);
             comp1.add(tarea);
         }
@@ -96,7 +97,7 @@ class UtilidadesParaListasTest {
             comp2.add(pers);
 
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n]);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n],new ConsumoInterno());
             p.addTarea(tarea);
             comp1.add(tarea);
         }
@@ -137,7 +138,7 @@ class UtilidadesParaListasTest {
             comp2.add(pers);
 
             Resultado resultado = new Resultado(identificadores[n], horas[n], tipo_resultado[n]);
-            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n]);
+            Tarea tarea = new Tarea(titulos[n], descrip[n], prioridad[n], fecha_creacion,resultado, precios[n],new ConsumoInterno());
             p.addTarea(tarea);
             comp1.add(tarea);
         }
@@ -158,4 +159,3 @@ class UtilidadesParaListasTest {
         }
     }
 }
- */

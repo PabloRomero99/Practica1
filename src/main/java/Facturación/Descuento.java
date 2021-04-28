@@ -13,7 +13,7 @@ public class Descuento implements Facturacion{
 
     @Override
     public double conseguirCoste(double coste) {
-        return coste - (dto*coste); //Al ser descuento le restamos un % de su precio
+        return coste - ((dto/100)*coste); //Al ser descuento le restamos un % de su precio
     }
 
 }
