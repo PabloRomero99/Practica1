@@ -1,4 +1,4 @@
-package Herramienta;
+package modelo;
 
 import Excepciones.ProjectNullException;
 import Persona.Persona;
