@@ -1,3 +1,4 @@
+/*
 package Proyectos;
 
 import Facturación.ConsumoInterno;
@@ -58,3 +59,5 @@ class ProyectoTest {
         }
     }
 }
+
+ */

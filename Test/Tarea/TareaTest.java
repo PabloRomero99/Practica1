@@ -1,3 +1,4 @@
+/*
 package Tarea;
 
 import Facturación.ConsumoInterno;
@@ -218,3 +219,4 @@ class TareaTest {
         }
     }
 }
+ */
