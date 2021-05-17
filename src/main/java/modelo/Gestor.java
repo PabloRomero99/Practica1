@@ -1,3 +1,4 @@
+/*
 package modelo;
 
 import Excepciones.ProjectNullException;
@@ -154,3 +155,4 @@ public class Gestor {
             p.escribirFichero();
     }
 }
+ */

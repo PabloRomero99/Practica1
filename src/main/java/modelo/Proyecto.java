@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.Tarea.Tarea;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,13 +54,14 @@ public class Proyecto implements Serializable {
         return true;
     }
 
+
     public boolean addTarea(Tarea tarea) {
         if (tareas.size() == 0) {
             tareas.add(tarea);
             return true;
         }
         for (Tarea tareita : tareas) {
-            if (tareita.getClave().equals(tarea.getClave())) {
+            if (tareita.getTitulo().equals(tarea.getClave())) {
                 System.out.println("La persona con DNI" + tareita.getClave() + " ya esta registrada en el proyecto");
                 return false;
             }
@@ -66,6 +69,7 @@ public class Proyecto implements Serializable {
         tareas.add(tarea);
         return true;
     }
+
 
     public void escribirFichero() throws IOException, ClassNotFoundException {
         FileOutputStream fos = new FileOutputStream( nombre + ".bin");
