@@ -1,8 +1,9 @@
 package modelo;
 
-import Interfaces.tieneLista;
-import Interfaces.tieneClave;
-import Tarea.Tarea;
+
+import modelo.Tarea.Tarea;
+import modelo.genericos.interfaces.tieneClave;
+import modelo.genericos.interfaces.tieneLista;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -92,4 +93,3 @@ public class Persona implements Serializable {
         return DNI;
     }
 }
-

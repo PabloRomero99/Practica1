@@ -1,8 +1,9 @@
+
 package modelo;
 
 import modelo.Tarea.Tarea;
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +70,8 @@ public class Proyecto implements Serializable {
         tareas.add(tarea);
         return true;
     }
+    /*
+
 
 
     public void escribirFichero() throws IOException, ClassNotFoundException {
@@ -78,4 +81,5 @@ public class Proyecto implements Serializable {
         oos.close();
     }
 
+     */
 }

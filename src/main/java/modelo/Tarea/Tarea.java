@@ -1,15 +1,20 @@
 package modelo.Tarea;
 
 import modelo.Persona;
+import modelo.Proyecto;
 import modelo.Tarea.Facturacion.Facturacion;
 import modelo.Tarea.Resultado.Resultado;
+import modelo.genericos.interfaces.tieneClave;
+import modelo.genericos.interfaces.tieneLista;
+import static modelo.genericos.clases.UtilidadesParaListas.devuelveElemento;
+import static modelo.genericos.clases.UtilidadesParaListas.encuentraElementos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tarea implements Serializable {
+public class Tarea implements Serializable, tieneClave, tieneLista {
     private String Titulo;
     private String Descripcion;
     private List<Persona> colaboradores;
@@ -232,16 +237,16 @@ public class Tarea implements Serializable {
         }
     }
 
-    public boolean fechaFinCorrecta(LocalDate fecha_fin) throws FechaFinNullException {
+    public boolean fechaFinCorrecta(LocalDate fecha_fin) throws Exception {
         if (fecha_fin == null){
             return true;
-        }throw new FechaFinNullException();
+        }throw new Exception();
     }
 
-    public void addResponsable(String dniPersona, Proyecto p){
+    public void addResponsable(String dniPersona, Proyecto p) throws Exception{
         try{
             if (this.fechaFinCorrecta(fecha_finalización)){
-                Persona persona = devuelveElementos(dniPersona, p.getParticipantes());
+                Persona persona = devuelveElemento(dniPersona, p.getParticipantes());
                 if (responsable == null) { //Tarea no tiene responsable
                     if (!encuentraElementos(persona, colaboradores)) { //Persona no colabora Tarea
                         colaboradores.add(persona);
@@ -256,15 +261,15 @@ public class Tarea implements Serializable {
                             + " y solo puede haber un responsable por tarea");
                 }
             }
-        } catch (ElementoNullException e){
+        } catch (Exception e){
             System.out.println("Esta persona no pertenece al proyecto, o el DNI no es correcto , porfavor escoge una persona que " +
                     "este registrada en el proyecto o un DNI correcto(Elija opción 8 para consultar información).");
-        }catch (FechaFinNullException f){
-            System.out.println("La tarea ya esta terminada ");
         }
     }
 
     public double calculaFacturacion() {
         return tipoFacturacion.conseguirCoste(this.coste);
     }
+
+
 }
