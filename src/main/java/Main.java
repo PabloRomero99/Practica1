@@ -1,4 +1,4 @@
-import controlador.ControladorStartProject;
+import controlador.ImplementacionControlador;
 import modelo.ModeloProyecto;
 import vista.VistaPrincipal;
 
@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args){
         final VistaPrincipal vista = new VistaPrincipal();
-        final ControladorStartProject controlador = new ControladorStartProject();
+        final ImplementacionControlador controlador = new ImplementacionControlador();
         final ModeloProyecto modelo = new ModeloProyecto();
 
 

@@ -1,14 +1,21 @@
 package controlador;
 
 import modelo.Modelo;
+import modelo.ModeloProyecto;
 import vista.Vista;
+import vista.VistaAlta;
 
-public class ControladorStartProject implements ControladorInicioProyecto {
+public class ImplementacionControlador implements Controlador {
     private Modelo modelo;
     private Vista vista;
+    private VistaAlta vista2;
 
     public void setVista(Vista vista){
         this.vista=vista;
+    }
+
+    public void setVista2(VistaAlta vista){
+        this.vista2=vista;
     }
 
     public void setModelo(Modelo modelo) {
@@ -21,4 +28,10 @@ public class ControladorStartProject implements ControladorInicioProyecto {
         modelo.iniciaProyecto(nombreProyecto);
 
     }
+
+    @Override
+    public void pulsadoDarAlta(int actionCommand) {
+        modelo.pulsadorDarAlta(actionCommand);
+    }
+
 }

@@ -1,29 +1,30 @@
 package vista;
 
-import controlador.ControladorAlta;
-import controlador.ControladorDarAlta;
-import controlador.ControladorStartProject;
+import controlador.Controlador;
+
+import controlador.ImplementacionControlador;
 import modelo.ModeloProyecto;
 
 
 import javax.swing.*;
-import java.awt.*;
 
 public class VistaAlta {
     private static String ACEPTAR = "ACEPTAR";
-    private ControladorAlta controlador;
+    private Controlador controlador;
 
+
+    /*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 final VistaAlta vista = new VistaAlta();
-                final ControladorDarAlta controlador = new ControladorDarAlta();
+                final ImplementacionControlador controlador = new ImplementacionControlador();
                 final ModeloProyecto modelo = new ModeloProyecto();
 
                 vista.setControlador(controlador);
                 controlador.setModelo(modelo);
-                controlador.setVista(vista);
+                controlador.setVista2(vista);
                 modelo.setVista2(vista);
 
                 SwingUtilities.invokeLater(() -> vista.ejecuta());
@@ -31,19 +32,20 @@ public class VistaAlta {
             }
         });
     }
+     */
 
-    public void setControlador(ControladorAlta controlador){
+
+    public void setControlador(ImplementacionControlador controlador){
         this.controlador=controlador;
     }
 
     public void ejecuta(){
+
         JRadioButton persona = new JRadioButton("Persona ");
+
         persona.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
-        //persona.addItemListener(e -> System.out.println(e.getStateChange()));
 
         JRadioButton tarea = new JRadioButton("Tarea ");
-        //tarea.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
-        //tarea.addItemListener(e -> System.out.println(e.getStateChange()));
 
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(persona);

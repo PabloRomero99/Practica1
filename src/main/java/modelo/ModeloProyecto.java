@@ -3,12 +3,13 @@ package modelo;
 import vista.Vista;
 import vista.VistaAlta;
 
-import javax.swing.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 
-public class ModeloProyecto implements Modelo{
+public class ModeloProyecto implements Modelo, Serializable {
     private Vista vista;
     private VistaAlta vistaAlta;
 
@@ -41,6 +42,7 @@ public class ModeloProyecto implements Modelo{
         switch (actionCommand) {
             case 1:
                 System.out.println("PERSONA ");
+
                 break;
             case 2:
                 System.out.println("TAREA ");

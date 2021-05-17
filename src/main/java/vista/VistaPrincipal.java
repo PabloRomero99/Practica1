@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.ControladorInicioProyecto;
+import controlador.Controlador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +9,12 @@ public class VistaPrincipal implements Vista{
     private JTextField nombreProyecto;
     private static String ACEPTAR = "ACEPTAR";
 
-    private ControladorInicioProyecto controlador;
+    private VistaIndice vistaIndice;
+    private Controlador controlador;
 
-    public void setControlador(ControladorInicioProyecto controlador){
+    public void setControlador(Controlador controlador){
         this.controlador=controlador;
     }
-
-
 
     public void ejecuta(){
         JFrame ventana = new JFrame("Inicio");
@@ -30,14 +29,17 @@ public class VistaPrincipal implements Vista{
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> controlador.iniciaProyecto());
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+
+
+        vistaIndice = new VistaIndice();
+        aceptar.addActionListener(e -> vistaIndice.ejecuta());
+        aceptar.addActionListener(e-> ventana.setVisible(false));
         cont.add(aceptar);
 
 
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-
-
 
     }
 

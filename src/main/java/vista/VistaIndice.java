@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.ControladorAlta;
+import controlador.Controlador;
 import modelo.Modelo;
 
 import javax.swing.*;
@@ -10,10 +10,11 @@ import java.awt.event.WindowEvent;
 import java.io.Serializable;
 
 public class VistaIndice extends JFrame implements Serializable {
-    private Modelo modelo;
-    private ControladorAlta controlador;
+    private Controlador controlador;
+    private VistaAlta vistaAlta;
     public JPanel panel;
 
+    /*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -22,8 +23,9 @@ public class VistaIndice extends JFrame implements Serializable {
             }
         });
     }
+     */
 
-   public void ejecuta2() {
+   public void ejecuta() {
 
        JFrame ventana = new JFrame("Proyecto");
        ventana.addWindowListener(new WindowAdapter() {
@@ -48,17 +50,56 @@ public class VistaIndice extends JFrame implements Serializable {
        Container contenedor = ventana.getContentPane();
        contenedor.setLayout(new GridLayout(2,4));
 
-/*
-public void escribirFichero() throws IOException, ClassNotFoundException {
-        FileOutputStream fos = new FileOutputStream( nombre + ".bin");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(this);
-        oos.close();
-    }
- */
+
+
+       JButton boton1 = new JButton("Dar Alta "); //Personas(participantes del proyecto), Tara
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton1.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
+       vistaAlta = new VistaAlta();
+       boton1.addActionListener(e -> vistaAlta.ejecuta());
+       //boton1.addActionListener(e-> ventana.setVisible(false));
+       contenedor.add(boton1);
+
+       JButton boton2 = new JButton("Insertar "); //Responsables, Colaboradores, Participantes, Etiqutas
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton2.addActionListener(e -> System.out.println("Boton de insertar pulsado"));
+       contenedor.add(boton2);
+
+       JButton boton3 = new JButton("Eliminar "); //Colaboradores,Etiquetas
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton3.addActionListener(e -> System.out.println("Boton de eliminar pulsado "));
+       contenedor.add(boton3);
+
+       JButton boton4 = new JButton("Marcar tarea finalizada ");
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton4.addActionListener(e -> System.out.println("Boton tarea finalizada pulsado"));
+       contenedor.add(boton4);
+
+       JButton boton5 = new JButton("Listado de Personas");//Totales del proyecto, las cuales no son responsables en ninguna tarea
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton5.addActionListener(e -> System.out.println("Boton Listado de Personas pulsado"));
+       contenedor.add(boton5);
+
+       JButton boton6 = new JButton("Listado de Tareas ");//Totales en el proyecto, en las cuales no participa nadie
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton6.addActionListener(e -> System.out.println("Boton Listado de Tareas pulsado"));
+       contenedor.add(boton6);
+
+
+       JButton boton7 = new JButton("Consultar precio "); //Total del proyecto + tarea
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton7.addActionListener(e -> System.out.println("Boton consultar precio pulsado"));
+       contenedor.add(boton7);
+
+
+       JButton boton8 = new JButton("Modificaciones "); //Coste, Tipo de facturacion
+       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       boton8.addActionListener(e -> System.out.println("Boton modificaciones pulsado"));
+       contenedor.add(boton8);
 
        ventana.pack();
-       //ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+       ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       ventana.setVisible(true);
 
    }
 
@@ -107,3 +148,12 @@ private void radioButton(){
             return new Proyecto(nombre);
         }
     }*/
+
+/*
+public void escribirFichero() throws IOException, ClassNotFoundException {
+        FileOutputStream fos = new FileOutputStream( nombre + ".bin");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(this);
+        oos.close();
+    }
+ */
