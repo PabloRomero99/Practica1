@@ -46,8 +46,8 @@ public class Proyecto implements Serializable {
             return true;
         }
         for (Persona personita : participantes) {
-            if (personita.getClave().equals(persona.getClave())) {
-                System.out.println("La persona con DNI" + personita.getClave() + " ya esta registrada en el proyecto");
+            if (personita.getDNI().equals(persona.getDNI())) {
+                System.out.println("La persona con DNI" + personita.getDNI() + " ya esta registrada en el proyecto");
                 return false;
             }
         }

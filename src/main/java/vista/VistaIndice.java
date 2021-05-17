@@ -1,21 +1,17 @@
 package vista;
 
-import controlador.Controlador;
+import controlador.ControladorAlta;
 import modelo.Modelo;
-import vista.Insertar.BotonInsertar;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class VistaIndice extends JFrame implements Serializable {
     private Modelo modelo;
-    private Controlador controlador;
+    private ControladorAlta controlador;
     public JPanel panel;
 
     public static void main(String[] args) {
@@ -60,64 +56,6 @@ public void escribirFichero() throws IOException, ClassNotFoundException {
         oos.close();
     }
  */
-       /*
-        public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre del proyecto: ");
-        String nombre = sc.nextLine();
-        try {
-            FileInputStream fis = new FileInputStream(nombre + ".bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Proyecto proyecto = (Proyecto) ois.readObject();
-            ois.close();
-            return proyecto;
-        }catch(IOException e){
-            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-            return new Proyecto(nombre);
-        }
-    }
-
-
-
-
-
-
-
-       JButton boton2 = new JButton("Insertar "); //Responsable, colaborador, participante o etiqueta
-       boton2.addActionListener(new BotonInsertar());
-       contenedor.add(boton2);
-
-
-       JButton boton3 = new JButton("Eliminar "); //Responsable, colaborador, participante o etiqueta
-       boton3.addActionListener(new BotonInsertar());
-       contenedor.add(boton3);
-
-
-       JButton boton4 = new JButton("Marcar tarea finalizada ");
-       boton4.addActionListener(new BotonInsertar());
-       contenedor.add(boton4);
-
-
-       JButton boton5 = new JButton("Listado de Personas "); //(participantes) o (NO colaboradores en ninguna tarea)
-       boton5.addActionListener(new BotonInsertar());
-       contenedor.add(boton5);
-
-
-       JButton boton6 = new JButton("Listado de Tareas "); //(generales) o (listado tareas no trabaja nadie)
-       boton6.addActionListener(new BotonInsertar());
-       contenedor.add(boton6);
-
-
-       JButton boton7 = new JButton("Precio total tareas y proyecto ");
-       boton7.addActionListener(new BotonInsertar());
-       contenedor.add(boton7);
-
-
-       JButton boton8 = new JButton("Modificar Coste o tipo de facturacion ");
-       boton8.addActionListener(new BotonInsertar());
-       contenedor.add(boton8);
-        */
-
 
        ventana.pack();
        //ventana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -149,5 +87,23 @@ private void radioButton(){
        ventana.setVisible(true);
 
         }
+}
+
+
+
+/*
+        public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre del proyecto: ");
+        String nombre = sc.nextLine();
+        try {
+            FileInputStream fis = new FileInputStream(nombre + ".bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Proyecto proyecto = (Proyecto) ois.readObject();
+            ois.close();
+            return proyecto;
+        }catch(IOException e){
+            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
+            return new Proyecto(nombre);
         }
- */
+    }*/

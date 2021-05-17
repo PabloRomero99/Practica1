@@ -1,3 +1,4 @@
+/*
 package controlador;
 
 import modelo.Modelo;
@@ -29,3 +30,4 @@ public class ControladorTareas implements Controlador {
 
     }
 }
+ */

@@ -1,40 +1,31 @@
 package controlador;
 
 import modelo.Modelo;
-import modelo.Persona;
-import modelo.Proyecto;
-import vista.Vista;
 import vista.VistaAlta;
 
-import java.util.List;
-
-public class ControladorDarAlta implements Controlador{
+public class ControladorDarAlta implements ControladorAlta {
     private Modelo modelo;
     private VistaAlta vista;
 
-    private void setModelo(Modelo modelo){
+
+    public void setModelo(Modelo modelo){
         this.modelo=modelo;
     }
 
-    private void setVista(VistaAlta vista){
+    public void setVista(VistaAlta vista){
         this.vista=vista;
     }
 
     @Override
-    public void compruebaControlador() {
-
+    public void pulsadoDarAlta(int actionCommand) {
+        modelo.pulsadorDarAlta(actionCommand);
     }
 
-    @Override
-    public void pulsadoDarAlta() {
-        vista.ejecuta();
-    }
-
-    @Override
-    public void darAltaPersona() {
 
 
-    }
+
+
+
 
     /*public void pulsadoPersona(String actionCommand){
         vista.altaPersona();

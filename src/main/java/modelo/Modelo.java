@@ -1,7 +1,6 @@
 package modelo;
 
 public interface Modelo {
-    String getNombre();
-    double getPrecio();
-
+    void iniciaProyecto(String nombreProyecto);
+    void pulsadorDarAlta(int actionCommand);
 }

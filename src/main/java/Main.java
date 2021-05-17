@@ -1,11 +1,14 @@
-/*
+import controlador.ControladorStartProject;
+import modelo.ModeloProyecto;
+import vista.VistaPrincipal;
+
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
-        final ImplementacionVista vista = new ImplementacionVista();
-        final ImplementacionControlador controlador = new ImplementacionControlador();
-        final ImplementacionModelo modelo = new ImplementacionModelo();
+        final VistaPrincipal vista = new VistaPrincipal();
+        final ControladorStartProject controlador = new ControladorStartProject();
+        final ModeloProyecto modelo = new ModeloProyecto();
 
 
         vista.setControlador(controlador);
@@ -16,4 +19,3 @@ public class Main {
         SwingUtilities.invokeLater(() -> vista.ejecuta());
     }
 }
- */

@@ -83,6 +83,7 @@ public class Persona implements Serializable {
         return "- Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();
     }
 
+    /*
     @Override
     public List getLista() {
         return listaTareasResponsable;
@@ -92,4 +93,5 @@ public class Persona implements Serializable {
     public Object getClave() {
         return DNI;
     }
+     */
 }

@@ -1,23 +1,74 @@
 package vista;
 
-import controlador.Controlador;
-import modelo.Persona;
+import controlador.ControladorAlta;
+import controlador.ControladorDarAlta;
+import controlador.ControladorStartProject;
+import modelo.ModeloProyecto;
+
 
 import javax.swing.*;
 import java.awt.*;
 
 public class VistaAlta {
     private static String ACEPTAR = "ACEPTAR";
-    private Controlador controlador;
+    private ControladorAlta controlador;
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                final VistaAlta vista = new VistaAlta();
+                final ControladorDarAlta controlador = new ControladorDarAlta();
+                final ModeloProyecto modelo = new ModeloProyecto();
+
+                vista.setControlador(controlador);
+                controlador.setModelo(modelo);
+                controlador.setVista(vista);
+                modelo.setVista2(vista);
+
+                SwingUtilities.invokeLater(() -> vista.ejecuta());
+
+            }
+        });
+    }
+
+    public void setControlador(ControladorAlta controlador){
+        this.controlador=controlador;
+    }
 
     public void ejecuta(){
+        JRadioButton persona = new JRadioButton("Persona ");
+        persona.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
+        //persona.addItemListener(e -> System.out.println(e.getStateChange()));
+
+        JRadioButton tarea = new JRadioButton("Tarea ");
+        //tarea.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
+        //tarea.addItemListener(e -> System.out.println(e.getStateChange()));
+
+        ButtonGroup grupo = new ButtonGroup();
+        grupo.add(persona);
+        grupo.add(tarea);
+
+        JFrame ventana = new JFrame("Dar de alta ");
+
+        JPanel radio = new JPanel();
+        radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
+        radio.add(persona);
+        radio.add(tarea);
+        ventana.setContentPane(radio);
+        ventana.pack();
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setVisible(true);
+
+
+        /*
         JFrame ventana = new JFrame("Dar de alta");
 
         Container cont = ventana.getContentPane();
         cont.setLayout(new FlowLayout());
 
         JButton boton1 = new JButton("Persona ");
-        //boton1.addActionListener(e -> cont.pulsadoDarAlta(e.getActionCommand()));
+        boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
         boton1.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
         cont.add(boton1);
 
@@ -28,9 +79,12 @@ public class VistaAlta {
 
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setVisible(true);
+        ventana.setVisible(true);*/
+
 
     }
+
+
 
     /*
     public void altaPersona(){
@@ -122,3 +176,4 @@ public class VistaAlta {
     }
      */
 }
+
