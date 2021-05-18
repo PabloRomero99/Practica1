@@ -14,16 +14,6 @@ public class VistaIndice extends JFrame implements Serializable {
     private VistaAlta vistaAlta;
     public JPanel panel;
 
-    /*
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new VistaIndice().ejecuta2();
-            }
-        });
-    }
-     */
 
    public void ejecuta() {
 
@@ -48,12 +38,10 @@ public class VistaIndice extends JFrame implements Serializable {
        });
 
        Container contenedor = ventana.getContentPane();
-       contenedor.setLayout(new GridLayout(2,4));
-
+       contenedor.setLayout(new GridLayout(4,2));
 
 
        JButton boton1 = new JButton("Dar Alta "); //Personas(participantes del proyecto), Tara
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton1.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
        vistaAlta = new VistaAlta();
        boton1.addActionListener(e -> vistaAlta.ejecuta());

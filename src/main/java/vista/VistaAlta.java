@@ -7,14 +7,17 @@ import modelo.ModeloProyecto;
 
 
 import javax.swing.*;
+import java.awt.*;
 
-public class VistaAlta {
+public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     private static String ACEPTAR = "ACEPTAR";
-    private Controlador controlador;
+    private ImplementacionControlador controlador = new ImplementacionControlador();
+    private JTextField nombre;
+    private JTextField dni;
+    private JTextField correo;
 
 
-    /*
-    public static void main(String[] args) {
+public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -24,7 +27,7 @@ public class VistaAlta {
 
                 vista.setControlador(controlador);
                 controlador.setModelo(modelo);
-                controlador.setVista2(vista);
+                controlador.setVistaAlta(vista);
                 modelo.setVista2(vista);
 
                 SwingUtilities.invokeLater(() -> vista.ejecuta());
@@ -32,7 +35,7 @@ public class VistaAlta {
             }
         });
     }
-     */
+
 
 
     public void setControlador(ImplementacionControlador controlador){
@@ -43,6 +46,7 @@ public class VistaAlta {
 
         JRadioButton persona = new JRadioButton("Persona ");
 
+        //controlador = new ImplementacionControlador();
         persona.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
 
         JRadioButton tarea = new JRadioButton("Tarea ");
@@ -61,62 +65,41 @@ public class VistaAlta {
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-
-
-        /*
-        JFrame ventana = new JFrame("Dar de alta");
-
-        Container cont = ventana.getContentPane();
-        cont.setLayout(new FlowLayout());
-
-        JButton boton1 = new JButton("Persona ");
-        boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
-        boton1.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
-        cont.add(boton1);
-
-        JButton boton2 = new JButton("Tarea ");
-        //boton1.addActionListener(e -> cont.pulsadoDarAlta(e.getActionCommand()));
-        boton2.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
-        cont.add(boton2);
-
-        ventana.pack();
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setVisible(true);*/
-
-
     }
 
 
 
-    /*
+
+
+
     public void altaPersona(){
 
         JFrame ventana = new JFrame("Dar de alta a una Persona");
         Container cont = ventana.getContentPane();
 
-        JTextField nombrePersona = new JTextField(30);
-        JLabel namePersona = new JLabel("Nombre Persona: ");
+        nombre = new JTextField(30);
         cont.setLayout(new FlowLayout());
-        cont.add(namePersona);
-        cont.add(nombrePersona);
+        cont.add(new JLabel("Nombre Persona: "));
+        cont.add(nombre);
 
 
-        JTextField nifPersona = new JTextField(30);
-        JLabel nif = new JLabel("NIF: ");
+        dni = new JTextField(30);
         cont.setLayout(new FlowLayout());
-        cont.add(nif);
-        cont.add(nifPersona);
+        cont.add(new JLabel("NIF: "));
+        cont.add(dni);
 
 
-        JTextField correoPersona = new JTextField(30);
-        JLabel correo = new JLabel("Correo: ");
+        correo = new JTextField(30);
         cont.setLayout(new FlowLayout());
+        cont.add(new JLabel("Correo: "));
         cont.add(correo);
-        cont.add(correoPersona);
+
+
 
 
         JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> controlador.darAltaPersona());
+        //aceptar.addActionListener(e -> controlador.darAltaPersona());
+        aceptar.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);
 
@@ -130,52 +113,78 @@ public class VistaAlta {
         JFrame ventana = new JFrame("Alta tarea");
         Container cont = ventana.getContentPane();
 
-        JTextField tarea = new JTextField(30);
+        JTextField titulo = new JTextField(30);
         JLabel nameTarea = new JLabel("Nombre Tarea: ");
         cont.setLayout(new FlowLayout());
         cont.add(nameTarea);
-        cont.add(tarea);
+        cont.add(titulo);
 
-        JTextField tarea1 = new JTextField(30);
+        JTextField descripcion = new JTextField(30);
         JLabel descrip = new JLabel("Descrpción: ");
         cont.setLayout(new FlowLayout());
         cont.add(descrip);
-        cont.add(tarea1);
+        cont.add(descripcion);
 
-        JLabel titulo = new JLabel("Prioridad: ");
+        JLabel priority = new JLabel("Prioridad: ");
         JSlider prioridad = new JSlider(1,5);
-        ventana.add(titulo, BorderLayout.PAGE_START);
+        ventana.add(priority, BorderLayout.PAGE_START);
         ventana.add(prioridad, BorderLayout.CENTER);
         prioridad.addChangeListener(changeEvent -> {
             JSlider slider = (JSlider)changeEvent.getSource();
-            titulo.setText("Prioridad: " + slider.getValue());
+            priority.setText("Prioridad: " + slider.getValue());
         });
         cont.setLayout(new FlowLayout());
         cont.add(prioridad);
-        cont.add(titulo);
+        cont.add(priority);
+
+        //_____________________________________________________
+
+        /**
+         JRadioButton doc = new JRadioButton("Documentación ");
+         //doc.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
+         doc.addItemListener(e -> System.out.println((e.getStateChange())));
+
+         JRadioButton pagweb = new JRadioButton("Página Web ");
+         JRadioButton prog = new JRadioButton("Programa ");
+
+         ButtonGroup grupo = new ButtonGroup();
+         grupo.add(doc);
+         grupo.add(pagweb);
+         grupo.add(prog);
+
+         JPanel radio = new JPanel();
+         radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
+         radio.add(doc);
+         radio.add(pagweb);
+         radio.add(prog);
+         ventana.setContentPane(radio);
+         */
 
 
         JButton aceptar = new JButton(ACEPTAR);
-        //aceptar.addActionListener(e -> controlador.compruebaProyecto(e.getActionCommand()));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
+
         cont.add(aceptar);
 
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
-
+    @Override
     public String getNombrePersona() {
-        return "Paco";
+        return nombre.getText();
     }
 
+    @Override
     public String getDNI() {
-        return "42";
+        return dni.getText();
     }
 
+    @Override
     public String getCorreo() {
-        return "paco@gmail.com";
+        return correo.getText();
     }
-     */
+
 }
 

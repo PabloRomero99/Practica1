@@ -1,5 +1,9 @@
 package modelo;
 
+import modelo.Tarea.Facturacion.ConsumoInterno;
+import modelo.Tarea.Facturacion.Facturacion;
+import modelo.Tarea.Resultado.Resultado;
+import modelo.Tarea.Tarea;
 import vista.Vista;
 import vista.VistaAlta;
 
@@ -8,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class ModeloProyecto implements Modelo, Serializable {
     private Vista vista;
@@ -39,16 +44,33 @@ public class ModeloProyecto implements Modelo, Serializable {
 
     @Override
     public void pulsadorDarAlta(int actionCommand) {
+        vistaAlta = new VistaAlta();
         switch (actionCommand) {
             case 1:
                 System.out.println("PERSONA ");
-
+                vistaAlta.altaPersona();
                 break;
             case 2:
                 System.out.println("TAREA ");
+                vistaAlta.altaTarea();
                 break;
         }
     }
+
+    @Override
+    public void darAltaPersona(String nombre, String dni, String correo) {
+        Persona persona = new Persona(nombre,dni,correo);
+        System.out.println("La persona "+ persona + " ha sido creada");
+    }
+
+    @Override
+    public void darAltaTarea(String titulotarea, String descrip, int priority) {//,String identificador, int horas_invertidas,int tipo_resultado,double coste, Facturacion facturacion
+        Resultado resultado = new Resultado("identificador",15,true);
+        Facturacion facturacion = new ConsumoInterno();
+        Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,25,facturacion);
+        System.out.println("La tarea" + tarea + " ha sido creada");
+    }
+
 
 }
 
