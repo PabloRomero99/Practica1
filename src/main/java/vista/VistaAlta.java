@@ -1,13 +1,12 @@
 package vista;
 
-import controlador.Controlador;
-
 import controlador.ImplementacionControlador;
 import modelo.ModeloProyecto;
 
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     private static String ACEPTAR = "ACEPTAR";
@@ -133,6 +132,8 @@ public static void main(String[] args) {
             JSlider slider = (JSlider)changeEvent.getSource();
             priority.setText("Prioridad: " + slider.getValue());
         });
+
+        priority.setText("Prioridad: " + prioridad.getValue());
         cont.setLayout(new FlowLayout());
         cont.add(prioridad);
         cont.add(priority);

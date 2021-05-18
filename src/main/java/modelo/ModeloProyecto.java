@@ -6,6 +6,7 @@ import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.Vista;
 import vista.VistaAlta;
+import vista.VistaInsertarEliminar;
 
 
 import java.io.FileInputStream;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 public class ModeloProyecto implements Modelo, Serializable {
     private Vista vista;
     private VistaAlta vistaAlta;
+    private VistaInsertarEliminar vistaInsertarEliminar;
 
     public void setVista(Vista vista){
         this.vista=vista;
@@ -25,6 +27,8 @@ public class ModeloProyecto implements Modelo, Serializable {
     public void setVista2(VistaAlta vista){
         this.vistaAlta=vista;
     }
+
+    public void setVista3(VistaInsertarEliminar vista){this.vistaInsertarEliminar = vista;}
 
     @Override
     public void iniciaProyecto(String nombreProyecto) {
@@ -69,6 +73,12 @@ public class ModeloProyecto implements Modelo, Serializable {
         Facturacion facturacion = new ConsumoInterno();
         Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,25,facturacion);
         System.out.println("La tarea" + tarea + " ha sido creada");
+    }
+
+    @Override
+    public void pulsadorInsertarEliminar() {
+        vistaInsertarEliminar = new VistaInsertarEliminar();
+        vistaInsertarEliminar.ventanaInsertarEliminar();
     }
 
 

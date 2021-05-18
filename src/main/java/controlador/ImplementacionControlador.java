@@ -4,6 +4,7 @@ import modelo.Modelo;
 import modelo.ModeloProyecto;
 import vista.Vista;
 import vista.VistaAlta;
+import vista.VistaInsertarEliminar;
 
 import javax.swing.*;
 
@@ -11,6 +12,7 @@ public class ImplementacionControlador implements Controlador {
     private Modelo modelo;
     private Vista vista;
     private VistaAlta vistaAlta ;
+    private VistaInsertarEliminar vistaInsertarEliminar;
 
     public void setVista(Vista vista){
         this.vista=vista;
@@ -19,6 +21,8 @@ public class ImplementacionControlador implements Controlador {
     public void setVistaAlta(VistaAlta vista){
         this.vistaAlta =vista;
     }
+
+    public void setVistaInseElim(VistaInsertarEliminar vista){this.vistaInsertarEliminar = vista; }
 
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
@@ -61,15 +65,16 @@ public class ImplementacionControlador implements Controlador {
         modelo = new ModeloProyecto();
         String titulotarea = titulo.getText();
         String descrip = descripcion.getText();
-        int priority = prioridad.getY();
+        int priority = prioridad.getValue();
         modelo.darAltaTarea(titulotarea,descrip,priority);
 
     }
 
     @Override
-    public void pulsadoInsertarEliminar(int actionCommand) {
+    public void pulsadoInsertarEliminar() {
+        System.out.println("si");
         modelo = new ModeloProyecto();
-       // modelo.pulsadoInsertarEliminar(actionCommand);
+        modelo.pulsadorInsertarEliminar();
     }
 
     @Override
