@@ -17,10 +17,10 @@ public class VistaIndice extends JFrame implements Serializable {
     private VistaAlta vistaAlta;
     private VistaInsertarEliminar vistaInsertarEliminar;
     private VistaPrincipal vistaPrincipal;
-    private VistaAlta vistaMarcarFinalizada;
-    private VistaAlta vistaListado;
-    private VistaAlta vistaConsultaPrecio;
-    private VistaAlta vistaModificaciones;
+    //private VistaMarcarFinalizada vistaMarcarFinalizada;
+    private VistaListado vistaListado;
+    //private VistaConsultarPrecio vistaConsultaPrecio;
+    //private VistaAlta vistaModificaciones;
     private VistaIndice vistaIndice;
     public JPanel panel;
     String nombreProyecto;
@@ -63,13 +63,14 @@ public class VistaIndice extends JFrame implements Serializable {
        boton1.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
        vistaAlta = new VistaAlta();
        boton1.addActionListener(e -> vistaAlta.ejecuta());
-       //boton1.addActionListener(e-> ventana.setVisible(false));
+       boton1.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton1);
 
        JButton boton2 = new JButton("Insertar "); //Responsables, Colaboradores, Etiqutas
        boton2.addActionListener(e -> System.out.println("Boton de insertar pulsado"));
        vistaInsertarEliminar = new VistaInsertarEliminar();
        boton2.addActionListener(e -> vistaInsertarEliminar.ejecuta());
+       boton2.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton2);
 
        JButton boton3 = new JButton("Eliminar "); //Colaboradores,Etiquetas
@@ -83,8 +84,10 @@ public class VistaIndice extends JFrame implements Serializable {
        contenedor.add(boton4);
 
        JButton boton5 = new JButton("Listado de Personas");//Totales del proyecto, las cuales no son responsables en ninguna tarea
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton5.addActionListener(e -> System.out.println("Boton Listado de Personas pulsado"));
+       vistaListado = new VistaListado();
+       boton5.addActionListener(e -> vistaListado.ejecutaListadoPersonas());
+       boton5.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton5);
 
        JButton boton6 = new JButton("Listado de Tareas ");//Totales en el proyecto, en las cuales no participa nadie

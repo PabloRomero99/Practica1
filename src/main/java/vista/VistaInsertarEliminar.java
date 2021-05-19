@@ -34,7 +34,7 @@ public class VistaInsertarEliminar extends JFrame implements Vista{
                 vista.setControlador(controlador);
                 controlador.setModelo(modelo);
                 controlador.setVistaInseElim(vista);
-                modelo.setVista3(vista);
+                modelo.setVistaInsertarEliminar(vista);
 
                 SwingUtilities.invokeLater(() -> vista.ejecuta());
 
