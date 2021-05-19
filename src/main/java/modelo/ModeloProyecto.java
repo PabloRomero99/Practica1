@@ -4,10 +4,7 @@ import modelo.Tarea.Facturacion.ConsumoInterno;
 import modelo.Tarea.Facturacion.Facturacion;
 import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
-import vista.Vista;
-import vista.VistaAlta;
-import vista.VistaEliminar;
-import vista.VistaInsertarEliminar;
+import vista.*;
 
 
 import java.io.FileInputStream;
@@ -22,6 +19,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     private VistaAlta vistaAlta;
     private VistaInsertarEliminar vistaInsertarEliminar;
     private VistaEliminar vistaEliminar;
+    private VistaListado vistaListado;
     private Proyecto proyecto;
 
 
@@ -29,11 +27,15 @@ public class ModeloProyecto implements Modelo, Serializable {
         this.vista=vista;
     }
 
-    public void setVista2(VistaAlta vista){
+    public void setVistaAlta(VistaAlta vista){
         this.vistaAlta=vista;
     }
 
-    public void setVista3(VistaInsertarEliminar vista){this.vistaInsertarEliminar = vista;}
+    public void setVistaListado(VistaListado vistaListado) {
+        this.vistaListado = vistaListado;
+    }
+
+    public void setVistaInsertarEliminar(VistaInsertarEliminar vista){this.vistaInsertarEliminar = vista;}
 
     @Override
     public void iniciaProyecto(String nombreProyecto) {
@@ -67,6 +69,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     public void darAltaPersona(String nombre, String dni, String correo) {
         Persona persona = new Persona(nombre,dni,correo);
         System.out.println("La persona "+ persona + " ha sido creada");
+        //proyecto.addParticipante(persona);
     }
 
     @Override

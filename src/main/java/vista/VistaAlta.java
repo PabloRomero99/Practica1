@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     private static String ACEPTAR = "ACEPTAR";
@@ -31,7 +30,7 @@ public static void main(String[] args) {
                 vista.setControlador(controlador);
                 controlador.setModelo(modelo);
                 controlador.setVistaAlta(vista);
-                modelo.setVista2(vista);
+                modelo.setVistaAlta(vista);
 
                 SwingUtilities.invokeLater(() -> vista.ejecuta());
 
@@ -54,7 +53,7 @@ public static void main(String[] args) {
         persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
         persona.addItemListener(e-> ventana.setVisible(false));
 
-        JRadioButton tarea = new JRadioButton("Tarea",false);
+        JRadioButton tarea = new JRadioButton("Tarea");
         tarea.addItemListener(e -> controlador.pulsadoDarAlta(tarea.getText()));
         tarea.addItemListener(e-> ventana.setVisible(false));
 

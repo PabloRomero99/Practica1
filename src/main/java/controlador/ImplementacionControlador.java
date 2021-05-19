@@ -5,6 +5,7 @@ import modelo.ModeloProyecto;
 import vista.Vista;
 import vista.VistaAlta;
 import vista.VistaInsertarEliminar;
+import vista.VistaListado;
 
 import javax.swing.*;
 
@@ -13,6 +14,11 @@ public class ImplementacionControlador implements Controlador {
     private Vista vista;
     private VistaAlta vistaAlta ;
     private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaListado vistaListado;
+
+    public void setVistaListado(VistaListado vistaListado) {
+        this.vistaListado = vistaListado;
+    }
 
     public void setVista(Vista vista){
         this.vista=vista;
