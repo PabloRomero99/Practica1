@@ -77,12 +77,11 @@ public class VistaIndice extends JFrame implements Serializable {
        JButton boton3 = new JButton("Eliminar "); //Colaboradores,Etiquetas
        boton3.addActionListener(e -> System.out.println("Boton de eliminar pulsado "));
        vistaEliminar = new VistaEliminar();
-       boton2.addActionListener(e -> vistaEliminar.ejecuta());
-       boton2.addActionListener(e-> ventana.setVisible(false));
+       boton3.addActionListener(e -> vistaEliminar.ejecuta());
+       boton3.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton3);
 
        JButton boton4 = new JButton("Marcar tarea finalizada ");
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton4.addActionListener(e -> System.out.println("Boton tarea finalizada pulsado"));
        contenedor.add(boton4);
 
@@ -94,19 +93,16 @@ public class VistaIndice extends JFrame implements Serializable {
        contenedor.add(boton5);
 
        JButton boton6 = new JButton("Listado de Tareas ");//Totales en el proyecto, en las cuales no participa nadie
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton6.addActionListener(e -> System.out.println("Boton Listado de Tareas pulsado"));
        contenedor.add(boton6);
 
 
        JButton boton7 = new JButton("Consultar precio "); //Total del proyecto + tarea
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton7.addActionListener(e -> System.out.println("Boton consultar precio pulsado"));
        contenedor.add(boton7);
 
 
        JButton boton8 = new JButton("Modificaciones "); //Coste, Tipo de facturacion
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton8.addActionListener(e -> System.out.println("Boton modificaciones pulsado"));
        contenedor.add(boton8);
 

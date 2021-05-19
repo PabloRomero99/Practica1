@@ -72,7 +72,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     public void darAltaPersona(String nombre, String dni, String correo) {
         Persona persona = new Persona(nombre,dni,correo);
         System.out.println("La persona "+ persona + " ha sido creada");
-        //proyecto.addParticipante(persona);
+        proyecto.addParticipante(persona);
     }
 
     @Override

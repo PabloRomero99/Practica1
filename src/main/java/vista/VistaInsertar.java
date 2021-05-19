@@ -22,35 +22,39 @@ public class VistaInsertar extends JFrame implements Vista{
         this.controlador=controlador;
     }
 
-    public void ejecuta(){
-        JFrame ventana = new JFrame("Escoge tarea");
 
-        Container cont = ventana.getContentPane();
+     public void ejecuta(){
+     JFrame ventana = new JFrame("Escoge tarea");
 
-        nTarea = new JTextField(30);
-        cont.setLayout(new FlowLayout());
-        cont.add(new JLabel("Nombre de la tarea donde quieres modificar: "));
-        cont.add(nTarea);
-        JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar"));
-        aceptar.addItemListener(e-> ventana.setVisible(false));
-        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+     Container cont = ventana.getContentPane();
 
-        cont.add(aceptar);
+     nTarea = new JTextField(30);
+     cont.setLayout(new FlowLayout());
+     cont.add(new JLabel("Nombre de la tarea donde quieres modificar: "));
+     cont.add(nTarea);
+     JButton aceptar = new JButton(ACEPTAR);
+     aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar"));
+     aceptar.addItemListener(e-> ventana.setVisible(false));
+     aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
 
-        ventana.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                vistaIndice=new VistaIndice();
-                vistaIndice.ejecuta();
-                ventana.setVisible(true);
-            }
-        });
-        ventana.pack();
-        ventana.setVisible(true);    }
+     cont.add(aceptar);
+
+     ventana.addWindowListener(new WindowAdapter() {
+    @Override
+    public void windowClosing(WindowEvent e) {
+    vistaIndice=new VistaIndice();
+    vistaIndice.ejecuta();
+    ventana.setVisible(true);
+    }
+    });
+     ventana.pack();
+     ventana.setVisible(true);
+     }
+
 
     public void ejecutaInsertar(){
         JFrame ventana = new JFrame("Insertar Colaborador, Etiqueta o Responsable ");
+
 
         JRadioButton colaborador = new JRadioButton("Colaborador");
 
@@ -82,6 +86,7 @@ public class VistaInsertar extends JFrame implements Vista{
         radio.add(responsable);
         ventana.setContentPane(radio);
         ventana.pack();
+        ventana.setVisible(true);
         //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ventana.addWindowListener(new WindowAdapter() {
@@ -92,11 +97,10 @@ public class VistaInsertar extends JFrame implements Vista{
                 ventana.setVisible(true);
             }
         });
-        ventana.setVisible(true);
+
     }
 
     public void insertarColaborador(){
-
         JFrame ventana = new JFrame("Insertar un colaborador a la tarea");
         Container cont = ventana.getContentPane();
 
