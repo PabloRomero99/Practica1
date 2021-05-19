@@ -3,7 +3,7 @@ package modelo;
 public interface Modelo {
     void iniciaProyecto(String nombreProyecto);
 
-    void pulsadorDarAlta(int actionCommand);
+    void pulsadorDarAlta(String actionCommand);
 
     void darAltaPersona(String nombre, String dni, String correo);
 

@@ -32,7 +32,7 @@ public class VistaPrincipal implements Vista{
 
 
         vistaIndice = new VistaIndice();
-        aceptar.addActionListener(e -> vistaIndice.ejecuta());
+        aceptar.addActionListener(e -> vistaIndice.setNombreProject(this.nombreProyecto.getText()));
         aceptar.addActionListener(e-> ventana.setVisible(false));
         cont.add(aceptar);
 

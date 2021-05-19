@@ -7,24 +7,35 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class VistaIndice extends JFrame implements Serializable {
     private Controlador controlador;
     private VistaAlta vistaAlta;
     public JPanel panel;
+    String nombreProyecto;
+
+
+    public void setNombreProject(String nombreproyecto){
+        this.nombreProyecto=nombreproyecto;
+        ejecuta();
+    }
 
 
    public void ejecuta() {
 
-       JFrame ventana = new JFrame("Proyecto");
+       System.out.println(nombreProyecto);
+
+       JFrame ventana = new JFrame(nombreProyecto);
        ventana.addWindowListener(new WindowAdapter() {
            @Override
            public void windowClosing(WindowEvent e) {
                //Aqui es donde tenemos que añadir el código, para guardar los datos en el fichero.
-               /**
                 try {
-                FileOutputStream fos = new FileOutputStream(nombre + ".bin");
+                FileOutputStream fos = new FileOutputStream(nombreProyecto + ".bin");
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(this);
                 oos.close();
@@ -32,7 +43,7 @@ public class VistaIndice extends JFrame implements Serializable {
                 }catch (IOException exception){
                 System.out.println("No se han podido guardar los datos");
                 }
-                */
+
                System.exit(0);
            }
        });
@@ -41,7 +52,7 @@ public class VistaIndice extends JFrame implements Serializable {
        contenedor.setLayout(new GridLayout(4,2));
 
 
-       JButton boton1 = new JButton("Dar Alta "); //Personas(participantes del proyecto), Tara
+       JButton boton1 = new JButton("Dar Alta "); //Personas(participantes del proyecto), Tarea
        boton1.addActionListener(e -> System.out.println("Boton dar alta pulsado"));
        vistaAlta = new VistaAlta();
        boton1.addActionListener(e -> vistaAlta.ejecuta());

@@ -6,11 +6,15 @@ import modelo.ModeloProyecto;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     private static String ACEPTAR = "ACEPTAR";
     private ImplementacionControlador controlador = new ImplementacionControlador();
+    private VistaAlta vistaAlta;
+    private VistaIndice vistaIndice;
     private JTextField nombre;
     private JTextField dni;
     private JTextField correo;
@@ -43,10 +47,12 @@ public static void main(String[] args) {
 
     public void ejecuta(){
 
-        JRadioButton persona = new JRadioButton("Persona ");
+        JFrame ventana = new JFrame("Dar de alta ");
 
-        //controlador = new ImplementacionControlador();
-        persona.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
+        JRadioButton persona = new JRadioButton("Persona");
+
+        persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
+        persona.addItemListener(e-> ventana.setVisible(false));
 
         JRadioButton tarea = new JRadioButton("Tarea ");
 
@@ -54,15 +60,21 @@ public static void main(String[] args) {
         grupo.add(persona);
         grupo.add(tarea);
 
-        JFrame ventana = new JFrame("Dar de alta ");
-
         JPanel radio = new JPanel();
         radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
         radio.add(persona);
         radio.add(tarea);
         ventana.setContentPane(radio);
         ventana.pack();
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice=new VistaIndice();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
         ventana.setVisible(true);
     }
 
@@ -102,8 +114,18 @@ public static void main(String[] args) {
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);
 
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                vistaAlta=new VistaAlta();
+                vistaAlta.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+
         ventana.pack();
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
 
     }
@@ -138,17 +160,29 @@ public static void main(String[] args) {
         cont.add(prioridad);
         cont.add(priority);
 
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaAlta=new VistaAlta();
+                vistaAlta.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+
         //_____________________________________________________
 
-        /**
+
          JRadioButton doc = new JRadioButton("Documentación ");
-         //doc.addItemListener(e -> controlador.pulsadoDarAlta(e.getStateChange()));
-         doc.addItemListener(e -> System.out.println((e.getStateChange())));
+         //doc.addItemListener(e -> controlador.pulsadoDarAlta2(doc.getText()));
 
          JRadioButton pagweb = new JRadioButton("Página Web ");
-         JRadioButton prog = new JRadioButton("Programa ");
+         //pagweb.addItemListener(e -> controlador.pulsadoDarAlta2(doc.getText()));
 
-         ButtonGroup grupo = new ButtonGroup();
+        JRadioButton prog = new JRadioButton("Programa ");
+        //prog.addItemListener(e -> controlador.pulsadoDarAlta2(doc.getText()));
+
+
+        ButtonGroup grupo = new ButtonGroup();
          grupo.add(doc);
          grupo.add(pagweb);
          grupo.add(prog);
@@ -159,7 +193,7 @@ public static void main(String[] args) {
          radio.add(pagweb);
          radio.add(prog);
          ventana.setContentPane(radio);
-         */
+
 
 
         JButton aceptar = new JButton(ACEPTAR);
@@ -169,7 +203,7 @@ public static void main(String[] args) {
         cont.add(aceptar);
 
         ventana.pack();
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
     @Override
