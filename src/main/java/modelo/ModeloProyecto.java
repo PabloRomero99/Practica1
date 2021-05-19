@@ -6,6 +6,7 @@ import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.Vista;
 import vista.VistaAlta;
+import vista.VistaEliminar;
 import vista.VistaInsertarEliminar;
 
 
@@ -19,6 +20,8 @@ public class ModeloProyecto implements Modelo, Serializable {
     private Vista vista;
     private VistaAlta vistaAlta;
     private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaEliminar vistaEliminar;
+    private Proyecto proyecto;
 
 
     public void setVista(Vista vista){
