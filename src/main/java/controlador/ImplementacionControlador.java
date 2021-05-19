@@ -35,22 +35,16 @@ public class ImplementacionControlador implements Controlador {
 
     }
 
+
     @Override
-    public void pulsadoDarAlta(int actionCommand) {
+    public void pulsadoDarAlta(String actionCommand) {
         modelo = new ModeloProyecto();
         modelo.pulsadorDarAlta(actionCommand);
     }
 
-    /*
-    @Override
-    public void darAltaPersona() {
-        vistaAlta= new VistaAlta();
-        String nombre = vistaAlta.getNombrePersona();
-        String dni = vistaAlta.getDNI();
-        String correo = vistaAlta.getCorreo();
-        modelo.darAltaPersona(nombre,dni,correo);
-    }
-     */
+
+
+
     @Override
     public void darAltaPersona(JTextField nombre, JTextField dni, JTextField correo) {
         modelo = new ModeloProyecto();
@@ -74,8 +68,22 @@ public class ImplementacionControlador implements Controlador {
     public void pulsadoInsertarEliminar() {
         System.out.println("si");
         modelo = new ModeloProyecto();
-        modelo.pulsadorInsertarEliminar();
+        modelo.pulsadorAceptarInsertarEliminar();
     }
+
+
+    @Override
+    public void pulsadoInsertarEliminar(String actionCommand) {
+        modelo = new ModeloProyecto();
+        //modelo.pulsadorInsertarEliminar(actionCommand);
+    }
+
+    /*
+    @Override
+    public void pulsadoEliminar() {
+
+    }
+     */
 
     @Override
     public void insertaPersona(JTextField clave) {

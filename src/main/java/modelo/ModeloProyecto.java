@@ -20,6 +20,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     private VistaAlta vistaAlta;
     private VistaInsertarEliminar vistaInsertarEliminar;
 
+
     public void setVista(Vista vista){
         this.vista=vista;
     }
@@ -47,17 +48,14 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorDarAlta(int actionCommand) {
+    public void pulsadorDarAlta(String actionCommand) {
         vistaAlta = new VistaAlta();
-        switch (actionCommand) {
-            case 1:
-                System.out.println("PERSONA ");
-                vistaAlta.altaPersona();
-                break;
-            case 2:
-                System.out.println("TAREA ");
-                vistaAlta.altaTarea();
-                break;
+        if (actionCommand.equals("Persona")){
+            System.out.println("PERSONA ");
+            vistaAlta.altaPersona();
+        }else {
+            System.out.println("TAREA ");
+            vistaAlta.altaTarea();
         }
     }
 

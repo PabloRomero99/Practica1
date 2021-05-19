@@ -4,8 +4,9 @@ import javax.swing.*;
 
 public interface Controlador {
     void iniciaProyecto();
-    void pulsadoDarAlta(int actionCommand);
-    //void darAltaPersona();
+
+    void pulsadoDarAlta(String actionCommand);
+
     void darAltaPersona(JTextField nombre,JTextField dni,JTextField correo);
 
     void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad);
