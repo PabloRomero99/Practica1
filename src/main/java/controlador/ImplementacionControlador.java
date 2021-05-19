@@ -65,8 +65,7 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void pulsadoInsertarEliminar() {
-        System.out.println("si");
+    public void pulsadoAceptarInsertarEliminar() {
         modelo = new ModeloProyecto();
         modelo.pulsadorAceptarInsertarEliminar();
     }

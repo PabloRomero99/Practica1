@@ -9,5 +9,11 @@ public interface Modelo {
 
     void darAltaTarea(String titulotarea, String descrip, int priority);
 
-    void pulsadorInsertarEliminar();
+    void pulsadorAceptarInsertarEliminar();
+
+    void pulsadorInsertarEliminar(String actionCommand);
+
+    void pulsadorInsertar(String actionCommand);
+
+    void pulsadorEliminar(String actionCommand);
 }
