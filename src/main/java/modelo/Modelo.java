@@ -13,7 +13,7 @@ public interface Modelo {
 
     void pulsandoInsertar(String actionCommand);
 
-    void insertandoColaborador(String clave);
+    void insertandoColaborador(String clave, String nomTarea) throws Exception;
 
     void pulsandoEliminar(String actionCommand);
 

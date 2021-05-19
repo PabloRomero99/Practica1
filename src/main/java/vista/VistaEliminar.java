@@ -32,7 +32,7 @@ public class VistaEliminar extends JFrame implements Vista{
         cont.add(nTarea);
 
         JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Eliminar"));
+        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Eliminar", nTarea.getText()));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);
 

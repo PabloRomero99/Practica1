@@ -9,11 +9,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class VistaInsertar extends JFrame implements Vista{
-    private JTextField nombreProyecto;
     private VistaIndice vistaIndice;
     private static String ACEPTAR = "ACEPTAR";
     private JTextField clave;
     private JTextField nTarea;
+    private String nombreTarea;
 
     private VistaInsertar vistaInsertar;
     private Controlador controlador = new ImplementacionControlador();
@@ -23,32 +23,28 @@ public class VistaInsertar extends JFrame implements Vista{
     }
 
 
-     public void ejecuta(){
-     JFrame ventana = new JFrame("Escoge tarea");
+     public void ejecuta() {
+         JFrame ventana = new JFrame("Inicio");
+         Container cont = ventana.getContentPane();
+         JTextField nomTarea = new JTextField(30);
+         JLabel nTarea = new JLabel("Nombre de la tarea donde quieres modificar: ");
+         cont.setLayout(new FlowLayout());
+         cont.add(nTarea);
+         cont.add(nomTarea);
 
-     Container cont = ventana.getContentPane();
 
-     nTarea = new JTextField(30);
-     cont.setLayout(new FlowLayout());
-     cont.add(new JLabel("Nombre de la tarea donde quieres modificar: "));
-     cont.add(nTarea);
-     JButton aceptar = new JButton(ACEPTAR);
-     aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar"));
-     aceptar.addItemListener(e-> ventana.setVisible(false));
-     aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+         JButton aceptar = new JButton(ACEPTAR);
+         vistaInsertar = new VistaInsertar();
+         aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar", nomTarea.getText()));
+         //aceptar.addActionListener(e -> vistaInsertar.setNombreProject(nTarea.getText()));
+         aceptar.addActionListener(e -> vistaInsertar.setNombreTarea(nomTarea.getText()));
+         aceptar.addActionListener(e -> ventana.setVisible(false));
+         cont.add(aceptar);
 
-     cont.add(aceptar);
 
-     ventana.addWindowListener(new WindowAdapter() {
-    @Override
-    public void windowClosing(WindowEvent e) {
-    vistaIndice=new VistaIndice();
-    vistaIndice.ejecuta();
-    ventana.setVisible(true);
-    }
-    });
-     ventana.pack();
-     ventana.setVisible(true);
+         ventana.pack();
+         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         ventana.setVisible(true);
      }
 
 
@@ -110,7 +106,13 @@ public class VistaInsertar extends JFrame implements Vista{
         cont.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> controlador.insertaColaborador(clave.getText()));
+        aceptar.addActionListener(e -> {
+            try {
+                controlador.insertaColaborador(clave.getText(), getNombreTarea());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         aceptar.addItemListener(e-> ventana.setVisible(false));
 
@@ -185,6 +187,32 @@ public class VistaInsertar extends JFrame implements Vista{
             }
         });
         ventana.setVisible(true);
+    }
+
+    public void satisfactorio(){
+        JFrame ventana = new JFrame("Todo fue correctamente");
+        Container cont = ventana.getContentPane();
+        cont.add(new JLabel("Todo fue correctamente"));
+    }
+
+    public void errorTarea(){
+        JFrame ventana = new JFrame("Error");
+        Container cont = ventana.getContentPane();
+        cont.add(new JLabel("La tarea no existe"));
+    }
+
+    public void errorColaborador(){
+        JFrame ventana = new JFrame("Error");
+        Container cont = ventana.getContentPane();
+        cont.add(new JLabel("El colaborador no existe"));
+    }
+
+    public void setNombreTarea(String nombreTarea){
+        this.nombreTarea = nombreTarea;
+    }
+
+    public String getNombreTarea(){
+        return nombreTarea;
     }
 
     public String getNombreProyecto(){

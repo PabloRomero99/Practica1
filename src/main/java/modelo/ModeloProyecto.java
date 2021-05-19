@@ -5,13 +5,15 @@ import modelo.Tarea.Facturacion.Facturacion;
 import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.*;
-
+import modelo.genericos.clases.UtilidadesParaListas;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import static modelo.genericos.clases.UtilidadesParaListas.devuelveElemento;
 
 
 public class ModeloProyecto implements Modelo, Serializable {
@@ -40,6 +42,16 @@ public class ModeloProyecto implements Modelo, Serializable {
 
     public void setVistaEliminar(VistaEliminar vista){this.vistaEliminar = vista;}
 
+    public void setProyecto(Proyecto p){
+        System.out.println(p.getNombre());
+        this.proyecto = p;
+    }
+
+    public Proyecto getProyecto(){
+        System.out.println(proyecto.getNombre());
+        return this.proyecto;
+    }
+
     @Override
     public void iniciaProyecto(String nombreProyecto) {
         System.out.println(nombreProyecto);
@@ -48,11 +60,12 @@ public class ModeloProyecto implements Modelo, Serializable {
             ObjectInputStream ois = new ObjectInputStream(fis);
             Proyecto proyecto = (Proyecto) ois.readObject();
             ois.close();
-            this.proyecto = proyecto;
+            System.out.println(proyecto.getNombre());
+            setProyecto(proyecto);
 
         }catch(IOException | ClassNotFoundException e){
             System.out.println("El proyecto con nombre " + nombreProyecto + " se ha creado correctamente\n\n");
-            this.proyecto =  new Proyecto(nombreProyecto);
+            setProyecto(new Proyecto(nombreProyecto));
         }
     }
 
@@ -114,9 +127,28 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void insertandoColaborador(String clave) {
-        System.out.println("guapo");
+    public void insertandoColaborador(String clave, String nomTarea) throws Exception {
+        vistaInsertar = new VistaInsertar();
+        Proyecto pr = getProyecto();
+        if (pr.getTareas().isEmpty()) {
+            vistaInsertar.errorTarea();
+        } else {
+            if (!pr.getParticipantes().isEmpty()) {
+                try {
+                    Persona p = devuelveElemento(clave, pr.getParticipantes());
+                    Tarea t = devuelveElemento(nomTarea, pr.getTareas());
+                    t.addColaboradores(p);
+                    System.out.println("Todo fue bien");
+                    vistaInsertar.satisfactorio();
+                } catch (Exception e) {
+                    System.out.println("Ha ocurrido un problema");
+                }
+            }else{
+                vistaInsertar.errorColaborador();
+            }
+        }
     }
+
 
     @Override
     public void pulsandoEliminar(String actionCommand) {

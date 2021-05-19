@@ -40,7 +40,6 @@ public class VistaPrincipal implements Vista{
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-
     }
 
     public String getNombreProyecto() {

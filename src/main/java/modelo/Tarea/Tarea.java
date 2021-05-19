@@ -210,7 +210,7 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
             System.out.println("La etiqueta " + etiqueta + " se ha borrado correctamente");
     }
 
-/*
+
     public void addColaboradores(Persona persona) {
         if (persona != null) {
             if (!encuentraElementos(persona, colaboradores)) {
@@ -265,7 +265,7 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
             System.out.println("Esta persona no pertenece al proyecto, o el DNI no es correcto , porfavor escoge una persona que " +
                     "este registrada en el proyecto o un DNI correcto(Elija opción 8 para consultar información).");
         }
-    }*/
+    }
 
     public double calculaFacturacion() {
         return tipoFacturacion.conseguirCoste(this.coste);

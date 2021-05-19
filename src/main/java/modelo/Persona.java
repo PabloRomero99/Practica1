@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Persona implements Serializable {
+public class Persona implements Serializable, tieneClave, tieneLista{
     private String nombre;           //nombre de la persona
     private String DNI;              //identificador principal de una persona
     private String correo;           //correo de la persona
@@ -83,7 +83,7 @@ public class Persona implements Serializable {
         return "- Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();
     }
 
-    /*
+
     @Override
     public List getLista() {
         return listaTareasResponsable;
@@ -93,5 +93,5 @@ public class Persona implements Serializable {
     public Object getClave() {
         return DNI;
     }
-     */
+
 }
