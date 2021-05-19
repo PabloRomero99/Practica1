@@ -111,7 +111,6 @@ public static void main(String[] args) {
 
 
         JButton aceptar = new JButton(ACEPTAR);
-        //aceptar.addActionListener(e -> controlador.darAltaPersona());
         aceptar.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);

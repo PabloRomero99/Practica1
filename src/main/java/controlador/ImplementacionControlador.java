@@ -63,7 +63,6 @@ public class ImplementacionControlador implements Controlador {
         String descrip = descripcion.getText();
         int priority = prioridad.getValue();
         modelo.darAltaTarea(titulotarea,descrip,priority);
-
     }
 
     @Override

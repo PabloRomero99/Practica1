@@ -26,4 +26,6 @@ public interface Controlador {
     void eliminaPersona(String clave);
 
     void eliminaEtiqueta(String clave);
+
+    void pulsadoListarPersona(String actionCommand);
 }

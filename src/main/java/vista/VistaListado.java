@@ -42,12 +42,12 @@ public class VistaListado {
         JFrame ventana = new JFrame("Listado Personas ");
 
         JRadioButton participante = new JRadioButton("Personas que participan en el proyecto");
-        //participante.addItemListener(e -> controlador.pulsadoListarPersona(persona.getText()));
+        participante.addItemListener(e -> controlador.pulsadoListarPersona(participante.getText()));
         participante.addItemListener(e-> ventana.setVisible(false));
 
 
         JRadioButton no_participante = new JRadioButton("Personas que no participan en ninguna tarea");
-        //no_participante.addItemListener(e -> controlador.pulsadoListarPersona(no_participante.getText()));
+        no_participante.addItemListener(e -> controlador.pulsadoListarPersona(no_participante.getText()));
         no_participante.addItemListener(e-> ventana.setVisible(false));
 
 
@@ -71,6 +71,9 @@ public class VistaListado {
             }
         });
         ventana.setVisible(true);
+    }
+
+    public void mostrarListadoPersonas(){
 
     }
 }

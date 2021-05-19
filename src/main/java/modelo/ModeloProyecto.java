@@ -128,6 +128,18 @@ public class ModeloProyecto implements Modelo, Serializable {
             vistaEliminar.eliminarEtiqueta();
         }
     }
+
+    @Override
+    public void pulsadoListarPersona(String actionCommand) {
+        vistaListado = new VistaListado();
+        if (actionCommand.equals("Personas que participan en el proyecto")) {
+            System.out.println("PERSONAS QUE PARTICIPAN");
+            //
+        }else {
+            System.out.println("PERSONAS QUE NO PARTICIPAN EN NINGUNA TAREA");
+            //vistaInsertar.insertarResponsable();
+        }
+    }
 }
 
 

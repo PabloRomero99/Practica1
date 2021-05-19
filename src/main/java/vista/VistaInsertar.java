@@ -31,9 +31,9 @@ public class VistaInsertar extends JFrame implements Vista{
         cont.setLayout(new FlowLayout());
         cont.add(new JLabel("Nombre de la tarea donde quieres modificar: "));
         cont.add(nTarea);
-
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar"));
+        aceptar.addItemListener(e-> ventana.setVisible(false));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
 
         cont.add(aceptar);
