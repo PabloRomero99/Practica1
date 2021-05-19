@@ -54,7 +54,10 @@ public static void main(String[] args) {
         persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
         persona.addItemListener(e-> ventana.setVisible(false));
 
-        JRadioButton tarea = new JRadioButton("Tarea ");
+        JRadioButton tarea = new JRadioButton("Tarea",false);
+        tarea.addItemListener(e -> controlador.pulsadoDarAlta(tarea.getText()));
+        tarea.addItemListener(e-> ventana.setVisible(false));
+
 
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(persona);

@@ -11,7 +11,11 @@ public interface Controlador {
 
     void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad);
 
-    void pulsadoInsertarEliminar();
+    void pulsadoAceptarInsertarEliminar();
+
+    void pulsadoInsertarEliminar(String actionCommand);
+
+    //void pulsadoEliminar();
 
     void insertaPersona(JTextField clave);
 

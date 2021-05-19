@@ -15,6 +15,13 @@ import java.io.Serializable;
 public class VistaIndice extends JFrame implements Serializable {
     private Controlador controlador;
     private VistaAlta vistaAlta;
+    private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaPrincipal vistaPrincipal;
+    private VistaAlta vistaMarcarFinalizada;
+    private VistaAlta vistaListado;
+    private VistaAlta vistaConsultaPrecio;
+    private VistaAlta vistaModificaciones;
+    private VistaIndice vistaIndice;
     public JPanel panel;
     String nombreProyecto;
 
@@ -59,9 +66,10 @@ public class VistaIndice extends JFrame implements Serializable {
        //boton1.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton1);
 
-       JButton boton2 = new JButton("Insertar "); //Responsables, Colaboradores, Participantes, Etiqutas
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
+       JButton boton2 = new JButton("Insertar "); //Responsables, Colaboradores, Etiqutas
        boton2.addActionListener(e -> System.out.println("Boton de insertar pulsado"));
+       vistaInsertarEliminar = new VistaInsertarEliminar();
+       boton2.addActionListener(e -> vistaInsertarEliminar.ejecuta());
        contenedor.add(boton2);
 
        JButton boton3 = new JButton("Eliminar "); //Colaboradores,Etiquetas

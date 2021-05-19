@@ -6,6 +6,7 @@ import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.Vista;
 import vista.VistaAlta;
+import vista.VistaEliminar;
 import vista.VistaInsertarEliminar;
 
 
@@ -16,9 +17,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class ModeloProyecto implements Modelo, Serializable {
+
     private Vista vista;
     private VistaAlta vistaAlta;
     private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaEliminar vistaEliminar;
+    private Proyecto proyecto;
 
 
     public void setVista(Vista vista){
@@ -39,11 +43,11 @@ public class ModeloProyecto implements Modelo, Serializable {
             ObjectInputStream ois = new ObjectInputStream(fis);
             Proyecto proyecto = (Proyecto) ois.readObject();
             ois.close();
-            //return proyecto;
+            this.proyecto = proyecto;
 
         }catch(IOException | ClassNotFoundException e){
             System.out.println("El proyecto con nombre " + nombreProyecto + " se ha creado correctamente\n\n");
-            //return new Proyecto(nombreProyecto);
+            this.proyecto =  new Proyecto(nombreProyecto);
         }
     }
 
@@ -74,12 +78,40 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorInsertarEliminar() {
+    public void pulsadorAceptarInsertarEliminar() {
         vistaInsertarEliminar = new VistaInsertarEliminar();
         vistaInsertarEliminar.ventanaInsertarEliminar();
     }
 
 
+    @Override
+    public void pulsadorInsertarEliminar(String actionCommand) {
+        vistaInsertarEliminar = new VistaInsertarEliminar();
+        if (actionCommand.equals("Insertar")){
+            System.out.println("INSERTAR ");
+            //vistaInsertarEliminar.ejecutaInsertar();
+        }else {
+            System.out.println("ELIMINAR ");
+            //vistaInsertarEliminar.ejecutaEliminar();
+        }
+    }
+
+    @Override
+    public void pulsadorInsertar(String actionCommand) {
+        vistaInsertarEliminar = new VistaInsertarEliminar();
+        if (actionCommand.equals("Insertar")){
+            System.out.println("INSERTAR ");
+            //vistaInsertarEliminar.ejecutaInsertar();
+        }else {
+            System.out.println("ELIMINAR ");
+            //vistaInsertarEliminar.ejecutaEliminar();
+        }
+    }
+
+    @Override
+    public void pulsadorEliminar(String actionCommand) {
+
+    }
 }
 
 
