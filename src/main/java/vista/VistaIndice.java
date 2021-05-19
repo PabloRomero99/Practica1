@@ -15,7 +15,8 @@ import java.io.Serializable;
 public class VistaIndice extends JFrame implements Serializable {
     private Controlador controlador;
     private VistaAlta vistaAlta;
-    private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaInsertar vistaInsertar;
+    private VistaEliminar vistaEliminar;
     private VistaPrincipal vistaPrincipal;
     //private VistaMarcarFinalizada vistaMarcarFinalizada;
     private VistaListado vistaListado;
@@ -68,14 +69,16 @@ public class VistaIndice extends JFrame implements Serializable {
 
        JButton boton2 = new JButton("Insertar "); //Responsables, Colaboradores, Etiqutas
        boton2.addActionListener(e -> System.out.println("Boton de insertar pulsado"));
-       vistaInsertarEliminar = new VistaInsertarEliminar();
-       boton2.addActionListener(e -> vistaInsertarEliminar.ejecuta());
+       vistaInsertar = new VistaInsertar();
+       boton2.addActionListener(e -> vistaInsertar.ejecuta());
        boton2.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton2);
 
        JButton boton3 = new JButton("Eliminar "); //Colaboradores,Etiquetas
-       //boton1.addActionListener(e -> controlador.pulsadoDarAlta(e.getActionCommand()));
        boton3.addActionListener(e -> System.out.println("Boton de eliminar pulsado "));
+       vistaEliminar = new VistaEliminar();
+       boton2.addActionListener(e -> vistaEliminar.ejecuta());
+       boton2.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton3);
 
        JButton boton4 = new JButton("Marcar tarea finalizada ");

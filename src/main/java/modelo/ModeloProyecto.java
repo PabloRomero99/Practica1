@@ -13,11 +13,12 @@ import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
 public class ModeloProyecto implements Modelo, Serializable {
 
     private Vista vista;
     private VistaAlta vistaAlta;
-    private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaInsertar vistaInsertar;
     private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
     private Proyecto proyecto;
@@ -35,7 +36,9 @@ public class ModeloProyecto implements Modelo, Serializable {
         this.vistaListado = vistaListado;
     }
 
-    public void setVistaInsertarEliminar(VistaInsertarEliminar vista){this.vistaInsertarEliminar = vista;}
+    public void setVistaInsertar(VistaInsertar vista){this.vistaInsertar = vista;}
+
+    public void setVistaEliminar(VistaEliminar vista){this.vistaEliminar = vista;}
 
     @Override
     public void iniciaProyecto(String nombreProyecto) {
@@ -81,33 +84,29 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorAceptarInsertarEliminar() {
-        vistaInsertarEliminar = new VistaInsertarEliminar();
-        vistaInsertarEliminar.ventanaInsertarEliminar();
-    }
-
-
-    @Override
-    public void pulsadorInsertarEliminar(String actionCommand) {
-        vistaInsertarEliminar = new VistaInsertarEliminar();
+    public void pulsadorAceptar(String actionCommand) {
         if (actionCommand.equals("Insertar")){
-            System.out.println("INSERTAR ");
-            //vistaInsertarEliminar.ejecutaInsertar();
-        }else {
-            System.out.println("ELIMINAR ");
-            //vistaInsertarEliminar.ejecutaEliminar();
+            System.out.println("INSERTAR");
+            vistaInsertar = new VistaInsertar();
+            vistaInsertar.ejecutaInsertar();
+        }else{
+            System.out.println("ELIMINAR");
+            vistaEliminar.ejecutaEliminar();
         }
     }
 
     @Override
     public void pulsadorInsertar(String actionCommand) {
-        vistaInsertarEliminar = new VistaInsertarEliminar();
-        if (actionCommand.equals("Insertar")){
-            System.out.println("INSERTAR ");
-            //vistaInsertarEliminar.ejecutaInsertar();
-        }else {
-            System.out.println("ELIMINAR ");
-            //vistaInsertarEliminar.ejecutaEliminar();
+        vistaInsertar = new VistaInsertar();
+        if (actionCommand.equals("Colaborador")){
+            System.out.println("COLABORADOR");
+            vistaInsertar.insertarColaborador();
+        }else if (actionCommand.equals("Etiqueta")){
+            System.out.println("ETIQUETA");
+            vistaInsertar.insertarEtiqueta();
+        }else{
+            System.out.println("RESPONSABLE");
+            vistaInsertar.insertarResponsable();
         }
     }
 

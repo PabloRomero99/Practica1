@@ -2,10 +2,7 @@ package controlador;
 
 import modelo.Modelo;
 import modelo.ModeloProyecto;
-import vista.Vista;
-import vista.VistaAlta;
-import vista.VistaInsertarEliminar;
-import vista.VistaListado;
+import vista.*;
 
 import javax.swing.*;
 
@@ -13,7 +10,8 @@ public class ImplementacionControlador implements Controlador {
     private Modelo modelo;
     private Vista vista;
     private VistaAlta vistaAlta ;
-    private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaInsertar vistaInsertar;
+    private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
 
     public void setVistaListado(VistaListado vistaListado) {
@@ -28,7 +26,9 @@ public class ImplementacionControlador implements Controlador {
         this.vistaAlta =vista;
     }
 
-    public void setVistaInseElim(VistaInsertarEliminar vista){this.vistaInsertarEliminar = vista; }
+    public void setVistaInsertar(VistaInsertar vista){this.vistaInsertar = vista; }
+
+    public void setVistaEliminar(VistaEliminar vista){this.vistaEliminar = vista; }
 
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
@@ -41,15 +41,11 @@ public class ImplementacionControlador implements Controlador {
 
     }
 
-
     @Override
     public void pulsadoDarAlta(String actionCommand) {
         modelo = new ModeloProyecto();
         modelo.pulsadorDarAlta(actionCommand);
     }
-
-
-
 
     @Override
     public void darAltaPersona(JTextField nombre, JTextField dni, JTextField correo) {
@@ -71,16 +67,15 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void pulsadoAceptarInsertarEliminar() {
+    public void pulsadoAceptar(String actionCommand) {
         modelo = new ModeloProyecto();
-        modelo.pulsadorAceptarInsertarEliminar();
+        modelo.pulsadorAceptar(actionCommand);
     }
 
-
     @Override
-    public void pulsadoInsertarEliminar(String actionCommand) {
+    public void pulsadoInsertar(String actionCommand) {
         modelo = new ModeloProyecto();
-        //modelo.pulsadorInsertarEliminar(actionCommand);
+        modelo.pulsadorInsertar(actionCommand);
     }
 
     /*
@@ -91,25 +86,25 @@ public class ImplementacionControlador implements Controlador {
      */
 
     @Override
-    public void insertaPersona(JTextField clave) {
+    public void insertaPersona(String clave) {
         System.out.println("a");
 
     }
 
     @Override
-    public void insertaEtiqueta(JTextField clave) {
+    public void insertaEtiqueta(String clave) {
         System.out.println("a");
 
     }
 
     @Override
-    public void eliminaPersona(JTextField clave) {
+    public void eliminaPersona(String clave) {
         System.out.println("a");
 
     }
 
     @Override
-    public void eliminaEtiqueta(JTextField clave) {
+    public void eliminaEtiqueta(String clave) {
         System.out.println("a");
     }
 

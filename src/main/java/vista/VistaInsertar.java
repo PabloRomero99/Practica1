@@ -15,22 +15,58 @@ public class VistaInsertar extends JFrame implements Vista{
     private JTextField clave;
     private JTextField nTarea;
 
-    private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaInsertar vistaInsertar;
     private Controlador controlador = new ImplementacionControlador();
 
     public void setControlador(Controlador controlador){
         this.controlador=controlador;
     }
 
-    public void ejecutaInsertar(){
-        JFrame ventana = new JFrame("Insertar Persona, Etiqueta o Responsable ");
+    public void ejecuta(){
+        JFrame ventana = new JFrame("Escoge tarea");
 
-        JRadioButton persona = new JRadioButton("Persona ");
+        Container cont = ventana.getContentPane();
+
+        nTarea = new JTextField(30);
+        cont.setLayout(new FlowLayout());
+        cont.add(new JLabel("Nombre de la tarea donde quieres modificar: "));
+        cont.add(nTarea);
+
+        JButton aceptar = new JButton(ACEPTAR);
+        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar"));
+        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        cont.add(aceptar);
+
+        ventana.pack();
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice=new VistaIndice();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+        ventana.setVisible(true);    }
+
+    public void ejecutaInsertar(){
+        JFrame ventana = new JFrame("Insertar Colaborador, Etiqueta o Responsable ");
+
+        JRadioButton persona = new JRadioButton("Colaborador");
 
         controlador = new ImplementacionControlador();
-        persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
+        persona.addItemListener(e -> controlador.pulsadoInsertar(persona.getText()));
+        persona.addItemListener(e-> ventana.setVisible(false));
 
-        JRadioButton etiqueta = new JRadioButton("Etiqueta ");
+
+        JRadioButton etiqueta = new JRadioButton("Etiqueta");
+        persona.addItemListener(e -> controlador.pulsadoInsertar(etiqueta.getText()));
+        persona.addItemListener(e-> ventana.setVisible(false));
+
+
+        JRadioButton responsable = new JRadioButton("Responsable");
+        persona.addItemListener(e -> controlador.pulsadoInsertar(responsable.getText()));
+        persona.addItemListener(e-> ventana.setVisible(false));
+
 
         ButtonGroup grupo = new ButtonGroup();
         grupo.add(persona);
@@ -41,6 +77,7 @@ public class VistaInsertar extends JFrame implements Vista{
         radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
         radio.add(persona);
         radio.add(etiqueta);
+        radio.add(responsable);
         ventana.setContentPane(radio);
         ventana.pack();
         //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,27 +85,27 @@ public class VistaInsertar extends JFrame implements Vista{
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInsertarEliminar=new VistaInsertarEliminar();
-                vistaInsertarEliminar.ejecuta();
+                vistaInsertar=new VistaInsertar();
+                vistaInsertar.ejecuta();
                 ventana.setVisible(true);
             }
         });
         ventana.setVisible(true);
     }
 
-    public void insertarPersona(){
+    public void insertarColaborador(){
 
-        JFrame ventana = new JFrame("Insertar una persona en la tarea");
+        JFrame ventana = new JFrame("Insertar un colaborador a la tarea");
         Container cont = ventana.getContentPane();
 
         clave = new JTextField(30);
         cont.setLayout(new FlowLayout());
-        cont.add(new JLabel("Nombre Persona: "));
+        cont.add(new JLabel("Identificador del colaborador: "));
         cont.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
         //aceptar.addActionListener(e -> controlador.darAltaPersona());
-        aceptar.addActionListener(e -> controlador.insertaPersona(clave));
+        aceptar.addActionListener(e -> controlador.insertaPersona(clave.getText()));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);
 
@@ -79,8 +116,8 @@ public class VistaInsertar extends JFrame implements Vista{
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInsertarEliminar=new VistaInsertarEliminar();
-                vistaInsertarEliminar.ejecuta();
+                vistaInsertar=new VistaInsertar();
+                vistaInsertar.ejecutaInsertar();
                 ventana.setVisible(true);
             }
         });

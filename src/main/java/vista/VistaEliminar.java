@@ -4,6 +4,7 @@ import controlador.Controlador;
 import controlador.ImplementacionControlador;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -13,11 +14,31 @@ public class VistaEliminar extends JFrame implements Vista{
     private JTextField clave;
     private JTextField nTarea;
 
-    private VistaInsertarEliminar vistaInsertarEliminar;
+    private VistaIndice vistaIndice;
     private Controlador controlador = new ImplementacionControlador();
 
     public void setControlador(Controlador controlador){
         this.controlador=controlador;
+    }
+
+    public void ejecuta(){
+        JFrame ventana = new JFrame("Escoge tarea");
+
+        Container cont = ventana.getContentPane();
+
+        nTarea = new JTextField(30);
+        cont.setLayout(new FlowLayout());
+        cont.add(new JLabel("Nombre de la tarea donde quieres modificar: "));
+        cont.add(nTarea);
+
+        JButton aceptar = new JButton(ACEPTAR);
+        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Eliminar"));
+        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        cont.add(aceptar);
+
+        ventana.pack();
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setVisible(true);
     }
 
     public void ejecutaEliminar(){
@@ -52,8 +73,8 @@ public class VistaEliminar extends JFrame implements Vista{
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInsertarEliminar=new VistaInsertarEliminar();
-                vistaInsertarEliminar.ejecuta();
+                vistaIndice=new VistaIndice();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });

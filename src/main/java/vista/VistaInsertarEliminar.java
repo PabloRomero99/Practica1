@@ -1,3 +1,4 @@
+/*
 package vista;
 
 import controlador.Controlador;
@@ -219,7 +220,6 @@ public class VistaInsertarEliminar extends JFrame implements Vista{
     public void insertarEtiqueta(){
 
     }
-     */
 
 
 
@@ -237,3 +237,5 @@ public class VistaInsertarEliminar extends JFrame implements Vista{
         return null;
     }
 }
+
+ */
