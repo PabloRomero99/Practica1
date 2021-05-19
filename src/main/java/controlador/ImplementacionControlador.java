@@ -69,31 +69,35 @@ public class ImplementacionControlador implements Controlador {
     @Override
     public void pulsadoAceptar(String actionCommand) {
         modelo = new ModeloProyecto();
-        modelo.pulsadorAceptar(actionCommand);
+        modelo.pulsandoAceptar(actionCommand);
     }
 
     @Override
     public void pulsadoInsertar(String actionCommand) {
         modelo = new ModeloProyecto();
-        modelo.pulsadorInsertar(actionCommand);
+        modelo.pulsandoInsertar(actionCommand);
     }
 
-    /*
     @Override
-    public void pulsadoEliminar() {
-
+    public void pulsadoEliminar(String actionCommand) {
+        modelo = new ModeloProyecto();
+        modelo.pulsandoEliminar(actionCommand);
     }
-     */
 
     @Override
-    public void insertaPersona(String clave) {
-        System.out.println("a");
-
+    public void insertaColaborador(String clave) {
+        modelo = new ModeloProyecto();
+        modelo.insertandoColaborador(clave);
     }
 
     @Override
     public void insertaEtiqueta(String clave) {
         System.out.println("a");
+
+    }
+
+    @Override
+    public void insertaResponsable(String clave) {
 
     }
 
@@ -108,5 +112,9 @@ public class ImplementacionControlador implements Controlador {
         System.out.println("a");
     }
 
-
+    @Override
+    public void pulsadoListarPersona(String actionCommand){
+        modelo = new ModeloProyecto();
+        modelo.pulsadoListarPersona(actionCommand);
+    }
 }

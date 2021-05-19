@@ -15,9 +15,13 @@ public interface Controlador {
 
     void pulsadoInsertar(String actionCommand);
 
-    void insertaPersona(String clave);
+    void pulsadoEliminar(String actionCommand);
+
+    void insertaColaborador(String clave);
 
     void insertaEtiqueta(String clave);
+
+    void insertaResponsable(String clave);
 
     void eliminaPersona(String clave);
 

@@ -84,26 +84,29 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorAceptar(String actionCommand) {
+    public void pulsandoAceptar(String actionCommand) {
         if (actionCommand.equals("Insertar")){
             System.out.println("INSERTAR");
             vistaInsertar = new VistaInsertar();
             vistaInsertar.ejecutaInsertar();
         }else{
             System.out.println("ELIMINAR");
+            vistaEliminar = new VistaEliminar();
             vistaEliminar.ejecutaEliminar();
         }
     }
 
     @Override
-    public void pulsadorInsertar(String actionCommand) {
+    public void pulsandoInsertar(String actionCommand) {
         vistaInsertar = new VistaInsertar();
         if (actionCommand.equals("Colaborador")){
             System.out.println("COLABORADOR");
             vistaInsertar.insertarColaborador();
+
         }else if (actionCommand.equals("Etiqueta")){
             System.out.println("ETIQUETA");
             vistaInsertar.insertarEtiqueta();
+
         }else{
             System.out.println("RESPONSABLE");
             vistaInsertar.insertarResponsable();
@@ -111,8 +114,19 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorEliminar(String actionCommand) {
+    public void insertandoColaborador(String clave) {
+        System.out.println("guapo");
+    }
 
+    @Override
+    public void pulsandoEliminar(String actionCommand) {
+        if (actionCommand.equals("Colaborador")){
+            System.out.println("COLABORADOR");
+            vistaEliminar.eliminarColaborador();
+        }else{
+            System.out.println("ETIQUETA");
+            vistaEliminar.eliminarEtiqueta();
+        }
     }
 }
 

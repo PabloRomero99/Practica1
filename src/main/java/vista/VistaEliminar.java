@@ -81,6 +81,14 @@ public class VistaEliminar extends JFrame implements Vista{
         ventana.setVisible(true);
     }
 
+    public void eliminarColaborador(){
+
+    }
+
+    public void eliminarEtiqueta(){
+
+    }
+
     @Override
     public String getNombreProyecto(){
         return "si";
