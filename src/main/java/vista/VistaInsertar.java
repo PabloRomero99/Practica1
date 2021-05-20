@@ -213,8 +213,8 @@ public class VistaInsertar extends JFrame implements Vista{
     public void satisfactorio(){
         JFrame ventana = new JFrame("Todo fue correctamente");
         Container cont = ventana.getContentPane();
-        cont.add(new JLabel("Todo fue correctamente"));
-        ventana.setPreferredSize(new Dimension(800,600));
+        cont.add(new JLabel("Todo fue correctamente"),BorderLayout.CENTER);
+        ventana.setSize(800,600);
         ventana.setVisible(true);
     }
 
@@ -222,6 +222,7 @@ public class VistaInsertar extends JFrame implements Vista{
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("La tarea no existe"));
+        ventana.setSize(800,600);
         ventana.setVisible(true);
 
     }

@@ -112,7 +112,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void darAltaTarea(String titulotarea, String descrip, int priority) {//,String identificador, int horas_invertidas,int tipo_resultado,double coste, Facturacion facturacion
+    public void darAltaTarea(String titulotarea, String descrip, int priority) {//int tipo_resultado,double coste, Facturacion facturacion
         Resultado resultado = new Resultado(identificador,0,true);
         Facturacion facturacion = new ConsumoInterno();
         Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,25,facturacion);

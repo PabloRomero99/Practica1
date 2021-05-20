@@ -60,9 +60,6 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
 
-
-
-
     public void altaPersona(){
 
         JFrame ventana = new JFrame("Dar de alta a una Persona");
@@ -98,7 +95,6 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         aceptar1.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
         vistaIndice = new VistaIndice();
         aceptar1.addActionListener(e -> vistaIndice.ejecuta());
-        //ventana.setVisible(false);
         aceptar1.addActionListener(e -> ventana.setVisible(false));
 
         aceptar1.addActionListener(e -> System.out.println("El boton esta pulsado..."));
