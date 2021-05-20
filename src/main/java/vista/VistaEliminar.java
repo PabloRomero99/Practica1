@@ -15,9 +15,9 @@ public class VistaEliminar extends JFrame implements Vista{
     private JTextField nTarea;
 
     private VistaIndice vistaIndice;
-    private Controlador controlador = new ImplementacionControlador();
+    private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
 
-    public void setControlador(Controlador controlador){
+    public void setControlador(ImplementacionControlador controlador){
         this.controlador=controlador;
     }
 
@@ -47,7 +47,7 @@ public class VistaEliminar extends JFrame implements Vista{
         System.out.println("Llego aqui");
         JRadioButton persona = new JRadioButton("Persona ");
 
-        controlador = new ImplementacionControlador();
+        //controlador = new ImplementacionControlador();
         persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
         persona.addItemListener(e-> ventana.setVisible(false));
 

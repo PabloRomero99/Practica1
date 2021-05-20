@@ -11,34 +11,12 @@ import java.awt.event.WindowEvent;
 
 public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     private static String ACEPTAR = "ACEPTAR";
-    private ImplementacionControlador controlador = new ImplementacionControlador();
+    private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
     private VistaAlta vistaAlta;
-    private VistaIndice vistaIndice;
+    private VistaIndice vistaIndice = new VistaIndice();
     private JTextField nombre;
     private JTextField dni;
     private JTextField correo;
-
-
-public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                final VistaAlta vista = new VistaAlta();
-                final ImplementacionControlador controlador = new ImplementacionControlador();
-                final ModeloProyecto modelo = new ModeloProyecto();
-
-                vista.setControlador(controlador);
-                controlador.setModelo(modelo);
-                controlador.setVistaAlta(vista);
-                modelo.setVistaAlta(vista);
-
-                SwingUtilities.invokeLater(() -> vista.ejecuta());
-
-            }
-        });
-    }
-
-
 
     public void setControlador(ImplementacionControlador controlador){
         this.controlador=controlador;
@@ -72,7 +50,7 @@ public static void main(String[] args) {
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaIndice=new VistaIndice();
+                //vistaIndice=new VistaIndice();
                 vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
@@ -110,6 +88,9 @@ public static void main(String[] args) {
 
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
+        //vistaIndice = new VistaIndice();
+        aceptar.addActionListener(e -> vistaIndice.ejecuta());
+        ventana.setVisible(false);
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);
 
@@ -167,7 +148,6 @@ public static void main(String[] args) {
                 ventana.setVisible(true);
             }
         });
-
         //_____________________________________________________
 
 
@@ -191,14 +171,14 @@ public static void main(String[] args) {
          radio.add(doc);
          radio.add(pagweb);
          radio.add(prog);
-         ventana.setContentPane(radio);
+         cont.add(radio);
 
 
 
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
-
+        aceptar.addActionListener(e-> vistaIndice.ejecuta());
         cont.add(aceptar);
 
         ventana.pack();

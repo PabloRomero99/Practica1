@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.Controlador;
+import controlador.ImplementacionControlador;
 import modelo.Modelo;
 
 import javax.swing.*;
@@ -13,12 +14,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class VistaIndice extends JFrame implements Serializable {
-    private Controlador controlador;
+    private Controlador controlador = ImplementacionControlador.getInstancia();
     private VistaAlta vistaAlta;
     private VistaInsertar vistaInsertar;
     private VistaEliminar vistaEliminar;
     private VistaPrincipal vistaPrincipal;
-    //private VistaMarcarFinalizada vistaMarcarFinalizada;
+    private VistaMarcarFinalizada vistaMarcarFinalizada;
     private VistaListado vistaListado;
     //private VistaConsultarPrecio vistaConsultaPrecio;
     //private VistaAlta vistaModificaciones;
@@ -51,7 +52,6 @@ public class VistaIndice extends JFrame implements Serializable {
                 }catch (IOException exception){
                 System.out.println("No se han podido guardar los datos");
                 }
-
                System.exit(0);
            }
        });
@@ -82,7 +82,9 @@ public class VistaIndice extends JFrame implements Serializable {
        contenedor.add(boton3);
 
        JButton boton4 = new JButton("Marcar tarea finalizada ");
+       vistaMarcarFinalizada = new VistaMarcarFinalizada();
        boton4.addActionListener(e -> System.out.println("Boton tarea finalizada pulsado"));
+       boton4.addActionListener(e -> vistaMarcarFinalizada.ejecuta());
        contenedor.add(boton4);
 
        JButton boton5 = new JButton("Listado de Personas");//Totales del proyecto, las cuales no son responsables en ninguna tarea

@@ -8,12 +8,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class VistaListado {
-    private ImplementacionControlador controlador = new ImplementacionControlador();
+    private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
     private VistaIndice vistaIndice;
     private VistaListado vistaListado;
 
 
 
+    /*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -32,6 +33,7 @@ public class VistaListado {
             }
         });
     }
+     */
 
 
     public void setControlador(ImplementacionControlador controlador) {
@@ -74,6 +76,7 @@ public class VistaListado {
     }
 
     public void mostrarListadoPersonas(){
+
 
     }
 }

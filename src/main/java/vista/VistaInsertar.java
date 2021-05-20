@@ -16,9 +16,9 @@ public class VistaInsertar extends JFrame implements Vista{
     private String nombreTarea;
 
     private VistaInsertar vistaInsertar;
-    private Controlador controlador = new ImplementacionControlador();
+    private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
 
-    public void setControlador(Controlador controlador){
+    public void setControlador(ImplementacionControlador controlador){
         this.controlador=controlador;
     }
 
@@ -41,9 +41,17 @@ public class VistaInsertar extends JFrame implements Vista{
          aceptar.addActionListener(e -> ventana.setVisible(false));
          cont.add(aceptar);
 
+         ventana.addWindowListener(new WindowAdapter() {
+             @Override
+             public void windowClosing(WindowEvent e) {
+                 vistaIndice = new VistaIndice();
+                 vistaIndice.ejecuta();
+                 ventana.setVisible(true);
+             }
+         });
+
 
          ventana.pack();
-         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          ventana.setVisible(true);
      }
 
@@ -54,7 +62,7 @@ public class VistaInsertar extends JFrame implements Vista{
 
         JRadioButton colaborador = new JRadioButton("Colaborador");
 
-        controlador = new ImplementacionControlador();
+        //controlador = new ImplementacionControlador();
         colaborador.addItemListener(e -> controlador.pulsadoInsertar(colaborador.getText()));
         colaborador.addItemListener(e-> ventana.setVisible(false));
 
@@ -101,7 +109,9 @@ public class VistaInsertar extends JFrame implements Vista{
         Container cont = ventana.getContentPane();
 
         clave = new JTextField(30);
-        cont.setLayout(new FlowLayout());
+        //cont.setLayout(new FlowLayout());
+
+
         cont.add(new JLabel("Identificador del colaborador: "));
         cont.add(clave);
 

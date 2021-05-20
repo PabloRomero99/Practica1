@@ -1,5 +1,6 @@
 package modelo;
 
+import controlador.ImplementacionControlador;
 import modelo.Tarea.Facturacion.ConsumoInterno;
 import modelo.Tarea.Facturacion.Facturacion;
 import modelo.Tarea.Resultado.Resultado;
@@ -23,7 +24,18 @@ public class ModeloProyecto implements Modelo, Serializable {
     private VistaInsertar vistaInsertar;
     private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
-    private Proyecto proyecto;
+    private Proyecto proyectoFinal;
+
+    private static ModeloProyecto instancia = null;
+    private ModeloProyecto(){
+        super();
+    }
+    public static ModeloProyecto getInstancia(){
+        if (instancia == null){
+            instancia = new ModeloProyecto();
+        }
+        return instancia;
+    }
 
 
     public void setVista(Vista vista){
@@ -44,28 +56,30 @@ public class ModeloProyecto implements Modelo, Serializable {
 
     public void setProyecto(Proyecto p){
         System.out.println(p.getNombre());
-        this.proyecto = p;
+        this.proyectoFinal = p;
     }
 
     public Proyecto getProyecto(){
-        System.out.println(proyecto.getNombre());
-        return this.proyecto;
+        System.out.println(proyectoFinal.getNombre());
+        return this.proyectoFinal;
     }
 
     @Override
     public void iniciaProyecto(String nombreProyecto) {
         System.out.println(nombreProyecto);
+        //modelo = new ModeloProyecto();
         try {
             FileInputStream fis = new FileInputStream(nombreProyecto + ".bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
             Proyecto proyecto = (Proyecto) ois.readObject();
             ois.close();
             System.out.println(proyecto.getNombre());
-            setProyecto(proyecto);
+            proyectoFinal=proyecto;
+            //setProyecto(proyecto);
 
         }catch(IOException | ClassNotFoundException e){
             System.out.println("El proyecto con nombre " + nombreProyecto + " se ha creado correctamente\n\n");
-            setProyecto(new Proyecto(nombreProyecto));
+            proyectoFinal=new Proyecto(nombreProyecto);
         }
     }
 
@@ -85,7 +99,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     public void darAltaPersona(String nombre, String dni, String correo) {
         Persona persona = new Persona(nombre,dni,correo);
         System.out.println("La persona "+ persona + " ha sido creada");
-        proyecto.addParticipante(persona);
+        proyectoFinal.addParticipante(persona);
     }
 
     @Override

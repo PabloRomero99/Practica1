@@ -7,8 +7,8 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args){
         final VistaPrincipal vista = new VistaPrincipal();
-        final ImplementacionControlador controlador = new ImplementacionControlador();
-        final ModeloProyecto modelo = new ModeloProyecto();
+        final ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
+        final ModeloProyecto modelo = ModeloProyecto.getInstancia();
 
 
         vista.setControlador(controlador);

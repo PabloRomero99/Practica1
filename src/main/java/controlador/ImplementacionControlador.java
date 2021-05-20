@@ -7,12 +7,23 @@ import vista.*;
 import javax.swing.*;
 
 public class ImplementacionControlador implements Controlador {
-    private Modelo modelo;
     private Vista vista;
     private VistaAlta vistaAlta ;
     private VistaInsertar vistaInsertar;
     private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
+    private ModeloProyecto modelo= ModeloProyecto.getInstancia();
+
+    private static ImplementacionControlador instancia = null;
+    private ImplementacionControlador(){
+        super();
+    }
+    public static ImplementacionControlador getInstancia(){
+        if (instancia == null){
+            instancia = new ImplementacionControlador();
+        }
+        return instancia;
+    }
 
     public void setVistaListado(VistaListado vistaListado) {
         this.vistaListado = vistaListado;
@@ -30,7 +41,7 @@ public class ImplementacionControlador implements Controlador {
 
     public void setVistaEliminar(VistaEliminar vista){this.vistaEliminar = vista; }
 
-    public void setModelo(Modelo modelo) {
+    public void setModelo(ModeloProyecto modelo) {
         this.modelo = modelo;
     }
 
@@ -43,13 +54,11 @@ public class ImplementacionControlador implements Controlador {
 
     @Override
     public void pulsadoDarAlta(String actionCommand) {
-        modelo = new ModeloProyecto();
         modelo.pulsadorDarAlta(actionCommand);
     }
 
     @Override
     public void darAltaPersona(JTextField nombre, JTextField dni, JTextField correo) {
-        modelo = new ModeloProyecto();
         String n = nombre.getText();
         String d = dni.getText();
         String c = correo.getText();
@@ -58,7 +67,6 @@ public class ImplementacionControlador implements Controlador {
 
     @Override
     public void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad) {
-        modelo = new ModeloProyecto();
         String titulotarea = titulo.getText();
         String descrip = descripcion.getText();
         int priority = prioridad.getValue();
@@ -67,25 +75,21 @@ public class ImplementacionControlador implements Controlador {
 
     @Override
     public void pulsadoAceptar(String actionCommand, String nomTarea) {
-        modelo = new ModeloProyecto();
         modelo.pulsandoAceptar(actionCommand);
     }
 
     @Override
     public void pulsadoInsertar(String actionCommand) {
-        modelo = new ModeloProyecto();
         modelo.pulsandoInsertar(actionCommand);
     }
 
     @Override
     public void pulsadoEliminar(String actionCommand) {
-        modelo = new ModeloProyecto();
         modelo.pulsandoEliminar(actionCommand);
     }
 
     @Override
     public void insertaColaborador(String clave, String nomTarea) throws Exception {
-        modelo = new ModeloProyecto();
         modelo.insertandoColaborador(clave, nomTarea);
     }
 
@@ -113,7 +117,6 @@ public class ImplementacionControlador implements Controlador {
 
     @Override
     public void pulsadoListarPersona(String actionCommand){
-        modelo = new ModeloProyecto();
         modelo.pulsadoListarPersona(actionCommand);
     }
 }
