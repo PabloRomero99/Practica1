@@ -9,11 +9,11 @@ public interface Modelo {
 
     void darAltaTarea(String titulotarea, String descrip, int priority);
 
-    void pulsandoAceptar(String acctionCommand);
+    void pulsandoAceptar(String acctionCommand, String nomTarea);
 
     void pulsandoInsertar(String actionCommand);
 
-    void insertandoColaborador(String clave, String nomTarea) throws Exception;
+    void insertandoColaborador(String clave) throws Exception;
 
     void pulsandoEliminar(String actionCommand);
 

@@ -111,7 +111,8 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsandoAceptar(String actionCommand) {
+    public void pulsandoAceptar(String actionCommand, String nomTarea) {
+        this.nombreTarea = nomTarea;
         if (actionCommand.equals("Insertar")){
             System.out.println("INSERTAR");
             vistaInsertar = new VistaInsertar();
@@ -141,7 +142,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void insertandoColaborador(String clave, String nomTarea) throws Exception {
+    public void insertandoColaborador(String clave) throws Exception {
         vistaInsertar = new VistaInsertar();
         Proyecto pr = getProyecto();
         if (pr.getTareas().isEmpty()) {
@@ -156,6 +157,7 @@ public class ModeloProyecto implements Modelo, Serializable {
                     vistaInsertar.satisfactorio();
                 } catch (Exception e) {
                     System.out.println("Ha ocurrido un problema");
+                    vistaInsertar.errorColaborador();
                 }
             }else{
                 vistaInsertar.errorColaborador();

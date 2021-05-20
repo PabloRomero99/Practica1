@@ -17,7 +17,7 @@ public interface Controlador {
 
     void pulsadoEliminar(String actionCommand);
 
-    void insertaColaborador(String clave, String nomTarea) throws Exception;
+    void insertaColaborador(String clave) throws Exception;
 
     void insertaEtiqueta(String clave);
 

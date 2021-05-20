@@ -75,7 +75,7 @@ public class ImplementacionControlador implements Controlador {
 
     @Override
     public void pulsadoAceptar(String actionCommand, String nomTarea) {
-        modelo.pulsandoAceptar(actionCommand);
+        modelo.pulsandoAceptar(actionCommand, nomTarea);
     }
 
     @Override
@@ -89,8 +89,8 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void insertaColaborador(String clave, String nomTarea) throws Exception {
-        modelo.insertandoColaborador(clave, nomTarea);
+    public void insertaColaborador(String clave) throws Exception {
+        modelo.insertandoColaborador(clave);
     }
 
     @Override

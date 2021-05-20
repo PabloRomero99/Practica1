@@ -15,7 +15,7 @@ public class VistaInsertar extends JFrame implements Vista{
     private static String ACEPTAR = "ACEPTAR";
     private JTextField clave;
     private JTextField nTarea;
-    private String nombreTarea;
+    //private String nombreTarea;
 
     private VistaInsertar vistaInsertar;
     private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
@@ -28,18 +28,17 @@ public class VistaInsertar extends JFrame implements Vista{
      public void ejecuta() {
          JFrame ventana = new JFrame("Inicio");
          Container cont = ventana.getContentPane();
-         JTextField nomTarea = new JTextField(30);
-         JLabel nTarea = new JLabel("Nombre de la tarea donde quieres modificar: ");
+         nTarea = new JTextField(30);
+         JLabel nomTarea = new JLabel("Nombre de la tarea donde quieres modificar: ");
          cont.setLayout(new FlowLayout());
-         cont.add(nTarea);
          cont.add(nomTarea);
+         cont.add(nTarea);
 
 
          JButton aceptar = new JButton(ACEPTAR);
          vistaInsertar = new VistaInsertar();
-         aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar", nomTarea.getText()));
-         //aceptar.addActionListener(e -> vistaInsertar.setNombreProject(nTarea.getText()));
-         aceptar.addActionListener(e -> vistaInsertar.setNombreTarea(nomTarea.getText()));
+         aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar", nTarea.getText()));
+         System.out.println(nTarea.getX());
          aceptar.addActionListener(e -> ventana.setVisible(false));
          cont.add(aceptar);
 
@@ -121,7 +120,7 @@ public class VistaInsertar extends JFrame implements Vista{
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> {
             try {
-                controlador.insertaColaborador(clave.getText(), getNombreTarea());
+                controlador.insertaColaborador(clave.getText());
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -138,9 +137,9 @@ public class VistaInsertar extends JFrame implements Vista{
         cont.add(cont2, BorderLayout.NORTH);
         cont.add(panelPersonas, BorderLayout.CENTER);
 
+        ventana.setPreferredSize(new Dimension(800,600));
 
         ventana.pack();
-        ventana.setPreferredSize(new Dimension(800,600));
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
@@ -215,20 +214,27 @@ public class VistaInsertar extends JFrame implements Vista{
         JFrame ventana = new JFrame("Todo fue correctamente");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("Todo fue correctamente"));
+        ventana.setPreferredSize(new Dimension(800,600));
+        ventana.setVisible(true);
     }
 
     public void errorTarea(){
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("La tarea no existe"));
+        ventana.setVisible(true);
+
     }
 
     public void errorColaborador(){
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("El colaborador no existe"));
+        ventana.setVisible(true);
+
     }
 
+    /*
     public void setNombreTarea(String nombreTarea){
         this.nombreTarea = nombreTarea;
     }
@@ -237,6 +243,7 @@ public class VistaInsertar extends JFrame implements Vista{
         return nombreTarea;
     }
 
+     */
     public String getNombreProyecto(){
         return "nombreProyecto";
     }
