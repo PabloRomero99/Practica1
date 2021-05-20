@@ -70,6 +70,14 @@ public class Proyecto implements Serializable {
         tareas.add(tarea);
         return true;
     }
+
+    public String[] toArrayParticipantes(){
+        String[] res = new String[participantes.size()];
+        for (int n = 0; n < participantes.size(); n++){
+            res[n] = participantes.get(n).toString();
+        }
+        return res;
+    }
     /*
 
 

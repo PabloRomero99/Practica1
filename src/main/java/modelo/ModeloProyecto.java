@@ -128,7 +128,7 @@ public class ModeloProyecto implements Modelo, Serializable {
         vistaInsertar = new VistaInsertar();
         if (actionCommand.equals("Colaborador")){
             System.out.println("COLABORADOR");
-            vistaInsertar.insertarColaborador();
+            vistaInsertar.insertarColaborador(proyectoFinal.toArrayParticipantes());
 
         }else if (actionCommand.equals("Etiqueta")){
             System.out.println("ETIQUETA");

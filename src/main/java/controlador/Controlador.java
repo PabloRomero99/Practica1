@@ -28,4 +28,6 @@ public interface Controlador {
     void eliminaEtiqueta(String clave);
 
     void pulsadoListarPersona(String actionCommand);
+
+    //void listaPersonas();
 }

@@ -2,11 +2,13 @@ package vista;
 
 import controlador.Controlador;
 import controlador.ImplementacionControlador;
+import modelo.Persona;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 
 public class VistaInsertar extends JFrame implements Vista{
     private VistaIndice vistaIndice;
@@ -104,7 +106,7 @@ public class VistaInsertar extends JFrame implements Vista{
 
     }
 
-    public void insertarColaborador(){
+    public void insertarColaborador(String[] participantes){
         JFrame ventana = new JFrame("Insertar un colaborador a la tarea");
         Container cont = ventana.getContentPane();
 
@@ -126,7 +128,13 @@ public class VistaInsertar extends JFrame implements Vista{
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         aceptar.addItemListener(e-> ventana.setVisible(false));
 
-        cont.add(aceptar);
+        JList personas = new JList(participantes);
+        JScrollPane panelPersonas = new JScrollPane(personas);
+        personas.setVisibleRowCount(4);
+
+        cont.add(personas, BorderLayout.NORTH);
+        cont.add(panelPersonas, BorderLayout.CENTER);
+        cont.add(aceptar,  BorderLayout.NORTH);
 
         ventana.pack();
 
