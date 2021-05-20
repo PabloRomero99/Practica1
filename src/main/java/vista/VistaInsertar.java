@@ -113,9 +113,10 @@ public class VistaInsertar extends JFrame implements Vista{
         clave = new JTextField(30);
         //cont.setLayout(new FlowLayout());
 
-
-        cont.add(new JLabel("Identificador del colaborador: "));
-        cont.add(clave);
+        Container cont2 = new Container();
+        cont2.setLayout(new FlowLayout());
+        cont2.add(new JLabel("Identificador del colaborador: "));
+        cont2.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> {
@@ -132,11 +133,14 @@ public class VistaInsertar extends JFrame implements Vista{
         JScrollPane panelPersonas = new JScrollPane(personas);
         personas.setVisibleRowCount(4);
 
-        cont.add(personas, BorderLayout.NORTH);
+        cont2.add(aceptar);
+
+        cont.add(cont2, BorderLayout.NORTH);
         cont.add(panelPersonas, BorderLayout.CENTER);
-        cont.add(aceptar,  BorderLayout.NORTH);
+
 
         ventana.pack();
+        ventana.setPreferredSize(new Dimension(800,600));
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
