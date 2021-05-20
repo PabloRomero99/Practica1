@@ -1,6 +1,5 @@
 package controlador;
 
-import modelo.Modelo;
 import modelo.ModeloProyecto;
 import vista.*;
 
@@ -53,8 +52,8 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void pulsadoDarAlta(String actionCommand) {
-        modelo.pulsadorDarAlta(actionCommand);
+    public void pulsadorJRadioButton(String actionCommand) {
+        modelo.pulsadorJRadioButton(actionCommand);
     }
 
     @Override
@@ -119,4 +118,5 @@ public class ImplementacionControlador implements Controlador {
     public void pulsadoListarPersona(String actionCommand){
         modelo.pulsadoListarPersona(actionCommand);
     }
+
 }

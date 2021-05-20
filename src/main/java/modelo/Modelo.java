@@ -3,7 +3,7 @@ package modelo;
 public interface Modelo {
     void iniciaProyecto(String nombreProyecto);
 
-    void pulsadorDarAlta(String actionCommand);
+    void pulsadorJRadioButton(String actionCommand);
 
     void darAltaPersona(String nombre, String dni, String correo);
 
@@ -18,4 +18,5 @@ public interface Modelo {
     void pulsandoEliminar(String actionCommand);
 
     void pulsadoListarPersona(String actionCommand);
+
 }

@@ -5,7 +5,7 @@ import javax.swing.*;
 public interface Controlador {
     void iniciaProyecto();
 
-    void pulsadoDarAlta(String actionCommand);
+    void pulsadorJRadioButton(String actionCommand);
 
     void darAltaPersona(JTextField nombre,JTextField dni,JTextField correo);
 
@@ -28,6 +28,7 @@ public interface Controlador {
     void eliminaEtiqueta(String clave);
 
     void pulsadoListarPersona(String actionCommand);
+
 
     //void listaPersonas();
 }

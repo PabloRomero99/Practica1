@@ -1,6 +1,5 @@
 package vista;
 
-import controlador.Controlador;
 import controlador.ImplementacionControlador;
 
 import javax.swing.*;
@@ -32,7 +31,7 @@ public class VistaEliminar extends JFrame implements Vista{
         cont.add(nTarea);
 
         JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Eliminar", nTarea.getText()));
+        aceptar.addActionListener(e -> controlador.pulsadoAceptar("Eliminar",nTarea.getText()));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         cont.add(aceptar);
 
@@ -48,7 +47,7 @@ public class VistaEliminar extends JFrame implements Vista{
         JRadioButton persona = new JRadioButton("Persona ");
 
         //controlador = new ImplementacionControlador();
-        persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
+        persona.addItemListener(e -> controlador.pulsadorJRadioButton(persona.getText()));
         persona.addItemListener(e-> ventana.setVisible(false));
 
 

@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.ImplementacionControlador;
-import modelo.ModeloProyecto;
 
 
 import javax.swing.*;
@@ -10,10 +9,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class VistaAlta extends JFrame implements VistaAltaInterfaz {
-    private static String ACEPTAR = "ACEPTAR";
+    private final static String ACEPTAR = "ACEPTAR";
     private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
     private VistaAlta vistaAlta;
-    private VistaIndice vistaIndice = new VistaIndice();
+    private VistaIndice vistaIndice;
     private JTextField nombre;
     private JTextField dni;
     private JTextField correo;
@@ -25,14 +24,22 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     public void ejecuta(){
 
         JFrame ventana = new JFrame("Dar de alta ");
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice=new VistaIndice();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
 
         JRadioButton persona = new JRadioButton("Persona");
 
-        persona.addItemListener(e -> controlador.pulsadoDarAlta(persona.getText()));
+        persona.addItemListener(e -> controlador.pulsadorJRadioButton(persona.getText()));
         persona.addItemListener(e-> ventana.setVisible(false));
 
         JRadioButton tarea = new JRadioButton("Tarea");
-        tarea.addItemListener(e -> controlador.pulsadoDarAlta(tarea.getText()));
+        tarea.addItemListener(e -> controlador.pulsadorJRadioButton(tarea.getText()));
         tarea.addItemListener(e-> ventana.setVisible(false));
 
 
@@ -47,14 +54,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         ventana.setContentPane(radio);
         ventana.pack();
 
-        ventana.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                //vistaIndice=new VistaIndice();
-                vistaIndice.ejecuta();
-                ventana.setVisible(true);
-            }
-        });
+
         ventana.setVisible(true);
     }
 
@@ -67,6 +67,14 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
         JFrame ventana = new JFrame("Dar de alta a una Persona");
         Container cont = ventana.getContentPane();
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaAlta=new VistaAlta();
+                vistaAlta.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
 
         nombre = new JTextField(30);
         cont.setLayout(new FlowLayout());
@@ -86,23 +94,17 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         cont.add(correo);
 
 
-        JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
-        //vistaIndice = new VistaIndice();
-        aceptar.addActionListener(e -> vistaIndice.ejecuta());
-        ventana.setVisible(false);
-        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        cont.add(aceptar);
+        JButton aceptar1 = new JButton(ACEPTAR);
+        aceptar1.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
+        vistaIndice = new VistaIndice();
+        aceptar1.addActionListener(e -> vistaIndice.ejecuta());
+        //ventana.setVisible(false);
+        aceptar1.addActionListener(e -> ventana.setVisible(false));
 
-        ventana.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
+        aceptar1.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        cont.add(aceptar1);
 
-                vistaAlta=new VistaAlta();
-                vistaAlta.ejecuta();
-                ventana.setVisible(true);
-            }
-        });
+
 
         ventana.pack();
         //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,17 +150,16 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
                 ventana.setVisible(true);
             }
         });
-        //_____________________________________________________
 
 
-         JRadioButton doc = new JRadioButton("Documentación ");
-         //doc.addItemListener(e -> controlador.pulsadoDarAlta2(doc.getText()));
+         JRadioButton doc = new JRadioButton("Documentación");
+        doc.addItemListener(e-> controlador.pulsadorJRadioButton(doc.getText()));
 
-         JRadioButton pagweb = new JRadioButton("Página Web ");
-         //pagweb.addItemListener(e -> controlador.pulsadoDarAlta2(doc.getText()));
+         JRadioButton pagweb = new JRadioButton("Página Web");
+         pagweb.addItemListener(e -> controlador.pulsadorJRadioButton(pagweb.getText()));
 
-        JRadioButton prog = new JRadioButton("Programa ");
-        //prog.addItemListener(e -> controlador.pulsadoDarAlta2(doc.getText()));
+        JRadioButton prog = new JRadioButton("Programa");
+        prog.addItemListener(e -> controlador.pulsadorJRadioButton(prog.getText()));
 
 
         ButtonGroup grupo = new ButtonGroup();
@@ -175,11 +176,13 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
 
-        JButton aceptar = new JButton(ACEPTAR);
-        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
-        aceptar.addActionListener(e-> vistaIndice.ejecuta());
-        cont.add(aceptar);
+        JButton aceptar2 = new JButton(ACEPTAR);
+        aceptar2.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        aceptar2.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
+        vistaIndice = new VistaIndice();
+        aceptar2.addActionListener(e -> vistaIndice.ejecuta());
+        aceptar2.addActionListener(e -> ventana.setVisible(false));
+        cont.add(aceptar2);
 
         ventana.pack();
         //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

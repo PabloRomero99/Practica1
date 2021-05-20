@@ -25,6 +25,8 @@ public class ModeloProyecto implements Modelo, Serializable {
     private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
     private Proyecto proyectoFinal;
+    String identificador;
+    String nombreTarea;
 
     private static ModeloProyecto instancia = null;
     private ModeloProyecto(){
@@ -67,7 +69,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     @Override
     public void iniciaProyecto(String nombreProyecto) {
         System.out.println(nombreProyecto);
-        //modelo = new ModeloProyecto();
+
         try {
             FileInputStream fis = new FileInputStream(nombreProyecto + ".bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -75,8 +77,6 @@ public class ModeloProyecto implements Modelo, Serializable {
             ois.close();
             System.out.println(proyecto.getNombre());
             proyectoFinal=proyecto;
-            //setProyecto(proyecto);
-
         }catch(IOException | ClassNotFoundException e){
             System.out.println("El proyecto con nombre " + nombreProyecto + " se ha creado correctamente\n\n");
             proyectoFinal=new Proyecto(nombreProyecto);
@@ -84,29 +84,39 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorDarAlta(String actionCommand) {
+    public void pulsadorJRadioButton(String actionCommand) {
         vistaAlta = new VistaAlta();
         if (actionCommand.equals("Persona")){
             System.out.println("PERSONA ");
             vistaAlta.altaPersona();
-        }else {
+        }else if (actionCommand.equals("Tarea")){
             System.out.println("TAREA ");
             vistaAlta.altaTarea();
+        }else if (actionCommand.equals("Documentación")){
+            this.identificador=actionCommand;
+            System.out.println("DOCUMENTACIÓN");
+        }else if (actionCommand.equals("Página Web")){
+            this.identificador=actionCommand;
+            System.out.println("PÁGINA WEB");
+        }else if(actionCommand.equals("Programa")){
+            this.identificador=actionCommand;
+            System.out.println("PROGRAMA");
         }
     }
 
     @Override
     public void darAltaPersona(String nombre, String dni, String correo) {
-        Persona persona = new Persona(nombre,dni,correo);
+        Persona persona = new Persona(nombre,correo,dni);
         System.out.println("La persona "+ persona + " ha sido creada");
         proyectoFinal.addParticipante(persona);
     }
 
     @Override
     public void darAltaTarea(String titulotarea, String descrip, int priority) {//,String identificador, int horas_invertidas,int tipo_resultado,double coste, Facturacion facturacion
-        Resultado resultado = new Resultado("identificador",15,true);
+        Resultado resultado = new Resultado(identificador,0,true);
         Facturacion facturacion = new ConsumoInterno();
         Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,25,facturacion);
+        proyectoFinal.addTarea(tarea);
         System.out.println("La tarea" + tarea + " ha sido creada");
     }
 
@@ -144,14 +154,21 @@ public class ModeloProyecto implements Modelo, Serializable {
     @Override
     public void insertandoColaborador(String clave) throws Exception {
         vistaInsertar = new VistaInsertar();
-        Proyecto pr = getProyecto();
-        if (pr.getTareas().isEmpty()) {
+        System.out.println(nombreTarea + " nomtarea");
+        if (proyectoFinal.getTareas() == null || proyectoFinal.getTareas().isEmpty()) {
+            System.out.println("tareas vacia");
             vistaInsertar.errorTarea();
         } else {
-            if (!pr.getParticipantes().isEmpty()) {
+            System.out.println(proyectoFinal.getTareas().toString());
+            if (!proyectoFinal.getParticipantes().isEmpty()) {
+                System.out.println("participantes lleno");
+                System.out.println(proyectoFinal.getParticipantes().toString());
                 try {
-                    Persona p = devuelveElemento(clave, pr.getParticipantes());
-                    Tarea t = devuelveElemento(nomTarea, pr.getTareas());
+                    Persona p = devuelveElemento(clave, proyectoFinal.getParticipantes());
+                    System.out.println("1" + p.toString());
+                    System.out.println(proyectoFinal.getTareas().toString());
+                    Tarea t = devuelveElemento(this.nombreTarea, proyectoFinal.getTareas());
+                    System.out.println("2");
                     t.addColaboradores(p);
                     System.out.println("Todo fue bien");
                     vistaInsertar.satisfactorio();
@@ -160,6 +177,7 @@ public class ModeloProyecto implements Modelo, Serializable {
                     vistaInsertar.errorColaborador();
                 }
             }else{
+                System.out.println("polla");
                 vistaInsertar.errorColaborador();
             }
         }
@@ -188,28 +206,14 @@ public class ModeloProyecto implements Modelo, Serializable {
             //vistaInsertar.insertarResponsable();
         }
     }
+
 }
 
 
 
 
-
-
-
-
-
-
 /*
-    @Override
-    public String getNombre() {
-        return null;
-    }
-
-    @Override
-    public double getPrecio() {
-        return 0;
-    }
-
+    /*
     @Override
     public void ProyectocompruebaNProyecto(String nombre) {
         try {
@@ -227,19 +231,4 @@ public class ModeloProyecto implements Modelo, Serializable {
         }
     }
 
-    @Override
-    public void darAltaPersona(String nombrePersona, String dni, String correo) {
-
-        if (participantes.size() == 0) {
-            participantes.add(persona);
-            return true;
-        }
-        for (Persona personita : participantes) {
-            if (personita.getClave().equals(persona.getClave())) {
-                System.out.println("La persona con DNI" + personita.getClave() + " ya esta registrada en el proyecto");
-                return false;
-            }
-        }
-        participantes.add(persona);
-        return true;
-         */
+    */
