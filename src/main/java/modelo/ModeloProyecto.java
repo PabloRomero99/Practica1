@@ -8,10 +8,7 @@ import modelo.Tarea.Tarea;
 import vista.*;
 import modelo.genericos.clases.UtilidadesParaListas;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 
 import static modelo.genericos.clases.UtilidadesParaListas.devuelveElemento;
@@ -68,14 +65,13 @@ public class ModeloProyecto implements Modelo, Serializable {
 
     @Override
     public void iniciaProyecto(String nombreProyecto) {
-        System.out.println(nombreProyecto);
+        System.out.println("Nombre proyecto --> "+nombreProyecto);
 
         try {
             FileInputStream fis = new FileInputStream(nombreProyecto + ".bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
             Proyecto proyecto = (Proyecto) ois.readObject();
             ois.close();
-            System.out.println(proyecto.getNombre());
             proyectoFinal=proyecto;
         }catch(IOException | ClassNotFoundException e){
             System.out.println("El proyecto con nombre " + nombreProyecto + " se ha creado correctamente\n\n");
@@ -177,7 +173,6 @@ public class ModeloProyecto implements Modelo, Serializable {
                     vistaInsertar.errorColaborador();
                 }
             }else{
-                System.out.println("polla");
                 vistaInsertar.errorColaborador();
             }
         }
@@ -205,6 +200,20 @@ public class ModeloProyecto implements Modelo, Serializable {
             System.out.println("PERSONAS QUE NO PARTICIPAN EN NINGUNA TAREA");
             //vistaInsertar.insertarResponsable();
         }
+    }
+
+    @Override
+    public void finalizarProyecto() {
+        try {
+            FileOutputStream fos = new FileOutputStream(proyectoFinal.getNombre() + ".bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(this.proyectoFinal);
+            oos.close();
+            System.out.println("Los datos se han guardado correctamente");
+        }catch (IOException exception){
+            System.out.println("No se han podido guardar los datos");
+        }
+
     }
 
 }

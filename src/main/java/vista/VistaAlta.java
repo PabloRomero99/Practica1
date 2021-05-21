@@ -27,7 +27,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaIndice=new VistaIndice();
+                vistaIndice=vistaIndice.getInstancia();
                 vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
@@ -91,14 +91,14 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         cont.add(correo);
 
 
-        JButton aceptar1 = new JButton(ACEPTAR);
-        aceptar1.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
-        vistaIndice = new VistaIndice();
-        aceptar1.addActionListener(e -> vistaIndice.ejecuta());
-        aceptar1.addActionListener(e -> ventana.setVisible(false));
+        JButton aceptar = new JButton(ACEPTAR);
+        aceptar.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
+        vistaIndice = vistaIndice.getInstancia();;
+        aceptar.addActionListener(e -> vistaIndice.ejecuta());
+        aceptar.addActionListener(e -> ventana.setVisible(false));
 
-        aceptar1.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        cont.add(aceptar1);
+        aceptar.addActionListener(e -> System.out.println("El boton Aceptar de DarAltaPersona esta pulsado..."));
+        cont.add(aceptar);
 
 
 
@@ -172,13 +172,14 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
 
-        JButton aceptar2 = new JButton(ACEPTAR);
-        aceptar2.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        aceptar2.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
-        vistaIndice = new VistaIndice();
-        aceptar2.addActionListener(e -> vistaIndice.ejecuta());
-        aceptar2.addActionListener(e -> ventana.setVisible(false));
-        cont.add(aceptar2);
+        JButton aceptar = new JButton(ACEPTAR);
+        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
+        vistaIndice = vistaIndice.getInstancia();
+        aceptar.addActionListener(e -> vistaIndice.ejecuta());
+        aceptar.addActionListener(e -> ventana.setVisible(false));
+        cont.add(aceptar
+        );
 
         ventana.pack();
         //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

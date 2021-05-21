@@ -119,4 +119,9 @@ public class ImplementacionControlador implements Controlador {
         modelo.pulsadoListarPersona(actionCommand);
     }
 
+    @Override
+    public void finalizarProyecto() {
+        modelo.finalizarProyecto();
+    }
+
 }

@@ -31,7 +31,7 @@ public class VistaPrincipal implements Vista{
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
 
 
-        vistaIndice = new VistaIndice();
+        vistaIndice = VistaIndice.getInstancia();
         aceptar.addActionListener(e -> vistaIndice.setNombreProject(this.nombreProyecto.getText()));
         aceptar.addActionListener(e-> ventana.setVisible(false));
         cont.add(aceptar);

@@ -45,7 +45,7 @@ public class VistaInsertar extends JFrame implements Vista{
          ventana.addWindowListener(new WindowAdapter() {
              @Override
              public void windowClosing(WindowEvent e) {
-                 vistaIndice = new VistaIndice();
+                 vistaIndice = vistaIndice.getInstancia();
                  vistaIndice.ejecuta();
                  ventana.setVisible(true);
              }

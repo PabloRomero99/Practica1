@@ -12,30 +12,6 @@ public class VistaListado {
     private VistaIndice vistaIndice;
     private VistaListado vistaListado;
 
-
-
-    /*
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                final VistaListado vista = new VistaListado();
-                final ImplementacionControlador controlador = new ImplementacionControlador();
-                final ModeloProyecto modelo = new ModeloProyecto();
-
-                vista.setControlador(controlador);
-                controlador.setModelo(modelo);
-                controlador.setVistaListado(vista);
-                modelo.setVistaListado(vista);
-
-                SwingUtilities.invokeLater(() -> vista.ejecutaListadoPersonas());
-
-            }
-        });
-    }
-     */
-
-
     public void setControlador(ImplementacionControlador controlador) {
         this.controlador = controlador;
     }
@@ -67,7 +43,7 @@ public class VistaListado {
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaIndice=new VistaIndice();
+                vistaIndice=vistaIndice.getInstancia();
                 vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }

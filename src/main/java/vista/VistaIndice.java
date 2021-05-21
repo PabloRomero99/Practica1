@@ -3,6 +3,7 @@ package vista;
 import controlador.Controlador;
 import controlador.ImplementacionControlador;
 import modelo.Modelo;
+import modelo.ModeloProyecto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,17 @@ public class VistaIndice extends JFrame implements Serializable {
     public JPanel panel;
     String nombreProyecto;
 
+    private static VistaIndice instancia = null;
+    private VistaIndice(){
+        super();
+    }
+    public static VistaIndice getInstancia(){
+        if (instancia == null){
+            instancia = new VistaIndice();
+        }
+        return instancia;
+    }
+
 
     public void setNombreProject(String nombreproyecto){
         this.nombreProyecto=nombreproyecto;
@@ -36,22 +48,14 @@ public class VistaIndice extends JFrame implements Serializable {
 
    public void ejecuta() {
 
-       System.out.println(nombreProyecto);
+       System.out.println("NombreProyecto VistaIndice -->"+nombreProyecto);
 
        JFrame ventana = new JFrame(nombreProyecto);
        ventana.addWindowListener(new WindowAdapter() {
            @Override
            public void windowClosing(WindowEvent e) {
                //Aqui es donde tenemos que añadir el código, para guardar los datos en el fichero.
-                try {
-                FileOutputStream fos = new FileOutputStream(nombreProyecto + ".bin");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(this);
-                oos.close();
-                System.out.println("Los datos se han guardado correctamente");
-                }catch (IOException exception){
-                System.out.println("No se han podido guardar los datos");
-                }
+               controlador.finalizarProyecto();
                System.exit(0);
            }
        });

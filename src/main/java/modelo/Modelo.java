@@ -19,4 +19,5 @@ public interface Modelo {
 
     void pulsadoListarPersona(String actionCommand);
 
+    void finalizarProyecto();
 }

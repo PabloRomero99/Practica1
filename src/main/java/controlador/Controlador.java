@@ -29,6 +29,8 @@ public interface Controlador {
 
     void pulsadoListarPersona(String actionCommand);
 
+    void finalizarProyecto();
+
 
     //void listaPersonas();
 }
