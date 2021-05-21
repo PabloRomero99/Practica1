@@ -1,5 +1,9 @@
 package modelo;
 
+import modelo.Tarea.Tarea;
+
+import java.util.List;
+
 public interface Modelo {
     void iniciaProyecto(String nombreProyecto);
 
@@ -20,4 +24,6 @@ public interface Modelo {
     void pulsadoListarPersona(String actionCommand);
 
     void finalizarProyecto();
+
+    List<Tarea> conseguirListado(String cadena);
 }

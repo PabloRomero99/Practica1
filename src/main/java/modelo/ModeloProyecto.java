@@ -10,6 +10,7 @@ import modelo.genericos.clases.UtilidadesParaListas;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.List;
 
 import static modelo.genericos.clases.UtilidadesParaListas.devuelveElemento;
 
@@ -214,6 +215,14 @@ public class ModeloProyecto implements Modelo, Serializable {
             System.out.println("No se han podido guardar los datos");
         }
 
+    }
+
+    @Override
+    public List<Tarea> conseguirListado(String cadena) {
+        if (cadena.equals("tarea"))
+            return proyectoFinal.getTareas();
+        //return new String[0];
+        return null;
     }
 
 }

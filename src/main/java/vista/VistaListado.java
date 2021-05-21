@@ -53,6 +53,5 @@ public class VistaListado {
 
     public void mostrarListadoPersonas(){
 
-
     }
 }

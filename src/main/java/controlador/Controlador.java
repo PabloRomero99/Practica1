@@ -1,6 +1,9 @@
 package controlador;
 
+import modelo.Tarea.Tarea;
+
 import javax.swing.*;
+import java.util.List;
 
 public interface Controlador {
     void iniciaProyecto();
@@ -30,6 +33,8 @@ public interface Controlador {
     void pulsadoListarPersona(String actionCommand);
 
     void finalizarProyecto();
+
+    List<Tarea> conseguirListado(String cadena);
 
 
     //void listaPersonas();

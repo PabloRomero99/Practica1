@@ -1,9 +1,11 @@
 package controlador;
 
 import modelo.ModeloProyecto;
+import modelo.Tarea.Tarea;
 import vista.*;
 
 import javax.swing.*;
+import java.util.List;
 
 public class ImplementacionControlador implements Controlador {
     private Vista vista;
@@ -122,6 +124,11 @@ public class ImplementacionControlador implements Controlador {
     @Override
     public void finalizarProyecto() {
         modelo.finalizarProyecto();
+    }
+
+    @Override
+    public List<Tarea> conseguirListado(String cadena) {
+        return modelo.conseguirListado(cadena);
     }
 
 }
