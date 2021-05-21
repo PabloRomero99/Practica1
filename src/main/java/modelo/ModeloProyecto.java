@@ -223,7 +223,9 @@ public class ModeloProyecto implements Modelo, Serializable {
             return proyectoFinal.toArrayListado(cadena);
         else if (cadena.equals("persona"))
             return proyectoFinal.toArrayListado(cadena);
-        return null;
+        String[] noExiste = new String[1];
+        noExiste[0] = "No se ha podido obtener la lista";
+        return noExiste;
     }
 
 }
