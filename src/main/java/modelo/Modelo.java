@@ -25,5 +25,5 @@ public interface Modelo {
 
     void finalizarProyecto();
 
-    List<Tarea> conseguirListado(String cadena);
+    String[] conseguirListado(String cadena);
 }

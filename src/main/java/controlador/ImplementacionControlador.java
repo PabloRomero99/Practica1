@@ -127,7 +127,7 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public List<Tarea> conseguirListado(String cadena) {
+    public String[] conseguirListado(String cadena) {
         return modelo.conseguirListado(cadena);
     }
 

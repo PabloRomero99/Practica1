@@ -196,7 +196,7 @@ public class ModeloProyecto implements Modelo, Serializable {
         vistaListado = new VistaListado();
         if (actionCommand.equals("Personas que participan en el proyecto")) {
             System.out.println("PERSONAS QUE PARTICIPAN");
-            //
+            vistaListado.mostrarListadoPersonas();//
         }else {
             System.out.println("PERSONAS QUE NO PARTICIPAN EN NINGUNA TAREA");
             //vistaInsertar.insertarResponsable();
@@ -218,10 +218,11 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public List<Tarea> conseguirListado(String cadena) {
+    public String[] conseguirListado(String cadena) {
         if (cadena.equals("tarea"))
-            return proyectoFinal.getTareas();
-        //return new String[0];
+            return proyectoFinal.toArrayListado(cadena);
+        else if (cadena.equals("persona"))
+            return proyectoFinal.toArrayListado(cadena);
         return null;
     }
 

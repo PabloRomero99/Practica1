@@ -35,12 +35,27 @@ public class VistaInsertar extends JFrame implements Vista{
          cont.add(nTarea);
 
 
+        Container cont2 = new Container();
+        cont2.setLayout(new FlowLayout());
+        cont2.add(new JLabel("Listado de tareas: "));
+
+
+        String[] tareaslistado = controlador.conseguirListado("tareas");
+        JList tareas = new JList(tareaslistado);
+        JScrollPane paneltareas = new JScrollPane(tareas);
+        tareas.setVisibleRowCount(4);
+
+
+
          JButton aceptar = new JButton(ACEPTAR);
          vistaInsertar = new VistaInsertar();
          aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar", nTarea.getText()));
+         //aceptar.addActionListener(e -> controlador.conseguirListado("tareas"));
          System.out.println(nTarea.getX());
          aceptar.addActionListener(e -> ventana.setVisible(false));
          cont.add(aceptar);
+         cont.add(cont2, BorderLayout.NORTH);
+         cont.add(paneltareas, BorderLayout.CENTER);
 
          ventana.addWindowListener(new WindowAdapter() {
              @Override
@@ -92,7 +107,6 @@ public class VistaInsertar extends JFrame implements Vista{
         ventana.setContentPane(radio);
         ventana.pack();
         ventana.setVisible(true);
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override

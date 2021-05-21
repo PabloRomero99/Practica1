@@ -34,7 +34,7 @@ public interface Controlador {
 
     void finalizarProyecto();
 
-    List<Tarea> conseguirListado(String cadena);
+    String[] conseguirListado(String cadena);
 
 
     //void listaPersonas();

@@ -78,6 +78,22 @@ public class Proyecto implements Serializable {
         }
         return res;
     }
+
+    public String[] toArrayListado(String accion){
+        String[] res;
+        if (accion.equals("persona")){
+            res = new String[participantes.size()];
+            for (int n = 0; n < participantes.size(); n++){
+                res[n] = participantes.get(n).toString();
+            }
+        }else{
+            res = new String[tareas.size()];
+            for (int n=0;n<tareas.size();n++){
+                res[n] = tareas.get(n).getTitulo() + " "+tareas.get(n).getDescripcion() + " " +tareas.get(n).getColaboradores();
+            }
+        }
+        return res;
+    }
     /*
 
 

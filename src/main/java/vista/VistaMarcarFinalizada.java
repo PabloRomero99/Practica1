@@ -15,13 +15,9 @@ public class VistaMarcarFinalizada {
     private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
 
     public void ejecuta(){
-        String[] datos2 = {"Enero", "Febrero", "Marzo", "Abril",
-                "Mayo", "Junio", "Julio", "Agosto",
-                "Septiembre", "Octubre", "Noviembre",
-                "Diciembre"};
-        List<Tarea> datos = controlador.conseguirListado("tarea");
+        String[] datos = controlador.conseguirListado("tarea");
         JFrame ventana = new JFrame("JList");
-        JList meses = new JList((Vector) datos);
+        JList meses = new JList(datos);
         JScrollPane panelMeses = new JScrollPane(meses);
         meses.setVisibleRowCount(4);
         meses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -39,7 +35,6 @@ public class VistaMarcarFinalizada {
 
         ventana.getContentPane().add(panelMeses);
         ventana.pack();
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
 
     }

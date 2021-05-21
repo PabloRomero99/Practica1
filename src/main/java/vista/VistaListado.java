@@ -51,7 +51,28 @@ public class VistaListado {
         ventana.setVisible(true);
     }
 
+    public void ejecutaListadoTareas(){
+
+    }
+
     public void mostrarListadoPersonas(){
+        String[] datos = controlador.conseguirListado("persona");
+        JFrame ventana = new JFrame("JList");
+        JList meses = new JList(datos);
+        JScrollPane panelMeses = new JScrollPane(meses);
+        meses.setVisibleRowCount(4);
+        meses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        ventana.getContentPane().add(panelMeses);
+        ventana.pack();
+        ventana.setVisible(true);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice=vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
 
     }
 }
