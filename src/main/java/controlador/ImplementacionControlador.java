@@ -131,4 +131,9 @@ public class ImplementacionControlador implements Controlador {
         return modelo.conseguirListado(cadena);
     }
 
+    @Override
+    public void pulsadoListarTareas(String text) {
+        modelo.pulsadoListarTareas(text);
+    }
+
 }

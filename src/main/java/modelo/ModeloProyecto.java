@@ -25,6 +25,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     private Proyecto proyectoFinal;
     String identificador;
     String nombreTarea;
+    boolean interno_comercializado; //true --> resultado interno | false --> destinado a ser comercializado
 
     private static ModeloProyecto instancia = null;
     private ModeloProyecto(){
@@ -98,7 +99,14 @@ public class ModeloProyecto implements Modelo, Serializable {
         }else if(actionCommand.equals("Programa")){
             this.identificador=actionCommand;
             System.out.println("PROGRAMA");
+        }else if(actionCommand.equals("Resultado Interno")){
+            System.out.println("RESULTADO INTERNO");
+            this.interno_comercializado=true;
+        }else if(actionCommand.equals("Destinado a ser comercializado")){
+            System.out.println("DESTINADO A SER COMERCIALIZADO");
+            this.interno_comercializado=false;
         }
+
     }
 
     @Override
@@ -110,7 +118,7 @@ public class ModeloProyecto implements Modelo, Serializable {
 
     @Override
     public void darAltaTarea(String titulotarea, String descrip, int priority) {//int tipo_resultado,double coste, Facturacion facturacion
-        Resultado resultado = new Resultado(identificador,0,true);
+        Resultado resultado = new Resultado(identificador,0,interno_comercializado);
         Facturacion facturacion = new ConsumoInterno();
         Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,25,facturacion);
         proyectoFinal.addTarea(tarea);
@@ -226,6 +234,17 @@ public class ModeloProyecto implements Modelo, Serializable {
         String[] noExiste = new String[1];
         noExiste[0] = "No se ha podido obtener la lista";
         return noExiste;
+    }
+
+    @Override
+    public void pulsadoListarTareas(String text) {
+        vistaListado = new VistaListado();
+        if (text.equals("Tareas que existen en el proyecto")) {
+            System.out.println("TAREAS QUE EXISTEN");
+            vistaListado.mostrarListadoTareas();
+    }else {
+            System.out.println("TAREAS SIN COLABORADORES");
+        }
     }
 
 }

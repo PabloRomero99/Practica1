@@ -158,10 +158,10 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         prog.addItemListener(e -> controlador.pulsadorJRadioButton(prog.getText()));
 
 
-        ButtonGroup grupo = new ButtonGroup();
-         grupo.add(doc);
-         grupo.add(pagweb);
-         grupo.add(prog);
+        ButtonGroup tipo_resultado = new ButtonGroup();
+         tipo_resultado.add(doc);
+         tipo_resultado.add(pagweb);
+         tipo_resultado.add(prog);
 
          JPanel radio = new JPanel();
          radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
@@ -169,6 +169,24 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
          radio.add(pagweb);
          radio.add(prog);
          cont.add(radio);
+
+        JRadioButton res_interno = new JRadioButton("Resultado Interno");
+        res_interno.addItemListener(e-> controlador.pulsadorJRadioButton(res_interno.getText()));
+
+        JRadioButton comercializado = new JRadioButton("Destinado a ser comercializado");
+        comercializado.addItemListener(e -> controlador.pulsadorJRadioButton(comercializado.getText()));
+
+
+        ButtonGroup tipo_interno_comercializado = new ButtonGroup();
+         tipo_interno_comercializado.add(res_interno);
+         tipo_interno_comercializado.add(comercializado);
+
+
+         JPanel radio2 = new JPanel();
+         radio2.setLayout(new BoxLayout(radio2, BoxLayout.PAGE_AXIS));
+         radio2.add(res_interno);
+         radio2.add(comercializado);
+         cont.add(radio2);
 
 
 

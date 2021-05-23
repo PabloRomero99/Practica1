@@ -36,6 +36,8 @@ public interface Controlador {
 
     String[] conseguirListado(String cadena);
 
+    void pulsadoListarTareas(String text);
+
 
     //void listaPersonas();
 }

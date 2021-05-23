@@ -30,7 +30,7 @@ public class VistaInsertar extends JFrame implements Vista{
          Container cont = ventana.getContentPane();
          nTarea = new JTextField(30);
          JLabel nomTarea = new JLabel("Nombre de la tarea donde quieres modificar: ");
-         //cont.setLayout(new FlowLayout());
+         cont.setLayout(new FlowLayout());
          cont.add(nomTarea);
          cont.add(nTarea);
 

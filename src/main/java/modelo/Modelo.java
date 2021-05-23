@@ -26,4 +26,6 @@ public interface Modelo {
     void finalizarProyecto();
 
     String[] conseguirListado(String cadena);
+
+    void pulsadoListarTareas(String text);
 }
