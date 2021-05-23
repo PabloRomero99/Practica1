@@ -190,9 +190,48 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
 
+        JTextField coste  = new JTextField(30);
+        JLabel dinero = new JLabel("Coste: ");
+        cont.setLayout(new FlowLayout());
+        cont.add(dinero);
+        cont.add(coste);
+
+
+        JRadioButton sin_costes = new JRadioButton("Facturación sin costes");
+        sin_costes.addItemListener(e-> controlador.pulsadorJRadioButton(sin_costes.getText()));
+
+        JRadioButton descuento = new JRadioButton("Facturación con descuento");
+        descuento.addItemListener(e -> controlador.pulsadorJRadioButton(descuento.getText()));
+
+        JRadioButton urgente = new JRadioButton("Facturación urgente");
+        urgente.addItemListener(e -> controlador.pulsadorJRadioButton(urgente.getText()));
+
+
+        ButtonGroup tipo_facturacion = new ButtonGroup();
+         tipo_facturacion.add(sin_costes);
+         tipo_facturacion.add(descuento);
+         tipo_facturacion.add(urgente);
+
+
+        JTextField dto  = new JTextField(30);
+        JLabel desc = new JLabel("          Descuento: ");
+        cont.setLayout(new FlowLayout());
+        cont.add(desc);
+        cont.add(dto);
+
+
+         JPanel radio3 = new JPanel();
+         radio3.setLayout(new BoxLayout(radio3, BoxLayout.PAGE_AXIS));
+         radio3.add(sin_costes);
+         radio3.add(descuento);
+         radio3.add(urgente);
+         cont.add(radio3);
+
+
+
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
+        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad,coste,dto));
         vistaIndice = vistaIndice.getInstancia();
         aceptar.addActionListener(e -> vistaIndice.ejecuta());
         aceptar.addActionListener(e -> ventana.setVisible(false));
@@ -200,7 +239,6 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         );
 
         ventana.pack();
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
     @Override

@@ -12,7 +12,7 @@ public interface Controlador {
 
     void darAltaPersona(JTextField nombre,JTextField dni,JTextField correo);
 
-    void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad);
+    void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad, JTextField coste,JTextField descuento);
 
     void pulsadoAceptar(String actionCommand, String nomTarea);
 
@@ -37,6 +37,8 @@ public interface Controlador {
     String[] conseguirListado(String cadena);
 
     void pulsadoListarTareas(String text);
+
+    void marcarFinalizada(int index);
 
 
     //void listaPersonas();

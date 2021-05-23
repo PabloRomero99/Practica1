@@ -165,7 +165,7 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
     }
 
     public void marcarFinalizada(){
-        this.finalizada = true;
+        this.fecha_finalización=LocalDate.now(); this.finalizada = true;
     }
 
     public List<String> listaNombres(){

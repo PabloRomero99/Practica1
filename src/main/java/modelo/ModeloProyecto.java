@@ -2,7 +2,9 @@ package modelo;
 
 import controlador.ImplementacionControlador;
 import modelo.Tarea.Facturacion.ConsumoInterno;
+import modelo.Tarea.Facturacion.Descuento;
 import modelo.Tarea.Facturacion.Facturacion;
+import modelo.Tarea.Facturacion.Urgente;
 import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.*;
@@ -26,6 +28,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     String identificador;
     String nombreTarea;
     boolean interno_comercializado; //true --> resultado interno | false --> destinado a ser comercializado
+    int tipo_fac;
 
     private static ModeloProyecto instancia = null;
     private ModeloProyecto(){
@@ -105,6 +108,15 @@ public class ModeloProyecto implements Modelo, Serializable {
         }else if(actionCommand.equals("Destinado a ser comercializado")){
             System.out.println("DESTINADO A SER COMERCIALIZADO");
             this.interno_comercializado=false;
+        }else if (actionCommand.equals("Facturación sin costes")){
+            System.out.println("FACTURCION SIN COSTES");
+            this.tipo_fac= 1;
+        }else if(actionCommand.equals("Facturación con descuento")){
+            System.out.println("FACTURACION DESCUENTO");
+            this.tipo_fac=2;
+        }else if(actionCommand.equals("Facturación urgente")){
+            System.out.println("");
+            this.tipo_fac=3;
         }
 
     }
@@ -117,10 +129,17 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void darAltaTarea(String titulotarea, String descrip, int priority) {//int tipo_resultado,double coste, Facturacion facturacion
+    public void darAltaTarea(String titulotarea, String descrip, int priority, double coste, double descuento) {//int tipo_resultado,double coste, Facturacion facturacion
         Resultado resultado = new Resultado(identificador,0,interno_comercializado);
-        Facturacion facturacion = new ConsumoInterno();
-        Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,25,facturacion);
+        Facturacion facturacion;
+        if (tipo_fac==1)
+            facturacion = new ConsumoInterno();
+        else if(tipo_fac==2)
+            facturacion = new Descuento(descuento);
+        else
+            facturacion = new Urgente(descuento);
+
+        Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,coste,facturacion);
         proyectoFinal.addTarea(tarea);
         System.out.println("La tarea" + tarea + " ha sido creada");
     }
@@ -247,28 +266,9 @@ public class ModeloProyecto implements Modelo, Serializable {
         }
     }
 
-}
-
-
-
-
-/*
-    /*
     @Override
-    public void ProyectocompruebaNProyecto(String nombre) {
-        try {
-            FileInputStream fis = new FileInputStream(nombre + ".bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Proyecto proyecto = (Proyecto) ois.readObject();
-            ois.close();
-            //return proyecto;
-
-
-        }catch(IOException | ClassNotFoundException e){
-            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-            //return new Proyecto(nombre);
-
-        }
+    public void marcarFinalizada(int index) {
+        proyectoFinal.getTareas().get(index).marcarFinalizada();
     }
 
-    */
+}
