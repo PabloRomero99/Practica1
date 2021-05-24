@@ -164,6 +164,11 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
 
     }
 
+    public String titulos() {
+        return "\t- // Titulo= " + Titulo + '\n';
+
+    }
+
     public void marcarFinalizada(){
         this.fecha_finalización=LocalDate.now(); this.finalizada = true;
     }

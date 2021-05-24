@@ -40,7 +40,7 @@ public class VistaInsertar extends JFrame implements Vista{
          //cont2.add(clave);
 
 
-        String[] tareaslistado = controlador.conseguirListado("tarea");
+        String[] tareaslistado = controlador.conseguirListado("nombreTarea");
         JScrollBar barra = new JScrollBar();
         JList tareas = new JList(tareaslistado);
         JScrollPane paneltareas = new JScrollPane(tareas);

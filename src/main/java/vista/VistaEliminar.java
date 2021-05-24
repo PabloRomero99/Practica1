@@ -38,7 +38,7 @@ public class VistaEliminar extends JFrame implements Vista{
         //cont2.add(clave);
 
 
-        String[] tareaslistado = controlador.conseguirListado("tarea");
+        String[] tareaslistado = controlador.conseguirListado("nombreTarea");
         JList tareas = new JList(tareaslistado);
         JScrollPane paneltareas = new JScrollPane(tareas);
         tareas.setVisibleRowCount(4);
