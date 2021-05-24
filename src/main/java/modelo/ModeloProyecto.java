@@ -90,31 +90,48 @@ public class ModeloProyecto implements Modelo, Serializable {
         if (actionCommand.equals("Persona")){
             System.out.println("PERSONA ");
             vistaAlta.altaPersona();
+
         }else if (actionCommand.equals("Tarea")){
             System.out.println("TAREA ");
             vistaAlta.altaTarea();
-        }else if (actionCommand.equals("Documentación")){
+        }
+
+        else if (actionCommand.equals("Documentación")){
             this.identificador=actionCommand;
             System.out.println("DOCUMENTACIÓN");
-        }else if (actionCommand.equals("Página Web")){
+        }
+
+        else if (actionCommand.equals("Página Web")){
             this.identificador=actionCommand;
             System.out.println("PÁGINA WEB");
-        }else if(actionCommand.equals("Programa")){
+        }
+
+        else if(actionCommand.equals("Programa")){
             this.identificador=actionCommand;
             System.out.println("PROGRAMA");
-        }else if(actionCommand.equals("Resultado Interno")){
+        }
+
+        else if(actionCommand.equals("Resultado Interno")){
             System.out.println("RESULTADO INTERNO");
             this.interno_comercializado=true;
-        }else if(actionCommand.equals("Destinado a ser comercializado")){
+        }
+
+        else if(actionCommand.equals("Destinado a ser comercializado")){
             System.out.println("DESTINADO A SER COMERCIALIZADO");
             this.interno_comercializado=false;
-        }else if (actionCommand.equals("Facturación sin costes")){
+        }
+
+        else if (actionCommand.equals("Facturación sin costes")){
             System.out.println("FACTURCION SIN COSTES");
             this.tipo_fac= 1;
-        }else if(actionCommand.equals("Facturación con descuento")){
+        }
+
+        else if(actionCommand.equals("Facturación con descuento")){
             System.out.println("FACTURACION DESCUENTO");
             this.tipo_fac=2;
-        }else if(actionCommand.equals("Facturación urgente")){
+        }
+
+        else if(actionCommand.equals("Facturación urgente")){
             System.out.println("");
             this.tipo_fac=3;
         }
@@ -159,7 +176,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsandoInsertar(String actionCommand) {
+    public void pulsandoInsertar(String actionCommand) throws Exception {
         vistaInsertar = new VistaInsertar();
         if (actionCommand.equals("Colaborador")){
             System.out.println("COLABORADOR");
@@ -269,6 +286,11 @@ public class ModeloProyecto implements Modelo, Serializable {
     @Override
     public void marcarFinalizada(int index) {
         proyectoFinal.getTareas().get(index).marcarFinalizada();
+    }
+
+    @Override
+    public void consultarPrecio() {
+        //proyectoFinal
     }
 
 }

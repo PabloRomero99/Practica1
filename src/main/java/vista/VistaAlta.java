@@ -214,7 +214,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
         JTextField dto  = new JTextField(30);
-        JLabel desc = new JLabel("          Descuento: ");
+        JLabel desc = new JLabel("          Porcentaje a aplicar: ");
         cont.setLayout(new FlowLayout());
         cont.add(desc);
         cont.add(dto);

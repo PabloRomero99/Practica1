@@ -16,7 +16,7 @@ public interface Controlador {
 
     void pulsadoAceptar(String actionCommand, String nomTarea);
 
-    void pulsadoInsertar(String actionCommand);
+    void pulsadoInsertar(String actionCommand) throws Exception;
 
     void pulsadoEliminar(String actionCommand);
 
@@ -39,6 +39,8 @@ public interface Controlador {
     void pulsadoListarTareas(String text);
 
     void marcarFinalizada(int index);
+
+    void consultarPrecio();
 
 
     //void listaPersonas();

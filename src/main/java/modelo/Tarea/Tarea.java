@@ -148,19 +148,19 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
     }
 
     public String toString() {
-        return "\t- Titulo= " + Titulo + '\n' +
-                "\t- Descripcion= " + Descripcion + '\n' +
-                "\t- Colaboradores= " + listaNombres() + '\n' +
-                "\t- Responsable= " + devuelveResponsable() + '\n' +
-                "\t- Prioridad= " + prioridad + '\n' +
-                "\t- Fecha_creacion= " + fecha_creacion + '\n' +
-                "\t- Fecha_finalización= " + fecha_finalización + '\n' +
-                "\t- Finalizada= " + finalizada + '\n' +
-                "\t- Resultado= " + resultado + '\n' +
-                "\t- Lista de etiquetas= " + lista_etiquetas + '\n'+
-                "\t- Coste = " + coste + "€\n" +
-                "\t- Coste Final= " + calculaFacturacion() + "€\n" +
-                "\t- Facturacion= "+ tipoFacturacion.nombre() + '\n';
+        return "\t- // Titulo= " + Titulo + '\n' +
+                "\t- // Descripcion= " + Descripcion + '\n' +
+                "\t- // Colaboradores= " + listaNombres() + '\n' +
+                "\t- // Responsable= " + devuelveResponsable() + '\n' +
+                "\t- // Prioridad= " + prioridad + '\n' +
+                "\t- // Fecha_creacion= " + fecha_creacion + '\n' +
+                "\t- // Fecha_finalización= " + fecha_finalización + '\n' +
+                "\t- // Finalizada= " + finalizada + '\n' +
+                "\t- // Resultado= " + resultado + '\n' +
+                "\t- // Lista de etiquetas= " + lista_etiquetas + '\n'+
+                "\t- // Coste = " + coste + "€\n" +
+                "\t- // Coste Final= " + calculaFacturacion() + "€\n" +
+                "\t- // Facturacion= "+ tipoFacturacion.nombre() + '\n';
 
     }
 

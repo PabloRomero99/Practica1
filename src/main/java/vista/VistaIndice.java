@@ -108,6 +108,7 @@ public class VistaIndice extends JFrame implements Serializable {
 
        JButton boton7 = new JButton("Consultar precio "); //Total del proyecto + tarea
        boton7.addActionListener(e -> System.out.println("Boton consultar precio pulsado"));
+       boton7.addActionListener(e -> controlador.consultarPrecio());
        contenedor.add(boton7);
 
 

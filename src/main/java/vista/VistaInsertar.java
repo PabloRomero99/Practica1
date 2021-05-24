@@ -80,12 +80,24 @@ public class VistaInsertar extends JFrame implements Vista{
         JRadioButton colaborador = new JRadioButton("Colaborador");
 
         //controlador = new ImplementacionControlador();
-        colaborador.addItemListener(e -> controlador.pulsadoInsertar(colaborador.getText()));
+        colaborador.addItemListener(e -> {
+            try {
+                controlador.pulsadoInsertar(colaborador.getText());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
         colaborador.addItemListener(e-> ventana.setVisible(false));
 
 
         JRadioButton etiqueta = new JRadioButton("Etiqueta");
-        etiqueta.addItemListener(e -> controlador.pulsadoInsertar(etiqueta.getText()));
+        etiqueta.addItemListener(e -> {
+            try {
+                controlador.pulsadoInsertar(etiqueta.getText());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
         etiqueta.addItemListener(e-> ventana.setVisible(false));
 
 

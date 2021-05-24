@@ -96,4 +96,21 @@ public class Proyecto implements Serializable {
         return res;
     }
 
+    public double[] mostrarPrecioTareas(){
+        List<Tarea> listTarea = this.getTareas();
+        double[] precioTarea = new double[listTarea.size()];
+        for (int i = 0; i < listTarea.size(); i++) {
+            precioTarea[i] = listTarea.get(i).calculaFacturacion();
+        }
+        return precioTarea;
+    }
+
+    public double mostrarPrecioTotal(){
+        double suma = 0;
+        for (double precio:mostrarPrecioTareas()){
+            suma += precio;
+        }
+        return suma;
+    }
+
 }

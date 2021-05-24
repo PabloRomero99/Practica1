@@ -82,7 +82,7 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void pulsadoInsertar(String actionCommand) {
+    public void pulsadoInsertar(String actionCommand) throws Exception {
         modelo.pulsandoInsertar(actionCommand);
     }
 
@@ -141,6 +141,11 @@ public class ImplementacionControlador implements Controlador {
     @Override
     public void marcarFinalizada(int index) {
         modelo.marcarFinalizada(index);
+    }
+
+    @Override
+    public void consultarPrecio() {
+        modelo.consultarPrecio();
     }
 
 }

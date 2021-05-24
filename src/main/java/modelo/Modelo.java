@@ -15,7 +15,7 @@ public interface Modelo {
 
     void pulsandoAceptar(String acctionCommand, String nomTarea);
 
-    void pulsandoInsertar(String actionCommand);
+    void pulsandoInsertar(String actionCommand) throws Exception;
 
     void insertandoColaborador(String clave) throws Exception;
 
@@ -30,4 +30,6 @@ public interface Modelo {
     void pulsadoListarTareas(String text);
 
     void marcarFinalizada(int index);
+
+    void consultarPrecio();
 }
