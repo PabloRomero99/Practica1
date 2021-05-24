@@ -40,8 +40,8 @@ public interface Controlador {
 
     void marcarFinalizada(int index);
 
-    void consultarPrecio();
+    String[] consultarPrecioPorTarea();
 
+    double consultarPrecioTotal();
 
-    //void listaPersonas();
 }

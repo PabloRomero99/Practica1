@@ -59,9 +59,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     }
 
 
-
     public void altaPersona(){
-
         JFrame ventana = new JFrame("Dar de alta a una Persona");
         Container cont = ventana.getContentPane();
         ventana.addWindowListener(new WindowAdapter() {
@@ -191,7 +189,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
         JTextField coste  = new JTextField(30);
-        JLabel dinero = new JLabel("Coste: ");
+        JLabel dinero = new JLabel("        Coste: ");
         cont.setLayout(new FlowLayout());
         cont.add(dinero);
         cont.add(coste);
@@ -239,6 +237,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         );
 
         ventana.pack();
+        ventana.setSize(360,450);
         ventana.setVisible(true);
     }
     @Override

@@ -37,5 +37,7 @@ public interface Modelo {
 
     void marcarFinalizada(int index);
 
-    void consultarPrecio();
+    String[] consultarPrecioPorTarea();
+
+    public double consultarPrecioTotal();
 }
