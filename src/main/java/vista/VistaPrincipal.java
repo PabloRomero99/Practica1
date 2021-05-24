@@ -37,6 +37,7 @@ public class VistaPrincipal implements Vista{
         cont.add(aceptar);
 
         //ventana.setPreferredSize(new Dimension(800,600));
+
         ventana.pack();
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);

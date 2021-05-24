@@ -89,21 +89,11 @@ public class Proyecto implements Serializable {
         }else{
             res = new String[tareas.size()];
             for (int n=0;n<tareas.size();n++){
-                res[n] = tareas.get(n).getTitulo() + " "+tareas.get(n).getDescripcion() + " " +tareas.get(n).getColaboradores();
+                //res[n] = tareas.get(n).getTitulo() + " "+tareas.get(n).getDescripcion() + " " +tareas.get(n).getColaboradores();
+                res[n] = tareas.get(n).toString();
             }
         }
         return res;
     }
-    /*
 
-
-
-    public void escribirFichero() throws IOException, ClassNotFoundException {
-        FileOutputStream fos = new FileOutputStream( nombre + ".bin");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(this);
-        oos.close();
-    }
-
-     */
 }

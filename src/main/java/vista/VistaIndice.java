@@ -100,6 +100,9 @@ public class VistaIndice extends JFrame implements Serializable {
 
        JButton boton6 = new JButton("Listado de Tareas ");//Totales en el proyecto, en las cuales no participa nadie
        boton6.addActionListener(e -> System.out.println("Boton Listado de Tareas pulsado"));
+       vistaListado = new VistaListado();
+       boton6.addActionListener(e -> vistaListado.ejecutaListadoTareas());
+       boton6.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton6);
 
 

@@ -158,10 +158,10 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         prog.addItemListener(e -> controlador.pulsadorJRadioButton(prog.getText()));
 
 
-        ButtonGroup grupo = new ButtonGroup();
-         grupo.add(doc);
-         grupo.add(pagweb);
-         grupo.add(prog);
+        ButtonGroup tipo_resultado = new ButtonGroup();
+         tipo_resultado.add(doc);
+         tipo_resultado.add(pagweb);
+         tipo_resultado.add(prog);
 
          JPanel radio = new JPanel();
          radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
@@ -170,11 +170,68 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
          radio.add(prog);
          cont.add(radio);
 
+        JRadioButton res_interno = new JRadioButton("Resultado Interno");
+        res_interno.addItemListener(e-> controlador.pulsadorJRadioButton(res_interno.getText()));
+
+        JRadioButton comercializado = new JRadioButton("Destinado a ser comercializado");
+        comercializado.addItemListener(e -> controlador.pulsadorJRadioButton(comercializado.getText()));
+
+
+        ButtonGroup tipo_interno_comercializado = new ButtonGroup();
+         tipo_interno_comercializado.add(res_interno);
+         tipo_interno_comercializado.add(comercializado);
+
+
+         JPanel radio2 = new JPanel();
+         radio2.setLayout(new BoxLayout(radio2, BoxLayout.PAGE_AXIS));
+         radio2.add(res_interno);
+         radio2.add(comercializado);
+         cont.add(radio2);
+
+
+
+        JTextField coste  = new JTextField(30);
+        JLabel dinero = new JLabel("Coste: ");
+        cont.setLayout(new FlowLayout());
+        cont.add(dinero);
+        cont.add(coste);
+
+
+        JRadioButton sin_costes = new JRadioButton("Facturación sin costes");
+        sin_costes.addItemListener(e-> controlador.pulsadorJRadioButton(sin_costes.getText()));
+
+        JRadioButton descuento = new JRadioButton("Facturación con descuento");
+        descuento.addItemListener(e -> controlador.pulsadorJRadioButton(descuento.getText()));
+
+        JRadioButton urgente = new JRadioButton("Facturación urgente");
+        urgente.addItemListener(e -> controlador.pulsadorJRadioButton(urgente.getText()));
+
+
+        ButtonGroup tipo_facturacion = new ButtonGroup();
+         tipo_facturacion.add(sin_costes);
+         tipo_facturacion.add(descuento);
+         tipo_facturacion.add(urgente);
+
+
+        JTextField dto  = new JTextField(30);
+        JLabel desc = new JLabel("          Descuento: ");
+        cont.setLayout(new FlowLayout());
+        cont.add(desc);
+        cont.add(dto);
+
+
+         JPanel radio3 = new JPanel();
+         radio3.setLayout(new BoxLayout(radio3, BoxLayout.PAGE_AXIS));
+         radio3.add(sin_costes);
+         radio3.add(descuento);
+         radio3.add(urgente);
+         cont.add(radio3);
+
 
 
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad));
+        aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad,coste,dto));
         vistaIndice = vistaIndice.getInstancia();
         aceptar.addActionListener(e -> vistaIndice.ejecuta());
         aceptar.addActionListener(e -> ventana.setVisible(false));
@@ -182,7 +239,6 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         );
 
         ventana.pack();
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
     @Override

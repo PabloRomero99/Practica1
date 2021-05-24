@@ -11,7 +11,7 @@ public interface Modelo {
 
     void darAltaPersona(String nombre, String dni, String correo);
 
-    void darAltaTarea(String titulotarea, String descrip, int priority);
+    void darAltaTarea(String titulotarea, String descrip, int priority, double coste, double descuento);
 
     void pulsandoAceptar(String acctionCommand, String nomTarea);
 
@@ -26,4 +26,8 @@ public interface Modelo {
     void finalizarProyecto();
 
     String[] conseguirListado(String cadena);
+
+    void pulsadoListarTareas(String text);
+
+    void marcarFinalizada(int index);
 }

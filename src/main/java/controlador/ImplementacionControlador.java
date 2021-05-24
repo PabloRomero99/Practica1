@@ -67,11 +67,13 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad) {
+    public void darAltaTarea(JTextField titulo, JTextField descripcion, JSlider prioridad, JTextField coste,JTextField dto) {
         String titulotarea = titulo.getText();
         String descrip = descripcion.getText();
         int priority = prioridad.getValue();
-        modelo.darAltaTarea(titulotarea,descrip,priority);
+        double cost = Double.parseDouble(coste.getText());
+        double descuento = Double.parseDouble(dto.getText());
+        modelo.darAltaTarea(titulotarea,descrip,priority,cost,descuento);
     }
 
     @Override
@@ -129,6 +131,16 @@ public class ImplementacionControlador implements Controlador {
     @Override
     public String[] conseguirListado(String cadena) {
         return modelo.conseguirListado(cadena);
+    }
+
+    @Override
+    public void pulsadoListarTareas(String text) {
+        modelo.pulsadoListarTareas(text);
+    }
+
+    @Override
+    public void marcarFinalizada(int index) {
+        modelo.marcarFinalizada(index);
     }
 
 }
