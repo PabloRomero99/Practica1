@@ -22,7 +22,7 @@ public class VistaIndice extends JFrame implements Serializable {
     private VistaPrincipal vistaPrincipal;
     private VistaMarcarFinalizada vistaMarcarFinalizada;
     private VistaListado vistaListado;
-    //private VistaConsultarPrecio vistaConsultaPrecio;
+    private VistaMostrarPrecio vistaMostrarPrecio;
     //private VistaAlta vistaModificaciones;
     private VistaIndice vistaIndice;
     public JPanel panel;
@@ -127,28 +127,3 @@ public class VistaIndice extends JFrame implements Serializable {
 
 
 
-/*
-        public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre del proyecto: ");
-        String nombre = sc.nextLine();
-        try {
-            FileInputStream fis = new FileInputStream(nombre + ".bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Proyecto proyecto = (Proyecto) ois.readObject();
-            ois.close();
-            return proyecto;
-        }catch(IOException e){
-            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-            return new Proyecto(nombre);
-        }
-    }*/
-
-/*
-public void escribirFichero() throws IOException, ClassNotFoundException {
-        FileOutputStream fos = new FileOutputStream( nombre + ".bin");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(this);
-        oos.close();
-    }
- */

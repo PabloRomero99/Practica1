@@ -130,7 +130,7 @@ public class ModeloProyecto implements Modelo, Serializable {
         }
 
         else if(actionCommand.equals("Facturación urgente")){
-            System.out.println("");
+            System.out.println("FACTURACION URGENTE");
             this.tipo_fac=3;
         }
     }
@@ -269,7 +269,7 @@ public class ModeloProyecto implements Modelo, Serializable {
             vistaListado.mostrarListadoPersonas();//
         }else {
             System.out.println("PERSONAS QUE NO PARTICIPAN EN NINGUNA TAREA");
-            //vistaInsertar.insertarResponsable();
+            vistaListado.mostrarListadoPersonasNoResponsables();
         }
     }
 
@@ -284,7 +284,6 @@ public class ModeloProyecto implements Modelo, Serializable {
         }catch (IOException exception){
             System.out.println("No se han podido guardar los datos");
         }
-
     }
 
     @Override
@@ -293,6 +292,13 @@ public class ModeloProyecto implements Modelo, Serializable {
             return proyectoFinal.toArrayListado(cadena);
         else if (cadena.equals("persona"))
             return proyectoFinal.toArrayListado(cadena);
+        else if (cadena.equals("nombreTarea"))
+            return proyectoFinal.toArrayListado(cadena);
+        else if (cadena.equals("personaSinResp")){
+            return proyectoFinal.toArrayListado(cadena);
+        }else if (cadena.equals("tareaNoColab")){
+            return proyectoFinal.toArrayListado(cadena);
+        }
         String[] noExiste = new String[1];
         noExiste[0] = "No se ha podido obtener la lista";
         return noExiste;
@@ -306,6 +312,7 @@ public class ModeloProyecto implements Modelo, Serializable {
             vistaListado.mostrarListadoTareas();
     }else {
             System.out.println("TAREAS SIN COLABORADORES");
+            vistaListado.mostrarListadoTareasSinColaboradores();
         }
     }
 
@@ -315,8 +322,12 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void consultarPrecio() {
-        //proyectoFinal
+    public String[] consultarPrecioPorTarea() {
+        return proyectoFinal.mostrarPrecioTareas();
+    }
+    @Override
+    public double consultarPrecioTotal() {
+        return proyectoFinal.mostrarPrecioTotal();
     }
 
 }

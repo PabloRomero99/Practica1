@@ -50,7 +50,6 @@ public class ImplementacionControlador implements Controlador {
     public void iniciaProyecto() {
         String nombreProyecto = vista.getNombreProyecto();
         modelo.iniciaProyecto(nombreProyecto);
-
     }
 
     @Override
