@@ -7,7 +7,7 @@ import java.util.List;
 public interface Modelo {
     void iniciaProyecto(String nombreProyecto);
 
-    void pulsadorJRadioButton(String actionCommand);
+    void pulsadorJRadioButton(String actionCommand) throws Exception;
 
     void darAltaPersona(String nombre, String dni, String correo);
 
@@ -19,7 +19,13 @@ public interface Modelo {
 
     void insertandoColaborador(String clave) throws Exception;
 
-    void pulsandoEliminar(String actionCommand);
+    void insertandoEtiqueta(String etiqueta) throws Exception;
+
+    void eliminandoColaborador(String clave) throws Exception;
+
+    void eliminandoEtiqueta(String etiqueta) throws Exception;
+
+    void pulsandoEliminar(String actionCommand) throws Exception;
 
     void pulsadoListarPersona(String actionCommand);
 

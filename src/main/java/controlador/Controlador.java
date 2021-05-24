@@ -8,7 +8,7 @@ import java.util.List;
 public interface Controlador {
     void iniciaProyecto();
 
-    void pulsadorJRadioButton(String actionCommand);
+    void pulsadorJRadioButton(String actionCommand) throws Exception;
 
     void darAltaPersona(JTextField nombre,JTextField dni,JTextField correo);
 
@@ -18,17 +18,17 @@ public interface Controlador {
 
     void pulsadoInsertar(String actionCommand) throws Exception;
 
-    void pulsadoEliminar(String actionCommand);
+    void pulsadoEliminar(String actionCommand) throws Exception;
 
     void insertaColaborador(String clave) throws Exception;
 
-    void insertaEtiqueta(String clave);
+    void insertaEtiqueta(String clave) throws Exception;
 
     void insertaResponsable(String clave);
 
-    void eliminaPersona(String clave);
+    void eliminaPersona(String clave) throws Exception;
 
-    void eliminaEtiqueta(String clave);
+    void eliminaEtiqueta(String clave) throws Exception;
 
     void pulsadoListarPersona(String actionCommand);
 

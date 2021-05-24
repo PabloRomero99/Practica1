@@ -108,7 +108,9 @@ public class VistaIndice extends JFrame implements Serializable {
 
        JButton boton7 = new JButton("Consultar precio "); //Total del proyecto + tarea
        boton7.addActionListener(e -> System.out.println("Boton consultar precio pulsado"));
-       boton7.addActionListener(e -> controlador.consultarPrecio());
+       vistaMostrarPrecio = new VistaMostrarPrecio();
+       boton7.addActionListener(e -> vistaMostrarPrecio.ejecutaMostrarPrecio());
+       boton7.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton7);
 
 
@@ -121,32 +123,6 @@ public class VistaIndice extends JFrame implements Serializable {
        ventana.setVisible(true);
 
    }
-
-private void radioButton(){
-        JRadioButton darAlta = new JRadioButton("Dar de alta: ");
-        darAlta.addItemListener(e -> System.out.println(e.getStateChange()));
-        JRadioButton insertar = new JRadioButton("Insertar: ");
-        insertar.addItemListener(e -> System.out.println(e.getStateChange()));
-        JRadioButton eliminar = new JRadioButton("Eliminar: ");
-        eliminar.addItemListener(e -> System.out.println(e.getStateChange()));
-        ButtonGroup grupo = new ButtonGroup();
-        grupo.add(darAlta);
-        grupo.add(insertar);
-        grupo.add(eliminar);
-
-       JFrame ventana = new JFrame("Proyecto ");
-
-       JPanel radio = new JPanel();
-       radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
-       radio.add(darAlta);
-       radio.add(insertar);
-       radio.add(eliminar);
-       ventana.setContentPane(radio);
-       ventana.pack();
-       ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ventana.setVisible(true);
-
-        }
 }
 
 

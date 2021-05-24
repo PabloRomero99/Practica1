@@ -194,46 +194,59 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
     }
 
 
-    public void addEtiquetas(String etiqueta){
+    public boolean addEtiquetas(String etiqueta){
         if (!lista_etiquetas.contains(etiqueta)) { //El metodo generico encuentraElementos no tolera String
             lista_etiquetas.add(etiqueta);
             System.out.println("La etiqueta '" + etiqueta + "' se ha añadido correctamente");
+            return true;
         }
-        else
+        else {
             System.out.println("La etiqueta '" + etiqueta + "' ya esta en la lista de etiquetas de la tarea ");
+            return false;
+        }
     }
 
-    public void eliminarEtiqueta(String etiqueta) {
-        if(!lista_etiquetas.remove(etiqueta))
+    public boolean eliminarEtiqueta(String etiqueta) {
+        if(!lista_etiquetas.remove(etiqueta)) {
             System.out.println("La etiqueta " + etiqueta + " no esta en la lista de etiquetas de la tarea ");
-        else
+            return true;
+        }
+        else {
             System.out.println("La etiqueta " + etiqueta + " se ha borrado correctamente");
+            return true;
+        }
     }
 
 
-    public void addColaboradores(Persona persona) {
+    public boolean addColaboradores(Persona persona) {
         if (persona != null) {
             if (!encuentraElementos(persona, colaboradores)) {
                 colaboradores.add(persona);
                 System.out.println(persona.getClave() + " es nuevo colaborador en la tarea");
+                return true;
             }else {
                 System.out.println(persona.getClave() + " ya era colaborador en la tarea");
+                return false;
             }
         }else {
             System.out.println("Esta persona no participa en el proyecto");
+            return false;
         }
     }
 
-    public void eliminarColaboradores(Persona persona){
+    public boolean eliminarColaboradores(Persona persona){
         if (persona != null) {
             if (encuentraElementos(persona, colaboradores)) {
                 colaboradores.remove(persona);
                 System.out.println(persona.getClave() + " ya no es colaborador");
+                return true;
             }else {
                 System.out.println(persona.getClave() + " no era colaborador en la tarea");
+                return false;
             }
         }else {
             System.out.println("Esta persona no participa en el proyecto");
+            return false;
         }
     }
 
@@ -265,6 +278,14 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
             System.out.println("Esta persona no pertenece al proyecto, o el DNI no es correcto , porfavor escoge una persona que " +
                     "este registrada en el proyecto o un DNI correcto(Elija opción 8 para consultar información).");
         }
+    }
+
+    public String[] toArrayEtiquetas(){
+        String[] res = new String[lista_etiquetas.size()];
+        for (int n = 0; n < lista_etiquetas.size(); n++) {
+            res[n] = lista_etiquetas.get(n);
+        }
+        return res;
     }
 
     public double calculaFacturacion() {

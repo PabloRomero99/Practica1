@@ -1,6 +1,5 @@
 package modelo;
 
-import controlador.ImplementacionControlador;
 import modelo.Tarea.Facturacion.ConsumoInterno;
 import modelo.Tarea.Facturacion.Descuento;
 import modelo.Tarea.Facturacion.Facturacion;
@@ -8,11 +7,9 @@ import modelo.Tarea.Facturacion.Urgente;
 import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.*;
-import modelo.genericos.clases.UtilidadesParaListas;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.List;
 
 import static modelo.genericos.clases.UtilidadesParaListas.devuelveElemento;
 
@@ -85,8 +82,9 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void pulsadorJRadioButton(String actionCommand) {
+    public void pulsadorJRadioButton(String actionCommand){
         vistaAlta = new VistaAlta();
+        vistaEliminar = new VistaEliminar();
         if (actionCommand.equals("Persona")){
             System.out.println("PERSONA ");
             vistaAlta.altaPersona();
@@ -135,7 +133,6 @@ public class ModeloProyecto implements Modelo, Serializable {
             System.out.println("");
             this.tipo_fac=3;
         }
-
     }
 
     @Override
@@ -180,11 +177,12 @@ public class ModeloProyecto implements Modelo, Serializable {
         vistaInsertar = new VistaInsertar();
         if (actionCommand.equals("Colaborador")){
             System.out.println("COLABORADOR");
-            vistaInsertar.insertarColaborador(proyectoFinal.toArrayParticipantes());
+            vistaInsertar.insertarColaborador(proyectoFinal.toArrayParticipantes());//puede explotar
 
         }else if (actionCommand.equals("Etiqueta")){
             System.out.println("ETIQUETA");
-            vistaInsertar.insertarEtiqueta();
+            Tarea t = devuelveElemento(this.nombreTarea, proyectoFinal.getTareas());
+            vistaInsertar.insertarEtiqueta(t.toArrayEtiquetas());
 
         }else{
             System.out.println("RESPONSABLE");
@@ -195,43 +193,71 @@ public class ModeloProyecto implements Modelo, Serializable {
     @Override
     public void insertandoColaborador(String clave) throws Exception {
         vistaInsertar = new VistaInsertar();
-        System.out.println(nombreTarea + " nomtarea");
         if (proyectoFinal.getTareas() == null || proyectoFinal.getTareas().isEmpty()) {
-            System.out.println("tareas vacia");
             vistaInsertar.errorTarea();
         } else {
-            System.out.println(proyectoFinal.getTareas().toString());
-            if (!proyectoFinal.getParticipantes().isEmpty()) {
-                System.out.println("participantes lleno");
-                System.out.println(proyectoFinal.getParticipantes().toString());
-                try {
-                    Persona p = devuelveElemento(clave, proyectoFinal.getParticipantes());
-                    System.out.println("1" + p.toString());
-                    System.out.println(proyectoFinal.getTareas().toString());
-                    Tarea t = devuelveElemento(this.nombreTarea, proyectoFinal.getTareas());
-                    System.out.println("2");
-                    t.addColaboradores(p);
-                    System.out.println("Todo fue bien");
-                    vistaInsertar.satisfactorio();
-                } catch (Exception e) {
-                    System.out.println("Ha ocurrido un problema");
-                    vistaInsertar.errorColaborador();
-                }
-            }else{
+            Persona p = devuelveElemento(clave, proyectoFinal.getParticipantes());
+            Tarea t = devuelveElemento(this.nombreTarea, proyectoFinal.getTareas());
+            if(t.addColaboradores(p))
+                vistaInsertar.satisfactorio();
+            else
                 vistaInsertar.errorColaborador();
-            }
+        }
+    }
+
+    @Override
+    public void insertandoEtiqueta(String etiqueta) throws Exception {
+        vistaInsertar = new VistaInsertar();
+        if (proyectoFinal.getTareas() == null || proyectoFinal.getTareas().isEmpty()) {
+            vistaInsertar.errorTarea();
+        } else {
+            Tarea t = devuelveElemento(nombreTarea, proyectoFinal.getTareas());
+            if (t.addEtiquetas(etiqueta))
+                vistaInsertar.satisfactorio();
+            else
+                vistaInsertar.errorEtiqueta();
+        }
+    }
+
+    @Override
+    public void eliminandoColaborador(String clave) throws Exception {
+        vistaEliminar = new VistaEliminar();
+        if (proyectoFinal.getTareas() == null || proyectoFinal.getTareas().isEmpty()) {
+            vistaInsertar.errorTarea();
+        } else {
+            Persona p = devuelveElemento(clave, proyectoFinal.getParticipantes());
+            Tarea t = devuelveElemento(this.nombreTarea, proyectoFinal.getTareas());
+            if(t.eliminarColaboradores(p))
+                vistaEliminar.satisfactorio();
+            else
+                vistaEliminar.errorColaborador();
+        }
+    }
+
+    @Override
+    public void eliminandoEtiqueta(String etiqueta) throws Exception {
+        vistaEliminar = new VistaEliminar();
+        if (proyectoFinal.getTareas() == null || proyectoFinal.getTareas().isEmpty()) {
+            vistaEliminar.errorTarea();
+        } else {
+            Tarea t = devuelveElemento(nombreTarea, proyectoFinal.getTareas());
+            if (t.eliminarEtiqueta(etiqueta))
+                vistaEliminar.satisfactorio();
+            else
+                vistaEliminar.errorEtiqueta();
         }
     }
 
 
     @Override
-    public void pulsandoEliminar(String actionCommand) {
-        if (actionCommand.equals("Colaborador")){
-            System.out.println("COLABORADOR");
-            vistaEliminar.eliminarColaborador();
+    public void pulsandoEliminar(String actionCommand) throws Exception{
+        if (actionCommand.equals("Persona")){
+            System.out.println("Persona");
+            vistaEliminar.eliminarColaborador(proyectoFinal.toArrayListado("colaboradores"));
         }else{
             System.out.println("ETIQUETA");
-            vistaEliminar.eliminarEtiqueta();
+            Tarea t = devuelveElemento(nombreTarea, proyectoFinal.getTareas());
+            vistaEliminar.eliminarEtiqueta(t.toArrayEtiquetas());
         }
     }
 

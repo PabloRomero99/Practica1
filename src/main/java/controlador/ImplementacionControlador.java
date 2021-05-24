@@ -87,7 +87,7 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void pulsadoEliminar(String actionCommand) {
+    public void pulsadoEliminar(String actionCommand) throws Exception{
         modelo.pulsandoEliminar(actionCommand);
     }
 
@@ -97,8 +97,8 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void insertaEtiqueta(String clave) {
-        System.out.println("a");
+    public void insertaEtiqueta(String etiqueta) throws Exception {
+        modelo.insertandoEtiqueta(etiqueta);
 
     }
 
@@ -108,14 +108,14 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void eliminaPersona(String clave) {
-        System.out.println("a");
+    public void eliminaPersona(String clave) throws Exception {
+        modelo.eliminandoColaborador(clave);
 
     }
 
     @Override
-    public void eliminaEtiqueta(String clave) {
-        System.out.println("a");
+    public void eliminaEtiqueta(String clave) throws Exception {
+        modelo.eliminandoEtiqueta(clave);
     }
 
     @Override
@@ -144,8 +144,13 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void consultarPrecio() {
-        modelo.consultarPrecio();
+    public String[] consultarPrecioPorTarea() {
+        return modelo.consultarPrecioPorTarea();
+    }
+
+    @Override
+    public double consultarPrecioTotal() {
+        return modelo.consultarPrecioTotal();
     }
 
 }

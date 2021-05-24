@@ -29,7 +29,7 @@ public class VistaInsertar extends JFrame implements Vista{
          JFrame ventana = new JFrame("Inicio");
          Container cont = ventana.getContentPane();
          nTarea = new JTextField(30);
-         JLabel nomTarea = new JLabel("Nombre de la tarea donde quieres modificar: ");
+         JLabel nomTarea = new JLabel("Titulo de la tarea donde quieres modificar: ");
          cont.setLayout(new FlowLayout());
          cont.add(nomTarea);
          cont.add(nTarea);
@@ -37,26 +37,28 @@ public class VistaInsertar extends JFrame implements Vista{
 
          Container cont2 = new Container();
          cont2.setLayout(new FlowLayout());
-         cont2.add(new JLabel("Listado de tareas: "));
          //cont2.add(clave);
 
 
         String[] tareaslistado = controlador.conseguirListado("tarea");
+        JScrollBar barra = new JScrollBar();
         JList tareas = new JList(tareaslistado);
         JScrollPane paneltareas = new JScrollPane(tareas);
         tareas.setVisibleRowCount(4);
-
-
+        tareas.add(barra);
+        ventana.getContentPane().add(paneltareas);
+        //cont2.add(tareas);
 
          JButton aceptar = new JButton(ACEPTAR);
          vistaInsertar = new VistaInsertar();
          aceptar.addActionListener(e -> controlador.pulsadoAceptar("Insertar", nTarea.getText()));
-         //aceptar.addActionListener(e -> controlador.conseguirListado("tareas"));
-         System.out.println(nTarea.getX());
          aceptar.addActionListener(e -> ventana.setVisible(false));
-         cont2.add(aceptar);
+
+         cont.add(aceptar, BorderLayout.EAST);
          cont.add(cont2, BorderLayout.NORTH);
-         cont.add(paneltareas, BorderLayout.CENTER);
+         cont.add(paneltareas, BorderLayout.SOUTH);
+         cont.add(aceptar);
+         cont.add(paneltareas);
 
          ventana.addWindowListener(new WindowAdapter() {
              @Override
@@ -71,7 +73,6 @@ public class VistaInsertar extends JFrame implements Vista{
          ventana.pack();
          ventana.setVisible(true);
      }
-
 
     public void ejecutaInsertar(){
         JFrame ventana = new JFrame("Insertar Colaborador, Etiqueta o Responsable ");
@@ -102,7 +103,13 @@ public class VistaInsertar extends JFrame implements Vista{
 
 
         JRadioButton responsable = new JRadioButton("Responsable");
-        responsable.addItemListener(e -> controlador.pulsadoInsertar(responsable.getText()));
+        responsable.addItemListener(e -> {
+            try {
+                controlador.pulsadoInsertar(responsable.getText());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
         responsable.addItemListener(e-> ventana.setVisible(false));
 
 
@@ -129,6 +136,7 @@ public class VistaInsertar extends JFrame implements Vista{
                 ventana.setVisible(true);
             }
         });
+        ventana.setVisible(true);
 
     }
 
@@ -141,7 +149,7 @@ public class VistaInsertar extends JFrame implements Vista{
 
         Container cont2 = new Container();
         cont2.setLayout(new FlowLayout());
-        cont2.add(new JLabel("Identificador del colaborador: "));
+        cont2.add(new JLabel("Introduce el DNI del colaborador: "));
         cont2.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
@@ -152,8 +160,7 @@ public class VistaInsertar extends JFrame implements Vista{
                 exception.printStackTrace();
             }
         });
-        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
-        aceptar.addItemListener(e-> ventana.setVisible(false));
+        aceptar.addActionListener(e-> ventana.setVisible(false));
 
         JList personas = new JList(participantes);
         JScrollPane panelPersonas = new JScrollPane(personas);
@@ -161,52 +168,62 @@ public class VistaInsertar extends JFrame implements Vista{
 
         cont2.add(aceptar);
 
-        cont.add(cont2, BorderLayout.NORTH);
-        cont.add(panelPersonas, BorderLayout.CENTER);
+        cont.add(cont2);
+        cont.add(panelPersonas);
 
-        ventana.setPreferredSize(new Dimension(800,600));
+        //ventana.setPreferredSize(new Dimension(800,600));
 
         ventana.pack();
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInsertar=new VistaInsertar();
-                vistaInsertar.ejecutaInsertar();
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });
         ventana.setVisible(true);
+
     }
 
-    public void insertarEtiqueta(){
+    public void insertarEtiqueta(String[] etiquetas) throws Exception{
         JFrame ventana = new JFrame("Insertar una etiqueta a la tarea");
         Container cont = ventana.getContentPane();
 
         clave = new JTextField(30);
         cont.setLayout(new FlowLayout());
-        cont.add(new JLabel("IEtiqueta: "));
+        cont.add(new JLabel("Etiqueta: "));
         cont.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
-        //aceptar.addActionListener(e -> controlador.darAltaPersona());
-        aceptar.addActionListener(e -> controlador.insertaEtiqueta(clave.getText()));
-        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        aceptar.addActionListener(e -> {
+            try {
+                controlador.insertaEtiqueta(clave.getText());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        aceptar.addActionListener(e-> ventana.setVisible(false));
         cont.add(aceptar);
 
+        JList etiqueta = new JList(etiquetas);
+        JScrollPane panelEtiquetas = new JScrollPane(etiqueta);
+        etiqueta.setVisibleRowCount(4);
+        cont.add(panelEtiquetas, BorderLayout.CENTER);
         ventana.pack();
         //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setVisible(true);
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInsertar=new VistaInsertar();
-                vistaInsertar.ejecutaInsertar();
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });
         ventana.setVisible(true);
+
     }
 
     public void insertarResponsable(){
@@ -221,20 +238,22 @@ public class VistaInsertar extends JFrame implements Vista{
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> controlador.insertaResponsable(clave.getText()));
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
+        aceptar.addActionListener(e-> ventana.setVisible(false));
+
         cont.add(aceptar);
 
         ventana.pack();
-        ventana.setVisible(true);
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInsertar=new VistaInsertar();
-                vistaInsertar.ejecutaInsertar();
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });
         ventana.setVisible(true);
+
     }
 
     public void satisfactorio(){
@@ -242,6 +261,14 @@ public class VistaInsertar extends JFrame implements Vista{
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("Todo fue correctamente"),BorderLayout.CENTER);
         ventana.setSize(800,600);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
         ventana.setVisible(true);
     }
 
@@ -250,6 +277,14 @@ public class VistaInsertar extends JFrame implements Vista{
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("La tarea no existe"));
         ventana.setSize(800,600);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
         ventana.setVisible(true);
 
     }
@@ -258,8 +293,32 @@ public class VistaInsertar extends JFrame implements Vista{
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("El colaborador no existe"));
+        ventana.setSize(800,600);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
         ventana.setVisible(true);
+    }
 
+    public void errorEtiqueta(){
+        JFrame ventana = new JFrame("Error");
+        Container cont = ventana.getContentPane();
+        cont.add(new JLabel("No se ha podido introducir la etiqueta"));
+        ventana.setSize(800,600);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice = vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+        ventana.setVisible(true);
     }
 
     /*
