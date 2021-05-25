@@ -164,6 +164,11 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
 
     }
 
+    public String titulos() {
+        return "\t- // Titulo= " + Titulo + '\n';
+
+    }
+
     public void marcarFinalizada(){
         this.fecha_finalización=LocalDate.now(); this.finalizada = true;
     }
@@ -194,46 +199,59 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
     }
 
 
-    public void addEtiquetas(String etiqueta){
+    public boolean addEtiquetas(String etiqueta){
         if (!lista_etiquetas.contains(etiqueta)) { //El metodo generico encuentraElementos no tolera String
             lista_etiquetas.add(etiqueta);
             System.out.println("La etiqueta '" + etiqueta + "' se ha añadido correctamente");
+            return true;
         }
-        else
+        else {
             System.out.println("La etiqueta '" + etiqueta + "' ya esta en la lista de etiquetas de la tarea ");
+            return false;
+        }
     }
 
-    public void eliminarEtiqueta(String etiqueta) {
-        if(!lista_etiquetas.remove(etiqueta))
+    public boolean eliminarEtiqueta(String etiqueta) {
+        if(!lista_etiquetas.remove(etiqueta)) {
             System.out.println("La etiqueta " + etiqueta + " no esta en la lista de etiquetas de la tarea ");
-        else
+            return true;
+        }
+        else {
             System.out.println("La etiqueta " + etiqueta + " se ha borrado correctamente");
+            return true;
+        }
     }
 
 
-    public void addColaboradores(Persona persona) {
+    public boolean addColaboradores(Persona persona) {
         if (persona != null) {
             if (!encuentraElementos(persona, colaboradores)) {
                 colaboradores.add(persona);
                 System.out.println(persona.getClave() + " es nuevo colaborador en la tarea");
+                return true;
             }else {
                 System.out.println(persona.getClave() + " ya era colaborador en la tarea");
+                return false;
             }
         }else {
             System.out.println("Esta persona no participa en el proyecto");
+            return false;
         }
     }
 
-    public void eliminarColaboradores(Persona persona){
+    public boolean eliminarColaboradores(Persona persona){
         if (persona != null) {
             if (encuentraElementos(persona, colaboradores)) {
                 colaboradores.remove(persona);
                 System.out.println(persona.getClave() + " ya no es colaborador");
+                return true;
             }else {
                 System.out.println(persona.getClave() + " no era colaborador en la tarea");
+                return false;
             }
         }else {
             System.out.println("Esta persona no participa en el proyecto");
+            return false;
         }
     }
 
@@ -243,7 +261,7 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
         }throw new Exception();
     }
 
-    public void addResponsable(String dniPersona, Proyecto p) throws Exception{
+    public boolean addResponsable(String dniPersona, Proyecto p) throws Exception{
         try{
             if (this.fechaFinCorrecta(fecha_finalización)){
                 Persona persona = devuelveElemento(dniPersona, p.getParticipantes());
@@ -252,19 +270,35 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
                         colaboradores.add(persona);
                         responsable = persona;
                         persona.addTareaResponsable(this);
+                        return true;
                     } else {
                         responsable = persona;
                         persona.addTareaResponsable(this);
+                        return true;
                     }
                 }else{
                     System.out.println("El responsable de la tarea es " + responsable
                             + " y solo puede haber un responsable por tarea");
+                    return false;
                 }
             }
         } catch (Exception e){
             System.out.println("Esta persona no pertenece al proyecto, o el DNI no es correcto , porfavor escoge una persona que " +
                     "este registrada en el proyecto o un DNI correcto(Elija opción 8 para consultar información).");
         }
+        return false;
+    }
+
+    public String[] toArrayEtiquetas(){
+        String[] res = new String[lista_etiquetas.size()];
+        for (int n = 0; n < lista_etiquetas.size(); n++) {
+            res[n] = lista_etiquetas.get(n);
+        }
+        return res;
+    }
+
+    public String[] toArrayNoColaboradores(){
+        return null;
     }
 
     public double calculaFacturacion() {

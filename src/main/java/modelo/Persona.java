@@ -80,7 +80,7 @@ public class Persona implements Serializable, tieneClave, tieneLista{
 
     @Override
     public String toString() {
-        return "- Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();
+        return "Nombre = " + nombre + ", Correo = " + correo + ", DNI = " + DNI +", Responsable en las tareas = " + devuelveNombreTarea();
     }
 
 
