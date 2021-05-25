@@ -197,27 +197,25 @@ public class VistaEliminar extends JFrame implements Vista{
         JFrame ventana = new JFrame("Todo fue correctamente");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("Todo fue correctamente"),BorderLayout.CENTER);
-        ventana.setSize(800,600);
+        ventana.setSize(200,200);
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaEliminar=new VistaEliminar();
-                vistaEliminar.ejecutaEliminar();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });
-        ventana.setVisible(true);    }
+        ventana.setVisible(true);}
 
     public void errorTarea(){
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("La tarea no existe"));
-        ventana.setSize(800,600);
+        ventana.setSize(200,200);
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaEliminar=new VistaEliminar();
-                vistaEliminar.ejecutaEliminar();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });
@@ -228,12 +226,11 @@ public class VistaEliminar extends JFrame implements Vista{
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("El colaborador no existe"));
-        ventana.setSize(800,600);
+        ventana.setSize(200,200);
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaEliminar=new VistaEliminar();
-                vistaEliminar.ejecutaEliminar();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });
@@ -243,12 +240,11 @@ public class VistaEliminar extends JFrame implements Vista{
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
         cont.add(new JLabel("No se ha podido introducir la etiqueta"));
-        ventana.setSize(800,600);
+        ventana.setSize(200,200);
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaEliminar=new VistaEliminar();
-                vistaEliminar.ejecutaEliminar();
+                vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
         });

@@ -25,7 +25,6 @@ public class VistaModificar {
         });
 
         JRadioButton coste = new JRadioButton("Coste");
-
         coste.addItemListener(e -> controlador.pulsadorJRadioButton(coste.getText()));
         coste.addItemListener(e-> ventana.setVisible(false));
 
@@ -94,6 +93,7 @@ public class VistaModificar {
     }
 
     public void modificarTipoFact(){
+
         JFrame ventana = new JFrame("Modificacion Tipo de Facturacion");
 
         ventana.addWindowListener(new WindowAdapter() {
@@ -106,14 +106,16 @@ public class VistaModificar {
         VistaModificar vistaModificar = new VistaModificar();
 
         JRadioButton sin_costes = new JRadioButton("Facturación sin costes");
-
         sin_costes.addItemListener(e-> vistaModificar.realizarModificacion(1));
+        sin_costes.addActionListener(e -> ventana.setVisible(false));
 
         JRadioButton descuento = new JRadioButton("Facturación con descuento");
         descuento.addItemListener(e -> vistaModificar.realizarModificacion(2));
+        descuento.addActionListener(e -> ventana.setVisible(false));
 
         JRadioButton urgente = new JRadioButton("Facturación urgente");
         urgente.addItemListener(e -> vistaModificar.realizarModificacion(3));
+        urgente.addActionListener(e -> ventana.setVisible(false));
 
 
         ButtonGroup tipo_facturacion = new ButtonGroup();
@@ -122,10 +124,17 @@ public class VistaModificar {
         tipo_facturacion.add(urgente);
 
 
+        JPanel radio = new JPanel();
+        radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
+        radio.add(sin_costes);
+        radio.add(descuento);
+        radio.add(urgente);
+        ventana.setContentPane(radio);
+        ventana.pack();
 
         ventana.pack();
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
+
     }
 
     public void realizarModificacion(int comprobante){
@@ -186,3 +195,5 @@ public class VistaModificar {
 
 
 }
+
+
