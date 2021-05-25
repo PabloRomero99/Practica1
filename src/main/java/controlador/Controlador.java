@@ -24,7 +24,7 @@ public interface Controlador {
 
     void insertaEtiqueta(String clave) throws Exception;
 
-    void insertaResponsable(String clave);
+    void insertaResponsable(String clave) throws Exception;
 
     void eliminaPersona(String clave) throws Exception;
 
@@ -44,4 +44,7 @@ public interface Controlador {
 
     double consultarPrecioTotal();
 
+    void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception;
+
+    void modificarCoste(JTextField coste, JTextField tarea) throws Exception;
 }

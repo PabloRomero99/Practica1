@@ -2,6 +2,7 @@ package modelo;
 
 import modelo.Tarea.Tarea;
 
+import javax.swing.*;
 import java.util.List;
 
 public interface Modelo {
@@ -20,6 +21,8 @@ public interface Modelo {
     void insertandoColaborador(String clave) throws Exception;
 
     void insertandoEtiqueta(String etiqueta) throws Exception;
+
+    void insertandoResponsable(String clave)throws Exception;
 
     void eliminandoColaborador(String clave) throws Exception;
 
@@ -40,4 +43,8 @@ public interface Modelo {
     String[] consultarPrecioPorTarea();
 
     public double consultarPrecioTotal();
+
+    void modificarCoste(JTextField coste,JTextField tarea) throws Exception;
+
+    void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception;
 }

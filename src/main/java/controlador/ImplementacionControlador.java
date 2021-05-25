@@ -102,8 +102,8 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void insertaResponsable(String clave) {
-
+    public void insertaResponsable(String clave) throws Exception{
+        modelo.insertandoResponsable(clave);
     }
 
     @Override
@@ -151,5 +151,16 @@ public class ImplementacionControlador implements Controlador {
     public double consultarPrecioTotal() {
         return modelo.consultarPrecioTotal();
     }
+
+    @Override
+    public void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception {
+        modelo.modificarTipoFact(dto,tarea,tipo_fac);
+    }
+
+    @Override
+    public void modificarCoste(JTextField coste, JTextField tarea) throws Exception {
+        modelo.modificarCoste(coste, tarea);
+    }
+
 
 }

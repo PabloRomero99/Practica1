@@ -8,6 +8,7 @@ import modelo.Tarea.Resultado.Resultado;
 import modelo.Tarea.Tarea;
 import vista.*;
 
+import javax.swing.*;
 import java.io.*;
 import java.time.LocalDate;
 
@@ -177,7 +178,8 @@ public class ModeloProyecto implements Modelo, Serializable {
         vistaInsertar = new VistaInsertar();
         if (actionCommand.equals("Colaborador")){
             System.out.println("COLABORADOR");
-            vistaInsertar.insertarColaborador(proyectoFinal.toArrayParticipantes());//puede explotar
+            Tarea t = devuelveElemento(this.nombreTarea, proyectoFinal.getTareas());
+            vistaInsertar.insertarColaborador(proyectoFinal.toArrayParticipantes(t));//puede explotar
 
         }else if (actionCommand.equals("Etiqueta")){
             System.out.println("ETIQUETA");
@@ -186,7 +188,7 @@ public class ModeloProyecto implements Modelo, Serializable {
 
         }else{
             System.out.println("RESPONSABLE");
-            vistaInsertar.insertarResponsable();
+            vistaInsertar.insertarResponsable(proyectoFinal.toArrayListado("persona"));
         }
     }
 
@@ -216,6 +218,20 @@ public class ModeloProyecto implements Modelo, Serializable {
                 vistaInsertar.satisfactorio();
             else
                 vistaInsertar.errorEtiqueta();
+        }
+    }
+
+    @Override
+    public void insertandoResponsable(String clave) throws Exception {
+        vistaInsertar = new VistaInsertar();
+        if (proyectoFinal.getTareas() == null || proyectoFinal.getTareas().isEmpty()) {
+            vistaInsertar.errorTarea();
+        }else {
+            Tarea t = devuelveElemento(nombreTarea, proyectoFinal.getTareas());
+            if (t.addResponsable(clave, proyectoFinal))
+                vistaInsertar.satisfactorio();
+            else
+                vistaInsertar.errorResponsable();
         }
     }
 
@@ -328,6 +344,23 @@ public class ModeloProyecto implements Modelo, Serializable {
     @Override
     public double consultarPrecioTotal() {
         return proyectoFinal.mostrarPrecioTotal();
+    }
+
+    @Override
+    public void modificarCoste(JTextField coste,JTextField tarea) throws Exception {
+        devuelveElemento(tarea.getText(),proyectoFinal.getTareas()).setCoste(Double.parseDouble(coste.getText()));
+    }
+
+    @Override
+    public void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception {
+        Facturacion facturacion;
+        if (tipo_fac==1)
+            facturacion = new ConsumoInterno();
+        else if(tipo_fac==2)
+            facturacion = new Descuento(Integer.parseInt(dto));
+        else
+            facturacion = new Urgente(Integer.parseInt(dto));
+        devuelveElemento(tarea.getText(),proyectoFinal.getTareas()).setTipoFacturacion(facturacion);
     }
 
 }

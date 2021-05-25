@@ -261,7 +261,7 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
         }throw new Exception();
     }
 
-    public void addResponsable(String dniPersona, Proyecto p) throws Exception{
+    public boolean addResponsable(String dniPersona, Proyecto p) throws Exception{
         try{
             if (this.fechaFinCorrecta(fecha_finalización)){
                 Persona persona = devuelveElemento(dniPersona, p.getParticipantes());
@@ -270,19 +270,23 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
                         colaboradores.add(persona);
                         responsable = persona;
                         persona.addTareaResponsable(this);
+                        return true;
                     } else {
                         responsable = persona;
                         persona.addTareaResponsable(this);
+                        return true;
                     }
                 }else{
                     System.out.println("El responsable de la tarea es " + responsable
                             + " y solo puede haber un responsable por tarea");
+                    return false;
                 }
             }
         } catch (Exception e){
             System.out.println("Esta persona no pertenece al proyecto, o el DNI no es correcto , porfavor escoge una persona que " +
                     "este registrada en el proyecto o un DNI correcto(Elija opción 8 para consultar información).");
         }
+        return false;
     }
 
     public String[] toArrayEtiquetas(){
@@ -291,6 +295,10 @@ public class Tarea implements Serializable, tieneClave, tieneLista {
             res[n] = lista_etiquetas.get(n);
         }
         return res;
+    }
+
+    public String[] toArrayNoColaboradores(){
+        return null;
     }
 
     public double calculaFacturacion() {

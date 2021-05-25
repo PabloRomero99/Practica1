@@ -24,7 +24,8 @@ public class VistaEliminar extends JFrame implements Vista{
 
     public void ejecuta(){
         JFrame ventana = new JFrame("Inicio");
-        Container cont = ventana.getContentPane();
+        Panel cont = new Panel();
+
         nTarea = new JTextField(30);
         JLabel nomTarea = new JLabel("Nombre de la tarea donde quieres modificar: ");
         cont.setLayout(new FlowLayout());
@@ -32,26 +33,19 @@ public class VistaEliminar extends JFrame implements Vista{
         cont.add(nTarea);
 
 
-        Container cont2 = new Container();
-        cont2.setLayout(new FlowLayout());
-        cont2.add(new JLabel("Listado de tareas: "));
-        //cont2.add(clave);
-
-
         String[] tareaslistado = controlador.conseguirListado("nombreTarea");
         JList tareas = new JList(tareaslistado);
         JScrollPane paneltareas = new JScrollPane(tareas);
         tareas.setVisibleRowCount(4);
+        tareas.setSize(100,50);
 
-        JScrollPane scroll = new JScrollPane();
-        tareas.getScrollableTracksViewportWidth();
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> controlador.pulsadoAceptar("Eliminar",nTarea.getText()));
         aceptar.addActionListener(e -> ventana.setVisible(false));
-        cont2.add(aceptar);
-        cont.add(cont2, BorderLayout.NORTH);
-        cont.add(paneltareas);
-        cont.add(scroll);
+
+        cont.add(aceptar);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cont, paneltareas);
+        ventana.getContentPane().add(splitPane);
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
@@ -120,15 +114,11 @@ public class VistaEliminar extends JFrame implements Vista{
 
     public void eliminarColaborador(String[] colaboradores){
         JFrame ventana = new JFrame("Eliminar un colaborador a la tarea");
-        Container cont = ventana.getContentPane();
+        Panel cont = new Panel();
 
         clave = new JTextField(30);
-        //cont.setLayout(new FlowLayout());
-
-        Container cont2 = new Container();
-        cont2.setLayout(new FlowLayout());
-        cont2.add(new JLabel("Identificador del colaborador que se quiere eliminar: "));
-        cont2.add(clave);
+        cont.add(new JLabel("Introduce el DNI del colaborador: "));
+        cont.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> {
@@ -139,19 +129,16 @@ public class VistaEliminar extends JFrame implements Vista{
             }
         });
 
-        aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         aceptar.addActionListener(e-> ventana.setVisible(false));
+        cont.add(aceptar);
 
         JList personas = new JList(colaboradores);
         JScrollPane panelPersonas = new JScrollPane(personas);
         personas.setVisibleRowCount(4);
+        personas.setSize(100,50);
 
-        cont2.add(aceptar);
-
-        cont.add(cont2, BorderLayout.NORTH);
-        cont.add(panelPersonas, BorderLayout.CENTER);
-
-        ventana.setPreferredSize(new Dimension(800,600));
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cont, panelPersonas);
+        ventana.getContentPane().add(splitPane);
 
         ventana.pack();
 
@@ -168,11 +155,11 @@ public class VistaEliminar extends JFrame implements Vista{
 
     public void eliminarEtiqueta(String[] etiqueta){
         JFrame ventana = new JFrame("Eliminar una etiqueta a la tarea");
-        Container cont = ventana.getContentPane();
+        Panel cont = new Panel();
 
         clave = new JTextField(30);
         cont.setLayout(new FlowLayout());
-        cont.add(new JLabel("Etiqueta que quieres eliminar: "));
+        cont.add(new JLabel("Etiqueta: "));
         cont.add(clave);
 
         JButton aceptar = new JButton(ACEPTAR);
@@ -183,16 +170,17 @@ public class VistaEliminar extends JFrame implements Vista{
                 exception.printStackTrace();
             }
         });
+        aceptar.addActionListener(e-> ventana.setVisible(false));
+        cont.add(aceptar);
 
         JList etiquetas = new JList(etiqueta);
         JScrollPane panelEtiquetas = new JScrollPane(etiquetas);
         etiquetas.setVisibleRowCount(4);
+        etiquetas.setSize(100,50);
 
-        aceptar.addActionListener(e-> ventana.setVisible(false));
-        cont.add(aceptar);
-        cont.add(panelEtiquetas, BorderLayout.CENTER);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, cont, panelEtiquetas);
+        ventana.getContentPane().add(splitPane);
         ventana.pack();
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ventana.addWindowListener(new WindowAdapter() {
             @Override
