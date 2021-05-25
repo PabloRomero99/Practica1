@@ -23,6 +23,7 @@ public class VistaMarcarFinalizada {
         JList tareas = new JList(datos);
         JScrollPane panelTareas = new JScrollPane(tareas);
         tareas.setVisibleRowCount(4);
+
         tareas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         //--------- Para saber que boton hemos pulsado
