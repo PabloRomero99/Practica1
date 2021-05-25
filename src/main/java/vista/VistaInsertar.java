@@ -271,7 +271,7 @@ public class VistaInsertar extends JFrame implements Vista{
     public void errorTarea(){
         JFrame ventana = new JFrame("Error");
         Container cont = ventana.getContentPane();
-        cont.add(new JLabel("   La tarea no existe"), BorderLayout.CENTER);
+        cont.add(new JLabel("   La tarea no se pudo añadir"), BorderLayout.CENTER);
         ventana.setSize(200,200);
         ventana.addWindowListener(new WindowAdapter() {
             @Override

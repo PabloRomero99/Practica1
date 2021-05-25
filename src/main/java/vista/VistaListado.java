@@ -88,7 +88,7 @@ public class VistaListado {
 
     public void mostrarListadoPersonas(){
         String[] datos = controlador.conseguirListado("persona");
-        JFrame ventana = new JFrame("JList");
+        JFrame ventana = new JFrame("Listado personas del proyecto");
         JList meses = new JList(datos);
         JScrollPane panelMeses = new JScrollPane(meses);
         meses.setVisibleRowCount(4);
@@ -108,7 +108,7 @@ public class VistaListado {
 
     public void mostrarListadoPersonasNoResponsables(){
         String[] datos = controlador.conseguirListado("personaSinResp");
-        JFrame ventana = new JFrame("JList");
+        JFrame ventana = new JFrame("Listado personas que no son responsables");
         JList meses = new JList(datos);
         JScrollPane panelMeses = new JScrollPane(meses);
         meses.setVisibleRowCount(4);
@@ -128,7 +128,7 @@ public class VistaListado {
 
     public void mostrarListadoTareas(){
         String[] datos = controlador.conseguirListado("tarea");
-        JFrame ventana = new JFrame("JList");
+        JFrame ventana = new JFrame("Listado tareas del proyecto");
         JList lTareas = new JList(datos);
         JScrollPane panelTareas = new JScrollPane(lTareas);
         lTareas.setVisibleRowCount(4);
@@ -148,7 +148,7 @@ public class VistaListado {
 
     public void mostrarListadoTareasSinColaboradores(){
         String[] datos = controlador.conseguirListado("tareaNoColab");
-        JFrame ventana = new JFrame("JList");
+        JFrame ventana = new JFrame("Listado tareas del proyecto sin colaboradores");
         JList lTareas = new JList(datos);
         JScrollPane panelTareas = new JScrollPane(lTareas);
         lTareas.setVisibleRowCount(4);

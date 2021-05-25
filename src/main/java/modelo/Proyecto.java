@@ -65,7 +65,7 @@ public class Proyecto implements Serializable {
         }
         for (Tarea tareita : tareas) {
             if (tareita.getTitulo().equals(tarea.getClave())) {
-                System.out.println("La persona con DNI" + tareita.getClave() + " ya esta registrada en el proyecto");
+                System.out.println("La tarea  " + tareita.getClave() + " ya esta registrada en el proyecto");
                 return false;
             }
         }

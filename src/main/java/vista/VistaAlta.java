@@ -233,13 +233,15 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
         aceptar.addActionListener(e -> vistaIndice.ejecuta());
         aceptar.addActionListener(e -> ventana.setVisible(false));
-        cont.add(aceptar
-        );
+        cont.add(aceptar);
+
 
         ventana.pack();
         ventana.setSize(360,450);
         ventana.setVisible(true);
     }
+
+
     @Override
     public String getNombrePersona() {
         return nombre.getText();

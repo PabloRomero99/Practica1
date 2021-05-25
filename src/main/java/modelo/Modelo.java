@@ -38,15 +38,18 @@ public interface Modelo {
 
     void pulsadoListarTareas(String text);
 
-    void marcarFinalizada(int index);
+    void marcarFinalizada(int index,JTextField horas);
 
     String[] consultarPrecioPorTarea();
 
-    public double consultarPrecioTotal();
+    double consultarPrecioTotal();
 
     void modificarCoste(JTextField coste,JTextField tarea) throws Exception;
 
-    void modificarTipoFact(double dto, JTextField tarea,int tipo_fac) throws Exception;
+    void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception;
 
     void realizarModificacion(int i);
+
+
+
 }

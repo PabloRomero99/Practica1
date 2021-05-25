@@ -138,8 +138,8 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void marcarFinalizada(int index) {
-        modelo.marcarFinalizada(index);
+    public void marcarFinalizada(int index,JTextField horas) {
+        modelo.marcarFinalizada(index,horas);
     }
 
     @Override
@@ -153,7 +153,7 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void modificarTipoFact(double dto, JTextField tarea,int tipo_fac) throws Exception {
+    public void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception {
         modelo.modificarTipoFact(dto,tarea,tipo_fac);
     }
 
@@ -166,6 +166,8 @@ public class ImplementacionControlador implements Controlador {
     public void realizarModificacion(int i) {
         modelo.realizarModificacion(i);
     }
+
+
 
 
 }

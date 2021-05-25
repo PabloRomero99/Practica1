@@ -23,6 +23,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
     private VistaModificar vistaModificar;
+    private VistaMarcarFinalizada vistaMarcarFinalizada;
     private Proyecto proyectoFinal;
     String identificador;
     String nombreTarea;
@@ -165,8 +166,9 @@ public class ModeloProyecto implements Modelo, Serializable {
             facturacion = new Urgente(descuento);
 
         Tarea tarea = new Tarea(titulotarea,descrip,priority,LocalDate.now(),resultado,coste,facturacion);
+        vistaInsertar = new VistaInsertar();
         proyectoFinal.addTarea(tarea);
-        System.out.println("La tarea" + tarea + " ha sido creada");
+
     }
 
     @Override
@@ -343,8 +345,10 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void marcarFinalizada(int index) {
-        proyectoFinal.getTareas().get(index).marcarFinalizada();
+    public void marcarFinalizada(int index,JTextField horas) {
+        Tarea t = proyectoFinal.getTareas().get(index);
+        t.marcarFinalizada();
+        t.getResultado().setHoras_invertidas(Double.parseDouble(horas.getText()));
     }
 
     @Override
@@ -362,14 +366,14 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void modificarTipoFact(double dto, JTextField tarea,int comprobante) throws Exception {
+    public void modificarTipoFact(String dto, JTextField tarea,int comprobante) throws Exception {
         Facturacion facturacion;
         if (comprobante==1)
             facturacion = new ConsumoInterno();
         else if(comprobante==2)
-            facturacion = new Descuento(dto);
+            facturacion = new Descuento(Integer.parseInt(dto));
         else
-            facturacion = new Urgente(dto);
+            facturacion = new Urgente(Integer.parseInt(dto));
         devuelveElemento(tarea.getText(),proyectoFinal.getTareas()).setTipoFacturacion(facturacion);
     }
 
@@ -381,4 +385,7 @@ public class ModeloProyecto implements Modelo, Serializable {
         else
             vistaModificar.realizarModificacion(i);
     }
+
+
+
 }
