@@ -12,7 +12,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     private final static String ACEPTAR = "ACEPTAR";
     private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
     private VistaAlta vistaAlta;
-    private VistaIndice vistaIndice;
+    private VistaIndice vistaIndice = VistaIndice.getInstancia();
     private JTextField nombre;
     private JTextField dni;
     private JTextField correo;
@@ -27,7 +27,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         ventana.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaIndice=vistaIndice.getInstancia();
+
                 vistaIndice.ejecuta();
                 ventana.setVisible(true);
             }
@@ -59,9 +59,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
     }
 
 
-
     public void altaPersona(){
-
         JFrame ventana = new JFrame("Dar de alta a una Persona");
         Container cont = ventana.getContentPane();
         ventana.addWindowListener(new WindowAdapter() {
@@ -93,7 +91,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> controlador.darAltaPersona(nombre,dni,correo));
-        vistaIndice = vistaIndice.getInstancia();;
+
         aceptar.addActionListener(e -> vistaIndice.ejecuta());
         aceptar.addActionListener(e -> ventana.setVisible(false));
 
@@ -191,7 +189,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
         JTextField coste  = new JTextField(30);
-        JLabel dinero = new JLabel("Coste: ");
+        JLabel dinero = new JLabel("        Coste: ");
         cont.setLayout(new FlowLayout());
         cont.add(dinero);
         cont.add(coste);
@@ -214,7 +212,7 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
 
 
         JTextField dto  = new JTextField(30);
-        JLabel desc = new JLabel("          Descuento: ");
+        JLabel desc = new JLabel("          Porcentaje a aplicar: ");
         cont.setLayout(new FlowLayout());
         cont.add(desc);
         cont.add(dto);
@@ -232,13 +230,14 @@ public class VistaAlta extends JFrame implements VistaAltaInterfaz {
         JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> System.out.println("El boton esta pulsado..."));
         aceptar.addActionListener(e -> controlador.darAltaTarea(titulo,descripcion,prioridad,coste,dto));
-        vistaIndice = vistaIndice.getInstancia();
+
         aceptar.addActionListener(e -> vistaIndice.ejecuta());
         aceptar.addActionListener(e -> ventana.setVisible(false));
         cont.add(aceptar
         );
 
         ventana.pack();
+        ventana.setSize(360,450);
         ventana.setVisible(true);
     }
     @Override

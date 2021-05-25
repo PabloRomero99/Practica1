@@ -22,8 +22,8 @@ public class VistaIndice extends JFrame implements Serializable {
     private VistaPrincipal vistaPrincipal;
     private VistaMarcarFinalizada vistaMarcarFinalizada;
     private VistaListado vistaListado;
-    //private VistaConsultarPrecio vistaConsultaPrecio;
-    //private VistaAlta vistaModificaciones;
+    private VistaMostrarPrecio vistaMostrarPrecio;
+    private VistaModificar vistaModificar;
     private VistaIndice vistaIndice;
     public JPanel panel;
     String nombreProyecto;
@@ -108,11 +108,17 @@ public class VistaIndice extends JFrame implements Serializable {
 
        JButton boton7 = new JButton("Consultar precio "); //Total del proyecto + tarea
        boton7.addActionListener(e -> System.out.println("Boton consultar precio pulsado"));
+       vistaMostrarPrecio = new VistaMostrarPrecio();
+       boton7.addActionListener(e -> vistaMostrarPrecio.ejecutaMostrarPrecio());
+       boton7.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton7);
 
 
        JButton boton8 = new JButton("Modificaciones "); //Coste, Tipo de facturacion
        boton8.addActionListener(e -> System.out.println("Boton modificaciones pulsado"));
+       vistaModificar = new VistaModificar();
+       boton8.addActionListener(e -> vistaModificar.ejecuta());
+       boton8.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton8);
 
        ventana.pack();
@@ -120,58 +126,7 @@ public class VistaIndice extends JFrame implements Serializable {
        ventana.setVisible(true);
 
    }
-
-private void radioButton(){
-        JRadioButton darAlta = new JRadioButton("Dar de alta: ");
-        darAlta.addItemListener(e -> System.out.println(e.getStateChange()));
-        JRadioButton insertar = new JRadioButton("Insertar: ");
-        insertar.addItemListener(e -> System.out.println(e.getStateChange()));
-        JRadioButton eliminar = new JRadioButton("Eliminar: ");
-        eliminar.addItemListener(e -> System.out.println(e.getStateChange()));
-        ButtonGroup grupo = new ButtonGroup();
-        grupo.add(darAlta);
-        grupo.add(insertar);
-        grupo.add(eliminar);
-
-       JFrame ventana = new JFrame("Proyecto ");
-
-       JPanel radio = new JPanel();
-       radio.setLayout(new BoxLayout(radio, BoxLayout.PAGE_AXIS));
-       radio.add(darAlta);
-       radio.add(insertar);
-       radio.add(eliminar);
-       ventana.setContentPane(radio);
-       ventana.pack();
-       ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       ventana.setVisible(true);
-
-        }
 }
 
 
 
-/*
-        public static Proyecto leerproyecto() throws IOException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre del proyecto: ");
-        String nombre = sc.nextLine();
-        try {
-            FileInputStream fis = new FileInputStream(nombre + ".bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Proyecto proyecto = (Proyecto) ois.readObject();
-            ois.close();
-            return proyecto;
-        }catch(IOException e){
-            System.out.println("El proyecto con nombre " + nombre + " se ha creado correctamente\n\n");
-            return new Proyecto(nombre);
-        }
-    }*/
-
-/*
-public void escribirFichero() throws IOException, ClassNotFoundException {
-        FileOutputStream fos = new FileOutputStream( nombre + ".bin");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(this);
-        oos.close();
-    }
- */

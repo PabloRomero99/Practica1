@@ -2,12 +2,13 @@ package modelo;
 
 import modelo.Tarea.Tarea;
 
+import javax.swing.*;
 import java.util.List;
 
 public interface Modelo {
     void iniciaProyecto(String nombreProyecto);
 
-    void pulsadorJRadioButton(String actionCommand);
+    void pulsadorJRadioButton(String actionCommand) throws Exception;
 
     void darAltaPersona(String nombre, String dni, String correo);
 
@@ -15,11 +16,19 @@ public interface Modelo {
 
     void pulsandoAceptar(String acctionCommand, String nomTarea);
 
-    void pulsandoInsertar(String actionCommand);
+    void pulsandoInsertar(String actionCommand) throws Exception;
 
     void insertandoColaborador(String clave) throws Exception;
 
-    void pulsandoEliminar(String actionCommand);
+    void insertandoEtiqueta(String etiqueta) throws Exception;
+
+    void insertandoResponsable(String clave)throws Exception;
+
+    void eliminandoColaborador(String clave) throws Exception;
+
+    void eliminandoEtiqueta(String etiqueta) throws Exception;
+
+    void pulsandoEliminar(String actionCommand) throws Exception;
 
     void pulsadoListarPersona(String actionCommand);
 
@@ -30,4 +39,12 @@ public interface Modelo {
     void pulsadoListarTareas(String text);
 
     void marcarFinalizada(int index);
+
+    String[] consultarPrecioPorTarea();
+
+    public double consultarPrecioTotal();
+
+    void modificarCoste(JTextField coste,JTextField tarea) throws Exception;
+
+    void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception;
 }

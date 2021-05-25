@@ -10,7 +10,6 @@ import java.awt.event.WindowEvent;
 public class VistaListado {
     private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
     private VistaIndice vistaIndice;
-    private VistaListado vistaListado;
 
     public void setControlador(ImplementacionControlador controlador) {
         this.controlador = controlador;
@@ -24,7 +23,7 @@ public class VistaListado {
         participante.addItemListener(e-> ventana.setVisible(false));
 
 
-        JRadioButton no_participante = new JRadioButton("Personas que no participan en ninguna tarea");
+        JRadioButton no_participante = new JRadioButton("Personas que no son responsables de ninguna tarea");
         no_participante.addItemListener(e -> controlador.pulsadoListarPersona(no_participante.getText()));
         no_participante.addItemListener(e-> ventana.setVisible(false));
 
@@ -107,8 +106,48 @@ public class VistaListado {
         });
     }
 
+    public void mostrarListadoPersonasNoResponsables(){
+        String[] datos = controlador.conseguirListado("personaSinResp");
+        JFrame ventana = new JFrame("JList");
+        JList meses = new JList(datos);
+        JScrollPane panelMeses = new JScrollPane(meses);
+        meses.setVisibleRowCount(4);
+        meses.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        ventana.getContentPane().add(panelMeses);
+        ventana.pack();
+        ventana.setVisible(true);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice=vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+    }
+
     public void mostrarListadoTareas(){
         String[] datos = controlador.conseguirListado("tarea");
+        JFrame ventana = new JFrame("JList");
+        JList lTareas = new JList(datos);
+        JScrollPane panelTareas = new JScrollPane(lTareas);
+        lTareas.setVisibleRowCount(4);
+        lTareas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        ventana.getContentPane().add(panelTareas);
+        ventana.pack();
+        ventana.setVisible(true);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice=vistaIndice.getInstancia();
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+    }
+
+    public void mostrarListadoTareasSinColaboradores(){
+        String[] datos = controlador.conseguirListado("tareaNoColab");
         JFrame ventana = new JFrame("JList");
         JList lTareas = new JList(datos);
         JScrollPane panelTareas = new JScrollPane(lTareas);

@@ -50,7 +50,6 @@ public class ImplementacionControlador implements Controlador {
     public void iniciaProyecto() {
         String nombreProyecto = vista.getNombreProyecto();
         modelo.iniciaProyecto(nombreProyecto);
-
     }
 
     @Override
@@ -82,12 +81,12 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void pulsadoInsertar(String actionCommand) {
+    public void pulsadoInsertar(String actionCommand) throws Exception {
         modelo.pulsandoInsertar(actionCommand);
     }
 
     @Override
-    public void pulsadoEliminar(String actionCommand) {
+    public void pulsadoEliminar(String actionCommand) throws Exception{
         modelo.pulsandoEliminar(actionCommand);
     }
 
@@ -97,25 +96,25 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void insertaEtiqueta(String clave) {
-        System.out.println("a");
+    public void insertaEtiqueta(String etiqueta) throws Exception {
+        modelo.insertandoEtiqueta(etiqueta);
 
     }
 
     @Override
-    public void insertaResponsable(String clave) {
+    public void insertaResponsable(String clave) throws Exception{
+        modelo.insertandoResponsable(clave);
+    }
+
+    @Override
+    public void eliminaPersona(String clave) throws Exception {
+        modelo.eliminandoColaborador(clave);
 
     }
 
     @Override
-    public void eliminaPersona(String clave) {
-        System.out.println("a");
-
-    }
-
-    @Override
-    public void eliminaEtiqueta(String clave) {
-        System.out.println("a");
+    public void eliminaEtiqueta(String clave) throws Exception {
+        modelo.eliminandoEtiqueta(clave);
     }
 
     @Override
@@ -142,5 +141,26 @@ public class ImplementacionControlador implements Controlador {
     public void marcarFinalizada(int index) {
         modelo.marcarFinalizada(index);
     }
+
+    @Override
+    public String[] consultarPrecioPorTarea() {
+        return modelo.consultarPrecioPorTarea();
+    }
+
+    @Override
+    public double consultarPrecioTotal() {
+        return modelo.consultarPrecioTotal();
+    }
+
+    @Override
+    public void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception {
+        modelo.modificarTipoFact(dto,tarea,tipo_fac);
+    }
+
+    @Override
+    public void modificarCoste(JTextField coste, JTextField tarea) throws Exception {
+        modelo.modificarCoste(coste, tarea);
+    }
+
 
 }

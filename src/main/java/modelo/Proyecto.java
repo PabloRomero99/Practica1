@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static modelo.genericos.clases.UtilidadesParaListas.elementosConListaVacia;
+
 public class Proyecto implements Serializable {
     private String nombre; //Nombre del proyecto
     private List<Persona> participantes;
@@ -71,10 +73,11 @@ public class Proyecto implements Serializable {
         return true;
     }
 
-    public String[] toArrayParticipantes(){
+    public String[] toArrayParticipantes(Tarea t){
         String[] res = new String[participantes.size()];
         for (int n = 0; n < participantes.size(); n++){
-            res[n] = participantes.get(n).toString();
+            if (!t.getColaboradores().contains(participantes.get(n)))
+                res[n] = participantes.get(n).toString();
         }
         return res;
     }
@@ -86,14 +89,54 @@ public class Proyecto implements Serializable {
             for (int n = 0; n < participantes.size(); n++){
                 res[n] = participantes.get(n).toString();
             }
-        }else{
-            res = new String[tareas.size()];
+        }else if (accion.equals("tarea")){
+                res = new String[tareas.size()];
             for (int n=0;n<tareas.size();n++){
-                //res[n] = tareas.get(n).getTitulo() + " "+tareas.get(n).getDescripcion() + " " +tareas.get(n).getColaboradores();
                 res[n] = tareas.get(n).toString();
+            }
+        }else if (accion.equals("colaboradores")) {
+            res = new String[tareas.size()];
+            for (int n=0;n<tareas.size();n++) {
+                res[n] = tareas.get(n).getColaboradores().toString();
+            }
+        }else if (accion.equals("personaSinResp")){
+            List<Persona> listaVacia = elementosConListaVacia(participantes);
+            int longitud = listaVacia.size();
+            res = new String[longitud];
+            for (int n = 0; n < longitud; n++) {
+                res[n] = listaVacia.get(n).toString();
+            }
+        }else if (accion.equals("tareaNoColab")){
+            List<Tarea> listaVacia = elementosConListaVacia(tareas);
+            int longitud = listaVacia.size();
+            res = new String[longitud];
+            for (int n = 0; n < longitud; n++) {
+                res[n] = listaVacia.get(n).toString();
+            }
+        }else {//if(accion.equals("nombreTarea"))
+            res = new String[tareas.size()];
+            for (int n=0;n<tareas.size();n++) {
+                res[n] = tareas.get(n).getTitulo();
             }
         }
         return res;
+    }
+
+    public String[] mostrarPrecioTareas(){
+        List<Tarea> listTarea = this.getTareas();
+        String[] precioTarea = new String[listTarea.size()];
+        for (int i = 0; i < listTarea.size(); i++) {
+            precioTarea[i] = String.valueOf(listTarea.get(i).calculaFacturacion());
+        }
+        return precioTarea;
+    }
+
+    public double mostrarPrecioTotal(){
+        double suma = 0;
+        for (String precio:mostrarPrecioTareas()){
+            suma += Double.parseDouble(precio);
+        }
+        return suma;
     }
 
 }
