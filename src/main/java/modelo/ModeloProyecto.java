@@ -22,6 +22,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     private VistaInsertar vistaInsertar;
     private VistaEliminar vistaEliminar;
     private VistaListado vistaListado;
+    private VistaModificar vistaModificar;
     private Proyecto proyectoFinal;
     String identificador;
     String nombreTarea;
@@ -86,6 +87,7 @@ public class ModeloProyecto implements Modelo, Serializable {
     public void pulsadorJRadioButton(String actionCommand){
         vistaAlta = new VistaAlta();
         vistaEliminar = new VistaEliminar();
+        vistaModificar = new VistaModificar();
         if (actionCommand.equals("Persona")){
             System.out.println("PERSONA ");
             vistaAlta.altaPersona();
@@ -133,6 +135,14 @@ public class ModeloProyecto implements Modelo, Serializable {
         else if(actionCommand.equals("Facturación urgente")){
             System.out.println("FACTURACION URGENTE");
             this.tipo_fac=3;
+        }
+        else if(actionCommand.equals("Coste")){
+            System.out.println("COSTE");
+            vistaModificar.modificarCoste();
+        }
+        else if(actionCommand.equals("Tipo de Facturación")){
+            System.out.println("TIPO DE FACTURACION");
+            vistaModificar.modificarTipoFact();
         }
     }
 

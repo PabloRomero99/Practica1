@@ -23,7 +23,7 @@ public class VistaIndice extends JFrame implements Serializable {
     private VistaMarcarFinalizada vistaMarcarFinalizada;
     private VistaListado vistaListado;
     private VistaMostrarPrecio vistaMostrarPrecio;
-    //private VistaAlta vistaModificaciones;
+    private VistaModificar vistaModificar;
     private VistaIndice vistaIndice;
     public JPanel panel;
     String nombreProyecto;
@@ -116,6 +116,9 @@ public class VistaIndice extends JFrame implements Serializable {
 
        JButton boton8 = new JButton("Modificaciones "); //Coste, Tipo de facturacion
        boton8.addActionListener(e -> System.out.println("Boton modificaciones pulsado"));
+       vistaModificar = new VistaModificar();
+       boton8.addActionListener(e -> vistaModificar.ejecuta());
+       boton8.addActionListener(e-> ventana.setVisible(false));
        contenedor.add(boton8);
 
        ventana.pack();
