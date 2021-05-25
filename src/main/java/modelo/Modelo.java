@@ -46,5 +46,7 @@ public interface Modelo {
 
     void modificarCoste(JTextField coste,JTextField tarea) throws Exception;
 
-    void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception;
+    void modificarTipoFact(double dto, JTextField tarea,int tipo_fac) throws Exception;
+
+    void realizarModificacion(int i);
 }

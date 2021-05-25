@@ -44,7 +44,9 @@ public interface Controlador {
 
     double consultarPrecioTotal();
 
-    void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception;
+    void modificarTipoFact(double dto, JTextField tarea,int tipo_fac) throws Exception;
 
     void modificarCoste(JTextField coste, JTextField tarea) throws Exception;
+
+    void realizarModificacion(int i);
 }

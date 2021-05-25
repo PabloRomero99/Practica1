@@ -362,15 +362,23 @@ public class ModeloProyecto implements Modelo, Serializable {
     }
 
     @Override
-    public void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception {
+    public void modificarTipoFact(double dto, JTextField tarea,int comprobante) throws Exception {
         Facturacion facturacion;
-        if (tipo_fac==1)
+        if (comprobante==1)
             facturacion = new ConsumoInterno();
-        else if(tipo_fac==2)
-            facturacion = new Descuento(Integer.parseInt(dto));
+        else if(comprobante==2)
+            facturacion = new Descuento(dto);
         else
-            facturacion = new Urgente(Integer.parseInt(dto));
+            facturacion = new Urgente(dto);
         devuelveElemento(tarea.getText(),proyectoFinal.getTareas()).setTipoFacturacion(facturacion);
     }
 
+    @Override
+    public void realizarModificacion(int i) {
+        vistaModificar = new VistaModificar();
+        if (i==1)
+            vistaModificar.realizarModificacionSinCoste(i);
+        else
+            vistaModificar.realizarModificacion(i);
+    }
 }

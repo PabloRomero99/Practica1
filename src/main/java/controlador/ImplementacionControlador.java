@@ -153,13 +153,18 @@ public class ImplementacionControlador implements Controlador {
     }
 
     @Override
-    public void modificarTipoFact(String dto, JTextField tarea,int tipo_fac) throws Exception {
+    public void modificarTipoFact(double dto, JTextField tarea,int tipo_fac) throws Exception {
         modelo.modificarTipoFact(dto,tarea,tipo_fac);
     }
 
     @Override
     public void modificarCoste(JTextField coste, JTextField tarea) throws Exception {
         modelo.modificarCoste(coste, tarea);
+    }
+
+    @Override
+    public void realizarModificacion(int i) {
+        modelo.realizarModificacion(i);
     }
 
 

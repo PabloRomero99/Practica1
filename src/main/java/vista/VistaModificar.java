@@ -10,8 +10,10 @@ import java.awt.event.WindowEvent;
 
 public class VistaModificar {
     private ImplementacionControlador controlador = ImplementacionControlador.getInstancia();
+    private final static String ACEPTAR = "ACEPTAR";
     private VistaIndice vistaIndice= VistaIndice.getInstancia();
-    private String dto = "0";
+    public double dto = 0;
+    private JTextField descuento;
 
     public void ejecuta(){
         JFrame ventana = new JFrame("Modificación Coste o Tipo Facturación ");
@@ -71,7 +73,7 @@ public class VistaModificar {
 
 
 
-        JButton aceptar = new JButton("ACEPTAR");
+        JButton aceptar = new JButton(ACEPTAR);
         aceptar.addActionListener(e -> {
             try {
                 controlador.modificarCoste(coste,tarea);
@@ -86,9 +88,7 @@ public class VistaModificar {
         cont.add(aceptar);
 
 
-
         ventana.pack();
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
 
@@ -103,18 +103,17 @@ public class VistaModificar {
                 ventana.setVisible(true);
             }
         });
-        VistaModificar vistaModificar = new VistaModificar();
 
         JRadioButton sin_costes = new JRadioButton("Facturación sin costes");
-        sin_costes.addItemListener(e-> vistaModificar.realizarModificacion(1));
+        sin_costes.addItemListener(e-> controlador.realizarModificacion(1));
         sin_costes.addActionListener(e -> ventana.setVisible(false));
 
         JRadioButton descuento = new JRadioButton("Facturación con descuento");
-        descuento.addItemListener(e -> vistaModificar.realizarModificacion(2));
+        descuento.addItemListener(e -> controlador.realizarModificacion(2));
         descuento.addActionListener(e -> ventana.setVisible(false));
 
         JRadioButton urgente = new JRadioButton("Facturación urgente");
-        urgente.addItemListener(e -> vistaModificar.realizarModificacion(3));
+        urgente.addItemListener(e -> controlador.realizarModificacion(3));
         urgente.addActionListener(e -> ventana.setVisible(false));
 
 
@@ -137,6 +136,40 @@ public class VistaModificar {
 
     }
 
+    public void realizarModificacionSinCoste(int comprobante){
+        JFrame ventana = new JFrame("Modificacion Coste");
+        Container cont = ventana.getContentPane();
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                vistaIndice.ejecuta();
+                ventana.setVisible(true);
+            }
+        });
+        JTextField tarea = new JTextField(30);
+        cont.setLayout(new FlowLayout());
+        cont.add(new JLabel("Introduce la tarea donde: "));
+        cont.add(tarea);
+
+
+        JButton aceptar = new JButton(ACEPTAR);
+        aceptar.addActionListener(e -> {
+            try {
+                controlador.modificarTipoFact(dto,tarea,comprobante);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        aceptar.addActionListener(e -> vistaIndice.ejecuta());
+        aceptar.addActionListener(e -> ventana.setVisible(false));
+
+        aceptar.addActionListener(e -> System.out.println("El boton Aceptar de ModificarCoste esta pulsado..."));
+        cont.add(aceptar);
+
+        ventana.pack();
+        ventana.setVisible(true);
+    }
+
     public void realizarModificacion(int comprobante){
         JFrame ventana = new JFrame("Modificacion Coste");
         Container cont = ventana.getContentPane();
@@ -153,29 +186,19 @@ public class VistaModificar {
         cont.add(new JLabel("Introduce la tarea donde: "));
         cont.add(tarea);
 
+        descuento = new JTextField(30);
+        cont.setLayout(new FlowLayout());
+        cont.add(new JLabel("Introduce el nuevo coste: "));
+        cont.add(descuento);
+        dto = Double.parseDouble(descuento.getText());
 
-        if (comprobante==1){//Sin costes
-
-        }else if(comprobante==2){//Descuento
-            JTextField descuento = new JTextField(30);
-            cont.setLayout(new FlowLayout());
-            cont.add(new JLabel("Introduce el nuevo coste: "));
-            cont.add(descuento);
-            dto = descuento.getText();
-
-        }else{//Urgente
-            JTextField descuento = new JTextField(30);
-            cont.setLayout(new FlowLayout());
-            cont.add(new JLabel("Introduce el nuevo coste: "));
-            cont.add(descuento);
-            dto = descuento.getText();
-        }
-
-
-        JButton aceptar = new JButton("ACEPTAR");
+        JButton aceptar = new JButton(ACEPTAR);
+        System.out.println("DESCUENTO --> "+dto);
+        System.out.println("TAREA --> "+tarea.getText());
+        System.out.println("COMPROBANTE --> "+comprobante);
         aceptar.addActionListener(e -> {
             try {
-                controlador.modificarTipoFact(dto,tarea,comprobante);
+               controlador.modificarTipoFact(dto,tarea,comprobante);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -189,7 +212,6 @@ public class VistaModificar {
 
 
         ventana.pack();
-        //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
 
